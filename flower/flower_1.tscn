@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cttu8ctnha2dl"]
+
+[ext_resource type="Script" uid="uid://bo004cxrruyw5" path="res://flower/flower.gd" id="1_ksvlc"]
+[ext_resource type="Texture2D" uid="uid://6ouf28cvf2e" path="res://flower/flower_test.png" id="2_jh6iy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]
+radius = 61.8
+
+[node name="flower" type="Node2D" groups=["flower"]]
+script = ExtResource("1_ksvlc")
+
+[node name="FlowerTest" type="Sprite2D" parent="."]
+scale = Vector2(0.465, 0.465)
+texture = ExtResource("2_jh6iy")
+
+[node name="FlowerArea2D" type="Area2D" parent="." groups=["flower"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea2D"]
+shape = SubResource("CircleShape2D_qc4up")

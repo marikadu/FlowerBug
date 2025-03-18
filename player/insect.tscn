@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4msv7itrsdr8"]
+
+[ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
+[ext_resource type="Texture2D" uid="uid://df7jeoknp7svk" path="res://icon.svg" id="2_4e74r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kt6d"]
+radius = 39.5
+
+[node name="insect" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_ev3hp")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.46, 0.46)
+texture = ExtResource("2_4e74r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_1kt6d")
+disabled = true
+
+[node name="InsectArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InsectArea2D"]
+shape = SubResource("CircleShape2D_1kt6d")
+
+[connection signal="body_entered" from="InsectArea2D" to="." method="_on_insect_area_2d_body_entered"]
