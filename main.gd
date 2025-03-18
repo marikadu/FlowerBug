@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var spawn_area: Control = $SpawnArea
 
-@export var min_flower_distance = 50.0
+@export var min_flower_distance = 90.0 # in order for the flowers to not overlap
 
 var flower_list = [
 	preload("res://flower/flower_1.tscn"),
@@ -29,16 +29,28 @@ func _ready() -> void:
 func spawn_flower():
 	var valid_position
 	
+	# flower spawning area
 	var flower_area_2d = spawn_area.get_node("Area2D")
 	var spawn_shape = flower_area_2d.get_node("CollisionShape2D")
 	
-	var rect = spawn_shape.shape.extents * 2
+	var rect = spawn_shape.shape.extents * 1.5
+	var random_position: Vector2
+	valid_position = false
 	
-	var random_x = randf_range(-rect.x / 2, rect.x / 2)
-	var random_y = randf_range(-rect.y / 2, rect.y / 2)
-	var random_position = spawn_area.global_position + Vector2(random_x, random_y)
+	while not valid_position:
+	
+		var random_x = randf_range(-rect.x / 2, rect.x / 2)
+		var random_y = randf_range(-rect.y / 2, rect.y / 2)
+		random_position = spawn_area.global_position + Vector2(random_x, random_y)
+		
+		valid_position = true
+		for flower in flower_instances:
+			if flower.position.distance_to(random_position) < min_flower_distance:
+				valid_position = false
+				break 
 	
 	# choosing a random flower from the list
+	#if valid_position:
 	var random_flower = flower_list[randi() % flower_list.size()]
 	var flower_instance = random_flower.instantiate()
 	

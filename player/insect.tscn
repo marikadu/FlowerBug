@@ -24,4 +24,5 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InsectArea2D"]
 shape = SubResource("CircleShape2D_1kt6d")
 
-[connection signal="body_entered" from="InsectArea2D" to="." method="_on_insect_area_2d_body_entered"]
+[connection signal="area_entered" from="InsectArea2D" to="." method="_on_insect_area_2d_area_entered"]
+[connection signal="area_exited" from="InsectArea2D" to="." method="_on_insect_area_2d_area_exited"]

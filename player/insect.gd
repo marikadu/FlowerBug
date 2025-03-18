@@ -32,16 +32,23 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 	#look_at(target_position)
+	
+	# eating a flower
+	if Input.is_action_just_pressed("eat"):
+		if near_flower:
+			print("eat!")
+		else:
+			print("can't eat")
 
 
-func _on_insect_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("flower"):
-		print("insect: near flower")
+func _on_insect_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("flower"):
 		near_flower = true
-		
-		if Input.is_action_just_pressed("eat"):
-			print("eatt!")
-		
-	else:
+		#print("area: near flower")
+		print("area: ", near_flower)
+
+
+func _on_insect_area_2d_area_exited(area: Area2D) -> void:
+	if area.is_in_group("flower"):
 		near_flower = false
-	#pass # Replace with function body.
+		print("area: ", near_flower)
