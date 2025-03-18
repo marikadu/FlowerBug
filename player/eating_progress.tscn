@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgejd1thooaby"]
+
+[ext_resource type="Script" uid="uid://bw3n681r4wvoa" path="res://player/eating_progress.gd" id="1_8lola"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lola"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.470588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6o1t"]
+bg_color = Color(0.300124, 0.65914, 0.355829, 1)
+
+[node name="ProgressBar" type="ProgressBar"]
+offset_right = 96.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_8lola")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t6o1t")
+value = 45.28
+script = ExtResource("1_8lola")

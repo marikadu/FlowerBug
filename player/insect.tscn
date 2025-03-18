@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4msv7itrsdr8"]
+[gd_scene load_steps=7 format=3 uid="uid://b4msv7itrsdr8"]
 
 [ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
 [ext_resource type="Texture2D" uid="uid://df7jeoknp7svk" path="res://icon.svg" id="2_4e74r"]
+[ext_resource type="Script" uid="uid://bw3n681r4wvoa" path="res://player/eating_progress.gd" id="3_4e74r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kt6d"]
 radius = 39.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dqc"]
+bg_color = Color(0.172549, 0.164706, 0.168627, 0.564706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xut38"]
+bg_color = Color(0.372757, 0.686339, 0.363004, 1)
 
 [node name="insect" type="CharacterBody2D"]
 z_index = 1
@@ -27,6 +34,17 @@ shape = SubResource("CircleShape2D_1kt6d")
 [node name="EatingTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="EatingBar" type="ProgressBar" parent="."]
+offset_left = -53.0
+offset_top = -67.0
+offset_right = 54.0
+offset_bottom = -44.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c1dqc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xut38")
+value = 9.31
+show_percentage = false
+script = ExtResource("3_4e74r")
 
 [connection signal="body_entered" from="InsectArea2D" to="." method="_on_insect_area_2d_body_entered"]
 [connection signal="body_exited" from="InsectArea2D" to="." method="_on_insect_area_2d_body_exited"]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var insect_area_2d: Area2D = $InsectArea2D
 @onready var eating_timer: Timer = $EatingTimer
+@onready var eating_bar: ProgressBar = $EatingBar
 
 
 #@export var speed = 400.0
@@ -13,6 +14,9 @@ extends CharacterBody2D
 var near_flower: bool
 var flower_to_eat: Node2D = null
 var is_eating: bool =  false
+
+func _ready() -> void:
+	eating_bar.hide()
 	
 func _physics_process(_delta: float) -> void:
 	# character stops when it is eating
@@ -49,10 +53,18 @@ func _physics_process(_delta: float) -> void:
 			print("eating...")
 			is_eating = true
 			eating_timer.start()
+			eating_bar.value = 0 # resetting the progress bar value
+			eating_bar.show()
 			#eat_flower(flower_to_eat)
 			
 		else:
 			print("can't eat")
+			
+
+func _process(delta: float) -> void:
+	if is_eating:
+		var percentage = (eating_timer.time_left / eating_timer.wait_time) * 100
+		eating_bar.value = 100 - percentage
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("flower"):
@@ -73,5 +85,7 @@ func _on_eating_timer_timeout() -> void:
 	if flower_to_eat:
 		get_parent().remove_flower(flower_to_eat)
 		print("ate!")
+		eating_bar.hide()
 		near_flower = false
 		is_eating = false
+		

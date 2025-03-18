@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://pajvfvquyng0"]
+[gd_scene load_steps=3 format=3 uid="uid://pajvfvquyng0"]
 
-[ext_resource type="Script" uid="uid://dh2wxmxtw5oii" path="res://spawnArea/spawn_area.gd" id="1_kv71e"]
 [ext_resource type="Texture2D" uid="uid://4481ca1loru3" path="res://spawnArea/area.png" id="2_th02x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv71e"]
@@ -17,7 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_kv71e")
 
 [node name="Area" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.380392)
