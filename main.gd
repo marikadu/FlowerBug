@@ -65,6 +65,7 @@ func _on_flower_spawn_timer_timeout() -> void:
 		spawn_flower()
 	else:
 		print("too many flowers, don't spawn")
+		$Flower_Spawn_Timer.stop()
 		# ideally, stop the timer unless there are less than 10 flowers
 		
 

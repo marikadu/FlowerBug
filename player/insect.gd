@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 @onready var insect_area_2d: Area2D = $InsectArea2D
+@onready var eating_timer: Timer = $EatingTimer
+
 
 #@export var speed = 400.0
 @export var max_speed = 690.0
@@ -10,8 +12,15 @@ extends CharacterBody2D
 
 var near_flower: bool
 var flower_to_eat: Node2D = null
+var is_eating: bool =  false
 	
 func _physics_process(_delta: float) -> void:
+	# character stops when it is eating
+	if is_eating:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	
 	var target_position = get_global_mouse_position()
 	var distance = global_position.distance_to(target_position)
 	
@@ -37,19 +46,13 @@ func _physics_process(_delta: float) -> void:
 	# eating a flower
 	if Input.is_action_just_pressed("eat"):
 		if near_flower:
-			print("eat!")
+			print("eating...")
+			is_eating = true
+			eating_timer.start()
 			#eat_flower(flower_to_eat)
-			get_parent().remove_flower(flower_to_eat)
-			near_flower = false
+			
 		else:
 			print("can't eat")
-
-
-#func eat_flower(flower: Node2D) -> void:
-	#if flower:
-		#print("ate flower:", flower)
-		#flower.queue_free()  # removing the flower from the scene
-
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("flower"):
@@ -64,3 +67,11 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 		near_flower = false
 		flower_to_eat = null # clearing stored flower
 		print("area: ", near_flower)
+
+
+func _on_eating_timer_timeout() -> void:
+	if flower_to_eat:
+		get_parent().remove_flower(flower_to_eat)
+		print("ate!")
+		near_flower = false
+		is_eating = false

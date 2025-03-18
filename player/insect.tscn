@@ -24,5 +24,10 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InsectArea2D"]
 shape = SubResource("CircleShape2D_1kt6d")
 
+[node name="EatingTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="InsectArea2D" to="." method="_on_insect_area_2d_body_entered"]
 [connection signal="body_exited" from="InsectArea2D" to="." method="_on_insect_area_2d_body_exited"]
+[connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]
