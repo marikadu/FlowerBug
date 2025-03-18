@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]
 radius = 55.85
 
-[node name="flower" type="Node2D" groups=["flower"]]
+[node name="flower" type="CharacterBody2D" groups=["flower"]]
 script = ExtResource("1_cvl35")
 
 [node name="FlowerTest" type="Sprite2D" parent="."]
@@ -17,4 +17,7 @@ texture = ExtResource("2_8t8j0")
 [node name="FlowerArea2D" type="Area2D" parent="." groups=["flower"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea2D"]
+shape = SubResource("CircleShape2D_qc4up")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qc4up")

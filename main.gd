@@ -27,7 +27,7 @@ func _ready() -> void:
 	#pass
 	
 func spawn_flower():
-	var valid_position
+	var valid_position = false
 	
 	# flower spawning area
 	var flower_area_2d = spawn_area.get_node("Area2D")
@@ -35,10 +35,9 @@ func spawn_flower():
 	
 	var rect = spawn_shape.shape.extents * 1.5
 	var random_position: Vector2
-	valid_position = false
 	
 	while not valid_position:
-	
+		# getting a random position
 		var random_x = randf_range(-rect.x / 2, rect.x / 2)
 		var random_y = randf_range(-rect.y / 2, rect.y / 2)
 		random_position = spawn_area.global_position + Vector2(random_x, random_y)
@@ -50,7 +49,6 @@ func spawn_flower():
 				break 
 	
 	# choosing a random flower from the list
-	#if valid_position:
 	var random_flower = flower_list[randi() % flower_list.size()]
 	var flower_instance = random_flower.instantiate()
 	
@@ -68,3 +66,11 @@ func _on_flower_spawn_timer_timeout() -> void:
 	else:
 		print("too many flowers, don't spawn")
 		# ideally, stop the timer unless there are less than 10 flowers
+		
+
+# removing a flower when eaten
+func remove_flower(flower: Node2D) -> void:
+	if flower:
+		flower_instances.erase(flower)
+		flower.queue_free()
+		print("removed flower: ", flower)

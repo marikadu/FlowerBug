@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var cursor_threshold = 5.0
 
 var near_flower: bool
+var flower_to_eat: Node2D = null
 	
 func _physics_process(_delta: float) -> void:
 	var target_position = get_global_mouse_position()
@@ -37,18 +38,29 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("eat"):
 		if near_flower:
 			print("eat!")
+			#eat_flower(flower_to_eat)
+			get_parent().remove_flower(flower_to_eat)
+			near_flower = false
 		else:
 			print("can't eat")
 
 
-func _on_insect_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("flower"):
+#func eat_flower(flower: Node2D) -> void:
+	#if flower:
+		#print("ate flower:", flower)
+		#flower.queue_free()  # removing the flower from the scene
+
+
+func _on_insect_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("flower"):
 		near_flower = true
+		flower_to_eat = body # detecting this specific flower
 		#print("area: near flower")
 		print("area: ", near_flower)
 
 
-func _on_insect_area_2d_area_exited(area: Area2D) -> void:
-	if area.is_in_group("flower"):
+func _on_insect_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("flower"):
 		near_flower = false
+		flower_to_eat = null # clearing stored flower
 		print("area: ", near_flower)
