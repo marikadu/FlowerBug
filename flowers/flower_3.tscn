@@ -22,7 +22,7 @@ shape = SubResource("CircleShape2D_qc4up")
 shape = SubResource("CircleShape2D_qc4up")
 
 [node name="DisappearTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 
 [connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]

@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var speed_power_up_timer: Timer = $SpeedPowerUpTimer
 @onready var trapped_timer: Timer = $TrappedTimer
 @onready var trapped_bar: ProgressBar = $TrappedBar
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 
 
 #@export var speed = 400.0
@@ -21,6 +23,7 @@ var powerup_to_get: Node2D = null
 var is_eating: bool =  false
 var is_trapped: bool = false
 var follow_cursor: bool
+var see_mouse: bool
 var identify_flower: String = ""
 # storing the flowers nearby to prevent mistakes in getting to the wrong flower
 var flowers_near: Array = [] 
@@ -29,6 +32,9 @@ func _ready() -> void:
 	eating_bar.hide()
 	trapped_bar.hide()
 	follow_cursor = true
+	see_mouse = true
+	animated_sprite.play("flying")
+	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_MAX)
 	
@@ -49,45 +55,52 @@ func _physics_process(_delta: float) -> void:
 	
 	# the character follows the mouse cursor
 	#var target_position = get_global_mouse_position()
-	if follow_cursor:
-		var target_position = get_viewport().get_mouse_position()
-		var distance = global_position.distance_to(target_position)
-		
-		# prevent character shaking when very close to the cursor
-		if distance < cursor_threshold:
-			velocity = velocity.lerp(Vector2.ZERO, 0.2)
-		
-		else:
-			# smooth movement
-			# ensuring the character does not shake when close to cursor
-			var speed = lerp(min_speed, max_speed, distance / 50.0)
-			speed = clamp(speed, min_speed, max_speed)
+	if see_mouse:
+		if follow_cursor:
+			var target_position = get_viewport().get_mouse_position()
+			var distance = global_position.distance_to(target_position)
 			
-			var direction = (target_position - global_position).normalized()
-			var target_velocity = direction * speed
-			velocity = velocity.lerp(target_velocity, lerp_factor)
-	
-		move_and_slide()
-		#look_at(target_position)
+			# prevent character shaking when very close to the cursor
+			if distance < cursor_threshold:
+				velocity = velocity.lerp(Vector2.ZERO, 0.2)
+			
+			else:
+				# smooth movement
+				# ensuring the character does not shake when close to cursor
+				var speed = lerp(min_speed, max_speed, distance / 50.0)
+				speed = clamp(speed, min_speed, max_speed)
+				
+				var direction = (target_position - global_position).normalized()
+				var target_velocity = direction * speed
+				velocity = velocity.lerp(target_velocity, lerp_factor)
+		
+			move_and_slide()
+			$AnimatedSprite2D.look_at(target_position)
+			#look_at(target_position)
 	
 	# eating a flower
 	if Input.is_action_just_pressed("eat"):
 		if near_flower:
-			if flower_to_eat.is_in_group("flower"):
-				print("eating...")
-				is_eating = true
-				eating_timer.start()
-				eating_bar.value = 0 # resetting the progress bar value
-				eating_bar.show()
-			
-			if flower_to_eat.is_in_group("carnivorous"):
-				flower_to_eat.is_being_eaten = true
-				flower_to_eat.trap_the_player()
-				print("received damage!!")
-				is_trapped = true
-				trapped_timer.start()
-				trapped_bar.value = 0
-				trapped_bar.show()
+			if flower_to_eat:
+				if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
+					animated_sprite.play("eating")
+					print("eating...")
+					is_eating = true
+					flower_to_eat.is_being_eaten = true
+					flower_to_eat.start_eating()
+					eating_timer.start()
+					eating_bar.value = 0 # resetting the progress bar value
+					eating_bar.show()
+				
+				if flower_to_eat.is_in_group("carnivorous"):
+					print("received damage!!")
+					is_trapped = true
+					flower_to_eat.is_being_eaten = true
+					flower_to_eat.trap_the_player()
+					trapped_timer.start()
+					trapped_bar.value = 0
+					trapped_bar.show()
+					
 			
 		else:
 			print("can't eat")
@@ -136,6 +149,7 @@ func _on_eating_timer_timeout() -> void:
 		
 		get_parent().remove_flower(flower_to_eat) # removing the flower
 		print("ate!")
+		animated_sprite.play("flying")
 		
 		identifyFlower(flower_type)
 		print("score: ", Global.score)
@@ -161,8 +175,9 @@ func _on_trapped_timer_timeout() -> void:
 	choose_closest_flower() # finding another closest flower
 
 func choose_closest_flower():
-	# removing deleted flowers
+	# removing invalid flowers
 	flowers_near = flowers_near.filter(func(flower): return is_instance_valid(flower))
+	# if no nearby flowers, clear the list
 	if flowers_near.is_empty():
 		flower_to_eat = null
 		near_flower = false

@@ -17,8 +17,9 @@ offset_right = 576.0
 offset_bottom = 324.0
 
 [node name="Flower_Spawn_Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 one_shot = true
+autostart = true
 
 [node name="PowerUp_Spawn_Timer" type="Timer" parent="."]
 wait_time = 8.0

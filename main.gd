@@ -35,7 +35,8 @@ func _ready() -> void:
 	screen_size = get_viewport().get_visible_rect().size
 	
 	# randomizing the timer of spawning the flowers
-	$Flower_Spawn_Timer.start(randi_range(3,6)) 
+	#$Flower_Spawn_Timer.start(randi_range(1,2)) 
+	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 
 
 func spawn_flower():
@@ -49,6 +50,8 @@ func spawn_flower():
 	
 	var rect = spawn_shape.shape.extents * 1.5 # spawning area for the flowers
 	
+	# removing any invalid flower instances
+	flower_instances = flower_instances.filter(is_instance_valid)
 	
 	while not valid_position and spawn_flower_attempts > 0:
 		# getting a random position
@@ -90,7 +93,10 @@ func spawn_flower():
 
 
 func _on_flower_spawn_timer_timeout() -> void:
-	$Flower_Spawn_Timer.start(randi_range(3,6)) 
+	#$Flower_Spawn_Timer.start(randi_range(3,6)) 
+	#$Flower_Spawn_Timer.wait_time(randi_range(1,2)) 
+	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
+	$Flower_Spawn_Timer.start()
 	# limit of flowers on screen
 	if flower_instances.size() + carn_flower_instances.size() < 10:
 		spawn_flower()
@@ -102,8 +108,13 @@ func _on_flower_spawn_timer_timeout() -> void:
 
 # removing a flower when eaten
 func remove_flower(flower: Node2D) -> void:
-	if flower:
-		flower_instances.erase(flower)
+	#if flower:
+	if flower and is_instance_valid(flower):
+		if flower.is_in_group("flower"):
+			flower_instances.erase(flower)
+		elif flower.is_in_group("carnivorous"):
+			carn_flower_instances.erase(flower)
+		
 		flower.queue_free()
 		print("removed flower: ", flower)
 

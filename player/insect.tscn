@@ -1,10 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4msv7itrsdr8"]
+[gd_scene load_steps=14 format=3 uid="uid://b4msv7itrsdr8"]
 
 [ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
 [ext_resource type="Texture2D" uid="uid://df7jeoknp7svk" path="res://icon.svg" id="2_4e74r"]
+[ext_resource type="Texture2D" uid="uid://ckw577ya5cd4g" path="res://assets/sprites/bug_flying.png" id="3_mydgl"]
+[ext_resource type="Texture2D" uid="uid://duf2ac05vm3s7" path="res://assets/sprites/bug_eating.png" id="3_ojlxu"]
 [ext_resource type="Script" uid="uid://brtwcnydtbbf" path="res://States/state_machine.gd" id="4_c1dqc"]
 [ext_resource type="Script" uid="uid://cub5b7ogl4hk5" path="res://States/Normal.gd" id="5_xut38"]
 [ext_resource type="Script" uid="uid://dj284f5slhphn" path="res://States/SpeedPowerUp.gd" id="6_mydgl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xut38"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ojlxu")
+}],
+"loop": true,
+"name": &"eating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mydgl")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kt6d"]
 radius = 39.5
@@ -27,8 +48,14 @@ collision_mask = 2
 script = ExtResource("1_ev3hp")
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.46, 0.46)
 texture = ExtResource("2_4e74r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.195, 0.195)
+sprite_frames = SubResource("SpriteFrames_xut38")
+animation = &"eating"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
