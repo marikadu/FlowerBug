@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dunr60xhbjfml"]
+
+[ext_resource type="Script" uid="uid://d3cl0rwe5x70a" path="res://flowers/flower_3.gd" id="1_26m7r"]
+[ext_resource type="Texture2D" uid="uid://c753w70pdp5hr" path="res://flowers/carnivorous_plant.png" id="2_26m7r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]
+radius = 61.0737
+
+[node name="flower" type="CharacterBody2D" groups=["carnivorous"]]
+script = ExtResource("1_26m7r")
+
+[node name="FlowerTest" type="Sprite2D" parent="."]
+scale = Vector2(0.62, 0.62)
+texture = ExtResource("2_26m7r")
+
+[node name="FlowerArea2D" type="Area2D" parent="." groups=["flower"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea2D"]
+shape = SubResource("CircleShape2D_qc4up")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qc4up")

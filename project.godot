@@ -25,6 +25,7 @@ Events="*res://Globals/Events.gd"
 flower=""
 powerup=""
 player=""
+carnivorous=""
 
 [input]
 
