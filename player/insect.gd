@@ -22,6 +22,8 @@ var is_eating: bool =  false
 var is_trapped: bool = false
 var follow_cursor: bool
 var identify_flower: String = ""
+# storing the flowers nearby to prevent mistakes in getting to the wrong flower
+var flowers_near: Array = [] 
 
 func _ready() -> void:
 	eating_bar.hide()
@@ -101,26 +103,24 @@ func _process(_delta: float) -> void:
 		trapped_bar.value = 100 - percentage
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("flower"):
-		near_flower = true
-		flower_to_eat = body # detecting this specific flower
+	if body.is_in_group("flower") or body.is_in_group("carnivorous"):
+		#near_flower = true
+		flowers_near.append(body) # adding the nearby flowers to the group
+		choose_closest_flower() # choosing the closest flower
+		#flower_to_eat = body # detecting this specific flower
 		#print("area: ", near_flower)
 		
 	if body.is_in_group("powerup"):
 		powerup_to_get = body # detecting this specific flower
 		get_parent().remove_powerup(powerup_to_get)
 		Events.got_speed_powerup.emit()
-	
-	
-	if body.is_in_group("carnivorous"):
-		near_flower = true
-		flower_to_eat = body # detecting this specific flower
-		#print("area: ", near_flower)
 
 
 func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("flower"):
-		near_flower = false
+		#near_flower = false
+		flowers_near.erase(body) # remove the nearby flower from the list
+		choose_closest_flower()
 		flower_to_eat = null # clearing stored flower
 		#print("area: ", near_flower)
 		
@@ -130,37 +130,56 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 
 
 func _on_eating_timer_timeout() -> void:
-	if flower_to_eat:
+	if is_instance_valid(flower_to_eat):
+	#if flower_to_eat:
 		var flower_type = flower_to_eat.flower_type
 		
 		get_parent().remove_flower(flower_to_eat) # removing the flower
 		print("ate!")
 		
-		eating_bar.hide() # hiding the progress bar
-		near_flower = false
-		is_eating = false
-		follow_cursor = true
-		
 		identifyFlower(flower_type)
 		print("score: ", Global.score)
+		
+	eating_bar.hide() # hiding the progress bar
+	near_flower = false
+	is_eating = false
+	follow_cursor = true
+	
+	choose_closest_flower() # finding another closest flower
 
 
 func _on_trapped_timer_timeout() -> void:
-	if flower_to_eat:
+	#if flower_to_eat:
+	if is_instance_valid(flower_to_eat): 
 		get_parent().remove_flower(flower_to_eat)
 		
-		trapped_bar.hide()
+	trapped_bar.hide()
+	near_flower = false
+	is_trapped = false
+	follow_cursor = true
+	print("no longer trapped!")
+	choose_closest_flower() # finding another closest flower
+
+func choose_closest_flower():
+	# removing deleted flowers
+	flowers_near = flowers_near.filter(func(flower): return is_instance_valid(flower))
+	if flowers_near.is_empty():
+		flower_to_eat = null
 		near_flower = false
-		is_trapped = false
-		follow_cursor = true
-		print("no longer trapped!")
-
-
-#func _on_player_collected_power_up():
-	## switching the state
-	#Transitioned.emit(self, "SpeedPowerUp")
-	#pass
+		return
 	
+	var closest_flower = flowers_near[0] # the first flower
+	var min_distance = global_position.distance_to(closest_flower.global_position)
+	
+	for flower in flowers_near:
+		var distance = global_position.distance_to(flower.global_position)
+		if distance < min_distance:
+			closest_flower = flower
+			min_distance = distance
+		
+	flower_to_eat = closest_flower
+	near_flower = true
+
 # adding different point to the score depending on the flower type
 func identifyFlower(flower_type: String):
 	match flower_type:
