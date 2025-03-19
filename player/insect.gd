@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var insect_area_2d: Area2D = $InsectArea2D
 @onready var eating_timer: Timer = $EatingTimer
 @onready var eating_bar: ProgressBar = $EatingBar
-
 @onready var speed_power_up_timer: Timer = $SpeedPowerUpTimer
 
 
@@ -17,6 +16,7 @@ var near_flower: bool
 var flower_to_eat: Node2D = null
 var powerup_to_get: Node2D = null
 var is_eating: bool =  false
+var identify_flower: String = ""
 
 func _ready() -> void:
 	eating_bar.hide()
@@ -24,7 +24,8 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	# character stops when it is eating
 	if is_eating:
-		velocity = Vector2.ZERO
+		#velocity = Vector2.ZERO
+		velocity = velocity.lerp(Vector2.ZERO, 0.5)
 		move_and_slide()
 		return
 	
@@ -91,11 +92,17 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_eating_timer_timeout() -> void:
 	if flower_to_eat:
-		get_parent().remove_flower(flower_to_eat)
+		var flower_type = flower_to_eat.flower_type
+		
+		get_parent().remove_flower(flower_to_eat) # removing the flower
 		print("ate!")
-		eating_bar.hide()
+		
+		eating_bar.hide() # hiding the progress bar
 		near_flower = false
 		is_eating = false
+		
+		identifyFlower(flower_type)
+		print("score: ", Global.score)
 		
 		
 #func _on_player_collected_power_up():
@@ -103,3 +110,15 @@ func _on_eating_timer_timeout() -> void:
 	#Transitioned.emit(self, "SpeedPowerUp")
 	#pass
 	#_on_child_transition(current_state, "SpeedPowerUp")
+	
+# adding different point to the score depending on the flower type
+func identifyFlower(flower_type: String):
+	match flower_type:
+		"flower_1":
+			Global.score += 10
+		
+		"flower_2":
+			Global.score += 20
+			
+		"_":
+			print("insect: unknown flower type")

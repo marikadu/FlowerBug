@@ -10,6 +10,8 @@ var flower_list = [
 	preload("res://flower/flower_2.tscn")]
 var flower_instances = [] # making an array empty from the start of the game
 
+var flower_type: String = ""
+
 # preloading a list of possible power-ups to spawn
 var powerup_list = [
 	preload("res://powerUp/powerUp.tscn")
@@ -84,6 +86,15 @@ func remove_flower(flower: Node2D) -> void:
 		flower.queue_free()
 		print("removed flower: ", flower)
 		
+	# adding different point to the score depending on the flower type
+	#match flower_type:
+		#"flower_1":
+			#Global.score += 10
+		#
+		#"flower_2":
+			#Global.score += 10
+		
+		
 
 func remove_powerup(powerup: Node2D) -> void:
 	if powerup:
@@ -93,8 +104,8 @@ func remove_powerup(powerup: Node2D) -> void:
 		
 
 func spawn_powerup():
-	var flower_area_2d = spawn_area.get_node("Area2D")
-	var spawn_shape = flower_area_2d.get_node("CollisionShape2D")
+	var powerup_area2d = spawn_area.get_node("Area2D")
+	var spawn_shape = powerup_area2d.get_node("CollisionShape2D")
 	
 	var rect = spawn_shape.shape.extents * 1.5
 	var random_position: Vector2

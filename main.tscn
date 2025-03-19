@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://jbvaordywvhn"]
+[gd_scene load_steps=4 format=3 uid="uid://jbvaordywvhn"]
 
 [ext_resource type="Script" uid="uid://brhdtucnypnpa" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="3_h2yge"]
 
 [node name="main" type="Node2D"]
@@ -13,11 +14,16 @@ offset_right = 576.0
 offset_bottom = 324.0
 
 [node name="Flower_Spawn_Timer" type="Timer" parent="."]
-wait_time = 8.0
+wait_time = 4.0
 autostart = true
 
 [node name="PowerUp_Spawn_Timer" type="Timer" parent="."]
+wait_time = 8.0
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource("3_1bvp3")]
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]

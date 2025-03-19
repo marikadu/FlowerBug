@@ -6,19 +6,17 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78kfq"]
 size = Vector2(80, 80)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["powerup"]]
+[node name="Speed" type="CharacterBody2D" groups=["powerup"]]
 script = ExtResource("1_78kfq")
 
-[node name="Powerup" type="Sprite2D" parent="."]
+[node name="PowerUp2" type="Sprite2D" parent="."]
 scale = Vector2(0.42, 0.42)
 texture = ExtResource("1_pbosq")
 
-[node name="PowerUp" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PowerUp"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_78kfq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_78kfq")
-
-[connection signal="body_entered" from="PowerUp" to="." method="_on_power_up_body_entered"]
