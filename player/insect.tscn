@@ -17,6 +17,7 @@ bg_color = Color(0.372757, 0.686339, 0.363004, 1)
 
 [node name="insect" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+collision_mask = 2
 script = ExtResource("1_ev3hp")
 
 [node name="Icon" type="Sprite2D" parent="."]

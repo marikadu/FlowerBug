@@ -16,40 +16,48 @@ var near_flower: bool
 var flower_to_eat: Node2D = null
 var powerup_to_get: Node2D = null
 var is_eating: bool =  false
+var follow_cursor: bool
 var identify_flower: String = ""
 
 func _ready() -> void:
 	eating_bar.hide()
+	follow_cursor = true
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_MAX)
 	
 func _physics_process(_delta: float) -> void:
+	
 	# character stops when it is eating
-	if is_eating:
+	if is_eating and flower_to_eat:
+		follow_cursor = false
+		global_position = global_position.lerp(flower_to_eat.global_position, 0.1)
 		#velocity = Vector2.ZERO
-		velocity = velocity.lerp(Vector2.ZERO, 0.5)
-		move_and_slide()
+		#velocity = velocity.lerp(Vector2.ZERO, 0.5)
+		#move_and_slide()
 		return
 	
-	var target_position = get_global_mouse_position()
-	var distance = global_position.distance_to(target_position)
-	
-	if distance < cursor_threshold:
-		velocity = velocity.lerp(Vector2.ZERO, 0.2)
-	
-	else:
-		var speed = lerp(min_speed, max_speed, distance / 50.0)
-		speed = clamp(speed, min_speed, max_speed)
+	# the character follows the mouse cursor
+	#var target_position = get_global_mouse_position()
+	if follow_cursor:
+		var target_position = get_viewport().get_mouse_position()
+		var distance = global_position.distance_to(target_position)
 		
-		var direction = (target_position - global_position).normalized()
-		var target_velocity = direction * speed
+		# prevent character shaking when very close to the cursor
+		if distance < cursor_threshold:
+			velocity = velocity.lerp(Vector2.ZERO, 0.2)
+		
+		else:
+			# smooth movement
+			# ensuring the character does not shake when close to cursor
+			var speed = lerp(min_speed, max_speed, distance / 50.0)
+			speed = clamp(speed, min_speed, max_speed)
+			
+			var direction = (target_position - global_position).normalized()
+			var target_velocity = direction * speed
+			velocity = velocity.lerp(target_velocity, lerp_factor)
 	
-	#if velocity.length() > 50:
-		#velocity = velocity.normalized() * speed
-		#
-	
-		velocity = velocity.lerp(target_velocity, lerp_factor)
-	
-	move_and_slide()
-	#look_at(target_position)
+		move_and_slide()
+		#look_at(target_position)
 	
 	# eating a flower
 	if Input.is_action_just_pressed("eat"):
@@ -100,6 +108,7 @@ func _on_eating_timer_timeout() -> void:
 		eating_bar.hide() # hiding the progress bar
 		near_flower = false
 		is_eating = false
+		follow_cursor = true
 		
 		identifyFlower(flower_type)
 		print("score: ", Global.score)

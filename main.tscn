@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://jbvaordywvhn"]
+[gd_scene load_steps=6 format=3 uid="uid://jbvaordywvhn"]
 
 [ext_resource type="Script" uid="uid://brhdtucnypnpa" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_1bvp3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
@@ -24,6 +27,16 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="CanvasLayer" instance=ExtResource("3_1bvp3")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+script = ExtResource("4_1bvp3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1bvp3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(20, -40, 12, 624, 1126, 618, 1131, 7, -8, 13, -12, -29, 1179, -26, 1171, 653, -53, 660, -40, -27)
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]

@@ -85,16 +85,7 @@ func remove_flower(flower: Node2D) -> void:
 		flower_instances.erase(flower)
 		flower.queue_free()
 		print("removed flower: ", flower)
-		
-	# adding different point to the score depending on the flower type
-	#match flower_type:
-		#"flower_1":
-			#Global.score += 10
-		#
-		#"flower_2":
-			#Global.score += 10
-		
-		
+
 
 func remove_powerup(powerup: Node2D) -> void:
 	if powerup:
@@ -127,4 +118,3 @@ func spawn_powerup():
 
 func _on_power_up_spawn_timer_timeout() -> void:
 	spawn_powerup()
-	pass # Replace with function body.

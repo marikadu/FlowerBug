@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6ouf28cvf2e" path="res://flower/flower_test.png" id="2_jh6iy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]
-radius = 61.8
+radius = 61.0737
 
 [node name="flower" type="CharacterBody2D" groups=["flower"]]
 script = ExtResource("1_ksvlc")
