@@ -93,8 +93,14 @@ func _physics_process(_delta: float) -> void:
 					eating_bar.show()
 				
 				if flower_to_eat.is_in_group("carnivorous"):
+					var i = 0
+					# changing the sprite to being trapped
+					flower_to_eat.animation_player.play("bounce")
 					flower_to_eat.animated_sprite.play("trapped")
-					$AnimatedSprite2D.hide()
+					# creating an illusion of sprite changing
+					# by hiding the sprite, since the insect has already 
+					# been drawn on the flower's sprite
+					$AnimatedSprite2D.hide() 
 					print("received damage!!")
 					is_trapped = true
 					flower_to_eat.is_being_eaten = true
@@ -102,6 +108,11 @@ func _physics_process(_delta: float) -> void:
 					trapped_timer.start()
 					trapped_bar.value = 0
 					trapped_bar.show()
+					while i < 7:
+						flower_to_eat.animation_player.play("bounce")
+						i+=1
+						await get_tree().create_timer(0.4).timeout
+						print(i)
 					
 			
 		else:

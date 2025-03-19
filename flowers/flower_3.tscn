@@ -34,7 +34,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"trapped",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]

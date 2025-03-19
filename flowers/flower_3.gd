@@ -20,6 +20,7 @@ func _ready() -> void:
 	animation_player.play("bounce")
 	player = Global.player_instance
 	can_be_eaten = false
+	is_blooming = true
 
 func _on_disappear_timer_timeout() -> void:
 	if not is_being_eaten:

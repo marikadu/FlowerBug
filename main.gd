@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var spawn_area: Control = $SpawnArea
 
-@export var min_flower_distance = 180.0 # adding a distance for the flowers to not overlap
+@export var min_flower_distance = 160.0 # adding a distance for the flowers to not overlap
 
 # preloading a list of possible flowers to spawn
 var flower_list = [
