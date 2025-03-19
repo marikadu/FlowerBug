@@ -8,7 +8,6 @@ extends CharacterBody2D
 @onready var trapped_bar: ProgressBar = $TrappedBar
 
 
-
 #@export var speed = 400.0
 @export var max_speed = 760.0
 @export var min_speed = 50.0
@@ -72,19 +71,21 @@ func _physics_process(_delta: float) -> void:
 	# eating a flower
 	if Input.is_action_just_pressed("eat"):
 		if near_flower:
-			if flower_to_eat.is_in_group("carnivorous"):
-				print("received damage!!")
-				is_trapped = true
-				trapped_timer.start()
-				trapped_bar.value = 0
-				trapped_bar.show()
-			
-			elif flower_to_eat.is_in_group("flower"):
+			if flower_to_eat.is_in_group("flower"):
 				print("eating...")
 				is_eating = true
 				eating_timer.start()
 				eating_bar.value = 0 # resetting the progress bar value
 				eating_bar.show()
+			
+			if flower_to_eat.is_in_group("carnivorous"):
+				flower_to_eat.is_being_eaten = true
+				flower_to_eat.trap_the_player()
+				print("received damage!!")
+				is_trapped = true
+				trapped_timer.start()
+				trapped_bar.value = 0
+				trapped_bar.show()
 			
 		else:
 			print("can't eat")

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var spawn_area: Control = $SpawnArea
 
-@export var min_flower_distance = 20.0 # adding a distance for the flowers to not overlap
+@export var min_flower_distance = 200.0 # adding a distance for the flowers to not overlap
 
 # preloading a list of possible flowers to spawn
 var flower_list = [
@@ -38,11 +38,6 @@ func _ready() -> void:
 	$Flower_Spawn_Timer.start(randi_range(3,6)) 
 
 
-
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
-	
 func spawn_flower():
 	var valid_position = false
 	
@@ -50,7 +45,7 @@ func spawn_flower():
 	var flower_area_2d = spawn_area.get_node("Area2D")
 	var spawn_shape = flower_area_2d.get_node("CollisionShape2D")
 	
-	var rect = spawn_shape.shape.extents * 1.5
+	var rect = spawn_shape.shape.extents * 1.5 # spawning area for the flowers
 	var random_position: Vector2
 	
 	while not valid_position:
