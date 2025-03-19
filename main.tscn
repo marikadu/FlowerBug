@@ -6,13 +6,18 @@
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
 
-[node name="Flower_Spawn_Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="SpawnArea" parent="." instance=ExtResource("3_h2yge")]
 offset_left = 576.0
 offset_top = 324.0
 offset_right = 576.0
 offset_bottom = 324.0
 
+[node name="Flower_Spawn_Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="PowerUp_Spawn_Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
+[connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]

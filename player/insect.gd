@@ -4,15 +4,18 @@ extends CharacterBody2D
 @onready var eating_timer: Timer = $EatingTimer
 @onready var eating_bar: ProgressBar = $EatingBar
 
+@onready var speed_power_up_timer: Timer = $SpeedPowerUpTimer
+
 
 #@export var speed = 400.0
-@export var max_speed = 690.0
+@export var max_speed = 760.0
 @export var min_speed = 50.0
 @export var lerp_factor = 0.2
 @export var cursor_threshold = 5.0
 
 var near_flower: bool
 var flower_to_eat: Node2D = null
+var powerup_to_get: Node2D = null
 var is_eating: bool =  false
 
 func _ready() -> void:
@@ -61,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 			print("can't eat")
 			
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_eating:
 		var percentage = (eating_timer.time_left / eating_timer.wait_time) * 100
 		eating_bar.value = 100 - percentage
@@ -71,14 +74,19 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 		near_flower = true
 		flower_to_eat = body # detecting this specific flower
 		#print("area: near flower")
-		print("area: ", near_flower)
+		#print("area: ", near_flower)
+		
+	if body.is_in_group("powerup"):
+		powerup_to_get = body # detecting this specific flower
+		get_parent().remove_powerup(powerup_to_get)
+		Events.got_speed_powerup.emit()
 
 
 func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("flower"):
 		near_flower = false
 		flower_to_eat = null # clearing stored flower
-		print("area: ", near_flower)
+		#print("area: ", near_flower)
 
 
 func _on_eating_timer_timeout() -> void:
@@ -89,3 +97,9 @@ func _on_eating_timer_timeout() -> void:
 		near_flower = false
 		is_eating = false
 		
+		
+#func _on_player_collected_power_up():
+	## switching the state
+	#Transitioned.emit(self, "SpeedPowerUp")
+	#pass
+	#_on_child_transition(current_state, "SpeedPowerUp")

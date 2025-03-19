@@ -15,9 +15,15 @@ run/main_scene="uid://jbvaordywvhn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Events="*res://Globals/Events.gd"
+
 [global_group]
 
 flower=""
+powerup=""
+player=""
 
 [input]
 

@@ -4,14 +4,22 @@ extends Node2D
 
 @export var min_flower_distance = 90.0 # in order for the flowers to not overlap
 
+# preloading a list of possible flowers to spawn
 var flower_list = [
 	preload("res://flower/flower_1.tscn"),
 	preload("res://flower/flower_2.tscn")]
-var flower_instances = []
+var flower_instances = [] # making an array empty from the start of the game
+
+# preloading a list of possible power-ups to spawn
+var powerup_list = [
+	preload("res://powerUp/powerUp.tscn")
+]
+var powerup_instances = [] # making an array empty from the start of the game
+
 
 var screen_size
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var player = preload("res://player/insect.tscn")
 	var player_instance = player.instantiate()
@@ -75,3 +83,37 @@ func remove_flower(flower: Node2D) -> void:
 		flower_instances.erase(flower)
 		flower.queue_free()
 		print("removed flower: ", flower)
+		
+
+func remove_powerup(powerup: Node2D) -> void:
+	if powerup:
+		powerup_instances.erase(powerup)
+		powerup.queue_free()
+		print("got powerup: ", powerup)
+		
+
+func spawn_powerup():
+	var flower_area_2d = spawn_area.get_node("Area2D")
+	var spawn_shape = flower_area_2d.get_node("CollisionShape2D")
+	
+	var rect = spawn_shape.shape.extents * 1.5
+	var random_position: Vector2
+	
+	var random_x = randf_range(-rect.x / 2, rect.x / 2)
+	var random_y = randf_range(-rect.y / 2, rect.y / 2)
+	random_position = spawn_area.global_position + Vector2(random_x, random_y)
+	
+	var random_powerup = powerup_list[randi() % powerup_list.size()]
+	var powerup_instance = random_powerup.instantiate()
+	
+	powerup_instance.position = random_position
+	powerup_instances.append(powerup_instance) # store the instance in the list
+	powerup_instance.add_to_group("powerup") # add to the flower group
+	
+	add_child(powerup_instance)
+	#print("powerup: spawned")
+
+
+func _on_power_up_spawn_timer_timeout() -> void:
+	spawn_powerup()
+	pass # Replace with function body.
