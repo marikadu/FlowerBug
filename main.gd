@@ -35,7 +35,6 @@ func _ready() -> void:
 	screen_size = get_viewport().get_visible_rect().size
 	
 	# randomizing the timer of spawning the flowers
-	#$Flower_Spawn_Timer.start(randi_range(1,2)) 
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 
 
@@ -52,6 +51,7 @@ func spawn_flower():
 	
 	# removing any invalid flower instances
 	flower_instances = flower_instances.filter(is_instance_valid)
+	carn_flower_instances = carn_flower_instances.filter(is_instance_valid)
 	
 	while not valid_position and spawn_flower_attempts > 0:
 		# getting a random position
@@ -60,10 +60,26 @@ func spawn_flower():
 		random_position = spawn_area.global_position + Vector2(random_x, random_y)
 		
 		valid_position = true
+		# checking the position for normal flowers
+		# if no valid position is found, chaning valid_position to false
+		# and breaking out of the for loop to try again in the while loop
 		for flower in flower_instances:
 			if flower.position.distance_to(random_position) < min_flower_distance:
 				valid_position = false
 				break 
+		
+		# checking the position for carnivorous flowers
+		for carn_flower in carn_flower_instances:
+			if carn_flower.position.distance_to(random_position) < min_flower_distance:
+				valid_position = false
+				break 
+				
+		spawn_flower_attempts -= 1  # reducing the number of attemps
+		
+		
+	if not valid_position:
+		print("can't find a position for the flower")
+		return
 	
 	# randomly choosing a normal or carnivorous flower
 	# 70% normal flower, 30% carnivorous
@@ -93,8 +109,6 @@ func spawn_flower():
 
 
 func _on_flower_spawn_timer_timeout() -> void:
-	#$Flower_Spawn_Timer.start(randi_range(3,6)) 
-	#$Flower_Spawn_Timer.wait_time(randi_range(1,2)) 
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 	$Flower_Spawn_Timer.start()
 	# limit of flowers on screen

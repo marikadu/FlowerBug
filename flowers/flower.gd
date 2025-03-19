@@ -33,6 +33,9 @@ func start_eating():
 	$DisappearTimer.stop()
 	is_being_eaten = true
 	is_eaten_status_1.emit(true)
+	
+#func no_longer_eating():
+	#is_eaten_status_1.emit(true)
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

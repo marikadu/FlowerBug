@@ -1,19 +1,99 @@
-[gd_scene load_steps=4 format=3 uid="uid://dunr60xhbjfml"]
+[gd_scene load_steps=12 format=3 uid="uid://dunr60xhbjfml"]
 
 [ext_resource type="Script" uid="uid://d3cl0rwe5x70a" path="res://flowers/flower_3.gd" id="1_26m7r"]
 [ext_resource type="Texture2D" uid="uid://c753w70pdp5hr" path="res://flowers/carnivorous_plant.png" id="2_26m7r"]
+[ext_resource type="Texture2D" uid="uid://eve82qmnuudo" path="res://assets/sprites/flower_3_3.png" id="3_o8mnt"]
+[ext_resource type="Texture2D" uid="uid://b1i1w2328ih6r" path="res://assets/sprites/flower_1_1.png" id="4_evw1q"]
+[ext_resource type="Texture2D" uid="uid://bh17f6s10rqak" path="res://assets/sprites/flower_1_2.png" id="5_8edx2"]
+[ext_resource type="Texture2D" uid="uid://brr35hdk2uaku" path="res://assets/sprites/flower_3_4.png" id="6_evw1q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4snn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_o8mnt")
+}],
+"loop": true,
+"name": &"bloomed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_evw1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8edx2")
+}],
+"loop": false,
+"name": &"blooming",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_evw1q")
+}],
+"loop": true,
+"name": &"trapped",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]
 radius = 61.0737
+
+[sub_resource type="Animation" id="Animation_el8xo"]
+resource_name = "bounce"
+length = 0.2445
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0666667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 0.517633, 0.517633),
+"update": 0,
+"values": [Vector2(0.295, 0.217), Vector2(0.295, 0.217), Vector2(0.35, 0.35), Vector2(0.325, 0.325)]
+}
+
+[sub_resource type="Animation" id="Animation_6je8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.325, 0.325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kybxr"]
+_data = {
+&"RESET": SubResource("Animation_6je8k"),
+&"bounce": SubResource("Animation_el8xo")
+}
 
 [node name="flower" type="CharacterBody2D" groups=["carnivorous"]]
 script = ExtResource("1_26m7r")
 
 [node name="FlowerTest" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.62, 0.62)
 texture = ExtResource("2_26m7r")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 36)
+scale = Vector2(0.325, 0.325)
+sprite_frames = SubResource("SpriteFrames_o4snn")
+animation = &"trapped"
+offset = Vector2(0, -147.465)
+
 [node name="FlowerArea2D" type="Area2D" parent="." groups=["flower"]]
+position = Vector2(0, -21)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea2D"]
 shape = SubResource("CircleShape2D_qc4up")
@@ -25,4 +105,12 @@ shape = SubResource("CircleShape2D_qc4up")
 wait_time = 4.0
 one_shot = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_kybxr")
+}
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]

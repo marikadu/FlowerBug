@@ -93,6 +93,8 @@ func _physics_process(_delta: float) -> void:
 					eating_bar.show()
 				
 				if flower_to_eat.is_in_group("carnivorous"):
+					flower_to_eat.animated_sprite.play("trapped")
+					$AnimatedSprite2D.hide()
 					print("received damage!!")
 					is_trapped = true
 					flower_to_eat.is_being_eaten = true
@@ -170,6 +172,7 @@ func _on_trapped_timer_timeout() -> void:
 	trapped_bar.hide()
 	near_flower = false
 	is_trapped = false
+	$AnimatedSprite2D.show()
 	follow_cursor = true
 	print("no longer trapped!")
 	choose_closest_flower() # finding another closest flower
