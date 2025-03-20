@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://jbvaordywvhn"]
+[gd_scene load_steps=7 format=3 uid="uid://jbvaordywvhn"]
 
 [ext_resource type="Script" uid="uid://brhdtucnypnpa" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="4_lquwl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
@@ -28,6 +29,8 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="CanvasLayer" instance=ExtResource("3_1bvp3")]
+
+[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("4_lquwl")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false

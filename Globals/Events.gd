@@ -4,3 +4,5 @@ extends Node
 #signal resume_game
 
 signal got_speed_powerup
+
+signal healthChanged

@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var spawn_area: Control = $SpawnArea
+@onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
 
 @export var min_flower_distance = 160.0 # adding a distance for the flowers to not overlap
 
@@ -36,7 +37,11 @@ func _ready() -> void:
 	
 	# randomizing the timer of spawning the flowers
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
-
+	
+	# from the start, setting the amount of hearts based on the max health
+	hearts_container.setMaxHearts(player_instance.max_health)
+	hearts_container.updateHearts(player_instance.current_health)
+	Events.healthChanged.connect(hearts_container.updateHearts)
 
 func spawn_flower():
 	var random_position: Vector2
@@ -93,7 +98,7 @@ func spawn_flower():
 		flower_instance.add_to_group("flower") # add to the flower group
 	
 		add_child(flower_instance)
-		print("spawned flower")
+		#print("spawned flower")
 	
 	else:
 		# choosing a random carnivorous flower from the list
@@ -105,7 +110,7 @@ func spawn_flower():
 		carn_flower_instance.add_to_group("carnivorous")
 		
 		add_child(carn_flower_instance)
-		print("spawned carnivorous flower")
+		#print("spawned carnivorous flower")
 
 
 func _on_flower_spawn_timer_timeout() -> void:
@@ -130,7 +135,7 @@ func remove_flower(flower: Node2D) -> void:
 			carn_flower_instances.erase(flower)
 		
 		flower.queue_free()
-		print("removed flower: ", flower)
+		#print("removed flower: ", flower)
 
 
 func remove_powerup(powerup: Node2D) -> void:

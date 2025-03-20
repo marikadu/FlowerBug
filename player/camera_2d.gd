@@ -4,7 +4,7 @@ extends Camera2D
 @export var camera_lerp_speed: float = 0.1
 
 # camera follows the cursor
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	cameraUpdate()
 		
 func cameraUpdate():

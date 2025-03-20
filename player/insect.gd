@@ -1,4 +1,8 @@
+@icon("res://icons/player_icon.png")
+# custom player icon for the Godot editor
+
 extends CharacterBody2D
+
 
 @onready var insect_area_2d: Area2D = $InsectArea2D
 @onready var eating_timer: Timer = $EatingTimer
@@ -7,14 +11,15 @@ extends CharacterBody2D
 @onready var trapped_timer: Timer = $TrappedTimer
 @onready var trapped_bar: ProgressBar = $TrappedBar
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var h_box: HBoxContainer = $CanvasLayer/HBoxContainer
+#@onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
 
 
-
-#@export var speed = 400.0
 @export var max_speed = 760.0
 @export var min_speed = 50.0
 @export var lerp_factor = 0.2
 @export var cursor_threshold = 5.0
+
 
 var near_flower: bool
 var near_carnivorous_flower: bool
@@ -27,6 +32,9 @@ var see_mouse: bool
 var identify_flower: String = ""
 # storing the flowers nearby to prevent mistakes in getting to the wrong flower
 var flowers_near: Array = [] 
+var hearts_list: Array[TextureRect]
+var max_health = 3
+var current_health: int
 
 func _ready() -> void:
 	eating_bar.hide()
@@ -34,6 +42,11 @@ func _ready() -> void:
 	follow_cursor = true
 	see_mouse = true
 	animated_sprite.play("flying")
+	
+	# setting current health to be maximum from start
+	current_health = max_health
+	# health can't go less than 0 and more than 3
+	current_health = clamp(current_health, 0, max_health)
 	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_MAX)
@@ -108,11 +121,13 @@ func _physics_process(_delta: float) -> void:
 					trapped_timer.start()
 					trapped_bar.value = 0
 					trapped_bar.show()
+					# bouncing animation when the player is trapped
+					# creating an effect of the character trying to get out
 					while i < 7:
 						flower_to_eat.animation_player.play("bounce")
 						i+=1
 						await get_tree().create_timer(0.4).timeout
-						print(i)
+						#print(i)
 					
 			
 		else:
@@ -187,6 +202,7 @@ func _on_trapped_timer_timeout() -> void:
 	follow_cursor = true
 	print("no longer trapped!")
 	choose_closest_flower() # finding another closest flower
+	take_damage()
 
 func choose_closest_flower():
 	# removing invalid flowers
@@ -219,7 +235,22 @@ func identifyFlower(flower_type: String):
 			Global.score += 20
 			
 		"flower_3":
-			print("damaged!")
+			print("damaged! flower")
+			#take_damage()
 			
 		"_":
 			print("insect: unknown flower type")
+
+
+func take_damage():
+	# ensuring it doesn't go less than 0
+	if current_health > 0:
+		current_health -= 1
+		Events.healthChanged.emit(current_health)
+		print("current health: ", current_health)
+		# game over when current health reaches 0
+		if current_health == 0:
+			# don't instantly send the signal
+			# add a death animation
+			await get_tree().create_timer(0.02).timeout
+			print("game over!")

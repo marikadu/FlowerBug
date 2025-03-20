@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbwd6qx5coafj"]
+
+[ext_resource type="Texture2D" uid="uid://csxjo7t3kqhiw" path="res://assets/sprites/heart.png" id="1_d7bgc"]
+[ext_resource type="Script" uid="uid://cnvfpgv26fy3s" path="res://player/heart.gd" id="1_t7nc5"]
+[ext_resource type="Texture2D" uid="uid://dfwmtu64akbcn" path="res://assets/sprites/heart_empty.png" id="3_pvk71"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gmrt0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d7bgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pvk71")
+}],
+"loop": true,
+"name": &"heart",
+"speed": 5.0
+}]
+
+[node name="HeartTextureRect" type="TextureRect"]
+custom_minimum_size = Vector2(68.975, 0)
+script = ExtResource("1_t7nc5")
+
+[node name="HeartSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.74, 0.74)
+sprite_frames = SubResource("SpriteFrames_gmrt0")
+animation = &"heart"
