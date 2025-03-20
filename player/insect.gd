@@ -28,6 +28,7 @@ var flower_to_eat: Node2D = null
 var powerup_to_get: Node2D = null
 var is_eating: bool =  false
 var is_trapped: bool = false
+var insect_can_eat: bool
 var follow_cursor: bool
 var see_mouse: bool
 var identify_flower: String = ""
@@ -44,6 +45,7 @@ func _ready() -> void:
 	trapped_bar.hide()
 	follow_cursor = true
 	see_mouse = true
+	insect_can_eat = true
 	animated_sprite.play("flying")
 	
 	# setting current health to be maximum from start
@@ -95,7 +97,7 @@ func _physics_process(_delta: float) -> void:
 			#look_at(target_position)
 	
 	# eating a flower
-	if Input.is_action_just_pressed("eat"):
+	if Input.is_action_just_pressed("eat") and insect_can_eat:
 		if near_flower:
 			if flower_to_eat:
 				if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
@@ -104,7 +106,7 @@ func _physics_process(_delta: float) -> void:
 					is_eating = true
 					flower_to_eat.is_being_eaten = true
 					flower_to_eat.start_eating()
-					eating_timer.start()
+					#eating_timer.start()
 					eating_bar.value = 0 # resetting the progress bar value
 					eating_bar.show()
 					print("is eating: ", is_eating)
@@ -120,6 +122,7 @@ func _physics_process(_delta: float) -> void:
 					$AnimatedSprite2D.hide() 
 					print("received damage!!")
 					is_trapped = true
+					insect_can_eat = false
 					flower_to_eat.is_being_eaten = true
 					flower_to_eat.trap_the_player()
 					trapped_timer.start()
@@ -141,11 +144,7 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if is_eating:
-		#var percentage = (eating_timer.time_left / eating_timer.wait_time) * 100
-		#eating_bar.value = 100 - percentage
-		
 		if Input.is_action_just_pressed("eat"):
-			#print("eating faster")
 			current_bite_counter += 1 
 			eating_bar.value = (current_bite_counter / float(bites_required)) * 100
 			print("eating progress: ", eating_bar.value)
@@ -153,6 +152,9 @@ func _process(_delta: float) -> void:
 			if current_bite_counter >= bites_required:
 				ate_the_flower()
 				current_bite_counter = 0 # resetting the counter
+				
+		if Input.is_action_just_pressed("stop_eating"):
+			stop_eating_the_flower()
 		
 	if is_trapped:
 		var percentage = (trapped_timer.time_left / trapped_timer.wait_time) * 100
@@ -204,6 +206,23 @@ func ate_the_flower():
 	near_flower = false
 	is_eating = false
 	follow_cursor = true
+	
+
+func stop_eating_the_flower():
+	if is_instance_valid(flower_to_eat):
+		#var flower_type = flower_to_eat.flower_type
+		
+		#get_parent().remove_flower(flower_to_eat) # removing the flower
+		print("stopped eating!")
+		animated_sprite.play("flying")
+		
+		
+	eating_bar.hide() # hiding the progress bar
+	near_flower = false
+	is_eating = false
+	follow_cursor = true
+	current_bite_counter = 0 # resetting the counter
+	flower_to_eat.stop_eating()
 
 
 func _on_trapped_timer_timeout() -> void:
@@ -214,6 +233,7 @@ func _on_trapped_timer_timeout() -> void:
 	trapped_bar.hide()
 	near_flower = false
 	is_trapped = false
+	insect_can_eat = true
 	$AnimatedSprite2D.show()
 	follow_cursor = true
 	print("no longer trapped!")

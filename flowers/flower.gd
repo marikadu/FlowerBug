@@ -30,12 +30,16 @@ func _on_disappear_timer_timeout() -> void:
 		get_parent().remove_flower(self)
 		
 func start_eating():
-	$DisappearTimer.stop()
+	#$DisappearTimer.stop()
+	$DisappearTimer.paused = true
 	is_being_eaten = true
 	is_eaten_status_1.emit(true)
 	
-#func no_longer_eating():
-	#is_eaten_status_1.emit(true)
+func stop_eating():
+	#$DisappearTimer.start()
+	$DisappearTimer.paused = false
+	is_being_eaten = false
+	is_eaten_status_1.emit(false)
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

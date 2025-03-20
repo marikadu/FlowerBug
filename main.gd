@@ -23,9 +23,7 @@ var powerup_list = [
 ]
 var powerup_instances = [] # making an array empty from the start of the game
 
-
 var screen_size
-
 
 func _ready() -> void:
 	var player = preload("res://player/insect.tscn")
@@ -34,6 +32,8 @@ func _ready() -> void:
 	player_instance.add_to_group("player")
 	add_child(player_instance)
 	
+	$SpawnArea.position = get_viewport_rect().size/2
+	
 	# storing the player instance in Global
 	Global.player_instance = player_instance
 	
@@ -41,6 +41,10 @@ func _ready() -> void:
 	
 	# randomizing the timer of spawning the flowers
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
+	
+	# randomizing the enemy spawn timer
+	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
+	
 	
 	# from the start, setting the amount of hearts based on the max health
 	hearts_container.setMaxHearts(player_instance.max_health)
@@ -183,11 +187,14 @@ func _on_power_up_spawn_timer_timeout() -> void:
 func spawn_enemy():
 	var enemy = preload("res://enemy/enemy.tscn")
 	var enemy_instance = enemy.instantiate()
-	enemy_instance.position = get_viewport_rect().size/2
+	#enemy_instance.position = get_viewport_rect().size/2
+	enemy_instance.position = get_viewport_rect().size
 	enemy_instance.add_to_group("enemy")
 	add_child(enemy_instance)
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawn_enemy()
-	$Enemy_Spawn_Timer.stop()
+	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
+	$Enemy_Spawn_Timer.start()
+	#$Enemy_Spawn_Timer.stop()
