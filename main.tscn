@@ -26,6 +26,9 @@ autostart = true
 wait_time = 8.0
 autostart = true
 
+[node name="Enemy_Spawn_Timer" type="Timer" parent="."]
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Score" parent="CanvasLayer" instance=ExtResource("3_1bvp3")]
@@ -44,3 +47,4 @@ polygon = PackedVector2Array(20, -40, 12, 624, 1126, 618, 1131, 7, -8, 13, -12, 
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]
+[connection signal="timeout" from="Enemy_Spawn_Timer" to="." method="_on_enemy_spawn_timer_timeout"]

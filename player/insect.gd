@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var min_speed = 50.0
 @export var lerp_factor = 0.2
 @export var cursor_threshold = 5.0
+@export var bites_required: int = 4
 
 
 var near_flower: bool
@@ -35,6 +36,8 @@ var flowers_near: Array = []
 var hearts_list: Array[TextureRect]
 var max_health = 3
 var current_health: int
+
+var current_bite_counter : int = 0
 
 func _ready() -> void:
 	eating_bar.hide()
@@ -104,6 +107,7 @@ func _physics_process(_delta: float) -> void:
 					eating_timer.start()
 					eating_bar.value = 0 # resetting the progress bar value
 					eating_bar.show()
+					print("is eating: ", is_eating)
 				
 				if flower_to_eat.is_in_group("carnivorous"):
 					var i = 0
@@ -133,11 +137,22 @@ func _physics_process(_delta: float) -> void:
 		else:
 			print("can't eat")
 			
+			
 
 func _process(_delta: float) -> void:
 	if is_eating:
-		var percentage = (eating_timer.time_left / eating_timer.wait_time) * 100
-		eating_bar.value = 100 - percentage
+		#var percentage = (eating_timer.time_left / eating_timer.wait_time) * 100
+		#eating_bar.value = 100 - percentage
+		
+		if Input.is_action_just_pressed("eat"):
+			#print("eating faster")
+			current_bite_counter += 1 
+			eating_bar.value = (current_bite_counter / float(bites_required)) * 100
+			print("eating progress: ", eating_bar.value)
+			
+			if current_bite_counter >= bites_required:
+				ate_the_flower()
+				current_bite_counter = 0 # resetting the counter
 		
 	if is_trapped:
 		var percentage = (trapped_timer.time_left / trapped_timer.wait_time) * 100
@@ -171,8 +186,11 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 
 
 func _on_eating_timer_timeout() -> void:
+	ate_the_flower()
+
+
+func ate_the_flower():
 	if is_instance_valid(flower_to_eat):
-	#if flower_to_eat:
 		var flower_type = flower_to_eat.flower_type
 		
 		get_parent().remove_flower(flower_to_eat) # removing the flower
@@ -186,8 +204,6 @@ func _on_eating_timer_timeout() -> void:
 	near_flower = false
 	is_eating = false
 	follow_cursor = true
-	
-	choose_closest_flower() # finding another closest flower
 
 
 func _on_trapped_timer_timeout() -> void:

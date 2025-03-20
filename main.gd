@@ -31,7 +31,11 @@ func _ready() -> void:
 	var player = preload("res://player/insect.tscn")
 	var player_instance = player.instantiate()
 	player_instance.position = get_viewport_rect().size/2
+	player_instance.add_to_group("player")
 	add_child(player_instance)
+	
+	# storing the player instance in Global
+	Global.player_instance = player_instance
 	
 	screen_size = get_viewport().get_visible_rect().size
 	
@@ -42,6 +46,11 @@ func _ready() -> void:
 	hearts_container.setMaxHearts(player_instance.max_health)
 	hearts_container.updateHearts(player_instance.current_health)
 	Events.healthChanged.connect(hearts_container.updateHearts)
+	
+	#var enemy = preload("res://enemy/enemy.tscn")
+	#var enemy_instance = enemy.instantiate()
+	##enemy_instance.position = get_viewport_rect().size/2
+	#add_child(enemy_instance)
 
 func spawn_flower():
 	var random_position: Vector2
@@ -165,7 +174,20 @@ func spawn_powerup():
 	
 	add_child(powerup_instance)
 	#print("powerup: spawned")
-
+	
 
 func _on_power_up_spawn_timer_timeout() -> void:
 	spawn_powerup()
+	
+	
+func spawn_enemy():
+	var enemy = preload("res://enemy/enemy.tscn")
+	var enemy_instance = enemy.instantiate()
+	enemy_instance.position = get_viewport_rect().size/2
+	enemy_instance.add_to_group("enemy")
+	add_child(enemy_instance)
+
+
+func _on_enemy_spawn_timer_timeout() -> void:
+	spawn_enemy()
+	$Enemy_Spawn_Timer.stop()
