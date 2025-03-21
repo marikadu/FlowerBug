@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Global="*res://Globals/Global.gd"
 Events="*res://Globals/Events.gd"
+AudioManager="*res://Globals/AudioManager.tscn"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 
@@ -52,3 +57,5 @@ stop_eating={
 2d_physics/layer_1="Insect"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_4="SpawnArea"
+2d_physics/layer_5="Player"

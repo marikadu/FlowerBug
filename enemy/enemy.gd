@@ -4,28 +4,39 @@ extends CharacterBody2D
 @onready var shadow: AnimationPlayer = $shadow
 @onready var bird: AnimationPlayer = $bird
 @onready var bird_sprite: AnimatedSprite2D = $Bird_Sprite
+@onready var collision: CollisionShape2D = $Area2D/CollisionShape2D
 
-@export var max_speed = 260.0
+@export var max_speed = 480.0
 @export var min_speed = 50.0
-@export var lerp_factor = 0.2
+@export var lerp_factor = 0.6
 @export var cursor_threshold = 5.0
 
 var player: CharacterBody2D
 var can_move: bool
+var can_detect_player: bool
+var caught_bug_bool: bool = false
+var leaving_count: int
 
 signal has_landed
 signal leaving
+signal caught_bug
 
 func _ready() -> void:
+	
+	Events.caught_by_a_bird.connect(_on_caught_by_a_bird)
+	#Events.no_longer_in_the_bird_area.connect(_on_no_longer_in_the_bird_area)
+	
 	bird_sprite.frame = 0
+	leaving_count = 0
 	can_move = true
+	can_detect_player = false
 	player = Global.player_instance
 	#player = get_tree().get_first_node_in_group("player")
 	$BirdAppearTimer.start()
+	#collision.disabled = true
+	
 	
 func _physics_process(_delta: float) -> void:
-	#if player == null:
-		#return
 	
 	if can_move:
 		var target_position = player.global_position
@@ -48,6 +59,7 @@ func _physics_process(_delta: float) -> void:
 		#move_and_slide()
 		#flying_sprite.look_at(target_position)
 		#look_at(target_position)
+		#look_at(player.position)
 		
 	else:
 		#move_and_slide()
@@ -57,6 +69,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_bird_appear_timer_timeout() -> void:
+	$BirdAppearTimer.paused = true
 	can_move = false
 	await get_tree().create_timer(1.2).timeout
 	shadow.play("coming")
@@ -66,33 +79,77 @@ func _on_bird_appear_timer_timeout() -> void:
 	print("landed")
 	await get_tree().create_timer(0.9).timeout
 	emit_signal("has_landed")
+	Events.can_detect_bird.emit()
 	bird_sprite.frame = 1
+	#collision.disabled = false
+	await get_tree().create_timer(0.2).timeout
+	can_detect_player = true
 	
-	bird_sprite.play("not_caught")
-	await get_tree().create_timer(1.7).timeout
-	#$AnimationPlayer.play("fly_away")
-	#$AnimationPlayer.play("leaving")
-	print("leaving")
-	bird.play("fly_away")
-	#await get_tree().create_timer(1).timeout
-	emit_signal("leaving")
-
-
-
+	#for body in $Area2D.get_overlapping_bodies():
+		#if body == player and can_detect_player:
+			#print("got player immediately!")
+			#emit_signal("caught_bug")
+			#_on_area_2d_body_entered(player)
+			#
+		#if body.is_in_group("player") and can_detect_player:
+			#print("bird group: got player!")
+			#emit_signal("caught_bug")
+			#_on_area_2d_body_entered(player)
+	
+	# when doesn't catch the player
+	if not caught_bug_bool:
+		bird_sprite.play("not_caught")
+		await get_tree().create_timer(1.7).timeout
+		# if the bug wasn't detected after landing
+		if not caught_bug_bool:
+			leaving_scene()
+			$BirdAppearTimer.paused = true
+	
+	
 func _on_has_landed() -> void:
 	print("landed, true!")
-	pass # Replace with function body.
 
 
 func _on_leaving() -> void:
 	print("leaving, true!")
 	#await get_tree().create_timer(0.3).timeout
 	shadow.play("fly_away")
+	#collision.disabled = true
+	can_detect_player = false
 	await get_tree().create_timer(1.1).timeout
 	queue_free()
-	pass # Replace with function body.
-
 
 
 func _on_bird_sprite_frame_changed() -> void:
 	bird.play("bounce")
+
+
+func _on_caught_by_a_bird():
+	if Events.is_player_caught:
+		caught_bug_bool = true
+		print("catch player! catch player!")
+		bird_sprite.play("caught")
+		await get_tree().create_timer(0.8).timeout
+		
+		bird_sprite.play("not_caught")
+		await get_tree().create_timer(1.7).timeout
+		# if the bug wasn't detected after landing
+		leaving_scene()
+		
+		
+#func _on_no_longer_in_the_bird_area():
+	#bird_sprite.play("not_caught")
+	#await get_tree().create_timer(1.7).timeout
+	## if the bug wasn't detected after landing
+	#leaving_scene()
+	
+
+func leaving_scene():
+	if leaving_count < 1:
+		print("leaving")
+		bird.play("fly_away")
+		Events.cannot_detect_bird.emit()
+		Events.is_player_caught = false # back to false
+		#await get_tree().create_timer(1).timeout
+		emit_signal("leaving")
+		leaving_count += 1

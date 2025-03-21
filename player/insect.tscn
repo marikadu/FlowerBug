@@ -1,12 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4msv7itrsdr8"]
+[gd_scene load_steps=19 format=3 uid="uid://b4msv7itrsdr8"]
 
 [ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
 [ext_resource type="Texture2D" uid="uid://df7jeoknp7svk" path="res://icon.svg" id="2_4e74r"]
 [ext_resource type="Texture2D" uid="uid://ckw577ya5cd4g" path="res://assets/sprites/bug_flying.png" id="3_mydgl"]
 [ext_resource type="Texture2D" uid="uid://duf2ac05vm3s7" path="res://assets/sprites/bug_eating.png" id="3_ojlxu"]
+[ext_resource type="Shader" uid="uid://cahdfsagc3d5x" path="res://shaders/hit_flash.tres" id="3_uatpp"]
 [ext_resource type="Script" uid="uid://brtwcnydtbbf" path="res://States/state_machine.gd" id="4_c1dqc"]
 [ext_resource type="Script" uid="uid://cub5b7ogl4hk5" path="res://States/Normal.gd" id="5_xut38"]
 [ext_resource type="Script" uid="uid://dj284f5slhphn" path="res://States/SpeedPowerUp.gd" id="6_mydgl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opt1d"]
+resource_local_to_scene = true
+shader = ExtResource("3_uatpp")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(0.99375, 0.743557, 0.803259, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xut38"]
 animations = [{
@@ -42,9 +49,47 @@ bg_color = Color(0.252028, 0.252028, 0.252028, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojlxu"]
 bg_color = Color(0.916187, 0.440951, 0.282098, 1)
 
+[sub_resource type="Animation" id="Animation_uatpp"]
+resource_name = "hit_flash"
+length = 0.3475
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.233333, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_opt1d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_opt1d"]
+_data = {
+&"RESET": SubResource("Animation_opt1d"),
+&"hit_flash": SubResource("Animation_uatpp")
+}
+
 [node name="insect" type="CharacterBody2D" groups=["player"]]
 z_index = 1
-collision_mask = 2
+collision_layer = 21
+collision_mask = 6
 script = ExtResource("1_ev3hp")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -53,6 +98,7 @@ scale = Vector2(0.46, 0.46)
 texture = ExtResource("2_4e74r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_opt1d")
 scale = Vector2(0.195, 0.195)
 sprite_frames = SubResource("SpriteFrames_xut38")
 animation = &"eating"
@@ -77,6 +123,9 @@ one_shot = true
 
 [node name="SpeedPowerUpTimer" type="Timer" parent="."]
 wait_time = 13.0
+
+[node name="VoulnerableTimer" type="Timer" parent="."]
+wait_time = 1.4
 
 [node name="EatingBar" type="ProgressBar" parent="."]
 offset_left = -53.0
@@ -109,8 +158,14 @@ metadata/_custom_type_script = "uid://cub5b7ogl4hk5"
 script = ExtResource("6_mydgl")
 metadata/_custom_type_script = "uid://dj284f5slhphn"
 
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_opt1d")
+}
+
 [connection signal="body_entered" from="InsectArea2D" to="." method="_on_insect_area_2d_body_entered"]
 [connection signal="body_exited" from="InsectArea2D" to="." method="_on_insect_area_2d_body_exited"]
 [connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]
 [connection signal="timeout" from="TrappedTimer" to="." method="_on_trapped_timer_timeout"]
 [connection signal="timeout" from="SpeedPowerUpTimer" to="StateMachine/SpeedPowerUp" method="_on_speed_power_up_timer_timeout"]
+[connection signal="timeout" from="VoulnerableTimer" to="." method="_on_voulnerable_timer_timeout"]

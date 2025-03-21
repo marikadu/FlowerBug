@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var trapped_timer: Timer = $TrappedTimer
 @onready var trapped_bar: ProgressBar = $TrappedBar
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hit_flash: AnimationPlayer = $HitFlashAnimationPlayer
 #@onready var h_box: HBoxContainer = $CanvasLayer/HBoxContainer
 #@onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
 
@@ -31,6 +32,10 @@ var is_trapped: bool = false
 var insect_can_eat: bool
 var follow_cursor: bool
 var see_mouse: bool
+var can_detect_bird: bool
+var is_caught = false
+var voulnerable: bool # doesn't constantly gets dameged if close to the bird
+
 var identify_flower: String = ""
 # storing the flowers nearby to prevent mistakes in getting to the wrong flower
 var flowers_near: Array = [] 
@@ -41,11 +46,17 @@ var current_health: int
 var current_bite_counter : int = 0
 
 func _ready() -> void:
+	
+	Events.can_detect_bird.connect(_on_can_detect_bird)
+	Events.cannot_detect_bird.connect(_on_stop_detect_bird)
+	
 	eating_bar.hide()
 	trapped_bar.hide()
 	follow_cursor = true
 	see_mouse = true
 	insect_can_eat = true
+	can_detect_bird = false
+	voulnerable = true
 	animated_sprite.play("flying")
 	
 	# setting current health to be maximum from start
@@ -112,7 +123,7 @@ func _physics_process(_delta: float) -> void:
 					print("is eating: ", is_eating)
 				
 				if flower_to_eat.is_in_group("carnivorous"):
-					var i = 0
+					var bounce_animation_count = 0 # resetting
 					# changing the sprite to being trapped
 					flower_to_eat.animation_player.play("bounce")
 					flower_to_eat.animated_sprite.play("trapped")
@@ -123,6 +134,7 @@ func _physics_process(_delta: float) -> void:
 					print("received damage!!")
 					is_trapped = true
 					insect_can_eat = false
+					can_detect_bird = false
 					flower_to_eat.is_being_eaten = true
 					flower_to_eat.trap_the_player()
 					trapped_timer.start()
@@ -130,9 +142,9 @@ func _physics_process(_delta: float) -> void:
 					trapped_bar.show()
 					# bouncing animation when the player is trapped
 					# creating an effect of the character trying to get out
-					while i < 7:
+					while bounce_animation_count < 7:
 						flower_to_eat.animation_player.play("bounce")
-						i+=1
+						bounce_animation_count += 1
 						await get_tree().create_timer(0.4).timeout
 						#print(i)
 					
@@ -159,19 +171,58 @@ func _process(_delta: float) -> void:
 	if is_trapped:
 		var percentage = (trapped_timer.time_left / trapped_timer.wait_time) * 100
 		trapped_bar.value = 100 - percentage
+		
+	# couldn't find a better solution, so now
+	# the player always checks if they are in
+	# the body area
+	if can_detect_bird and not is_caught:
+		for body in $InsectArea2D.get_overlapping_bodies():
+			if body.is_in_group("enemy"):
+				print("insect: detected bird!")
+				Events.caught_by_a_bird.emit()
+				Events.is_player_caught = true
+				take_damage()
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("flower") or body.is_in_group("carnivorous"):
-		#near_flower = true
 		flowers_near.append(body) # adding the nearby flowers to the group
 		choose_closest_flower() # choosing the closest flower
 		#flower_to_eat = body # detecting this specific flower
 		#print("area: ", near_flower)
 		
 	if body.is_in_group("powerup"):
-		powerup_to_get = body # detecting this specific flower
+		powerup_to_get = body # detecting this specific power-up
 		get_parent().remove_powerup(powerup_to_get)
 		Events.got_speed_powerup.emit()
+		
+	#if body.is_in_group("enemy") and can_detect_bird:
+		#print("detected bird!")
+		
+	#for body_b in $InsectArea2D.get_overlapping_bodies():
+		#if body_b.is_in_group("enemy") and can_detect_bird:
+			#print("insect: detected bird!")
+			#Events.caught_by_a_bird.emit()
+			#take_damage()
+			
+	if body.is_in_group("enemy"):
+		#if body.can_detect_player:
+		#if body not in enemy_near:
+			#enemy_near.append(body)
+		if can_detect_bird and body.can_detect_player:
+			print("on body entered insect: detected bird!")
+			#Events.caught_by_a_bird.emit()
+			#take_damage()
+			
+	#for body_b in $InsectArea2D.get_overlapping_bodies():
+		##if body_b.is_in_group("enemy"):
+			##if body_b not in enemy_near:
+				##enemy_near.append(body_b)
+				##print("seeing a bird:", body_b)
+				#
+		#if body_b and body_b.can_detect_player:
+			#print("insect: detected bird!")
+			#Events.caught_by_a_bird.emit()
+			#take_damage()
 
 
 func _on_insect_area_2d_body_exited(body: Node2D) -> void:
@@ -185,7 +236,12 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("carnivorous"):
 		near_flower = false
 		flower_to_eat = body # detecting this specific flower
-
+		
+	# if the player leaves the bird area while is caught
+	#if body.is_in_group("enemy"):
+		#if Events.caught_by_a_bird:
+			#Events.no_longer_in_the_bird_area.emit()
+		
 
 func _on_eating_timer_timeout() -> void:
 	ate_the_flower()
@@ -234,6 +290,7 @@ func _on_trapped_timer_timeout() -> void:
 	near_flower = false
 	is_trapped = false
 	insect_can_eat = true
+	can_detect_bird = true
 	$AnimatedSprite2D.show()
 	follow_cursor = true
 	print("no longer trapped!")
@@ -279,14 +336,32 @@ func identifyFlower(flower_type: String):
 
 
 func take_damage():
+	if voulnerable: # only receive damage when voulnerable
 	# ensuring it doesn't go less than 0
-	if current_health > 0:
-		current_health -= 1
-		Events.healthChanged.emit(current_health)
-		print("current health: ", current_health)
-		# game over when current health reaches 0
-		if current_health == 0:
-			# don't instantly send the signal
-			# add a death animation
-			await get_tree().create_timer(0.02).timeout
-			print("game over!")
+		if current_health > 0:
+			AudioManager.play_hit()
+			hit_flash.play("hit_flash")
+			current_health -= 1
+			Events.healthChanged.emit(current_health)
+			print("current health: ", current_health)
+			voulnerable = false
+			$VoulnerableTimer.start()
+			# game over when current health reaches 0
+			if current_health == 0:
+				# don't instantly send the signal
+				# add a death animation
+				await get_tree().create_timer(0.02).timeout
+				print("game over!")
+			
+			
+func _on_can_detect_bird():
+	can_detect_bird = true
+	#print("can detect: ", can_detect_bird)
+	
+func _on_stop_detect_bird():
+	can_detect_bird = false
+	#print("can detect: ", can_detect_bird)
+
+
+func _on_voulnerable_timer_timeout() -> void:
+	voulnerable = true

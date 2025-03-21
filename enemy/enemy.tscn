@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cgsv0cintwamr" path="res://enemy/enemy.gd" id="1_ofsxj"]
 [ext_resource type="Texture2D" uid="uid://5de7pppvf46l" path="res://assets/sprites/bird_flying.png" id="2_p200p"]
-[ext_resource type="Texture2D" uid="uid://df7jeoknp7svk" path="res://icon.svg" id="2_ppra6"]
 [ext_resource type="Texture2D" uid="uid://d3n456cotymmj" path="res://assets/sprites/bird_1.png" id="3_5ffra"]
+[ext_resource type="Texture2D" uid="uid://dx488p3ircd1d" path="res://assets/sprites/bird_6.png" id="3_e355f"]
 [ext_resource type="Texture2D" uid="uid://dc6sbxb074pvp" path="res://assets/sprites/bird_2.png" id="4_e355f"]
 [ext_resource type="Texture2D" uid="uid://dntp01b0y4cui" path="res://assets/sprites/bird_3.png" id="5_78jik"]
 [ext_resource type="Texture2D" uid="uid://fejugdx1i7ll" path="res://assets/sprites/bird_4.png" id="6_o3pv7"]
@@ -11,6 +11,17 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6yflr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e355f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_78jik")
+}],
+"loop": true,
+"name": &"caught",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_5ffra")
@@ -44,7 +55,22 @@ animations = [{
 radius = 56.95
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
-size = Vector2(100, 100)
+size = Vector2(300, 200)
+
+[sub_resource type="Animation" id="Animation_ppra6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flying_Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.75, 0.75)]
+}
 
 [sub_resource type="Animation" id="Animation_ofsxj"]
 resource_name = "coming"
@@ -59,34 +85,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0001, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.54, 0.54), Vector2(0.53, 0.53), Vector2(0.74, 0.74)]
-}
-
-[sub_resource type="Animation" id="Animation_ppra6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flying_Sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.53, 0.53)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, -877)]
+"values": [Vector2(0.75, 0.75), Vector2(0.53, 0.53), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_p200p"]
@@ -102,7 +101,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 0.68302),
 "update": 0,
-"values": [Vector2(0.74, 0.74), Vector2(0, 0)]
+"values": [Vector2(1, 1), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppra6"]
@@ -110,22 +109,6 @@ _data = {
 &"RESET": SubResource("Animation_ppra6"),
 &"coming": SubResource("Animation_ofsxj"),
 &"fly_away": SubResource("Animation_p200p")
-}
-
-[sub_resource type="Animation" id="Animation_y5vj3"]
-resource_name = "landing"
-length = 0.6955
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bird_Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.666667),
-"transitions": PackedFloat32Array(0.574349, 1),
-"update": 0,
-"values": [Vector2(1, -800), Vector2(1, -74)]
 }
 
 [sub_resource type="Animation" id="Animation_5ffra"]
@@ -152,23 +135,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 0.88)]
-}
-
-[sub_resource type="Animation" id="Animation_e355f"]
-resource_name = "fly_away"
-length = 0.7325
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bird_Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1.18921, 0.574349),
-"update": 0,
-"values": [Vector2(1, -74), Vector2(1, -800)]
+"values": [Vector2(1.6, 1.6)]
 }
 
 [sub_resource type="Animation" id="Animation_78jik"]
@@ -184,7 +151,39 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 0.88), Vector2(1, 1.1), Vector2(1, 1)]
+"values": [Vector2(1.6, 1.408), Vector2(1.6, 1.803), Vector2(1.6, 1.6)]
+}
+
+[sub_resource type="Animation" id="Animation_e355f"]
+resource_name = "fly_away"
+length = 0.7325
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bird_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1.18921, 0.574349),
+"update": 0,
+"values": [Vector2(1, -20.255), Vector2(1, -800)]
+}
+
+[sub_resource type="Animation" id="Animation_y5vj3"]
+resource_name = "landing"
+length = 0.6955
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bird_Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.666667),
+"transitions": PackedFloat32Array(0.574349, 1),
+"update": 0,
+"values": [Vector2(1, -800), Vector2(1, -20.255)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ffra"]
@@ -196,23 +195,24 @@ _data = {
 }
 
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 4
+collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_ofsxj")
 
 [node name="Flying_Sprite" type="Sprite2D" parent="."]
-self_modulate = Color(0.305882, 0.32549, 0.466667, 0.431373)
+self_modulate = Color(0.305882, 0.32549, 0.466667, 0.227451)
 z_index = 1
 rotation = 1.5708
-scale = Vector2(0.53, 0.53)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_p200p")
 
 [node name="Bird_Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 2
 position = Vector2(1, -937)
-scale = Vector2(1, 0.88)
+scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_6yflr")
 animation = &"normal"
+offset = Vector2(0, -71.0227)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5ffra")
@@ -229,12 +229,6 @@ wait_time = 5.0
 libraries = {
 &"": SubResource("AnimationLibrary_ppra6")
 }
-
-[node name="Icon2" type="Sprite2D" parent="."]
-z_index = 2
-position = Vector2(-1, -877)
-scale = Vector2(1.19531, 1.19531)
-texture = ExtResource("2_ppra6")
 
 [node name="bird" type="AnimationPlayer" parent="."]
 libraries = {
