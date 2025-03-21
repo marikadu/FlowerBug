@@ -100,6 +100,7 @@ func _on_bird_appear_timer_timeout() -> void:
 	if not caught_bug_bool:
 		bird_sprite.play("not_caught")
 		await get_tree().create_timer(1.7).timeout
+		leaving_scene()
 		# if the bug wasn't detected after landing
 		if not caught_bug_bool:
 			leaving_scene()
@@ -112,7 +113,6 @@ func _on_has_landed() -> void:
 
 func _on_leaving() -> void:
 	print("leaving, true!")
-	#await get_tree().create_timer(0.3).timeout
 	shadow.play("fly_away")
 	#collision.disabled = true
 	can_detect_player = false
@@ -127,7 +127,7 @@ func _on_bird_sprite_frame_changed() -> void:
 func _on_caught_by_a_bird():
 	if Events.is_player_caught:
 		caught_bug_bool = true
-		print("catch player! catch player!")
+		#print("catch player! catch player!")
 		bird_sprite.play("caught")
 		await get_tree().create_timer(0.8).timeout
 		
@@ -146,10 +146,12 @@ func _on_caught_by_a_bird():
 
 func leaving_scene():
 	if leaving_count < 1:
-		print("leaving")
-		bird.play("fly_away")
-		Events.cannot_detect_bird.emit()
-		Events.is_player_caught = false # back to false
-		#await get_tree().create_timer(1).timeout
-		emit_signal("leaving")
-		leaving_count += 1
+		if bird_sprite.frame == 3:
+			print("time to leave")
+			print("leaving")
+			bird.play("fly_away")
+			Events.cannot_detect_bird.emit()
+			Events.is_player_caught = false # back to false
+			#await get_tree().create_timer(1).timeout
+			emit_signal("leaving")
+			leaving_count += 1
