@@ -24,14 +24,21 @@ var powerup_list = [
 var powerup_instances = [] # making an array empty from the start of the game
 
 var screen_size
+var bird_already_present: bool
 
 func _ready() -> void:
+	
+	Events.cannot_detect_bird.connect(_on_enemy_left)
+	
+	bird_already_present = false
+	
 	var player = preload("res://player/insect.tscn")
 	var player_instance = player.instantiate()
 	player_instance.position = get_viewport_rect().size/2
 	player_instance.add_to_group("player")
 	add_child(player_instance)
 	
+	# positioning the spawn area to the centre of the screen
 	$SpawnArea.position = get_viewport_rect().size/2
 	
 	# storing the player instance in Global
@@ -50,11 +57,7 @@ func _ready() -> void:
 	hearts_container.setMaxHearts(player_instance.max_health)
 	hearts_container.updateHearts(player_instance.current_health)
 	Events.healthChanged.connect(hearts_container.updateHearts)
-	
-	#var enemy = preload("res://enemy/enemy.tscn")
-	#var enemy_instance = enemy.instantiate()
-	##enemy_instance.position = get_viewport_rect().size/2
-	#add_child(enemy_instance)
+
 
 func spawn_flower():
 	var random_position: Vector2
@@ -185,12 +188,17 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	
 	
 func spawn_enemy():
-	var enemy = preload("res://enemy/enemy.tscn")
-	var enemy_instance = enemy.instantiate()
-	#enemy_instance.position = get_viewport_rect().size/2
-	enemy_instance.position = get_viewport_rect().size
-	enemy_instance.add_to_group("enemy")
-	add_child(enemy_instance)
+	if not bird_already_present:
+		AudioManager.play_bird_spawned()
+		bird_already_present = true
+		var enemy = preload("res://enemy/enemy.tscn")
+		var enemy_instance = enemy.instantiate()
+		#enemy_instance.position = get_viewport_rect().size/2
+		enemy_instance.position = get_viewport_rect().size
+		enemy_instance.add_to_group("enemy")
+		add_child(enemy_instance)
+	else:
+		print("don't spawn bird, already present")
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
@@ -198,3 +206,6 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
 	$Enemy_Spawn_Timer.start()
 	#$Enemy_Spawn_Timer.stop()
+
+func _on_enemy_left():
+	bird_already_present = false

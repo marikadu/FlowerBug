@@ -178,7 +178,7 @@ func _process(_delta: float) -> void:
 	if can_detect_bird and not is_caught:
 		for body in $InsectArea2D.get_overlapping_bodies():
 			if body.is_in_group("enemy"):
-				print("insect: detected bird!")
+				#print("insect: detected bird!")
 				Events.caught_by_a_bird.emit()
 				Events.is_player_caught = true
 				take_damage()
@@ -195,21 +195,12 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 		get_parent().remove_powerup(powerup_to_get)
 		Events.got_speed_powerup.emit()
 		
-	#if body.is_in_group("enemy") and can_detect_bird:
-		#print("detected bird!")
-		
-	#for body_b in $InsectArea2D.get_overlapping_bodies():
-		#if body_b.is_in_group("enemy") and can_detect_bird:
-			#print("insect: detected bird!")
-			#Events.caught_by_a_bird.emit()
-			#take_damage()
-			
-	if body.is_in_group("enemy"):
+	#if body.is_in_group("enemy"):
 		#if body.can_detect_player:
 		#if body not in enemy_near:
 			#enemy_near.append(body)
-		if can_detect_bird and body.can_detect_player:
-			print("on body entered insect: detected bird!")
+		#if can_detect_bird and body.can_detect_player:
+			#print("on body entered insect: detected bird!")
 			#Events.caught_by_a_bird.emit()
 			#take_damage()
 			
@@ -236,12 +227,7 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("carnivorous"):
 		near_flower = false
 		flower_to_eat = body # detecting this specific flower
-		
-	# if the player leaves the bird area while is caught
-	#if body.is_in_group("enemy"):
-		#if Events.caught_by_a_bird:
-			#Events.no_longer_in_the_bird_area.emit()
-		
+
 
 func _on_eating_timer_timeout() -> void:
 	ate_the_flower()
