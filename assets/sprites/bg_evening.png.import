@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4481ca1loru3"
-path="res://.godot/imported/area.png-8d953df02948dce9a416858da1a3483d.ctex"
+uid="uid://cxp77i5bgwmns"
+path="res://.godot/imported/bg_evening.png-d75fe3c07ffbe1e2ea34fb8db90a333b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spawnArea/area.png"
-dest_files=["res://.godot/imported/area.png-8d953df02948dce9a416858da1a3483d.ctex"]
+source_file="res://assets/sprites/bg_evening.png"
+dest_files=["res://.godot/imported/bg_evening.png-d75fe3c07ffbe1e2ea34fb8db90a333b.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 extends Node2D
 
-# level 1
+# level 2
 
 @onready var spawn_area: Control = $SpawnArea
 @onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
@@ -58,6 +58,9 @@ func _ready() -> void:
 	
 	# randomizing the timer of spawning the flowers
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
+	
+	# randomizing the enemy spawn timer
+	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
 	
 	# from the start, setting the amount of hearts based on the max health
 	hearts_container.setMaxHearts(player_instance.max_health)
@@ -192,21 +195,26 @@ func spawn_powerup():
 func _on_power_up_spawn_timer_timeout() -> void:
 	spawn_powerup()
 	
-# no bird!
-#func spawn_enemy():
-	#if not bird_already_present:
-		#Events.spawned_bird.emit()
-		#AudioManager.play_bird_spawned()
-		#bird_already_present = true
-		#var enemy = preload("res://enemy/enemy.tscn")
-		#var enemy_instance = enemy.instantiate()
-		#enemy_instance.position = get_viewport_rect().size
-		#enemy_instance.add_to_group("enemy")
-		#add_child(enemy_instance)
-	#else:
-		#print("don't spawn bird, already present")
+
+func spawn_enemy():
+	if not bird_already_present:
+		Events.spawned_bird.emit()
+		AudioManager.play_bird_spawned()
+		bird_already_present = true
+		var enemy = preload("res://enemy/enemy.tscn")
+		var enemy_instance = enemy.instantiate()
+		enemy_instance.position = get_viewport_rect().size
+		enemy_instance.add_to_group("enemy")
+		add_child(enemy_instance)
+	else:
+		print("don't spawn bird, already present")
 
 
+func _on_timer_enemy_spawn_timer_timeout() -> void:
+	spawn_enemy()
+	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
+	$Enemy_Spawn_Timer.start()
+	#$Enemy_Spawn_Timer.stop()
 
 func _on_enemy_left():
 	bird_already_present = false

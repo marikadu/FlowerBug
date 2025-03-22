@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://382hr5ehgsbt"]
+[gd_scene load_steps=9 format=3 uid="uid://dpf525vwyovn8"]
 
-[ext_resource type="Script" uid="uid://cvjguna8lfh0g" path="res://levels/level_1.gd" id="1_n46q3"]
-[ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_5hph3"]
-[ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="3_j7kpp"]
-[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_bjebc"]
-[ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="5_5rr72"]
-[ext_resource type="Texture2D" uid="uid://dj2c0vd1fuie1" path="res://assets/sprites/bg_morning.png" id="6_btoec"]
+[ext_resource type="Script" uid="uid://wj7qsvs4mmsp" path="res://levels/level_3.gd" id="1_8l0e1"]
+[ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_lfnxh"]
+[ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="3_ofchu"]
+[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_jq78i"]
+[ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="5_lsnkt"]
+[ext_resource type="Texture2D" uid="uid://cxp77i5bgwmns" path="res://assets/sprites/bg_evening.png" id="6_8l0e1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
@@ -13,10 +13,10 @@
 size = Vector2(154, 747)
 
 [node name="main" type="Node2D"]
-script = ExtResource("1_n46q3")
+script = ExtResource("1_8l0e1")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.999223, 0.987293, 0.94773, 1)
+color = Color(0.974551, 0.899927, 0.866032, 1)
 
 [node name="Flower_Spawn_Timer" type="Timer" parent="."]
 wait_time = 2.0
@@ -27,11 +27,16 @@ autostart = true
 wait_time = 8.0
 autostart = true
 
+[node name="Enemy_Spawn_Timer" type="Timer" parent="."]
+wait_time = 11.0
+one_shot = true
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Score" parent="CanvasLayer" instance=ExtResource("2_5hph3")]
+[node name="Score" parent="CanvasLayer" instance=ExtResource("2_lfnxh")]
 
-[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("3_j7kpp")]
+[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("3_ofchu")]
 offset_left = 64.0
 offset_top = 50.0
 offset_right = 162.0
@@ -40,9 +45,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
-script = ExtResource("4_bjebc")
+script = ExtResource("4_jq78i")
 
-[node name="SpawnArea" parent="." instance=ExtResource("5_5rr72")]
+[node name="SpawnArea" parent="." instance=ExtResource("5_lsnkt")]
 offset_left = 640.0
 offset_top = 389.0
 offset_right = 640.0
@@ -72,7 +77,8 @@ offset_right = 680.0
 offset_bottom = 400.0
 
 [node name="BgSprite2D" type="Sprite2D" parent="background"]
-texture = ExtResource("6_btoec")
+texture = ExtResource("6_8l0e1")
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]
+[connection signal="timeout" from="Enemy_Spawn_Timer" to="." method="_on_timer_enemy_spawn_timer_timeout"]
