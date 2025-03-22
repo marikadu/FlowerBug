@@ -34,6 +34,7 @@ var follow_cursor: bool
 var see_mouse: bool
 var can_detect_bird: bool
 var is_caught = false
+var is_shaking: bool
 var voulnerable: bool # doesn't constantly gets dameged if close to the bird
 
 var identify_flower: String = ""
@@ -44,11 +45,13 @@ var max_health = 3
 var current_health: int
 
 var current_bite_counter : int = 0
+var shake_strength: float = 1.2
 
 func _ready() -> void:
 	
 	Events.can_detect_bird.connect(_on_can_detect_bird)
 	Events.cannot_detect_bird.connect(_on_stop_detect_bird)
+	Events.spawned_bird.connect(_on_spawned_bird)
 	
 	eating_bar.hide()
 	trapped_bar.hide()
@@ -56,6 +59,7 @@ func _ready() -> void:
 	see_mouse = true
 	insect_can_eat = true
 	can_detect_bird = false
+	is_shaking = false
 	voulnerable = true
 	animated_sprite.play("flying")
 	
@@ -183,6 +187,11 @@ func _process(_delta: float) -> void:
 					Events.caught_by_a_bird.emit()
 					Events.is_player_caught = true
 					take_damage()
+					
+	# the insect starts to shake when the bird spawns
+	if is_shaking:
+		var shake_offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
+		global_position += shake_offset * 3
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("flower") or body.is_in_group("carnivorous"):
@@ -359,7 +368,15 @@ func _on_can_detect_bird():
 func _on_stop_detect_bird():
 	can_detect_bird = false
 	print("can detect: ", can_detect_bird)
+	is_shaking = false
+	# slowly reduce the shake to 0.0 with the weight of 0.01
+	shake_strength = lerp(shake_strength, 0.0, 0.01)
 
 
 func _on_voulnerable_timer_timeout() -> void:
 	voulnerable = true
+
+func _on_spawned_bird():
+	#print("aa birdv")
+	is_shaking = true
+	

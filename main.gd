@@ -191,6 +191,7 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	
 func spawn_enemy():
 	if not bird_already_present:
+		Events.spawned_bird.emit()
 		AudioManager.play_bird_spawned()
 		bird_already_present = true
 		var enemy = preload("res://enemy/enemy.tscn")
