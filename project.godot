@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://Globals/Global.gd"
 Events="*res://Globals/Events.gd"
 AudioManager="*res://Globals/AudioManager.tscn"
+Transition="*res://Globals/Transition.tscn"
 
 [debug]
 
@@ -31,6 +32,14 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "orange",
+"res://enemy/": "blue",
+"res://flowers/": "green"
+}
+
 [global_group]
 
 flower=""
@@ -38,6 +47,7 @@ powerup=""
 player=""
 carnivorous=""
 enemy=""
+continue=""
 
 [input]
 

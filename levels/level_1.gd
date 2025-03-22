@@ -22,8 +22,7 @@ var carn_flower_instances = []
 
 # preloading a list of possible power-ups to spawn
 var powerup_list = [
-	preload("res://powerUp/powerup_speed.tscn"),
-	preload("res://powerUp/powerup_pollen.tscn")
+	preload("res://powerUp/powerUp.tscn")
 ]
 var powerup_instances = [] # making an array empty from the start of the game
 
@@ -58,7 +57,7 @@ func _ready() -> void:
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 	
 	# randomizing the enemy spawn timer
-	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
+	#$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
 	
 	
 	# from the start, setting the amount of hearts based on the max health
@@ -210,9 +209,10 @@ func spawn_enemy():
 
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	spawn_enemy()
-	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
-	$Enemy_Spawn_Timer.start()
+	#spawn_enemy()
+	pass
+	#$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
+	#$Enemy_Spawn_Timer.start()
 	#$Enemy_Spawn_Timer.stop()
 
 

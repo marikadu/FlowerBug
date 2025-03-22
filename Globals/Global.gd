@@ -6,7 +6,18 @@ var is_game_over : bool
 var score = 0
 var personal_best = 0
 
+var is_score_multiplied = false
+var current_multiplier = 1.0 # default multiplier
+
+
 # update personal best score
 func update_personal_best():
 	if score > personal_best:
 		personal_best = score
+
+
+func add_score(pollen: int):
+	var final_pollen = pollen * current_multiplier
+	score += final_pollen
+	score = max(score, 0) # doesn't go bellow 0
+	print("added score: ", final_pollen, ". new score: ", score)

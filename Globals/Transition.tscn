@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6awpsw58kq8q"]
+
+[ext_resource type="Script" uid="uid://ck3bvu10iifk5" path="res://Globals/transition.gd" id="1_hc5fk"]
+
+[sub_resource type="Animation" id="Animation_yem1c"]
+resource_name = "fade_to_black"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0235294, 0.0705882, 0.101961, 0), Color(0.0235294, 0.0705882, 0.101961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hc5fk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0235294, 0.0705882, 0.101961, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_356xi"]
+resource_name = "fade_out"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0235294, 0.0705882, 0.101961, 1), Color(0.0235294, 0.0705882, 0.101961, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc5fk"]
+_data = {
+&"RESET": SubResource("Animation_hc5fk"),
+&"fade_out": SubResource("Animation_356xi"),
+&"fade_to_black": SubResource("Animation_yem1c")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_hc5fk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0235294, 0.0705882, 0.101961, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hc5fk")
+}

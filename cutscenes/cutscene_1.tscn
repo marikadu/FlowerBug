@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqpdfbyfvvv2r"]
+
+[ext_resource type="Texture2D" uid="uid://b0fdrgx84f4q5" path="res://cutscenes/cutscene.png" id="1_62shd"]
+[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="2_7kd3d"]
+
+[node name="Cutscene1" type="Node2D"]
+
+[node name="Cutscene" type="Sprite2D" parent="."]
+position = Vector2(640, 358)
+texture = ExtResource("1_62shd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("2_7kd3d")

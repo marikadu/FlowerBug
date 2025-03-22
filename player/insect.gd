@@ -36,6 +36,9 @@ var can_detect_bird: bool
 var is_caught = false
 var is_shaking: bool
 var voulnerable: bool # doesn't constantly gets dameged if close to the bird
+var continue_scene: bool
+
+var rng: RandomNumberGenerator
 
 var identify_flower: String = ""
 # storing the flowers nearby to prevent mistakes in getting to the wrong flower
@@ -61,7 +64,10 @@ func _ready() -> void:
 	can_detect_bird = false
 	is_shaking = false
 	voulnerable = true
+	continue_scene = false
 	animated_sprite.play("flying")
+	
+	rng = RandomNumberGenerator.new() # to randomize score or "pollen"
 	
 	# setting current health to be maximum from start
 	current_health = max_health
@@ -202,8 +208,15 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 		
 	if body.is_in_group("powerup"):
 		powerup_to_get = body # detecting this specific power-up
-		get_parent().remove_powerup(powerup_to_get)
-		Events.got_speed_powerup.emit()
+		if powerup_to_get.powerup_type == "speed":
+			get_parent().remove_powerup(powerup_to_get)
+			Events.got_speed_powerup.emit()
+			print("got speed!")
+			
+		elif powerup_to_get.powerup_type == "pollen":
+			get_parent().remove_powerup(powerup_to_get)
+			Events.got_pollen_powerup.emit()
+			print("got pollen!")
 		
 	#if body.is_in_group("enemy"):
 		#if body.can_detect_player:
@@ -282,6 +295,8 @@ func _on_trapped_timer_timeout() -> void:
 	if is_instance_valid(flower_to_eat): 
 		get_parent().remove_flower(flower_to_eat)
 		
+		#identifyFlower(flower_to_eat.flower_type)
+		
 	trapped_bar.hide()
 	near_flower = false
 	is_trapped = false
@@ -321,21 +336,20 @@ func choose_closest_flower():
 
 # adding different point to the score depending on the flower type
 func identifyFlower(flower_type: String):
+	var random_pollen_amount = rng.randi_range(1, 6)
 	match flower_type:
-		"n_flower_1":
-			Global.score += 10
-		
-		"n_flower_2":
-			Global.score += 20
-			
-		"n_flower_3":
-			Global.score += 20
-			
-		"n_flower_4":
-			Global.score += 20
+		"n_flower_1", "n_flower_2", "n_flower_3", "n_flower_4":
+			# the insect earns pollen
+			#Global.score += random_pollen_amount
+			Global.add_score(random_pollen_amount)
+			if Global.score >= 10:
+				print("win!")
+				Events.can_continue.emit()
 			
 		"c_flower_1", "c_flower_2", "c_flower_3":
-			print("damaged! flower")
+			#print("damaged! flower")
+			# the insect loses the polen when hit
+			Global.score -= random_pollen_amount
 			#take_damage()
 			
 		"_":
@@ -346,6 +360,7 @@ func take_damage():
 	if voulnerable: # only receive damage when voulnerable
 	# ensuring it doesn't go less than 0
 		if current_health > 0:
+			var random_pollen_amount = rng.randi_range(2, 7)
 			AudioManager.play_hit()
 			hit_flash.play("hit_flash")
 			current_health -= 1
@@ -353,6 +368,8 @@ func take_damage():
 			print("current health: ", current_health)
 			voulnerable = false
 			$VoulnerableTimer.start()
+			# the insect loses some of the pollen, and can't go bellow 0
+			Global.score = clamp(Global.score - random_pollen_amount, 0, Global.score)
 			# game over when current health reaches 0
 			if current_health == 0:
 				# don't instantly send the signal
@@ -380,3 +397,14 @@ func _on_spawned_bird():
 	#print("aa birdv")
 	is_shaking = true
 	
+
+
+func _on_insect_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("continue"):
+		continue_scene = true
+		print("win win!")
+		
+		# transition to the new scene
+		Transition.transition()
+		await Transition.on_transition_finished
+		get_tree().change_scene_to_file("res://cutscenes/cutscene_1.tscn")
