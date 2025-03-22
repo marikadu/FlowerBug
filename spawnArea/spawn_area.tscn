@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://pajvfvquyng0"]
 
 [ext_resource type="Script" uid="uid://dh2wxmxtw5oii" path="res://spawnArea/spawn_area.gd" id="1_kv71e"]
-[ext_resource type="Texture2D" uid="uid://4481ca1loru3" path="res://spawnArea/area.png" id="2_th02x"]
+[ext_resource type="Texture2D" uid="uid://cwdpsmgnx524" path="res://assets/sprites/spawn_area.png" id="2_kv71e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv71e"]
 size = Vector2(942.86, 489.63)
@@ -20,9 +20,8 @@ size_flags_vertical = 4
 script = ExtResource("1_kv71e")
 
 [node name="Area" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.380392)
-scale = Vector2(1.545, 1.545)
-texture = ExtResource("2_th02x")
+scale = Vector2(1.045, 1.045)
+texture = ExtResource("2_kv71e")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

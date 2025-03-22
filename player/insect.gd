@@ -159,7 +159,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("eat"):
 			current_bite_counter += 1 
 			eating_bar.value = (current_bite_counter / float(bites_required)) * 100
-			print("eating progress: ", eating_bar.value)
+			#print("eating progress: ", eating_bar.value)
 			
 			if current_bite_counter >= bites_required:
 				ate_the_flower()
@@ -175,13 +175,14 @@ func _process(_delta: float) -> void:
 	# couldn't find a better solution, so now
 	# the player always checks if they are in
 	# the body area
-	if can_detect_bird and not is_caught:
+	if not is_caught:
 		for body in $InsectArea2D.get_overlapping_bodies():
 			if body.is_in_group("enemy"):
-				#print("insect: detected bird!")
-				Events.caught_by_a_bird.emit()
-				Events.is_player_caught = true
-				take_damage()
+				if can_detect_bird:
+					print("insect: detected bird!")
+					Events.caught_by_a_bird.emit()
+					Events.is_player_caught = true
+					take_damage()
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("flower") or body.is_in_group("carnivorous"):
@@ -238,11 +239,11 @@ func ate_the_flower():
 		var flower_type = flower_to_eat.flower_type
 		
 		get_parent().remove_flower(flower_to_eat) # removing the flower
-		print("ate!")
+		#print("ate!")
 		animated_sprite.play("flying")
 		
 		identifyFlower(flower_type)
-		print("score: ", Global.score)
+		#print("score: ", Global.score)
 		
 	eating_bar.hide() # hiding the progress bar
 	near_flower = false
@@ -276,7 +277,12 @@ func _on_trapped_timer_timeout() -> void:
 	near_flower = false
 	is_trapped = false
 	insect_can_eat = true
-	can_detect_bird = true
+	
+	## if the player is trapped
+	## and the bird is near,
+	## also take damage from the bird
+	#can_detect_bird = true 
+
 	$AnimatedSprite2D.show()
 	follow_cursor = true
 	print("no longer trapped!")
@@ -307,13 +313,19 @@ func choose_closest_flower():
 # adding different point to the score depending on the flower type
 func identifyFlower(flower_type: String):
 	match flower_type:
-		"flower_1":
+		"n_flower_1":
 			Global.score += 10
 		
-		"flower_2":
+		"n_flower_2":
 			Global.score += 20
 			
-		"flower_3":
+		"n_flower_3":
+			Global.score += 20
+			
+		"n_flower_4":
+			Global.score += 20
+			
+		"c_flower_1", "c_flower_2", "c_flower_3":
 			print("damaged! flower")
 			#take_damage()
 			
@@ -342,11 +354,11 @@ func take_damage():
 			
 func _on_can_detect_bird():
 	can_detect_bird = true
-	#print("can detect: ", can_detect_bird)
+	print("can detect: ", can_detect_bird)
 	
 func _on_stop_detect_bird():
 	can_detect_bird = false
-	#print("can detect: ", can_detect_bird)
+	print("can detect: ", can_detect_bird)
 
 
 func _on_voulnerable_timer_timeout() -> void:

@@ -26,6 +26,10 @@ func _ready() -> void:
 	Events.caught_by_a_bird.connect(_on_caught_by_a_bird)
 	#Events.no_longer_in_the_bird_area.connect(_on_no_longer_in_the_bird_area)
 	
+	# for the variety, either have the sprite be flipped horizontally or not
+	if randf() < 0.5:
+		bird_sprite.flip_h = true
+	
 	bird_sprite.frame = 0
 	leaving_count = 0
 	can_move = true

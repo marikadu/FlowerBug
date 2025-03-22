@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
-@export var flower_type: String = "flower_1"
+@export var flower_type: String = "n_flower_3"
 var player: CharacterBody2D
 var is_being_eaten: bool = false
 var can_be_eaten: bool

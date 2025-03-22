@@ -7,14 +7,16 @@ extends Node2D
 
 # preloading a list of possible flowers to spawn
 var flower_list = [
-	preload("res://flowers/flower_1.tscn"),
-	preload("res://flowers/flower_2.tscn")
-	]
+	preload("res://flowers/n_flower_1.tscn"),
+	preload("res://flowers/n_flower_2.tscn"),
+	preload("res://flowers/n_flower_3.tscn"),
+	preload("res://flowers/n_flower_4.tscn")]
 var flower_instances = [] # making an array empty from the start of the game
 
 var carnivorous_list = [
-	preload("res://flowers/flower_3.tscn")
-	]
+	preload("res://flowers/c_flower_1.tscn"),
+	preload("res://flowers/c_flower_2.tscn"),
+	preload("res://flowers/c_flower_3.tscn")]
 var carn_flower_instances = []
 
 # preloading a list of possible power-ups to spawn
@@ -193,7 +195,6 @@ func spawn_enemy():
 		bird_already_present = true
 		var enemy = preload("res://enemy/enemy.tscn")
 		var enemy_instance = enemy.instantiate()
-		#enemy_instance.position = get_viewport_rect().size/2
 		enemy_instance.position = get_viewport_rect().size
 		enemy_instance.add_to_group("enemy")
 		add_child(enemy_instance)

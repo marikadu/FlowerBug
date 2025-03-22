@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
-@export var flower_type: String = "flower_1"
+@export var flower_type: String = "n_flower_1"
 var player: CharacterBody2D
 var is_being_eaten: bool = false
 var can_be_eaten: bool
@@ -23,19 +23,18 @@ func _ready() -> void:
 	can_be_eaten = false
 	is_blooming = true
 
+
 func _on_disappear_timer_timeout() -> void:
 	if not is_being_eaten:
 		#self.queue_free()
 		get_parent().remove_flower(self)
-
-
+		
 func start_eating():
 	#$DisappearTimer.stop()
 	$DisappearTimer.paused = true
 	is_being_eaten = true
 	is_eaten_status_1.emit(true)
-
-
+	
 func stop_eating():
 	#$DisappearTimer.start()
 	$DisappearTimer.paused = false
