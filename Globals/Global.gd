@@ -5,6 +5,7 @@ var is_game_over : bool
 
 var score = 0
 var personal_best = 0
+var current_scene_name: int
 
 var is_score_multiplied = false
 var current_multiplier = 1.0 # default multiplier

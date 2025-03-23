@@ -37,6 +37,8 @@ func _ready() -> void:
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
 	
+	Global.current_scene_name = 1
+	
 	bird_already_present = false
 	
 	continue_collision.disabled = true # can't continue

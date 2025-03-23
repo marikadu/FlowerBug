@@ -404,7 +404,15 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 		continue_scene = true
 		print("win win!")
 		
-		# transition to the new scene
-		Transition.transition()
-		await Transition.on_transition_finished
-		get_tree().change_scene_to_file("res://cutscenes/cutscene_1.tscn")
+		# loading different cutscenes depending on the current level
+		if Global.current_scene_name == 1:
+			# transition to the new scene
+			Transition.transition()
+			await Transition.on_transition_finished
+			get_tree().change_scene_to_file("res://cutscenes/cutscene_1.tscn")
+			
+		elif Global.current_scene_name == 2:
+			# transition to the new scene
+			Transition.transition()
+			await Transition.on_transition_finished
+			get_tree().change_scene_to_file("res://cutscenes/cutscene_2.tscn")
