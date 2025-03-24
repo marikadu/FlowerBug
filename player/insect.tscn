@@ -1,14 +1,22 @@
-[gd_scene load_steps=20 format=3 uid="uid://b4msv7itrsdr8"]
+[gd_scene load_steps=28 format=3 uid="uid://b4msv7itrsdr8"]
 
 [ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
 [ext_resource type="Texture2D" uid="uid://df7jeoknp7svk" path="res://icon.svg" id="2_4e74r"]
-[ext_resource type="Texture2D" uid="uid://ckw577ya5cd4g" path="res://assets/sprites/bug_flying.png" id="3_mydgl"]
 [ext_resource type="Texture2D" uid="uid://duf2ac05vm3s7" path="res://assets/sprites/bug_eating.png" id="3_ojlxu"]
 [ext_resource type="Shader" uid="uid://cahdfsagc3d5x" path="res://shaders/hit_flash.tres" id="3_uatpp"]
 [ext_resource type="Script" uid="uid://brtwcnydtbbf" path="res://States/state_machine.gd" id="4_c1dqc"]
+[ext_resource type="Texture2D" uid="uid://cb8c3wg2b1eq" path="res://assets/sprites/bug_flying_1.png" id="5_b0lui"]
 [ext_resource type="Script" uid="uid://cub5b7ogl4hk5" path="res://States/Normal.gd" id="5_xut38"]
 [ext_resource type="Script" uid="uid://dj284f5slhphn" path="res://States/SpeedPowerUp.gd" id="6_mydgl"]
+[ext_resource type="Texture2D" uid="uid://cdbh8i0vbvkpa" path="res://assets/sprites/bug_flying_2.png" id="6_myhd3"]
+[ext_resource type="Texture2D" uid="uid://bc3iptdkbim6l" path="res://assets/sprites/bug_game_over_0000.png" id="7_e5s0e"]
+[ext_resource type="Texture2D" uid="uid://d0thbykv7e7qd" path="res://assets/sprites/bug_game_over_0001.png" id="8_ohht8"]
 [ext_resource type="Script" uid="uid://bi08t6w7hfe0" path="res://States/PollenPowerUp.gd" id="9_opt1d"]
+[ext_resource type="Texture2D" uid="uid://dryb0qq2lh7qt" path="res://assets/sprites/bug_game_over_0002.png" id="9_yo3lx"]
+[ext_resource type="Texture2D" uid="uid://dbmu4khgxu221" path="res://assets/sprites/bug_game_over_0003.png" id="10_dertp"]
+[ext_resource type="Texture2D" uid="uid://dwfst3weuaoqr" path="res://assets/sprites/bug_game_over_0004.png" id="11_wsrea"]
+[ext_resource type="Texture2D" uid="uid://ogwykkqmpgnc" path="res://assets/sprites/bug_game_over_0005.png" id="12_ro71v"]
+[ext_resource type="Texture2D" uid="uid://4npechllcyce" path="res://assets/sprites/bug_game_over_0006.png" id="13_5mp12"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_opt1d"]
 resource_local_to_scene = true
@@ -28,10 +36,50 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_mydgl")
+"texture": ExtResource("5_b0lui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_myhd3")
 }],
 "loop": true,
 "name": &"flying",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_e5s0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ohht8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yo3lx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dertp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wsrea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ro71v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5mp12")
+}],
+"loop": false,
+"name": &"game_over",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_ro71v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_5mp12")
+}],
+"loop": true,
+"name": &"game_over_loop",
 "speed": 5.0
 }]
 
@@ -102,7 +150,8 @@ texture = ExtResource("2_4e74r")
 material = SubResource("ShaderMaterial_opt1d")
 scale = Vector2(0.195, 0.195)
 sprite_frames = SubResource("SpriteFrames_xut38")
-animation = &"eating"
+animation = &"game_over_loop"
+frame_progress = 0.570185
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

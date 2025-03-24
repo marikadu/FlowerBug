@@ -22,6 +22,7 @@ extends CharacterBody2D
 @export var lerp_factor = 0.2
 @export var cursor_threshold = 5.0
 @export var bites_required: int = 4
+@export var border_margin: int = 50
 
 var flower_to_eat: Node2D = null
 var powerup_to_get: Node2D = null
@@ -38,6 +39,7 @@ var is_caught = false
 var is_shaking: bool
 var voulnerable: bool # doesn't constantly gets dameged if close to the bird
 var continue_scene: bool
+var is_alive: bool = true
 
 var rng: RandomNumberGenerator
 
@@ -75,93 +77,111 @@ func _ready() -> void:
 	# health can't go less than 0 and more than 3
 	current_health = clamp(current_health, 0, max_health)
 	
+	#$Bird.global_position.x = clamp($Bird.global_position.x, bounds_bw, bounds_fw)
+	#self.global_position.x = clamp
+
+	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_MAX)
 	
 func _physics_process(_delta: float) -> void:
 	
-	# character stops when it is eating
-	if is_eating and flower_to_eat:
-		follow_cursor = false
-		global_position = global_position.lerp(flower_to_eat.global_position, 0.1)
-		#velocity = Vector2.ZERO
-		#velocity = velocity.lerp(Vector2.ZERO, 0.5)
-		#move_and_slide()
-		return
-		
-	if is_trapped and flower_to_eat:
-		follow_cursor = false
-		global_position = global_position.lerp(flower_to_eat.global_position, 0.1)
+	# moving only is alive
+	if is_alive:
 	
-	# the character follows the mouse cursor
-	#var target_position = get_global_mouse_position()
-	if see_mouse:
-		if follow_cursor:
-			var target_position = get_viewport().get_mouse_position()
-			var distance = global_position.distance_to(target_position)
-			
-			# prevent character shaking when very close to the cursor
-			if distance < cursor_threshold:
-				velocity = velocity.lerp(Vector2.ZERO, 0.2)
-			
-			else:
-				# smooth movement
-				# ensuring the character does not shake when close to cursor
-				var speed = lerp(min_speed, max_speed, distance / 50.0)
-				speed = clamp(speed, min_speed, max_speed)
-				
-				var direction = (target_position - global_position).normalized()
-				var target_velocity = direction * speed
-				velocity = velocity.lerp(target_velocity, lerp_factor)
+		# restricting the player from moving outside of the borders of the game
+		# getting the viewport sizes
+		var viewport = get_viewport()
+		var viewport_rect = viewport.get_visible_rect()
+		# clamping the position
+		var clamped_position = global_position
+		clamped_position.x = clamp(global_position.x, viewport_rect.position.x + border_margin, viewport_rect.position.x + viewport_rect.size.x - border_margin)
+		clamped_position.y = clamp(global_position.y, viewport_rect.position.y + border_margin, viewport_rect.position.y + viewport_rect.size.y - border_margin)
 		
-			move_and_slide()
-			$AnimatedSprite2D.look_at(target_position)
-			#look_at(target_position)
-	
-	# eating a flower
-	if Input.is_action_just_pressed("eat") and insect_can_eat:
-		if near_flower:
-			if flower_to_eat:
-				if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
-					animated_sprite.play("eating")
-					#print("eating...")
-					is_eating = true
-					flower_to_eat.is_being_eaten = true
-					flower_to_eat.start_eating()
-					#eating_timer.start()
-					eating_bar.value = 0 # resetting the progress bar value
-					eating_bar.show()
-					#print("is eating: ", is_eating)
+		global_position = clamped_position
+		
+		# character stops when it is eating
+		if is_eating and flower_to_eat:
+			follow_cursor = false
+			global_position = global_position.lerp(flower_to_eat.global_position, 0.1)
+			#velocity = Vector2.ZERO
+			#velocity = velocity.lerp(Vector2.ZERO, 0.5)
+			#move_and_slide()
+			return
+			
+		if is_trapped and flower_to_eat:
+			follow_cursor = false
+			global_position = global_position.lerp(flower_to_eat.global_position, 0.1)
+		
+		# the character follows the mouse cursor
+		#var target_position = get_global_mouse_position()
+		if see_mouse:
+			if follow_cursor:
+				var target_position = get_viewport().get_mouse_position()
+				var distance = global_position.distance_to(target_position)
 				
-				if flower_to_eat.is_in_group("carnivorous"):
-					var bounce_animation_count = 0 # resetting
-					# changing the sprite to being trapped
-					flower_to_eat.animation_player.play("bounce")
-					flower_to_eat.animated_sprite.play("trapped")
-					# creating an illusion of sprite changing
-					# by hiding the sprite, since the insect has already 
-					# been drawn on the flower's sprite
-					$AnimatedSprite2D.hide() 
-					#print("received damage!!")
-					is_trapped = true
-					insect_can_eat = false
-					can_detect_bird = false
-					flower_to_eat.is_being_eaten = true
-					flower_to_eat.trap_the_player()
-					trapped_timer.start()
-					trapped_bar.value = 0
-					trapped_bar.show()
-					# bouncing animation when the player is trapped
-					# creating an effect of the character trying to get out
-					while bounce_animation_count < 7:
-						flower_to_eat.animation_player.play("bounce")
-						bounce_animation_count += 1
-						await get_tree().create_timer(0.4).timeout
-						#print(i)
+				# prevent character shaking when very close to the cursor
+				if distance < cursor_threshold:
+					velocity = velocity.lerp(Vector2.ZERO, 0.2)
+				
+				else:
+					# smooth movement
+					# ensuring the character does not shake when close to cursor
+					var speed = lerp(min_speed, max_speed, distance / 50.0)
+					speed = clamp(speed, min_speed, max_speed)
 					
+					var direction = (target_position - global_position).normalized()
+					var target_velocity = direction * speed
+					velocity = velocity.lerp(target_velocity, lerp_factor)
 			
-		else:
-			print("can't eat")
+				move_and_slide()
+				$AnimatedSprite2D.look_at(target_position)
+				#look_at(target_position)
+		
+		# eating a flower
+		if Input.is_action_just_pressed("eat") and insect_can_eat:
+			if near_flower:
+				if flower_to_eat:
+					if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
+						animated_sprite.play("eating")
+						#print("eating...")
+						is_eating = true
+						flower_to_eat.is_being_eaten = true
+						flower_to_eat.start_eating()
+						#eating_timer.start()
+						eating_bar.value = 0 # resetting the progress bar value
+						eating_bar.show()
+						#print("is eating: ", is_eating)
+					
+					if flower_to_eat.is_in_group("carnivorous"):
+						var bounce_animation_count = 0 # resetting
+						# changing the sprite to being trapped
+						flower_to_eat.animation_player.play("bounce")
+						flower_to_eat.animated_sprite.play("trapped")
+						# creating an illusion of sprite changing
+						# by hiding the sprite, since the insect has already 
+						# been drawn on the flower's sprite
+						$AnimatedSprite2D.hide() 
+						#print("received damage!!")
+						is_trapped = true
+						insect_can_eat = false
+						can_detect_bird = false
+						flower_to_eat.is_being_eaten = true
+						flower_to_eat.trap_the_player()
+						trapped_timer.start()
+						trapped_bar.value = 0
+						trapped_bar.show()
+						# bouncing animation when the player is trapped
+						# creating an effect of the character trying to get out
+						while bounce_animation_count < 7:
+							flower_to_eat.animation_player.play("bounce")
+							bounce_animation_count += 1
+							await get_tree().create_timer(0.4).timeout
+							#print(i)
+						
+				
+			else:
+				print("can't eat")
 			
 			
 
@@ -196,7 +216,7 @@ func _process(_delta: float) -> void:
 					take_damage()
 					
 	# the insect starts to shake when the bird spawns
-	if is_shaking:
+	if is_alive and is_shaking:
 		var shake_offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
 		global_position += shake_offset * 3
 
@@ -393,8 +413,14 @@ func take_damage():
 			# game over when current health reaches 0
 			if current_health == 0:
 				# don't instantly send the signal
-				# add a death animation
-				await get_tree().create_timer(0.02).timeout
+				is_alive = false
+				insect_can_eat = false
+				can_detect_bird = false
+				voulnerable = false
+				await get_tree().create_timer(0.2).timeout
+				animated_sprite.play("game_over")
+				await get_tree().create_timer(1.2).timeout
+				animated_sprite.play("game_over_loop")
 				print("game over!")
 			
 			
@@ -436,3 +462,6 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			Transition.transition()
 			await Transition.on_transition_finished
 			get_tree().change_scene_to_file("res://cutscenes/cutscene_2.tscn")
+			
+		else:
+			print("playing inside the 'main'!")

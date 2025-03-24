@@ -42,6 +42,12 @@ func _ready() -> void:
 	
 func _physics_process(_delta: float) -> void:
 	
+	for area in $Area2D.get_overlapping_areas():
+		#if area == $BirdCantLandArea2D:
+		if area.is_in_group("prevent_land"):
+			#print("don't land area detected!")
+			pass
+	
 	if can_move:
 		var target_position = player.global_position
 		var distance = global_position.distance_to(target_position)
@@ -73,6 +79,43 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_bird_appear_timer_timeout() -> void:
+	var can_land = true
+	for area in $Area2D.get_overlapping_areas():
+		if area.is_in_group("prevent_land"):
+			#print("don't land!")
+			can_land = false
+			break # stop
+			
+	# if can land -> land
+	if can_land:
+		print("landing")
+		_landing()
+	
+	# if cannot land -> continue following the player until the bird can land
+	else:
+		#print("can't land, delaying the timer")
+		_delay_timer()
+	
+	#for body in $Area2D.get_overlapping_bodies():
+		#if body == player and can_detect_player:
+			#print("got player immediately!")
+			#emit_signal("caught_bug")
+			#_on_area_2d_body_entered(player)
+			#
+		#if body.is_in_group("player") and can_detect_player:
+			#print("bird group: got player!")
+			#emit_signal("caught_bug")
+			#_on_area_2d_body_entered(player)
+	
+	
+func _delay_timer():
+	print("delaying the timer")
+	$BirdAppearTimer.set_wait_time(3) # waiting for 3 more seconds
+	# maybe add some sort of sound here
+
+
+func _landing():
+	print("landing")
 	$BirdAppearTimer.paused = true
 	can_move = false
 	await get_tree().create_timer(1.2).timeout
@@ -88,17 +131,6 @@ func _on_bird_appear_timer_timeout() -> void:
 	#collision.disabled = false
 	await get_tree().create_timer(0.2).timeout
 	can_detect_player = true
-	
-	#for body in $Area2D.get_overlapping_bodies():
-		#if body == player and can_detect_player:
-			#print("got player immediately!")
-			#emit_signal("caught_bug")
-			#_on_area_2d_body_entered(player)
-			#
-		#if body.is_in_group("player") and can_detect_player:
-			#print("bird group: got player!")
-			#emit_signal("caught_bug")
-			#_on_area_2d_body_entered(player)
 	
 	# when doesn't catch the player
 	if not caught_bug_bool:
@@ -136,10 +168,14 @@ func _on_caught_by_a_bird():
 		bird_sprite.play("caught")
 		await get_tree().create_timer(0.8).timeout
 		
+		# if the bug is not in the area:
 		bird_sprite.play("not_caught")
 		await get_tree().create_timer(1.7).timeout
 		# if the bug wasn't detected after landing
 		leaving_scene()
+		
+		# but if bug is in the area:
+		# bird_sprite.play("caught")
 		
 		
 #func _on_no_longer_in_the_bird_area():

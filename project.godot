@@ -36,8 +36,9 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://assets/": "orange",
-"res://enemy/": "blue",
-"res://flowers/": "green"
+"res://enemy/": "red",
+"res://flowers/": "green",
+"res://levels/": "teal"
 }
 
 [global_group]
@@ -48,6 +49,7 @@ player=""
 carnivorous=""
 enemy=""
 continue=""
+prevent_land=""
 
 [input]
 

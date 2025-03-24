@@ -166,7 +166,7 @@ func remove_powerup(powerup: Node2D) -> void:
 	if powerup:
 		powerup_instances.erase(powerup)
 		powerup.queue_free()
-		print("got powerup: ", powerup)
+		#print("got powerup: ", powerup)
 		
 
 func spawn_powerup():

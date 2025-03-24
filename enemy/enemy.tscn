@@ -51,11 +51,11 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5ffra"]
-radius = 56.95
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffra"]
+size = Vector2(289.265, 172.305)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
-size = Vector2(300, 200)
+size = Vector2(296.015, 172.175)
 
 [sub_resource type="Animation" id="Animation_ppra6"]
 length = 0.001
@@ -202,20 +202,22 @@ script = ExtResource("1_ofsxj")
 [node name="Flying_Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.305882, 0.32549, 0.466667, 0.227451)
 z_index = 1
+texture_filter = 1
 rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_p200p")
 
 [node name="Bird_Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 2
+texture_filter = 1
 position = Vector2(1, -937)
 scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_6yflr")
-animation = &"normal"
+animation = &"caught"
 offset = Vector2(0, -71.0227)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_5ffra")
+shape = SubResource("RectangleShape2D_5ffra")
 
 [node name="Area2D" type="Area2D" parent="."]
 
