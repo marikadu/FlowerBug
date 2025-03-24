@@ -153,7 +153,7 @@ func _physics_process(_delta: float) -> void:
 						eating_bar.show()
 						#print("is eating: ", is_eating)
 					
-					if flower_to_eat.is_in_group("carnivorous"):
+					if flower_to_eat.is_in_group("carnivorous") and flower_to_eat.can_be_eaten:
 						var bounce_animation_count = 0 # resetting
 						# changing the sprite to being trapped
 						flower_to_eat.animation_player.play("bounce")

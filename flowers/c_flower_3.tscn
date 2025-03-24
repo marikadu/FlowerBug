@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cebwxgtit3vfh" path="res://assets/sprites/flower_6_3.png" id="2_ie7l3"]
 [ext_resource type="Texture2D" uid="uid://b1i1w2328ih6r" path="res://assets/sprites/flower_1_1.png" id="4_7aljd"]
 [ext_resource type="Texture2D" uid="uid://bh17f6s10rqak" path="res://assets/sprites/flower_1_2.png" id="5_2pwsv"]
-[ext_resource type="Texture2D" uid="uid://brr35hdk2uaku" path="res://assets/sprites/flower_3_4.png" id="6_0ikwm"]
+[ext_resource type="Texture2D" uid="uid://njlu8co0pilw" path="res://assets/sprites/flower_6_4.png" id="5_ie7l3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o4snn"]
 animations = [{
@@ -29,7 +29,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_0ikwm")
+"texture": ExtResource("5_ie7l3")
 }],
 "loop": true,
 "name": &"trapped",
@@ -83,7 +83,7 @@ script = ExtResource("1_ie7l3")
 position = Vector2(0, 36)
 scale = Vector2(0.325, 0.325)
 sprite_frames = SubResource("SpriteFrames_o4snn")
-animation = &"bloomed"
+animation = &"blooming"
 offset = Vector2(0, -147.465)
 
 [node name="FlowerArea2D" type="Area2D" parent="." groups=["flower"]]

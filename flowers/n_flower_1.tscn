@@ -80,7 +80,7 @@ texture = ExtResource("2_ufhis")
 position = Vector2(0, 36)
 scale = Vector2(0.325, 0.325)
 sprite_frames = SubResource("SpriteFrames_6w3np")
-animation = &"bloomed"
+animation = &"blooming"
 offset = Vector2(0, -147.465)
 
 [node name="FlowerArea2D" type="Area2D" parent="." groups=["flower"]]

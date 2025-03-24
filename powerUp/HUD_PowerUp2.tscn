@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgf027ras06i7"]
 
 [ext_resource type="Script" uid="uid://wip2yrs6tv5l" path="res://powerUp/hud_power_up.gd" id="1_fejgm"]
-[ext_resource type="Texture2D" uid="uid://berhhta1laaf5" path="res://assets/sprites/power_fast.png" id="2_iw8q2"]
-[ext_resource type="Texture2D" uid="uid://feuxx1rdwqsj" path="res://assets/sprites/power_pollen.png" id="3_iw8q2"]
+[ext_resource type="Texture2D" uid="uid://b3f7kf7t80w61" path="res://assets/HUD/powerups_icons_s.png" id="2_iw8q2"]
+[ext_resource type="Texture2D" uid="uid://d2tsmue2itt6x" path="res://assets/HUD/powerups_icons_p.png" id="3_vxuby"]
 
 [node name="HUD_PowerUp" type="Control"]
 layout_mode = 3
@@ -25,12 +25,14 @@ text = "12"
 horizontal_alignment = 2
 
 [node name="SpeedSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1229, 592.438)
 scale = Vector2(0.695, 0.695)
 texture = ExtResource("2_iw8q2")
 
 [node name="ScoreTime" type="Label" parent="."]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 1048.0
 offset_top = 468.0
 offset_right = 1179.0
@@ -40,6 +42,7 @@ text = "12"
 horizontal_alignment = 2
 
 [node name="ScoreSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(1229, 504.438)
 scale = Vector2(0.695, 0.695)
-texture = ExtResource("3_iw8q2")
+texture = ExtResource("3_vxuby")
