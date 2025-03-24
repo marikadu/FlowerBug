@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgf027ras06i7"]
+[gd_scene load_steps=5 format=3 uid="uid://cgf027ras06i7"]
 
 [ext_resource type="Script" uid="uid://wip2yrs6tv5l" path="res://powerUp/hud_power_up.gd" id="1_fejgm"]
 [ext_resource type="Texture2D" uid="uid://b3f7kf7t80w61" path="res://assets/HUD/powerups_icons_s.png" id="2_iw8q2"]
+[ext_resource type="FontFile" uid="uid://dbf4rc62g2tif" path="res://assets/SourGummy-Medium.ttf" id="3_fka7s"]
 [ext_resource type="Texture2D" uid="uid://d2tsmue2itt6x" path="res://assets/HUD/powerups_icons_p.png" id="3_vxuby"]
 
 [node name="HUD_PowerUp" type="Control"]
@@ -37,6 +38,7 @@ offset_left = 1048.0
 offset_top = 468.0
 offset_right = 1179.0
 offset_bottom = 551.0
+theme_override_fonts/font = ExtResource("3_fka7s")
 theme_override_font_sizes/font_size = 50
 text = "12"
 horizontal_alignment = 2

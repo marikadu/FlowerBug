@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxp77i5bgwmns"
-path="res://.godot/imported/bg_evening.png-d75fe3c07ffbe1e2ea34fb8db90a333b.ctex"
+uid="uid://dpfviddigmvk8"
+path="res://.godot/imported/flowers.png-2c230dc943053984fc9b66af34b16011.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg_evening.png"
-dest_files=["res://.godot/imported/bg_evening.png-d75fe3c07ffbe1e2ea34fb8db90a333b.ctex"]
+source_file="res://background/flowers.png"
+dest_files=["res://.godot/imported/flowers.png-2c230dc943053984fc9b66af34b16011.ctex"]
 
 [params]
 

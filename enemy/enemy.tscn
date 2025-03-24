@@ -201,14 +201,14 @@ script = ExtResource("1_ofsxj")
 
 [node name="Flying_Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.305882, 0.32549, 0.466667, 0.227451)
-z_index = 1
+z_index = 3
 texture_filter = 1
 rotation = 1.5708
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_p200p")
 
 [node name="Bird_Sprite" type="AnimatedSprite2D" parent="."]
-z_index = 2
+z_index = 3
 texture_filter = 1
 position = Vector2(1, -937)
 scale = Vector2(1.6, 1.6)

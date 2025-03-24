@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_at1ld"]
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_ep78u"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="5_sd18g"]
-[ext_resource type="Texture2D" uid="uid://t7cbgmih44pe" path="res://assets/sprites/bg_day.png" id="6_vm7no"]
+[ext_resource type="Texture2D" uid="uid://t7cbgmih44pe" path="res://background/bg_day.png" id="6_vm7no"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 

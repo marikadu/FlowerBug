@@ -51,6 +51,10 @@ enemy=""
 continue=""
 prevent_land=""
 
+[gui]
+
+theme/custom_font="uid://dbf4rc62g2tif"
+
 [input]
 
 eat={
