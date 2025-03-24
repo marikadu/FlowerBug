@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var eating_timer: Timer = $EatingTimer
 @onready var eating_bar: ProgressBar = $EatingBar
 @onready var speed_power_up_timer: Timer = $SpeedPowerUpTimer
+@onready var score_power_up_timer: Timer = $ScorePowerUpTimer
 @onready var trapped_timer: Timer = $TrappedTimer
 @onready var trapped_bar: ProgressBar = $TrappedBar
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -22,11 +23,11 @@ extends CharacterBody2D
 @export var cursor_threshold = 5.0
 @export var bites_required: int = 4
 
+var flower_to_eat: Node2D = null
+var powerup_to_get: Node2D = null
 
 var near_flower: bool
 var near_carnivorous_flower: bool
-var flower_to_eat: Node2D = null
-var powerup_to_get: Node2D = null
 var is_eating: bool =  false
 var is_trapped: bool = false
 var insect_can_eat: bool
@@ -123,14 +124,14 @@ func _physics_process(_delta: float) -> void:
 			if flower_to_eat:
 				if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
 					animated_sprite.play("eating")
-					print("eating...")
+					#print("eating...")
 					is_eating = true
 					flower_to_eat.is_being_eaten = true
 					flower_to_eat.start_eating()
 					#eating_timer.start()
 					eating_bar.value = 0 # resetting the progress bar value
 					eating_bar.show()
-					print("is eating: ", is_eating)
+					#print("is eating: ", is_eating)
 				
 				if flower_to_eat.is_in_group("carnivorous"):
 					var bounce_animation_count = 0 # resetting
@@ -141,7 +142,7 @@ func _physics_process(_delta: float) -> void:
 					# by hiding the sprite, since the insect has already 
 					# been drawn on the flower's sprite
 					$AnimatedSprite2D.hide() 
-					print("received damage!!")
+					#print("received damage!!")
 					is_trapped = true
 					insect_can_eat = false
 					can_detect_bird = false
@@ -189,7 +190,7 @@ func _process(_delta: float) -> void:
 		for body in $InsectArea2D.get_overlapping_bodies():
 			if body.is_in_group("enemy"):
 				if can_detect_bird:
-					print("insect: detected bird!")
+					#print("insect: detected bird!")
 					Events.caught_by_a_bird.emit()
 					Events.is_player_caught = true
 					take_damage()
@@ -200,23 +201,42 @@ func _process(_delta: float) -> void:
 		global_position += shake_offset * 3
 
 func _on_insect_area_2d_body_entered(body: Node2D) -> void:
+	# flowers!
 	if body.is_in_group("flower") or body.is_in_group("carnivorous"):
 		flowers_near.append(body) # adding the nearby flowers to the group
 		choose_closest_flower() # choosing the closest flower
 		#flower_to_eat = body # detecting this specific flower
 		#print("area: ", near_flower)
 		
+	# power-ups!
 	if body.is_in_group("powerup"):
 		powerup_to_get = body # detecting this specific power-up
 		if powerup_to_get.powerup_type == "speed":
 			get_parent().remove_powerup(powerup_to_get)
 			Events.got_speed_powerup.emit()
-			print("got speed!")
+			#print("got speed!")
+			
+			if speed_power_up_timer.time_left > 0:
+				speed_power_up_timer.start(13) 
+				print("got the speed power-up again!")
+			else:
+				Events.got_speed_powerup.emit()
+				print("got speed!")
+				# entering the state of speed boost
+				$StateMachine.enter_state($StateMachine.states["SpeedPowerUp"])
 			
 		elif powerup_to_get.powerup_type == "pollen":
 			get_parent().remove_powerup(powerup_to_get)
 			Events.got_pollen_powerup.emit()
-			print("got pollen!")
+			#print("got pollen!")
+			if score_power_up_timer.time_left > 0:
+				score_power_up_timer.start(10) 
+				print("got the pollen power-up again!")
+			else:
+				Events.got_pollen_powerup.emit()
+				print("got pollen!")
+				# entering the state of pollen/score multiplier
+				$StateMachine.enter_state($StateMachine.states["PollenPowerUp"])
 		
 	#if body.is_in_group("enemy"):
 		#if body.can_detect_player:
@@ -278,7 +298,7 @@ func stop_eating_the_flower():
 		#var flower_type = flower_to_eat.flower_type
 		
 		#get_parent().remove_flower(flower_to_eat) # removing the flower
-		print("stopped eating!")
+		#print("stopped eating!")
 		animated_sprite.play("flying")
 		
 		
@@ -343,7 +363,7 @@ func identifyFlower(flower_type: String):
 			#Global.score += random_pollen_amount
 			Global.add_score(random_pollen_amount)
 			if Global.score >= 10:
-				print("win!")
+				#print("win!")
 				Events.can_continue.emit()
 			
 		"c_flower_1", "c_flower_2", "c_flower_3":
@@ -380,11 +400,11 @@ func take_damage():
 			
 func _on_can_detect_bird():
 	can_detect_bird = true
-	print("can detect: ", can_detect_bird)
+	#print("can detect: ", can_detect_bird)
 	
 func _on_stop_detect_bird():
 	can_detect_bird = false
-	print("can detect: ", can_detect_bird)
+	#print("can detect: ", can_detect_bird)
 	is_shaking = false
 	# slowly reduce the shake to 0.0 with the weight of 0.01
 	shake_strength = lerp(shake_strength, 0.0, 0.01)

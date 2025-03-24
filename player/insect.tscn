@@ -177,4 +177,5 @@ libraries = {
 [connection signal="timeout" from="EatingTimer" to="." method="_on_eating_timer_timeout"]
 [connection signal="timeout" from="TrappedTimer" to="." method="_on_trapped_timer_timeout"]
 [connection signal="timeout" from="SpeedPowerUpTimer" to="StateMachine/SpeedPowerUp" method="_on_speed_power_up_timer_timeout"]
+[connection signal="timeout" from="ScorePowerUpTimer" to="StateMachine/PollenPowerUp" method="_on_score_power_up_timer_timeout"]
 [connection signal="timeout" from="VoulnerableTimer" to="." method="_on_voulnerable_timer_timeout"]

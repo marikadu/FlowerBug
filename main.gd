@@ -70,7 +70,7 @@ func _ready() -> void:
 func spawn_flower():
 	var random_position: Vector2
 	var valid_position = false
-	var spawn_flower_attempts = 10 # preventing a loop
+	var spawn_flower_attempts = 10 # preventing a loop that would cause crashes
 	
 	# flower spawning area
 	var flower_area_2d = spawn_area.get_node("Area2D")

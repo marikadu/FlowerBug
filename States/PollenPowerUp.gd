@@ -21,8 +21,7 @@ func Exit():
 	print("powerup expired, max speed: ", player.max_speed)
 
 
-func _on_speed_power_up_timer_timeout() -> void:
-	# back to the normal state
-	print("expired, bye")
-	Transitioned.emit(self, "PlayerNormal")
+func _on_score_power_up_timer_timeout() -> void:
+	#print("expired, bye")
+	Transitioned.emit(self, "PlayerNormal") # back to the normal state
 	$"../../ScorePowerUpTimer".stop()

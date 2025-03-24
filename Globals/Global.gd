@@ -7,8 +7,10 @@ var score = 0
 var personal_best = 0
 var current_scene_name: int
 
-var is_score_multiplied = false
+var is_score_multiplied: bool = false
 var current_multiplier = 1.0 # default multiplier
+
+var speed_power_up_active: bool  = false
 
 
 # update personal best score
@@ -21,4 +23,4 @@ func add_score(pollen: int):
 	var final_pollen = pollen * current_multiplier
 	score += final_pollen
 	score = max(score, 0) # doesn't go bellow 0
-	print("added score: ", final_pollen, ". new score: ", score)
+	#print("added score: ", final_pollen, ". new score: ", score)
