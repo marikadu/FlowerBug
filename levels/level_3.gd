@@ -48,6 +48,8 @@ func _ready() -> void:
 	
 	continue_collision.disabled = true # can't continue
 	
+	$RainGPUParticles2D.emitting = false
+	
 	var player = preload("res://player/insect.tscn")
 	var player_instance = player.instantiate()
 	player_instance.position = get_viewport_rect().size/2
@@ -243,6 +245,7 @@ func _on_has_filled_pollen_bar():
 	can_spawn_bird = false
 	bird_already_present = false
 	$Enemy_Spawn_Timer.stop() # stopping the bird spawn timer
+	$RainGPUParticles2D.emitting = true # rain starts
 	
 func _on_bird_chases_the_beetle():
 	can_spawn_bird = true

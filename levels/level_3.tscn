@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dpf525vwyovn8"]
+[gd_scene load_steps=11 format=3 uid="uid://dpf525vwyovn8"]
 
 [ext_resource type="Script" uid="uid://wj7qsvs4mmsp" path="res://levels/level_3.gd" id="1_8l0e1"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_lfnxh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_lfnxh"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="5_lsnkt"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_lfnxh"]
+[ext_resource type="PackedScene" uid="uid://bettt2fi2mk8n" path="res://background/rain.tscn" id="8_ofchu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
@@ -71,6 +72,9 @@ shape = SubResource("RectangleShape2D_lquwl")
 disabled = true
 
 [node name="background2" parent="." instance=ExtResource("7_lfnxh")]
+
+[node name="RainGPUParticles2D" parent="." instance=ExtResource("8_ofchu")]
+position = Vector2(641, 354)
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]

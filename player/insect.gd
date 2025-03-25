@@ -489,7 +489,7 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 		elif Global.current_scene_name == 3:
 			# transition to the new scene
 			Events.bird_chases_the_beetle.emit()
-			await get_tree().create_timer(3).timeout
+			await get_tree().create_timer(0.8).timeout
 			
 			#Transition.transition()
 			#await Transition.on_transition_finished
