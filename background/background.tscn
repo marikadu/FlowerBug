@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgkmrxwwdhc20"]
+[gd_scene load_steps=13 format=3 uid="uid://dgkmrxwwdhc20"]
 
 [ext_resource type="Script" uid="uid://jtc3gyxgweyx" path="res://background/background.gd" id="1_eva80"]
 [ext_resource type="Texture2D" uid="uid://t7cbgmih44pe" path="res://background/bg_day.png" id="1_p8qmt"]
 [ext_resource type="Shader" uid="uid://r4k7t8fa2dm6" path="res://background/scroll.gdshader" id="2_gsnt7"]
-[ext_resource type="Texture2D" uid="uid://c5t5y8pgbx16y" path="res://background/clouds.png" id="2_qjy44"]
-[ext_resource type="Texture2D" uid="uid://c4sqblqv3iju" path="res://background/bg_sky.png" id="3_r0sni"]
+[ext_resource type="Texture2D" uid="uid://c5t5y8pgbx16y" path="res://background/clouds_morning.png" id="2_qjy44"]
+[ext_resource type="Texture2D" uid="uid://c4sqblqv3iju" path="res://background/bg_sky_morning.png" id="3_r0sni"]
+[ext_resource type="Texture2D" uid="uid://d14c8kdlnrcds" path="res://background/clouds_noon.png" id="4_8fd00"]
+[ext_resource type="Texture2D" uid="uid://c1urhlj77x4bq" path="res://background/clouds_evening.png" id="5_2duwg"]
+[ext_resource type="Texture2D" uid="uid://bg37cgbu03qe4" path="res://background/bg_sky_noon.png" id="5_omdhl"]
 [ext_resource type="Texture2D" uid="uid://dpfviddigmvk8" path="res://background/flowers.png" id="6_3phoi"]
+[ext_resource type="Texture2D" uid="uid://byy686th63d0" path="res://background/bg_sky_evening.png" id="7_lc8rw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3phoi"]
 shader = ExtResource("2_gsnt7")
@@ -15,10 +19,16 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_r0sni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_omdhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lc8rw")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [node name="background" type="Control"]
@@ -31,7 +41,8 @@ offset_right = 680.0
 offset_bottom = 400.0
 script = ExtResource("1_eva80")
 
-[node name="Coulds" type="TextureRect" parent="."]
+[node name="Clouds_morning" type="TextureRect" parent="."]
+visible = false
 z_index = 5
 z_as_relative = false
 texture_repeat = 2
@@ -47,6 +58,42 @@ offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qjy44")
+
+[node name="Clouds_noon" type="TextureRect" parent="."]
+visible = false
+z_index = 5
+z_as_relative = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_3phoi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -361.0
+offset_right = 600.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_8fd00")
+
+[node name="Clouds_evening" type="TextureRect" parent="."]
+visible = false
+z_index = 5
+z_as_relative = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_3phoi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -361.0
+offset_right = 600.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_2duwg")
 
 [node name="BgSky" type="AnimatedSprite2D" parent="."]
 z_index = 4

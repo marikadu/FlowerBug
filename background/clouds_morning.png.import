@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxp77i5bgwmns"
-path="res://.godot/imported/bg_evening.png-39a40638a554846e181c02d36a01a207.ctex"
+uid="uid://c5t5y8pgbx16y"
+path="res://.godot/imported/clouds_morning.png-c835a48727bdcce5e1964e0775f515c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://background/bg_evening.png"
-dest_files=["res://.godot/imported/bg_evening.png-39a40638a554846e181c02d36a01a207.ctex"]
+source_file="res://background/clouds_morning.png"
+dest_files=["res://.godot/imported/clouds_morning.png-c835a48727bdcce5e1964e0775f515c8.ctex"]
 
 [params]
 

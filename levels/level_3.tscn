@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_jq78i"]
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_lfnxh"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="5_lsnkt"]
-[ext_resource type="Texture2D" uid="uid://cxp77i5bgwmns" path="res://background/bg_evening.png" id="6_8l0e1"]
+[ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_lfnxh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
@@ -70,17 +70,7 @@ position = Vector2(60, 363.5)
 shape = SubResource("RectangleShape2D_lquwl")
 disabled = true
 
-[node name="background" type="Control" parent="."]
-z_index = -2
-layout_mode = 3
-anchors_preset = 0
-offset_left = 640.0
-offset_top = 360.0
-offset_right = 680.0
-offset_bottom = 400.0
-
-[node name="BgSprite2D" type="Sprite2D" parent="background"]
-texture = ExtResource("6_8l0e1")
+[node name="background2" parent="." instance=ExtResource("7_lfnxh")]
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]
