@@ -31,6 +31,7 @@ var powerup_instances = [] # making an array empty from the start of the game
 
 var screen_size
 var bird_already_present: bool
+var bird_spawned_count: int = 0
 
 func _ready() -> void:
 	
@@ -199,7 +200,15 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	
 
 func spawn_enemy():
+	if bird_spawned_count < 1:
+		print("show flashback")
+		Events.show_flashback_3.emit()
+		
+	else:
+		print ("don't show the flashback")
+	
 	if not bird_already_present:
+		bird_spawned_count += 1
 		Events.spawned_bird.emit()
 		AudioManager.play_bird_spawned()
 		bird_already_present = true

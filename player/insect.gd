@@ -463,5 +463,11 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			await Transition.on_transition_finished
 			get_tree().change_scene_to_file("res://cutscenes/cutscene_2.tscn")
 			
+		elif Global.current_scene_name == 3:
+			# transition to the new scene
+			Transition.transition()
+			await Transition.on_transition_finished
+			get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
+			
 		else:
 			print("playing inside the 'main'!")
