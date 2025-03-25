@@ -30,6 +30,7 @@ var powerup_list = [
 var powerup_instances = [] # making an array empty from the start of the game
 
 var screen_size
+var can_spawn_bird: bool
 var bird_already_present: bool
 var bird_spawned_count: int = 0
 
@@ -37,10 +38,13 @@ func _ready() -> void:
 	
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
+	Events.has_collected_all_pollen.connect(_on_has_filled_pollen_bar)
+	Events.bird_chases_the_beetle.connect(_on_bird_chases_the_beetle)
 	
 	Global.current_scene_name = 3
 	
 	bird_already_present = false
+	can_spawn_bird = true
 	
 	continue_collision.disabled = true # can't continue
 	
@@ -200,25 +204,26 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	
 
 func spawn_enemy():
-	if bird_spawned_count < 1:
-		print("show flashback")
-		Events.show_flashback_3.emit()
+	if can_spawn_bird: # preventing the bird from spawning when the pollen is collected
+		if bird_spawned_count < 1:
+			print("show flashback")
+			Events.show_flashback_3.emit()
+			
+		else:
+			print ("don't show the flashback")
 		
-	else:
-		print ("don't show the flashback")
-	
-	if not bird_already_present:
-		bird_spawned_count += 1
-		Events.spawned_bird.emit()
-		AudioManager.play_bird_spawned()
-		bird_already_present = true
-		var enemy = preload("res://enemy/enemy.tscn")
-		var enemy_instance = enemy.instantiate()
-		enemy_instance.position = get_viewport_rect().size
-		enemy_instance.add_to_group("enemy")
-		add_child(enemy_instance)
-	else:
-		print("don't spawn bird, already present")
+		if not bird_already_present:
+			bird_spawned_count += 1
+			Events.spawned_bird.emit()
+			AudioManager.play_bird_spawned()
+			bird_already_present = true
+			var enemy = preload("res://enemy/enemy.tscn")
+			var enemy_instance = enemy.instantiate()
+			enemy_instance.position = get_viewport_rect().size
+			enemy_instance.add_to_group("enemy")
+			add_child(enemy_instance)
+		else:
+			print("don't spawn bird, already present")
 
 
 func _on_timer_enemy_spawn_timer_timeout() -> void:
@@ -233,3 +238,14 @@ func _on_enemy_left():
 
 func _on_can_continue():
 	continue_collision.disabled = false
+	
+func _on_has_filled_pollen_bar():
+	can_spawn_bird = false
+	bird_already_present = false
+	$Enemy_Spawn_Timer.stop() # stopping the bird spawn timer
+	
+func _on_bird_chases_the_beetle():
+	can_spawn_bird = true
+	#spawn_enemy()
+	call_deferred("spawn_enemy")
+	#set_deferred("can_spawn_bird", true)

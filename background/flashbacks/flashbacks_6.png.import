@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dryb0qq2lh7qt"
-path="res://.godot/imported/bug_game_over_0002.png-ecc60c3593b3c056eb65dee968375725.ctex"
+uid="uid://buljbd718kqex"
+path="res://.godot/imported/flashbacks_6.png-b062604eb3da583451105128cb220e18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bug_game_over_0002.png"
-dest_files=["res://.godot/imported/bug_game_over_0002.png-ecc60c3593b3c056eb65dee968375725.ctex"]
+source_file="res://background/flashbacks/flashbacks_6.png"
+dest_files=["res://.godot/imported/flashbacks_6.png-b062604eb3da583451105128cb220e18.ctex"]
 
 [params]
 

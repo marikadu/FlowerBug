@@ -16,6 +16,7 @@ var can_move: bool
 var can_detect_player: bool
 var caught_bug_bool: bool = false
 var leaving_count: int
+#var is_chasing_cutscene: bool = false
 
 signal has_landed
 signal leaving
@@ -24,7 +25,7 @@ signal caught_bug
 func _ready() -> void:
 	
 	Events.caught_by_a_bird.connect(_on_caught_by_a_bird)
-	#Events.no_longer_in_the_bird_area.connect(_on_no_longer_in_the_bird_area)
+	#Events.bird_chases_the_beetle.connect(_on_bird_chases_the_beetle)
 	
 	# for the variety, either have the sprite be flipped horizontally or not
 	if randf() < 0.5:
@@ -76,6 +77,10 @@ func _physics_process(_delta: float) -> void:
 		velocity = velocity.lerp(Vector2.ZERO, 0.2)
 		
 	move_and_slide()
+	
+	#if is_chasing_cutscene:
+		#print("bird_physics: chase starts")
+		#velocity.x = -max_speed # bird flies to the left of the screen
 
 
 func _on_bird_appear_timer_timeout() -> void:
@@ -196,3 +201,9 @@ func leaving_scene():
 			#await get_tree().create_timer(1).timeout
 			emit_signal("leaving")
 			leaving_count += 1
+			
+			
+#func _on_bird_chases_the_beetle():
+	#can_move = false
+	#is_chasing_cutscene = true
+	#print("chase starts")

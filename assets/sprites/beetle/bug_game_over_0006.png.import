@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0thbykv7e7qd"
-path="res://.godot/imported/bug_game_over_0001.png-38c009cee747c549eb9ffb45d3f498b8.ctex"
+uid="uid://4npechllcyce"
+path="res://.godot/imported/bug_game_over_0006.png-3ecfac870cfbb6ee4d72b2cba7b4d83a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bug_game_over_0001.png"
-dest_files=["res://.godot/imported/bug_game_over_0001.png-38c009cee747c549eb9ffb45d3f498b8.ctex"]
+source_file="res://assets/sprites/beetle/bug_game_over_0006.png"
+dest_files=["res://.godot/imported/bug_game_over_0006.png-3ecfac870cfbb6ee4d72b2cba7b4d83a.ctex"]
 
 [params]
 

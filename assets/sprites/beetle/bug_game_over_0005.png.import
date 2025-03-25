@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgaf48ckexqtv"
-path="res://.godot/imported/flashbacks_4.png-7417d01ba267bc0fccd24c7020c8bea0.ctex"
+uid="uid://ogwykkqmpgnc"
+path="res://.godot/imported/bug_game_over_0005.png-484fa4e1b80db62be9bdbf3be08fc7db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flashbacks/flashbacks_4.png"
-dest_files=["res://.godot/imported/flashbacks_4.png-7417d01ba267bc0fccd24c7020c8bea0.ctex"]
+source_file="res://assets/sprites/beetle/bug_game_over_0005.png"
+dest_files=["res://.godot/imported/bug_game_over_0005.png-484fa4e1b80db62be9bdbf3be08fc7db.ctex"]
 
 [params]
 

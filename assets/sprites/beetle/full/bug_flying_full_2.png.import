@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckw577ya5cd4g"
-path="res://.godot/imported/bug_flying.png-a57ccd78340b7a01facd55db9d4890ef.ctex"
+uid="uid://dyvowhfviwcxf"
+path="res://.godot/imported/bug_flying_full_2.png-b55c1a1e36eebfa980282b48bd564119.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bug_flying.png"
-dest_files=["res://.godot/imported/bug_flying.png-a57ccd78340b7a01facd55db9d4890ef.ctex"]
+source_file="res://assets/sprites/beetle/full/bug_flying_full_2.png"
+dest_files=["res://.godot/imported/bug_flying_full_2.png-b55c1a1e36eebfa980282b48bd564119.ctex"]
 
 [params]
 

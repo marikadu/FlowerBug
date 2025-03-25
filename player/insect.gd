@@ -40,6 +40,7 @@ var is_shaking: bool
 var voulnerable: bool # doesn't constantly gets dameged if close to the bird
 var continue_scene: bool
 var is_alive: bool = true
+var has_collected_all_pollen: bool = false
 
 var rng: RandomNumberGenerator
 
@@ -58,6 +59,7 @@ func _ready() -> void:
 	Events.can_detect_bird.connect(_on_can_detect_bird)
 	Events.cannot_detect_bird.connect(_on_stop_detect_bird)
 	Events.spawned_bird.connect(_on_spawned_bird)
+	Events.has_collected_all_pollen.connect(_on_has_filled_pollen_bar)
 	
 	eating_bar.hide()
 	trapped_bar.hide()
@@ -69,6 +71,7 @@ func _ready() -> void:
 	voulnerable = true
 	continue_scene = false
 	animated_sprite.play("flying")
+	
 	
 	rng = RandomNumberGenerator.new() # to randomize score or "pollen"
 	
@@ -143,7 +146,13 @@ func _physics_process(_delta: float) -> void:
 			if near_flower:
 				if flower_to_eat:
 					if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
-						animated_sprite.play("eating")
+						
+						if has_collected_all_pollen:
+							animated_sprite.play("eating_full")
+						else:
+							animated_sprite.play("eating")
+						
+						
 						#print("eating...")
 						is_eating = true
 						flower_to_eat.is_being_eaten = true
@@ -302,7 +311,10 @@ func ate_the_flower():
 		
 		get_parent().remove_flower(flower_to_eat) # removing the flower
 		#print("ate!")
-		animated_sprite.play("flying")
+		if has_collected_all_pollen:
+			animated_sprite.play("flying_full")
+		else:
+			animated_sprite.play("flying")
 		
 		identifyFlower(flower_type)
 		#print("score: ", Global.score)
@@ -319,7 +331,10 @@ func stop_eating_the_flower():
 		
 		#get_parent().remove_flower(flower_to_eat) # removing the flower
 		#print("stopped eating!")
-		animated_sprite.play("flying")
+		if has_collected_all_pollen:
+			animated_sprite.play("flying_full")
+		else:
+			animated_sprite.play("flying")
 		
 		
 	eating_bar.hide() # hiding the progress bar
@@ -376,7 +391,8 @@ func choose_closest_flower():
 
 # adding different point to the score depending on the flower type
 func identifyFlower(flower_type: String):
-	var random_pollen_amount = rng.randi_range(1, 6)
+	#var random_pollen_amount = rng.randi_range(1, 6) # initial score
+	var random_pollen_amount = rng.randi_range(50, 60) # for debugging
 	match flower_type:
 		"n_flower_1", "n_flower_2", "n_flower_3", "n_flower_4":
 			# the insect earns pollen
@@ -418,9 +434,16 @@ func take_damage():
 				can_detect_bird = false
 				voulnerable = false
 				await get_tree().create_timer(0.2).timeout
-				animated_sprite.play("game_over")
-				await get_tree().create_timer(1.2).timeout
-				animated_sprite.play("game_over_loop")
+				
+				if has_collected_all_pollen:
+					animated_sprite.play("game_over_full")
+					await get_tree().create_timer(1.2).timeout
+					animated_sprite.play("game_over_full_loop")
+				else:
+					animated_sprite.play("game_over")
+					await get_tree().create_timer(1.2).timeout
+					animated_sprite.play("game_over_loop")
+				
 				print("game over!")
 			
 			
@@ -465,9 +488,17 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			
 		elif Global.current_scene_name == 3:
 			# transition to the new scene
-			Transition.transition()
-			await Transition.on_transition_finished
-			get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
+			Events.bird_chases_the_beetle.emit()
+			await get_tree().create_timer(3).timeout
+			
+			#Transition.transition()
+			#await Transition.on_transition_finished
+			#get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
 			
 		else:
 			print("playing inside the 'main'!")
+
+
+func _on_has_filled_pollen_bar():
+	print("insect: has filled the bar!")
+	has_collected_all_pollen = true

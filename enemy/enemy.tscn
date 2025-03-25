@@ -237,6 +237,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_5ffra")
 }
 
+[node name="chase" type="AnimationPlayer" parent="."]
+
 [connection signal="has_landed" from="." to="." method="_on_has_landed"]
 [connection signal="leaving" from="." to="." method="_on_leaving"]
 [connection signal="frame_changed" from="Bird_Sprite" to="." method="_on_bird_sprite_frame_changed"]

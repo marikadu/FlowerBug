@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dh2wxmxtw5oii" path="res://spawnArea/spawn_area.gd" id="1_kv71e"]
 [ext_resource type="Texture2D" uid="uid://cwdpsmgnx524" path="res://assets/sprites/spawn_area.png" id="2_kv71e"]
-[ext_resource type="PackedScene" uid="uid://d2xnlnak5l4g1" path="res://flashbacks/flashbacks.tscn" id="3_th02x"]
+[ext_resource type="PackedScene" uid="uid://d2xnlnak5l4g1" path="res://background/flashbacks/flashbacks.tscn" id="3_th02x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kv71e"]
 size = Vector2(942.86, 489.63)

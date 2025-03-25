@@ -46,3 +46,5 @@ value = 55.0
 texture_under = ExtResource("2_5lc28")
 texture_over = ExtResource("3_6kaxw")
 texture_progress = ExtResource("4_y4x8w")
+
+[connection signal="value_changed" from="TextureProgressBar" to="." method="_on_texture_progress_bar_value_changed"]
