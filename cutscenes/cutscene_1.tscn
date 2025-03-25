@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dqpdfbyfvvv2r"]
 
 [ext_resource type="Script" uid="uid://cl808o0fkk3pr" path="res://cutscenes/cutscene_1.gd" id="1_2pbgo"]
-[ext_resource type="Texture2D" uid="uid://1888rysa2wyg" path="res://cutscenes/cutscene1.png" id="1_7kd3d"]
+[ext_resource type="Texture2D" uid="uid://cofbc11h3onjk" path="res://cutscenes/cutscene_1.png" id="2_2pbgo"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="2_7kd3d"]
 
 [sub_resource type="Animation" id="Animation_2pbgo"]
@@ -117,7 +117,7 @@ script = ExtResource("1_2pbgo")
 texture_filter = 1
 position = Vector2(1527, 2166)
 scale = Vector2(3.02, 3.02)
-texture = ExtResource("1_7kd3d")
+texture = ExtResource("2_2pbgo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
