@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FlowerBug"
-run/main_scene="uid://jbvaordywvhn"
+run/main_scene="uid://w2pbprcxv723"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -39,7 +39,8 @@ folder_colors={
 "res://cutscenes/": "red",
 "res://enemy/": "red",
 "res://flowers/": "green",
-"res://levels/": "teal"
+"res://levels/": "teal",
+"res://player/": "pink"
 }
 
 [global_group]
