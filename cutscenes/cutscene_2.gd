@@ -6,7 +6,7 @@ var slide: int = 0
 # what if I add the feature of manually turning the pages/pannels
 func _ready() -> void:
 	animation_player.play("cutscene_2")
-	await get_tree().create_timer(0.0322).timeout
+	await get_tree().create_timer(0.1333).timeout
 	animation_player.pause()
 	slide += 1
 	print("paused animation, slide: ", slide)

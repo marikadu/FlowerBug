@@ -57,6 +57,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 360)]
+}
 
 [sub_resource type="Animation" id="Animation_7kd3d"]
 resource_name = "start"
@@ -140,24 +152,12 @@ markers = [{
 "time": 26.5399
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"shake",
-"time": 24.2633
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"distracted",
-"time": 22.9134
-}, {
-"color": Color(1, 1, 1, 1),
 "name": &"family_2",
 "time": 18.7967
 }, {
 "color": Color(1, 1, 1, 1),
 "name": &"see_family_2",
 "time": 15.6
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"family_1",
-"time": 13.2903
 }, {
 "color": Color(1, 1, 1, 1),
 "name": &"entering_tree",
@@ -178,6 +178,18 @@ markers = [{
 "color": Color(1, 1, 1, 1),
 "name": &"hit_tree_end",
 "time": 3.89489
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"distracted",
+"time": 21.0667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"shake",
+"time": 23.9333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"family_1",
+"time": 13.3
 }]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -186,10 +198,10 @@ tracks/0/path = NodePath("Cutscene:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 14.6667, 15.6, 15.631, 18, 18.8667, 21.0667, 22.7333, 22.9333, 23.1, 23.2439, 23.3417, 23.4667, 24.1333, 24.3, 26.1333, 26.5667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 0.183011, 1, 1, 0.287175, 1.56917, 1, 1, 1, 1, 1, 1, 1, 1, 0.757858, 0.378929, 1),
+"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 15.6, 15.631, 18.8),
+"transitions": PackedFloat32Array(1, 0.554785, 1, 1, 0.5, 1, 1, 1, 1, 1, 0.574349, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 1, 0.482968, 1.56917),
 "update": 0,
-"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1380, -704), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2210, -715.06), Vector2(2261.02, -735), Vector2(1149, 930), Vector2(307, 1129), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(178.078, 1184), Vector2(177.785, 1184), Vector2(-582, 1189), Vector2(-621, 1186)]
+"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2261.02, -735)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -198,10 +210,10 @@ tracks/1/path = NodePath("Cutscene:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.9333, 21.2, 22.8667),
-"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411, 1, 1),
+"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.8),
+"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411),
 "update": 0,
-"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
+"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -210,10 +222,10 @@ tracks/2/path = NodePath("Cutscene2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 14.6667, 15.6, 15.631, 18, 18.8667, 21.0667, 22.7333, 22.9333, 23.1, 23.2439, 23.3417, 23.4667, 24.1333, 24.3, 26.1333, 26.5667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 0.183011, 1, 1, 0.287175, 1.56917, 1, 1, 1, 1, 1, 1, 1, 1, 0.757858, 0.378929, 1),
+"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 15.6, 15.631, 18.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 1, 0.482968, 1.56917),
 "update": 0,
-"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1380, -704), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2210, -715.06), Vector2(2261.02, -735), Vector2(1149, 930), Vector2(307, 1129), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(178.078, 1184), Vector2(177.785, 1184), Vector2(-582, 1189), Vector2(-621, 1186)]
+"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2261.02, -735)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -222,10 +234,10 @@ tracks/3/path = NodePath("Cutscene2:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.9333, 21.2, 22.8667),
-"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411, 1, 1),
+"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.8),
+"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411),
 "update": 0,
-"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
+"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -246,10 +258,10 @@ tracks/5/path = NodePath("Cutscene3:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 14.6667, 15.6, 15.631, 18, 18.8667, 21.0667, 22.7333, 22.9333, 23.1, 23.2439, 23.3417, 23.4667, 24.1333, 24.3, 26.1333, 26.5667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 0.183011, 1, 1, 0.287175, 1.56917, 1, 1, 1, 1, 1, 1, 1, 1, 0.757858, 0.378929, 1),
+"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 15.6, 15.631, 18.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 1, 0.482968, 1.56917),
 "update": 0,
-"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1380, -704), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2210, -715.06), Vector2(2261.02, -735), Vector2(1149, 930), Vector2(307, 1129), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(178.078, 1184), Vector2(177.785, 1184), Vector2(-582, 1189), Vector2(-621, 1186)]
+"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2261.02, -735)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -258,10 +270,10 @@ tracks/6/path = NodePath("Cutscene3:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.9333, 21.2, 22.8667),
-"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411, 1, 1),
+"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.8),
+"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411),
 "update": 0,
-"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
+"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -270,10 +282,22 @@ tracks/7/path = NodePath("Cutscene3:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(14.7704, 17.8333, 18.7976),
+"times": PackedFloat32Array(14.7704, 17.8333, 18.8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera2D:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(18.7968, 21.0667, 21.7, 22.0667, 22.3, 22.5082, 22.8918, 23.9333, 26.5333),
+"transitions": PackedFloat32Array(0.466517, 1, 1, 1, 1, 0.435275, 0.517632, 0.574349, 1),
+"update": 0,
+"values": [Vector2(640, 360), Vector2(502, 1237), Vector2(457, 1237), Vector2(566, 1237), Vector2(457, 1237), Vector2(566, 1237), Vector2(457, 1237), Vector2(502, 1237), Vector2(1531, 1247)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ddl0"]
@@ -288,8 +312,8 @@ script = ExtResource("1_2pbgo")
 
 [node name="Cutscene4" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-34, 5779)
-scale = Vector2(2.735, 2.735)
+position = Vector2(1012, 2324)
+scale = Vector2(2.17, 2.17)
 texture = ExtResource("2_528a0")
 
 [node name="Cutscene" type="Sprite2D" parent="."]
@@ -301,14 +325,14 @@ texture = ExtResource("2_2pbgo")
 [node name="Cutscene2" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-position = Vector2(2261.01, -734.997)
-scale = Vector2(2.19227, 2.19227)
+position = Vector2(2261.02, -735)
+scale = Vector2(2.195, 2.195)
 texture = ExtResource("3_1ddl0")
 
 [node name="Cutscene3" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(2261.01, -734.997)
-scale = Vector2(2.19227, 2.19227)
+position = Vector2(2261.02, -735)
+scale = Vector2(2.195, 2.195)
 texture = ExtResource("4_dtrb2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
