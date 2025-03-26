@@ -185,7 +185,7 @@ func _physics_process(_delta: float) -> void:
 						while bounce_animation_count < 7:
 							flower_to_eat.animation_player.play("bounce")
 							bounce_animation_count += 1
-							await get_tree().create_timer(0.4).timeout
+							await get_tree().create_timer(0.4, false).timeout
 							#print(i)
 						
 				

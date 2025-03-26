@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs3rv4chfmgan"]
+
+[ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="1_81jlj"]
+[ext_resource type="Script" uid="uid://bjpb2ecl8c36d" path="res://menus/pause.gd" id="1_wsj4i"]
+
+[node name="Pause" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wsj4i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.111294, 0.0610305, 0.0066862, 0.196078)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_81jlj")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Resume"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35.39)
+layout_mode = 2
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_81jlj")
+theme_override_colors/font_color = Color(0.709804, 0.427451, 0.176471, 1)
+theme_override_font_sizes/font_size = 70
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

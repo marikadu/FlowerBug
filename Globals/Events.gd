@@ -1,7 +1,7 @@
 extends Node
 
 #signal game_over
-#signal resume_game
+signal resume_game
 
 signal can_continue
 
