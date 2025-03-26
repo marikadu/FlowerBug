@@ -36,6 +36,7 @@ window/stretch/mode="canvas_items"
 
 folder_colors={
 "res://assets/": "orange",
+"res://cutscenes/": "red",
 "res://enemy/": "red",
 "res://flowers/": "green",
 "res://levels/": "teal"

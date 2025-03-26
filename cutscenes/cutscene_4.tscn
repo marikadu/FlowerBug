@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://jk858qkutyie"]
+
+[ext_resource type="Script" uid="uid://7x7epv5qywc5" path="res://cutscenes/cutscene_4.gd" id="1_gdkjo"]
+[ext_resource type="Texture2D" uid="uid://dic4u7q1rwluf" path="res://cutscenes/cutscene_4.png" id="2_gdkjo"]
+[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="5_lwf5c"]
+
+[sub_resource type="Animation" id="Animation_gdkjo"]
+resource_name = "cutscene4"
+length = 40.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"morning1",
+"time": 0.466667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"morning2",
+"time": 3.06667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"door1",
+"time": 5.93333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"door2",
+"time": 9.33333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"sleepy1",
+"time": 11.4333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"sleepy2",
+"time": 13.0339
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"sleepy3",
+"time": 14.5539
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"office",
+"time": 16.7239
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hug1",
+"time": 18.2783
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hug2",
+"time": 20.9333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end1",
+"time": 22.4667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end2",
+"time": 25.5
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end3",
+"time": 27.9
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 3.06667, 5.93333, 9.33333, 11.3667, 13.0333, 14.5333, 16.7, 18.2667, 20.9333, 22.4667, 25.5, 27.9),
+"transitions": PackedFloat32Array(0.435275, 0.366021, 0.392292, 0.329877, 0.277392, 0.25, 0.329877, 0.392292, 0.435275, 0.466516, 0.378929, 0.258816, 0.707107, 0.5),
+"update": 0,
+"values": [Vector2(350, 157), Vector2(350, 146), Vector2(778, 146), Vector2(744, 339.655), Vector2(365, 375), Vector2(239.04, 601.47), Vector2(527, 629), Vector2(865, 623), Vector2(875, 815), Vector2(635, 829.64), Vector2(360, 827), Vector2(214, 1098), Vector2(423.615, 1108), Vector2(781, 1143)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.06625, 5.93333, 9.34, 11.3667, 14.5439, 16.7, 18.2667, 20.9333, 22.4667, 25.5, 27.9),
+"transitions": PackedFloat32Array(1, 0.499999, 0.406126, 0.406126, 0.353554, 0.353554, 0.34151, 0.392292, 0.366021, 0.392292, 0.378929, 0.482968),
+"update": 0,
+"values": [Vector2(2.93, 2.93), Vector2(2.93, 2.93), Vector2(1.64, 1.64), Vector2(1.64, 1.64), Vector2(3.55, 3.55), Vector2(3.55, 3.55), Vector2(2.415, 2.415), Vector2(4.055, 4.055), Vector2(2.86, 2.86), Vector2(2.345, 2.345), Vector2(2.06, 2.06), Vector2(1.655, 1.655)]
+}
+
+[sub_resource type="Animation" id="Animation_7nwfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.93, 2.93)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(350, 146)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7nwfv"]
+_data = {
+&"RESET": SubResource("Animation_7nwfv"),
+&"cutscene4": SubResource("Animation_gdkjo")
+}
+
+[node name="Cutscene4" type="Node2D"]
+script = ExtResource("1_gdkjo")
+
+[node name="Cutscene" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(560, 699)
+texture = ExtResource("2_gdkjo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(350, 146)
+zoom = Vector2(2.93, 2.93)
+script = ExtResource("5_lwf5c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7nwfv")
+}

@@ -4,106 +4,122 @@
 [ext_resource type="Texture2D" uid="uid://4t1pu80visg4" path="res://cutscenes/cutscene_2.png" id="2_5mse6"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="3_4kkgw"]
 
-[sub_resource type="Animation" id="Animation_2pbgo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cutscene:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1527, 2166)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Cutscene:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3.02, 3.02)]
-}
-
-[sub_resource type="Animation" id="Animation_7kd3d"]
-resource_name = "start"
-length = 25.9175
+[sub_resource type="Animation" id="Animation_5mse6"]
+resource_name = "cutscene_2"
+length = 24.0435
 markers = [{
 "color": Color(1, 1, 1, 1),
-"name": &"distracted",
-"time": 22.1168
+"name": &"start2",
+"time": 0.666667
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"shake",
-"time": 23.4667
+"name": &"start1",
+"time": 0.0333333
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"leave",
-"time": 25.7432
+"name": &"into_bee",
+"time": 1.56667
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"hit_bee_end",
-"time": 3.53333
+"name": &"no_pollen",
+"time": 2.36667
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"hit_bee",
-"time": 2.47789
+"name": &"is_sorry",
+"time": 3.06667
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"look_at_pollen",
-"time": 4.76667
+"name": &"notices",
+"time": 3.9684
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"notices_hat",
-"time": 7.03333
+"name": &"angry_bee",
+"time": 4.63333
 }, {
 "color": Color(1, 1, 1, 1),
 "name": &"hat1",
-"time": 9.53333
+"time": 6.93333
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"family_2",
-"time": 19.8667
+"name": &"hat2",
+"time": 10.0333
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"Grandma_Bee",
-"time": 17.4
+"name": &"grandma_bee",
+"time": 12.5667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey1",
+"time": 14.4333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey2",
+"time": 16.7667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey3",
+"time": 19.2333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end",
+"time": 23.5667
 }]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cutscene:position")
+tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.46667, 3.53333, 4.8, 6.13333, 7.03333, 8.46667, 9.56667, 11.5, 13.5333, 17.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0333333, 0.666667, 1.4, 1.43333, 1.567, 1.573, 2.36667, 3.06667, 3.96667, 4.63333, 6.93333, 10.0333, 12.5667, 14.4333, 16.7667, 19.2333, 23.5667),
+"transitions": PackedFloat32Array(0.615572, 0.517632, 0.707107, 1, 1, 1, 0.392292, 0.615572, 0.366021, 0.63728, 0.63728, 0.420448, 0.466516, 0.5, 0.450625, 0.420448, 0.574349, 1),
 "update": 0,
-"values": [Vector2(1199, 489), Vector2(1469, 479), Vector2(2073, 502), Vector2(2185, -5.99994), Vector2(1709, -8), Vector2(1210, -10), Vector2(1279, -484), Vector2(2029, -495), Vector2(1127, 1269), Vector2(89, 1550), Vector2(-459, 1254)]
+"values": [Vector2(594, 301), Vector2(585.227, 304.753), Vector2(414, 378), Vector2(73, 334), Vector2(80, 329), Vector2(73, 334), Vector2(73, 334), Vector2(30, 655), Vector2(170.58, 641), Vector2(521, 643), Vector2(527, 986), Vector2(55, 984), Vector2(1179, -45), Vector2(1484, -42), Vector2(1783, -68), Vector2(1790, 143), Vector2(1486, 490), Vector2(1283, 868)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cutscene:scale")
+tracks/1/path = NodePath("Camera2D:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 9.63333, 13.5333, 17.4333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 6.93333, 8.1, 16.7786, 19.2333, 23.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 0.482968, 0.287175, 1),
 "update": 0,
-"values": [Vector2(1.745, 1.745), Vector2(1.745, 1.745), Vector2(2.245, 2.245), Vector2(1.8, 1.8)]
+"values": [Vector2(1.625, 1.625), Vector2(1.625, 1.625), Vector2(2.375, 2.375), Vector2(2.375, 2.375), Vector2(0.905, 0.905), Vector2(1.51, 1.51)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ddl0"]
+[sub_resource type="Animation" id="Animation_q1ytw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(594, 301)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.005, 2.005)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kkgw"]
 _data = {
-&"RESET": SubResource("Animation_2pbgo"),
-&"start": SubResource("Animation_7kd3d")
+&"RESET": SubResource("Animation_q1ytw"),
+&"cutscene_2": SubResource("Animation_5mse6")
 }
 
 [node name="Cutscene2" type="Node2D"]
@@ -111,15 +127,15 @@ script = ExtResource("1_5mse6")
 
 [node name="Cutscene" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1527, 2166)
-scale = Vector2(3.02, 3.02)
+position = Vector2(944, 440)
 texture = ExtResource("2_5mse6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
+position = Vector2(594, 301)
+zoom = Vector2(2.005, 2.005)
 script = ExtResource("3_4kkgw")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_1ddl0")
+&"": SubResource("AnimationLibrary_4kkgw")
 }

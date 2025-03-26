@@ -1,0 +1,166 @@
+extends Node2D
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer2
+var slide: int = 0
+
+# what if I add the feature of manually turning the pages/pannels
+func _ready() -> void:
+	animation_player.play("cutscene3")
+	await get_tree().create_timer(0.3998).timeout
+	#await get_tree().process_frame
+	animation_player.pause()
+	slide += 1
+	print("paused animation, slide: ", slide)
+	
+	#await get_tree().create_timer(3.4).timeout
+	#$Camera2D.apply_shake()
+
+
+func _process(_delta: float) -> void:
+	pass
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("eat"):
+		match slide:
+			1:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "start", "bird")
+				# apply camera shake for better visuals
+				
+				slide += 1
+			
+			2:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "bird", "bird_drop")
+				#await get_tree().create_timer(0.8).timeout
+				#$Camera2D.apply_shake()
+				slide += 1
+				#
+			3:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "bird_drop", "bird_fly")
+				slide += 1
+				
+			4:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "bird_fly", "beetle")
+				slide += 1
+				
+				
+			5:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "beetle", "beetle_flies")
+				slide += 1
+				
+			6:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "beetle_flies", "drop1")
+				slide += 1
+				
+			7:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop1", "drop2")
+				slide += 1
+				
+			8:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop2", "drop3")
+				slide += 1
+				
+			9:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop3", "drop4")
+				slide += 1
+				
+			10:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop4", "drop5")
+				slide += 1
+				
+			11:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop5", "drop6")
+				slide += 1
+				
+			12:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop6", "drop7")
+				slide += 1
+				
+			13:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop7", "drop8")
+				slide += 1
+				
+			14:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop8", "drop9")
+				slide += 1
+				await get_tree().create_timer(1.3).timeout
+				$Camera2D.apply_shake()
+				
+			15:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "drop9", "fell")
+				slide += 1
+				
+			16:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "fell", "hide")
+				slide += 1
+				
+			17:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "hide", "hide2")
+				slide += 1
+				
+			18:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "hide2", "leaf1")
+				slide += 1
+				
+			19:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "leaf1", "leaf2")
+				slide += 1
+				
+			20:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "leaf2", "leaf3")
+				slide += 1
+				
+			21:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "leaf3", "leaf4")
+				slide += 1
+				
+			22:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "leaf4", "leaf5")
+				slide += 1
+				
+			23:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "leaf5", "morning1")
+				slide += 1
+				
+			24:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "morning1", "morning2")
+				slide += 1
+				
+			25:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "morning2", "morning3")
+				slide += 1
+				
+			26:
+				print("paused animation, slide: ", slide)
+				animation_player.play_section_with_markers("cutscene3", "morning3", "morning4")
+				slide += 1
+				
+			27: # end of the cutscene
+				print("paused animation, slide: ", slide)
+				Transition.transition()
+				await Transition.on_transition_finished
+				get_tree().change_scene_to_file("res://levels/level_4.tscn")

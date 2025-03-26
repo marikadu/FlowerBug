@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqpdfbyfvvv2r"]
+[gd_scene load_steps=11 format=3 uid="uid://dqpdfbyfvvv2r"]
 
 [ext_resource type="Script" uid="uid://cl808o0fkk3pr" path="res://cutscenes/cutscene_1.gd" id="1_2pbgo"]
 [ext_resource type="Texture2D" uid="uid://cofbc11h3onjk" path="res://cutscenes/cutscene_1.png" id="2_2pbgo"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="2_7kd3d"]
+[ext_resource type="Texture2D" uid="uid://c5mko5gjq6k2q" path="res://cutscenes/cutscene_1_2_2.png" id="2_528a0"]
+[ext_resource type="Texture2D" uid="uid://cxspjslalnhcw" path="res://cutscenes/cutscene_1_2.png" id="3_1ddl0"]
+[ext_resource type="Texture2D" uid="uid://jwyqy3dkgsk" path="res://cutscenes/cutscene_1_3.png" id="4_dtrb2"]
 
 [sub_resource type="Animation" id="Animation_2pbgo"]
 length = 0.001
@@ -29,6 +32,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(3.02, 3.02)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene3:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7kd3d"]
@@ -104,20 +131,185 @@ tracks/1/keys = {
 "values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
 }
 
+[sub_resource type="Animation" id="Animation_dtrb2"]
+resource_name = "start_2"
+length = 27.1945
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"leave",
+"time": 26.5399
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"shake",
+"time": 24.2633
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"distracted",
+"time": 22.9134
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"family_2",
+"time": 18.7967
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"see_family_2",
+"time": 15.6
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"family_1",
+"time": 13.2903
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"entering_tree",
+"time": 11.5333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"discovered_tree",
+"time": 10.1333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"angry",
+"time": 7.23333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hit_tree",
+"time": 3.14167
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hit_tree_end",
+"time": 3.89489
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 14.6667, 15.6, 15.631, 18, 18.8667, 21.0667, 22.7333, 22.9333, 23.1, 23.2439, 23.3417, 23.4667, 24.1333, 24.3, 26.1333, 26.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 0.183011, 1, 1, 0.287175, 1.56917, 1, 1, 1, 1, 1, 1, 1, 1, 0.757858, 0.378929, 1),
+"update": 0,
+"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1380, -704), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2210, -715.06), Vector2(2261.02, -735), Vector2(1149, 930), Vector2(307, 1129), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(178.078, 1184), Vector2(177.785, 1184), Vector2(-582, 1189), Vector2(-621, 1186)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.9333, 21.2, 22.8667),
+"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411, 1, 1),
+"update": 0,
+"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 14.6667, 15.6, 15.631, 18, 18.8667, 21.0667, 22.7333, 22.9333, 23.1, 23.2439, 23.3417, 23.4667, 24.1333, 24.3, 26.1333, 26.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 0.183011, 1, 1, 0.287175, 1.56917, 1, 1, 1, 1, 1, 1, 1, 1, 0.757858, 0.378929, 1),
+"update": 0,
+"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1380, -704), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2210, -715.06), Vector2(2261.02, -735), Vector2(1149, 930), Vector2(307, 1129), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(178.078, 1184), Vector2(177.785, 1184), Vector2(-582, 1189), Vector2(-621, 1186)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene2:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.9333, 21.2, 22.8667),
+"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411, 1, 1),
+"update": 0,
+"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(12.6333, 13.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene3:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.46667, 3.13333, 3.53333, 3.63333, 3.9, 4.875, 5.40833, 5.76667, 6.3, 6.66667, 7.23333, 8.66667, 9.83333, 10.1333, 10.1667, 11.5, 11.5333, 12.8333, 13.3, 13.3667, 14.6667, 15.6, 15.631, 18, 18.8667, 21.0667, 22.7333, 22.9333, 23.1, 23.2439, 23.3417, 23.4667, 24.1333, 24.3, 26.1333, 26.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.5, 1, 1, 1, 1, 1, 1, 0.277393, 1.03526, 0.297302, 1, 0.594604, 0.732043, 0.732043, 0.659754, 1, 0.594604, 0.183011, 1, 1, 0.287175, 1.56917, 1, 1, 1, 1, 1, 1, 1, 1, 0.757858, 0.378929, 1),
+"update": 0,
+"values": [Vector2(1531, 1951.77), Vector2(2380, 1951.77), Vector2(2432, 1951.77), Vector2(2608, 1336), Vector2(2576, 1347), Vector2(2626, 1336), Vector2(2169, 1275.17), Vector2(2093.5, 1275.17), Vector2(1833, 1275.17), Vector2(1720.72, 1275.17), Vector2(1507.48, 1275.17), Vector2(1488.81, 1275.17), Vector2(1639, 671), Vector2(2273, 649), Vector2(2323, 649), Vector2(2323, 649), Vector2(2553, -24), Vector2(2553, -24), Vector2(1630, -16), Vector2(1592, -16), Vector2(1592, -16), Vector2(1380, -704), Vector2(1378.45, -717.806), Vector2(1378.45, -717.806), Vector2(2210, -715.06), Vector2(2261.02, -735), Vector2(1149, 930), Vector2(307, 1129), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(230, 1184), Vector2(200, 1184), Vector2(178.078, 1184), Vector2(177.785, 1184), Vector2(-582, 1189), Vector2(-621, 1186)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cutscene3:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3.14667, 3.53333, 7.23333, 8.96398, 18.9333, 21.2, 22.8667),
+"transitions": PackedFloat32Array(1, 1, 2.21914, 1, 1, 1.7411, 1, 1),
+"update": 0,
+"values": [Vector2(2.735, 2.735), Vector2(2.735, 2.735), Vector2(2.105, 2.105), Vector2(2.105, 2.105), Vector2(1.99677, 1.99677), Vector2(2.195, 2.195), Vector2(1.295, 1.295), Vector2(1.64, 1.64)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Cutscene3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(14.7704, 17.8333, 18.7976),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ddl0"]
 _data = {
 &"RESET": SubResource("Animation_2pbgo"),
-&"start": SubResource("Animation_7kd3d")
+&"start": SubResource("Animation_7kd3d"),
+&"start_2": SubResource("Animation_dtrb2")
 }
 
 [node name="Cutscene1" type="Node2D"]
 script = ExtResource("1_2pbgo")
+
+[node name="Cutscene4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-34, 5779)
+scale = Vector2(2.735, 2.735)
+texture = ExtResource("2_528a0")
 
 [node name="Cutscene" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1527, 2166)
 scale = Vector2(3.02, 3.02)
 texture = ExtResource("2_2pbgo")
+
+[node name="Cutscene2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(2261.01, -734.997)
+scale = Vector2(2.19227, 2.19227)
+texture = ExtResource("3_1ddl0")
+
+[node name="Cutscene3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2261.01, -734.997)
+scale = Vector2(2.19227, 2.19227)
+texture = ExtResource("4_dtrb2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)

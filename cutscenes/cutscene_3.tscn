@@ -1,0 +1,291 @@
+[gd_scene load_steps=10 format=3 uid="uid://r5ikhfr54srj"]
+
+[ext_resource type="Script" uid="uid://qkmwn5m5xf5l" path="res://cutscenes/cutscene_3.gd" id="1_014h0"]
+[ext_resource type="Texture2D" uid="uid://di4dd17x6kubv" path="res://cutscenes/cutscene_3.png" id="2_014h0"]
+[ext_resource type="Texture2D" uid="uid://cr5tjfs0a82f1" path="res://cutscenes/cutscene_3_2.png" id="2_234fn"]
+[ext_resource type="Texture2D" uid="uid://bxavxmuk75u83" path="res://cutscenes/cutscene_3_3.png" id="2_jgpfn"]
+[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="3_jgpfn"]
+
+[sub_resource type="Animation" id="Animation_q1ytw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(594, 301)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.005, 2.005)]
+}
+
+[sub_resource type="Animation" id="Animation_5mse6"]
+resource_name = "cutscene_2"
+length = 24.0435
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"start2",
+"time": 0.666667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"start1",
+"time": 0.0333333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"into_bee",
+"time": 1.56667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"no_pollen",
+"time": 2.36667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"is_sorry",
+"time": 3.06667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"notices",
+"time": 3.9684
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"angry_bee",
+"time": 4.63333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hat1",
+"time": 6.93333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hat2",
+"time": 10.0333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"grandma_bee",
+"time": 12.5667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey1",
+"time": 14.4333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey2",
+"time": 16.7667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey3",
+"time": 19.2333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end",
+"time": 23.5667
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.666667, 1.4, 1.43333, 1.567, 1.573, 2.36667, 3.06667, 3.96667, 4.63333, 6.93333, 10.0333, 12.5667, 14.4333, 16.7667, 19.2333, 23.5667),
+"transitions": PackedFloat32Array(0.615572, 0.517632, 0.707107, 1, 1, 1, 0.392292, 0.615572, 0.366021, 0.63728, 0.63728, 0.420448, 0.466516, 0.5, 0.450625, 0.420448, 0.574349, 1),
+"update": 0,
+"values": [Vector2(594, 301), Vector2(585.227, 304.753), Vector2(414, 378), Vector2(73, 334), Vector2(80, 329), Vector2(73, 334), Vector2(73, 334), Vector2(30, 655), Vector2(170.58, 641), Vector2(521, 643), Vector2(527, 986), Vector2(55, 984), Vector2(1179, -45), Vector2(1484, -42), Vector2(1783, -68), Vector2(1790, 143), Vector2(1486, 490), Vector2(1283, 868)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.93333, 8.1, 16.7786, 19.2333, 23.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 0.482968, 0.287175, 1),
+"update": 0,
+"values": [Vector2(1.625, 1.625), Vector2(1.625, 1.625), Vector2(2.375, 2.375), Vector2(2.375, 2.375), Vector2(0.905, 0.905), Vector2(1.51, 1.51)]
+}
+
+[sub_resource type="Animation" id="Animation_234fn"]
+resource_name = "cutscene3"
+length = 45.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"start",
+"time": 0.4
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"bird",
+"time": 1.06667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"bird_drop",
+"time": 2.06667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"bird_fly",
+"time": 3.83333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"beetle",
+"time": 5.26667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"beetle_flies",
+"time": 7.83333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop2",
+"time": 10.4
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop1",
+"time": 8.66667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop3",
+"time": 11.6333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop4",
+"time": 13.1
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop5",
+"time": 14.8
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop6",
+"time": 18.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop7",
+"time": 19.6
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop8",
+"time": 21.3667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"fell",
+"time": 24.2667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"drop9",
+"time": 22.4667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hide",
+"time": 25.6
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hide2",
+"time": 26.8982
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf1",
+"time": 28.1112
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf2",
+"time": 29.3679
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf3",
+"time": 30.3105
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf4",
+"time": 31.37
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf5",
+"time": 33.4667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"morning1",
+"time": 36.0667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"morning2",
+"time": 38.5667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"morning3",
+"time": 40.5667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"morning4",
+"time": 44.4667
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.06667, 2.06667, 2.5, 2.9, 3.36667, 3.83333, 4.46667, 5.26667, 6, 6.63333, 7.2, 7.83333, 8.66667, 10.4, 10.6333, 11.6333, 13.1, 14.8, 18, 19.6, 21.3667, 22.4667, 24.2667, 25.6, 26.9, 28.1, 29.3333, 30.3, 31.3667, 33.4667, 36.0667, 38.5667, 40.5667, 44.4667),
+"transitions": PackedFloat32Array(0.353554, 0.366021, 0.329877, 1, 1, 1, 1, 0.353553, 0.466516, 0.406126, 0.435275, 0.466517, 0.5, 0.31864, 0.378929, 1, 0.574349, 0.5, 0.435275, 0.482968, 0.406126, 0.406126, 0.366021, 0.450625, 0.466517, 0.466517, 0.406126, 0.482968, 0.34151, 0.34151, 0.34151, 0.34151, 0.353553, 0.420448, 0.482968, 0.378929),
+"update": 0,
+"values": [Vector2(-1139, -59), Vector2(-1121, -59), Vector2(-679, -64), Vector2(-595, 214), Vector2(-787, 253), Vector2(-823, 262), Vector2(-823, 279), Vector2(-796, 283), Vector2(-985, 216), Vector2(-1062, 261), Vector2(-1106, 385), Vector2(-1010, 462), Vector2(-890, 513), Vector2(-746, 568), Vector2(-600, 939), Vector2(-1030, 946), Vector2(-1030, 971.3), Vector2(-1206, 1481), Vector2(-1193, 1735), Vector2(-1172, 2041), Vector2(-774, 1493), Vector2(-565, 1770), Vector2(-736, 2042), Vector2(-926, 2458.94), Vector2(-1229, 3083), Vector2(-818, 3080), Vector2(-539, 3094), Vector2(-525, 3311), Vector2(-676, 3330), Vector2(-831, 3343), Vector2(-987, 3351), Vector2(-1158, 3359), Vector2(-1183, 3672), Vector2(-931, 3615), Vector2(-578, 3623), Vector2(-890, 4021)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1.06667, 7.83162, 8.66667, 10.4, 10.6333, 11.6333, 14.8054, 18, 21.3659, 22.4667, 24.2667, 40.5667, 44.4667),
+"transitions": PackedFloat32Array(0.277392, 1, 0.466517, 0.353554, 1, 0.435275, 1, 0.406126, 1, 0.466517, 0.466517, 1, 0.378929, 1),
+"update": 0,
+"values": [Vector2(2.315, 2.315), Vector2(1.77, 1.77), Vector2(1.77, 1.77), Vector2(1.6, 1.6), Vector2(0.98, 0.98), Vector2(1.11, 1.11), Vector2(2.585, 2.585), Vector2(2.585, 2.585), Vector2(1.88, 1.88), Vector2(1.88, 1.88), Vector2(1.21, 1.21), Vector2(2.615, 2.615), Vector2(2.615, 2.615), Vector2(1.475, 1.475)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4kkgw"]
+_data = {
+&"RESET": SubResource("Animation_q1ytw"),
+&"cutscene3": SubResource("Animation_234fn"),
+&"cutscene_2": SubResource("Animation_5mse6")
+}
+
+[node name="Cutscene3" type="Node2D"]
+script = ExtResource("1_014h0")
+
+[node name="Cutscene3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-902, 3600)
+texture = ExtResource("2_jgpfn")
+
+[node name="Cutscene2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-902, 2012)
+texture = ExtResource("2_234fn")
+
+[node name="Cutscene" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(944, 440)
+texture = ExtResource("2_014h0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(594, 301)
+zoom = Vector2(2.005, 2.005)
+script = ExtResource("3_jgpfn")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4kkgw")
+}

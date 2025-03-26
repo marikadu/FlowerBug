@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0njmip8b4wu5"]
+
+[ext_resource type="Script" uid="uid://sm2hqhdr8gp1" path="res://levels/level_4.gd" id="1_0fd8o"]
+[ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_sc6c1"]
+[ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="3_ng40l"]
+[ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_04hp8"]
+[ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="5_8hlpj"]
+[ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://spawnArea/spawn_area.tscn" id="6_qhnv2"]
+[ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_vru0x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(154, 747)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_0fd8o")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.974551, 0.899927, 0.866032, 1)
+
+[node name="Flower_Spawn_Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="PowerUp_Spawn_Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource("2_sc6c1")]
+
+[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("3_ng40l")]
+offset_left = 64.0
+offset_top = 50.0
+offset_right = 162.0
+offset_bottom = 90.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_04hp8")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+script = ExtResource("5_8hlpj")
+
+[node name="SpawnArea" parent="." instance=ExtResource("6_qhnv2")]
+offset_left = 640.0
+offset_top = 389.0
+offset_right = 640.0
+offset_bottom = 389.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+physics_material_override = SubResource("PhysicsMaterial_1bvp3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(20, -40, 12, 624, 1126, 618, 1131, 7, -8, 13, -12, -29, 1179, -26, 1171, 653, -53, 660, -40, -27)
+
+[node name="ContinueArea2D" type="Area2D" parent="." groups=["continue"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContinueArea2D"]
+position = Vector2(60, 363.5)
+shape = SubResource("RectangleShape2D_lquwl")
+disabled = true
+
+[node name="background2" parent="." instance=ExtResource("7_vru0x")]
+
+[connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
+[connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]
