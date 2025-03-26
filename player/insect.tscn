@@ -58,7 +58,7 @@ shader_parameter/tint = Color(0.99375, 0.743557, 0.803259, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2xdxb"]
 shader = ExtResource("2_2xdxb")
 shader_parameter/enabled = false
-shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/tint = Color(0.992157, 0.745098, 0.803922, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eo6yw"]
 resource_local_to_scene = true
@@ -321,6 +321,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_uatpp"]
 resource_name = "hit_flash"
@@ -333,6 +345,18 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.1, 0.233333, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D2:material:shader_parameter/enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0998108, 0.233119, 0.333722),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false]

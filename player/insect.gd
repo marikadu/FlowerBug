@@ -103,7 +103,7 @@ func _ready() -> void:
 		$CleanSprite2D.visible = false
 		animated_sprite.visible = true
 		animated_sprite.play("flying")
-		animated_sprite = $AnimatedSprite2D
+		animated_sprite = $AnimatedSprite2D2
 	
 	#animated_sprite.play("flying")
 	#animated_sprite.visible = true
@@ -162,7 +162,7 @@ func _physics_process(_delta: float) -> void:
 				move_and_slide()
 				#$AnimatedSprite2D.look_at(target_position)
 				animated_sprite.look_at(target_position)
-				$AnimatedSprite2D2.look_at(target_position)
+				#$AnimatedSprite2D2.look_at(target_position)
 				#look_at(target_position)
 		
 		# eating a flower
@@ -193,7 +193,7 @@ func _physics_process(_delta: float) -> void:
 						# creating an illusion of sprite changing
 						# by hiding the sprite, since the insect has already 
 						# been drawn on the flower's sprite
-						$AnimatedSprite2D.hide() 
+						animated_sprite.hide()
 						#print("received damage!!")
 						is_trapped = true
 						insect_can_eat = false
@@ -385,7 +385,7 @@ func _on_trapped_timer_timeout() -> void:
 	## also take damage from the bird
 	#can_detect_bird = true 
 
-	$AnimatedSprite2D.show()
+	animated_sprite.show()
 	follow_cursor = true
 	print("no longer trapped!")
 	choose_closest_flower() # finding another closest flower
@@ -529,7 +529,7 @@ func _on_has_filled_pollen_bar():
 	
 	
 func level_4_system():
-	if Global.current_scene_name == 4:
+	if Global.current_scene_name == 4: # only in the level 4
 		print("insect: level 4 system!")
 		
 		if Global.score > 120 and Global.score < 140:
