@@ -15,6 +15,7 @@ var current_multiplier = 1.0 # default multiplier
 var speed_power_up_active: bool  = false
 
 var has_started_the_game: bool = false
+var paint_was_washed_off: bool = false
 var has_completed_the_game: bool = false
 
 

@@ -11,7 +11,9 @@ extends CharacterBody2D
 @onready var score_power_up_timer: Timer = $ScorePowerUpTimer
 @onready var trapped_timer: Timer = $TrappedTimer
 @onready var trapped_bar: ProgressBar = $TrappedBar
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D2
+@onready var clean_sprite: AnimatedSprite2D = $CleanSprite2D
+#@onready var clean_sprite: AnimatedSprite2D = $CleanSprite2D
 @onready var hit_flash: AnimationPlayer = $HitFlashAnimationPlayer
 #@onready var h_box: HBoxContainer = $CanvasLayer/HBoxContainer
 #@onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
@@ -70,7 +72,7 @@ func _ready() -> void:
 	is_shaking = false
 	voulnerable = true
 	continue_scene = false
-	animated_sprite.play("flying")
+	#animated_sprite.play("flying")
 	
 	
 	rng = RandomNumberGenerator.new() # to randomize score or "pollen"
@@ -86,6 +88,26 @@ func _ready() -> void:
 	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_MAX)
+	
+	# wait a frame before loading
+	await get_tree().process_frame
+	
+	if Global.paint_was_washed_off: # if in story the paint is washed off
+		print("paint has been washed off")
+		$CleanSprite2D.visible = true
+		animated_sprite.visible = false
+		$CleanSprite2D.play("flying")
+		animated_sprite = $CleanSprite2D
+	else:
+		print("paint is on")
+		$CleanSprite2D.visible = false
+		animated_sprite.visible = true
+		animated_sprite.play("flying")
+		animated_sprite = $AnimatedSprite2D
+	
+	#animated_sprite.play("flying")
+	#animated_sprite.visible = true
+	#$CleanSprite2D.visible = false
 	
 func _physics_process(_delta: float) -> void:
 	
@@ -138,7 +160,9 @@ func _physics_process(_delta: float) -> void:
 					velocity = velocity.lerp(target_velocity, lerp_factor)
 			
 				move_and_slide()
-				$AnimatedSprite2D.look_at(target_position)
+				#$AnimatedSprite2D.look_at(target_position)
+				animated_sprite.look_at(target_position)
+				$AnimatedSprite2D2.look_at(target_position)
 				#look_at(target_position)
 		
 		# eating a flower
@@ -146,7 +170,6 @@ func _physics_process(_delta: float) -> void:
 			if near_flower:
 				if flower_to_eat:
 					if flower_to_eat.is_in_group("flower") and flower_to_eat.can_be_eaten:
-						
 						if has_collected_all_pollen:
 							animated_sprite.play("eating_full")
 						else:

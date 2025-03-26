@@ -1,24 +1,37 @@
-[gd_scene load_steps=37 format=3 uid="uid://b4msv7itrsdr8"]
+[gd_scene load_steps=60 format=3 uid="uid://b4msv7itrsdr8"]
 
 [ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
+[ext_resource type="Shader" uid="uid://bn1wcvasnb43t" path="res://shaders/hit_flash2.tres" id="2_2xdxb"]
 [ext_resource type="Texture2D" uid="uid://duf2ac05vm3s7" path="res://assets/sprites/beetle/bug_eating.png" id="3_ojlxu"]
-[ext_resource type="Shader" uid="uid://cahdfsagc3d5x" path="res://shaders/hit_flash.tres" id="3_uatpp"]
 [ext_resource type="Script" uid="uid://brtwcnydtbbf" path="res://player/States/state_machine.gd" id="4_c1dqc"]
+[ext_resource type="Texture2D" uid="uid://cmsuwsa3y3khr" path="res://assets/sprites/beetle/clean/full/bug_eating_full.png" id="4_e7b8o"]
+[ext_resource type="Texture2D" uid="uid://brbeo3w7222vl" path="res://assets/sprites/beetle/clean/bug_eating.png" id="4_eo6yw"]
 [ext_resource type="Texture2D" uid="uid://vc3a8bx3ybh2" path="res://assets/sprites/beetle/full/bug_eating_full.png" id="4_yo3lx"]
 [ext_resource type="Texture2D" uid="uid://cb8c3wg2b1eq" path="res://assets/sprites/beetle/bug_flying_1.png" id="5_b0lui"]
+[ext_resource type="Texture2D" uid="uid://cgf1jl675pjxs" path="res://assets/sprites/beetle/clean/bug_flying_1.png" id="5_e7b8o"]
 [ext_resource type="Script" uid="uid://cub5b7ogl4hk5" path="res://player/States/Normal.gd" id="5_xut38"]
+[ext_resource type="Texture2D" uid="uid://cic22frwvyu3j" path="res://assets/sprites/beetle/clean/bug_flying_2.png" id="6_eo6yw"]
 [ext_resource type="Script" uid="uid://dj284f5slhphn" path="res://player/States/SpeedPowerUp.gd" id="6_mydgl"]
 [ext_resource type="Texture2D" uid="uid://cdbh8i0vbvkpa" path="res://assets/sprites/beetle/bug_flying_2.png" id="6_myhd3"]
 [ext_resource type="Texture2D" uid="uid://brifsxvaeddxo" path="res://assets/sprites/beetle/full/bug_flying_full_1.png" id="6_ohht8"]
 [ext_resource type="Texture2D" uid="uid://bc3iptdkbim6l" path="res://assets/sprites/beetle/bug_game_over_0000.png" id="7_e5s0e"]
+[ext_resource type="Texture2D" uid="uid://drcovxdip35vj" path="res://assets/sprites/beetle/clean/full/bug_flying_1_full.png" id="7_e7b8o"]
 [ext_resource type="Texture2D" uid="uid://dyvowhfviwcxf" path="res://assets/sprites/beetle/full/bug_flying_full_2.png" id="7_yo3lx"]
+[ext_resource type="Texture2D" uid="uid://0n5sfb6t5b7f" path="res://assets/sprites/beetle/clean/full/bug_flying_2_full.png" id="8_eo6yw"]
 [ext_resource type="Texture2D" uid="uid://d0thbykv7e7qd" path="res://assets/sprites/beetle/bug_game_over_0001.png" id="8_ohht8"]
 [ext_resource type="Script" uid="uid://bi08t6w7hfe0" path="res://player/States/PollenPowerUp.gd" id="9_opt1d"]
+[ext_resource type="Texture2D" uid="uid://f4isqxyy638p" path="res://assets/sprites/beetle/clean/bug_game_over_0000.png" id="9_wcow2"]
 [ext_resource type="Texture2D" uid="uid://dryb0qq2lh7qt" path="res://assets/sprites/beetle/bug_game_over_0002.png" id="9_yo3lx"]
+[ext_resource type="Texture2D" uid="uid://dcs76hj7luanx" path="res://assets/sprites/beetle/clean/bug_game_over_0001.png" id="10_0yhgv"]
 [ext_resource type="Texture2D" uid="uid://dbmu4khgxu221" path="res://assets/sprites/beetle/bug_game_over_0003.png" id="10_dertp"]
+[ext_resource type="Texture2D" uid="uid://c54mwrfi4gvxh" path="res://assets/sprites/beetle/clean/bug_game_over_0002.png" id="11_fwq4s"]
 [ext_resource type="Texture2D" uid="uid://dwfst3weuaoqr" path="res://assets/sprites/beetle/bug_game_over_0004.png" id="11_wsrea"]
+[ext_resource type="Texture2D" uid="uid://dg73j5nmouvhn" path="res://assets/sprites/beetle/clean/bug_game_over_0003.png" id="12_0sy3a"]
 [ext_resource type="Texture2D" uid="uid://ogwykkqmpgnc" path="res://assets/sprites/beetle/bug_game_over_0005.png" id="12_ro71v"]
 [ext_resource type="Texture2D" uid="uid://4npechllcyce" path="res://assets/sprites/beetle/bug_game_over_0006.png" id="13_5mp12"]
+[ext_resource type="Texture2D" uid="uid://dwm6g77y6qwip" path="res://assets/sprites/beetle/clean/bug_game_over_0004.png" id="13_prjhg"]
+[ext_resource type="Texture2D" uid="uid://b0nxcfdpckie5" path="res://assets/sprites/beetle/clean/bug_game_over_0005.png" id="14_cvs46"]
+[ext_resource type="Texture2D" uid="uid://bu1pdgr8wthcc" path="res://assets/sprites/beetle/clean/bug_game_over_0006.png" id="15_fagf2"]
 [ext_resource type="Texture2D" uid="uid://c5qnan6p7og7f" path="res://assets/sprites/beetle/full/bug_game_over_full_0000.png" id="16_e7b8o"]
 [ext_resource type="Texture2D" uid="uid://c85ucoodv2pne" path="res://assets/sprites/beetle/full/bug_game_over_full_0001.png" id="17_eo6yw"]
 [ext_resource type="Texture2D" uid="uid://yex3qr1oi24m" path="res://assets/sprites/beetle/full/bug_game_over_full_0002.png" id="18_wcow2"]
@@ -26,14 +39,29 @@
 [ext_resource type="Texture2D" uid="uid://dj7bp2mmprw7k" path="res://assets/sprites/beetle/full/bug_game_over_full_0004.png" id="20_fwq4s"]
 [ext_resource type="Texture2D" uid="uid://dbgbrsjt20eje" path="res://assets/sprites/beetle/full/bug_game_over_full_0005.png" id="21_0sy3a"]
 [ext_resource type="Texture2D" uid="uid://cmlckhtsalxk5" path="res://assets/sprites/beetle/full/bug_game_over_full_0006.png" id="22_prjhg"]
+[ext_resource type="Texture2D" uid="uid://c5aon3pqmki1w" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0000.png" id="36_2xdxb"]
+[ext_resource type="Texture2D" uid="uid://snjh30e352cu" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0001.png" id="37_5swun"]
+[ext_resource type="Texture2D" uid="uid://du5hxys8v7xux" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0002.png" id="38_x1j3m"]
+[ext_resource type="Texture2D" uid="uid://dtt2cc87hq0o0" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0003.png" id="39_1qq0e"]
+[ext_resource type="Texture2D" uid="uid://diojrttf51rtr" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0004.png" id="40_yj308"]
+[ext_resource type="Texture2D" uid="uid://db6ai3fiq3dap" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0005.png" id="41_41l50"]
+[ext_resource type="Texture2D" uid="uid://c07jv4xnjgwat" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0006.png" id="42_wfckw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_opt1d"]
 resource_local_to_scene = true
-shader = ExtResource("3_uatpp")
+shader = ExtResource("2_2xdxb")
 shader_parameter/enabled = false
 shader_parameter/tint = Color(0.99375, 0.743557, 0.803259, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xut38"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7b8o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xdxb"]
+shader = ExtResource("2_2xdxb")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eo6yw"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -148,6 +176,122 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_xut38"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eo6yw")
+}],
+"loop": true,
+"name": &"eating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_e7b8o")
+}],
+"loop": true,
+"name": &"eating_full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_e7b8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eo6yw")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_e7b8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_eo6yw")
+}],
+"loop": true,
+"name": &"flying_full",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_wcow2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0yhgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fwq4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0sy3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_prjhg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cvs46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fagf2")
+}],
+"loop": false,
+"name": &"game_over",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_2xdxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_5swun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_x1j3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_1qq0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_yj308")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_41l50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_wfckw")
+}],
+"loop": false,
+"name": &"game_over_full",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_41l50")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_wfckw")
+}],
+"loop": true,
+"name": &"game_over_full_loop",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_cvs46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fagf2")
+}],
+"loop": true,
+"name": &"game_over_loop",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kt6d"]
 radius = 39.5
 
@@ -209,8 +353,20 @@ script = ExtResource("1_ev3hp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_opt1d")
 scale = Vector2(0.195, 0.195)
+sprite_frames = SubResource("SpriteFrames_e7b8o")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_2xdxb")
+scale = Vector2(0.195, 0.195)
+sprite_frames = SubResource("SpriteFrames_eo6yw")
+animation = &"eating"
+
+[node name="CleanSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_opt1d")
+scale = Vector2(0.195, 0.195)
 sprite_frames = SubResource("SpriteFrames_xut38")
-animation = &"game_over_full_loop"
+animation = &"eating"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

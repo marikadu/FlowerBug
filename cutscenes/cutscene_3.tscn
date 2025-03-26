@@ -33,91 +33,6 @@ tracks/1/keys = {
 "values": [Vector2(2.005, 2.005)]
 }
 
-[sub_resource type="Animation" id="Animation_5mse6"]
-resource_name = "cutscene_2"
-length = 24.0435
-markers = [{
-"color": Color(1, 1, 1, 1),
-"name": &"start2",
-"time": 0.666667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"start1",
-"time": 0.0333333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"into_bee",
-"time": 1.56667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"no_pollen",
-"time": 2.36667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"is_sorry",
-"time": 3.06667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"notices",
-"time": 3.9684
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"angry_bee",
-"time": 4.63333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"hat1",
-"time": 6.93333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"hat2",
-"time": 10.0333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"grandma_bee",
-"time": 12.5667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"honey1",
-"time": 14.4333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"honey2",
-"time": 16.7667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"honey3",
-"time": 19.2333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"end",
-"time": 23.5667
-}]
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.666667, 1.4, 1.43333, 1.567, 1.573, 2.36667, 3.06667, 3.96667, 4.63333, 6.93333, 10.0333, 12.5667, 14.4333, 16.7667, 19.2333, 23.5667),
-"transitions": PackedFloat32Array(0.615572, 0.517632, 0.707107, 1, 1, 1, 0.392292, 0.615572, 0.366021, 0.63728, 0.63728, 0.420448, 0.466516, 0.5, 0.450625, 0.420448, 0.574349, 1),
-"update": 0,
-"values": [Vector2(594, 301), Vector2(585.227, 304.753), Vector2(414, 378), Vector2(73, 334), Vector2(80, 329), Vector2(73, 334), Vector2(73, 334), Vector2(30, 655), Vector2(170.58, 641), Vector2(521, 643), Vector2(527, 986), Vector2(55, 984), Vector2(1179, -45), Vector2(1484, -42), Vector2(1783, -68), Vector2(1790, 143), Vector2(1486, 490), Vector2(1283, 868)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 6.93333, 8.1, 16.7786, 19.2333, 23.5667),
-"transitions": PackedFloat32Array(1, 1, 1, 0.482968, 0.287175, 1),
-"update": 0,
-"values": [Vector2(1.625, 1.625), Vector2(1.625, 1.625), Vector2(2.375, 2.375), Vector2(2.375, 2.375), Vector2(0.905, 0.905), Vector2(1.51, 1.51)]
-}
-
 [sub_resource type="Animation" id="Animation_234fn"]
 resource_name = "cutscene3"
 length = 45.0
@@ -253,6 +168,91 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.277392, 1, 0.466517, 0.353554, 1, 0.435275, 1, 0.406126, 1, 0.466517, 0.466517, 1, 0.378929, 1),
 "update": 0,
 "values": [Vector2(2.315, 2.315), Vector2(1.77, 1.77), Vector2(1.77, 1.77), Vector2(1.6, 1.6), Vector2(0.98, 0.98), Vector2(1.11, 1.11), Vector2(2.585, 2.585), Vector2(2.585, 2.585), Vector2(1.88, 1.88), Vector2(1.88, 1.88), Vector2(1.21, 1.21), Vector2(2.615, 2.615), Vector2(2.615, 2.615), Vector2(1.475, 1.475)]
+}
+
+[sub_resource type="Animation" id="Animation_5mse6"]
+resource_name = "cutscene_2"
+length = 24.0435
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"start2",
+"time": 0.666667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"start1",
+"time": 0.0333333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"into_bee",
+"time": 1.56667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"no_pollen",
+"time": 2.36667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"is_sorry",
+"time": 3.06667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"notices",
+"time": 3.9684
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"angry_bee",
+"time": 4.63333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hat1",
+"time": 6.93333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hat2",
+"time": 10.0333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"grandma_bee",
+"time": 12.5667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey1",
+"time": 14.4333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey2",
+"time": 16.7667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"honey3",
+"time": 19.2333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end",
+"time": 23.5667
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.666667, 1.4, 1.43333, 1.567, 1.573, 2.36667, 3.06667, 3.96667, 4.63333, 6.93333, 10.0333, 12.5667, 14.4333, 16.7667, 19.2333, 23.5667),
+"transitions": PackedFloat32Array(0.615572, 0.517632, 0.707107, 1, 1, 1, 0.392292, 0.615572, 0.366021, 0.63728, 0.63728, 0.420448, 0.466516, 0.5, 0.450625, 0.420448, 0.574349, 1),
+"update": 0,
+"values": [Vector2(594, 301), Vector2(585.227, 304.753), Vector2(414, 378), Vector2(73, 334), Vector2(80, 329), Vector2(73, 334), Vector2(73, 334), Vector2(30, 655), Vector2(170.58, 641), Vector2(521, 643), Vector2(527, 986), Vector2(55, 984), Vector2(1179, -45), Vector2(1484, -42), Vector2(1783, -68), Vector2(1790, 143), Vector2(1486, 490), Vector2(1283, 868)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.93333, 8.1, 16.7786, 19.2333, 23.5667),
+"transitions": PackedFloat32Array(1, 1, 1, 0.482968, 0.287175, 1),
+"update": 0,
+"values": [Vector2(1.625, 1.625), Vector2(1.625, 1.625), Vector2(2.375, 2.375), Vector2(2.375, 2.375), Vector2(0.905, 0.905), Vector2(1.51, 1.51)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4kkgw"]

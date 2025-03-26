@@ -161,6 +161,8 @@ func _physics_process(delta: float) -> void:
 				
 			27: # end of the cutscene
 				print("paused animation, slide: ", slide)
+				if not Global.paint_was_washed_off:
+					Global.paint_was_washed_off = true
 				Transition.transition()
 				await Transition.on_transition_finished
 				get_tree().change_scene_to_file("res://levels/level_4.tscn")
