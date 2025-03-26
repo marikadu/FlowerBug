@@ -1,6 +1,14 @@
 extends Control
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
+
+
 # main menu
+
+func _ready() -> void:
+	animation_player.play("Logo")
+	animation_player_2.play("beetle")
 
 
 func _on_play_pressed() -> void:
