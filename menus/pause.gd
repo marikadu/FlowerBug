@@ -28,3 +28,15 @@ func resume():
 func pause():
 	pause_menu.show()
 	get_tree().paused = true
+
+
+func _on_main_menu_pressed() -> void:
+	resume()
+	print("to the main menu")
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://menus/MainMenu.tscn")
+
+
+func _on_resume_pressed() -> void:
+	resume()

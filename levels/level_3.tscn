@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpf525vwyovn8"]
+[gd_scene load_steps=12 format=3 uid="uid://dpf525vwyovn8"]
 
 [ext_resource type="Script" uid="uid://wj7qsvs4mmsp" path="res://levels/level_3.gd" id="1_8l0e1"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_lfnxh"]
 [ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="3_ofchu"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_jq78i"]
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_lfnxh"]
+[ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="5_jq78i"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://background/spawnArea/spawn_area.tscn" id="5_lsnkt"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_lfnxh"]
 [ext_resource type="PackedScene" uid="uid://bettt2fi2mk8n" path="res://background/rain.tscn" id="8_ofchu"]
@@ -46,6 +47,8 @@ offset_bottom = 90.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_lfnxh")]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("5_jq78i")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)

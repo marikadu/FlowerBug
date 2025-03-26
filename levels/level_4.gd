@@ -36,10 +36,14 @@ func _ready() -> void:
 	
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
+	Events.shaking_4.connect(_on_shaking_4)
 	
 	Global.current_scene_name = 4
 	
+	Global.score = 0 # resetting the score
+	
 	bird_already_present = false
+	#$Pollen.visible = false
 	
 	continue_collision.disabled = true # can't continue
 	
@@ -166,7 +170,7 @@ func remove_powerup(powerup: Node2D) -> void:
 	if powerup:
 		powerup_instances.erase(powerup)
 		powerup.queue_free()
-		print("got powerup: ", powerup)
+		#print("got powerup: ", powerup)
 		
 
 func spawn_powerup():
@@ -216,3 +220,11 @@ func _on_enemy_left():
 
 func _on_can_continue():
 	continue_collision.disabled = false
+	
+	
+func _on_shaking_4():
+	await get_tree().create_timer(1.5).timeout
+	
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://cutscenes/cutscene_4.tscn")

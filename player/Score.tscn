@@ -14,23 +14,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wifsl")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -229.0
-offset_top = -85.0
-offset_right = -20.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 50
-text = "0000"
-horizontal_alignment = 2
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -42,9 +25,26 @@ offset_right = 23.0
 offset_bottom = 108.0
 grow_horizontal = 0
 scale = Vector2(0.845, 0.845)
-value = 55.0
+value = 100.0
 texture_under = ExtResource("2_5lc28")
 texture_over = ExtResource("3_6kaxw")
 texture_progress = ExtResource("4_y4x8w")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -699.0
+offset_right = -83.0
+offset_bottom = -630.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.590498, 0.349278, 0.132575, 1)
+theme_override_font_sizes/font_size = 40
+text = "0000"
 
 [connection signal="value_changed" from="TextureProgressBar" to="." method="_on_texture_progress_bar_value_changed"]

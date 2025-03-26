@@ -24,3 +24,10 @@ signal bird_chases_the_beetle
 signal show_flashback_1
 signal show_flashback_2
 signal show_flashback_3
+
+
+# score progress bar shaking
+signal shaking_1
+signal shaking_2
+signal shaking_3
+signal shaking_4

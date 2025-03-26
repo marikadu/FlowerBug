@@ -3,7 +3,8 @@ extends Control
 var player: CharacterBody2D
 
 func _ready() -> void:
-	player = Global.player_instance
+	#player = Global.player_instance
+	pass
 
 
 func _on_mouse_entered() -> void:

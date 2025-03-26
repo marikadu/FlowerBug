@@ -5,7 +5,7 @@ extends Control
 
 func _on_play_pressed() -> void:
 	if not Global.has_started_the_game:
-		Global.has_completed_the_game = true
+		Global.has_started_the_game = true
 		Transition.transition()
 		await Transition.on_transition_finished
 		get_tree().change_scene_to_file("res://levels/level_1.tscn")

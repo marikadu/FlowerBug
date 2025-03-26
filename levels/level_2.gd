@@ -40,6 +40,8 @@ func _ready() -> void:
 	
 	Global.current_scene_name = 2
 	
+	Global.score = 0 # resetting the score
+	
 	bird_already_present = false
 	
 	continue_collision.disabled = true # can't continue

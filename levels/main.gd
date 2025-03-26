@@ -29,11 +29,19 @@ var powerup_instances = [] # making an array empty from the start of the game
 
 var screen_size
 var bird_already_present: bool
+# for how much to decrease time of spawning every 15 seconds 
+# (wait time of the) "IncreateSpawnRate" timer
+var decrease_amount = 1.5 
+var min_spawn_time = 1.0
 
 func _ready() -> void:
 	
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
+	
+	Global.current_scene_name = 5
+	
+	Global.score = 0 # resetting the score
 	
 	bird_already_present = false
 	
@@ -223,3 +231,9 @@ func _on_enemy_left():
 
 func _on_can_continue():
 	continue_collision.disabled = false
+
+
+# decreasing bird's spawn rate to increase the difficulty
+func _on_increase_spawn_rate_timeout() -> void:
+	$Enemy_Spawn_Timer.wait_time = max($Enemy_Spawn_Timer.wait_time - decrease_amount, min_spawn_time)
+	print("spawn rate decreased: ", $Enemy_Spawn_Timer.wait_time)

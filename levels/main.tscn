@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://jbvaordywvhn"]
 
-[ext_resource type="Script" uid="uid://brhdtucnypnpa" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://brhdtucnypnpa" path="res://levels/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://background/spawnArea/spawn_area.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_1bvp3"]
@@ -26,6 +26,7 @@ wait_time = 8.0
 autostart = true
 
 [node name="Enemy_Spawn_Timer" type="Timer" parent="."]
+wait_time = 14.0
 one_shot = true
 autostart = true
 
@@ -74,6 +75,11 @@ disabled = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BirdCantLandArea2D"]
 polygon = PackedVector2Array(-9, 105, 124, 101, 328, 101, 663, 108, 961, 111, 1182, 103, 1287, 98, 1284, -7, -6, -4)
 
+[node name="IncreaseSpawnRate" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]
 [connection signal="timeout" from="Enemy_Spawn_Timer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="IncreaseSpawnRate" to="." method="_on_increase_spawn_rate_timeout"]

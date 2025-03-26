@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://382hr5ehgsbt"]
+[gd_scene load_steps=11 format=3 uid="uid://382hr5ehgsbt"]
 
 [ext_resource type="Script" uid="uid://cvjguna8lfh0g" path="res://levels/level_1.gd" id="1_n46q3"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_5hph3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_bjebc"]
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_gwceb"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://background/spawnArea/spawn_area.tscn" id="5_5rr72"]
+[ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="5_l53as"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_gwceb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
@@ -40,6 +41,8 @@ offset_bottom = 90.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_gwceb")]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("5_l53as")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)

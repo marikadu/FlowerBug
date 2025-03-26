@@ -247,10 +247,10 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 			
 			if speed_power_up_timer.time_left > 0:
 				speed_power_up_timer.start(13) 
-				print("got the speed power-up again!")
+				#print("got the speed power-up again!")
 			else:
 				Events.got_speed_powerup.emit()
-				print("got speed!")
+				#print("got speed!")
 				# entering the state of speed boost
 				$StateMachine.enter_state($StateMachine.states["SpeedPowerUp"])
 			
@@ -260,10 +260,10 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 			#print("got pollen!")
 			if score_power_up_timer.time_left > 0:
 				score_power_up_timer.start(10) 
-				print("got the pollen power-up again!")
+				#print("got the pollen power-up again!")
 			else:
 				Events.got_pollen_powerup.emit()
-				print("got pollen!")
+				#print("got pollen!")
 				# entering the state of pollen/score multiplier
 				$StateMachine.enter_state($StateMachine.states["PollenPowerUp"])
 		
@@ -317,7 +317,7 @@ func ate_the_flower():
 			animated_sprite.play("flying")
 		
 		identifyFlower(flower_type)
-		#print("score: ", Global.score)
+		print("score: ", Global.score)
 		
 	eating_bar.hide() # hiding the progress bar
 	near_flower = false
@@ -392,13 +392,14 @@ func choose_closest_flower():
 # adding different point to the score depending on the flower type
 func identifyFlower(flower_type: String):
 	#var random_pollen_amount = rng.randi_range(1, 6) # initial score
-	var random_pollen_amount = rng.randi_range(50, 60) # for debugging
+	var random_pollen_amount = rng.randi_range(20, 40) # for debugging
 	match flower_type:
 		"n_flower_1", "n_flower_2", "n_flower_3", "n_flower_4":
 			# the insect earns pollen
 			#Global.score += random_pollen_amount
 			Global.add_score(random_pollen_amount)
 			if Global.score >= 10:
+				level_4_system()
 				#print("win!")
 				Events.can_continue.emit()
 			
@@ -502,3 +503,24 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 func _on_has_filled_pollen_bar():
 	print("insect: has filled the bar!")
 	has_collected_all_pollen = true
+	
+	
+func level_4_system():
+	if Global.current_scene_name == 4:
+		print("insect: level 4 system!")
+		
+		if Global.score > 120 and Global.score < 140:
+			print("!!! shake!")
+			Events.shaking_1.emit()
+			
+		elif Global.score > 140 and Global.score < 160:
+			print("!!! shake! more")
+			Events.shaking_2.emit()
+		
+		elif Global.score > 160 and Global.score < 185:
+			print("!!! shake! MORE")
+			Events.shaking_3.emit()
+			
+		elif Global.score > 185:
+			print("!!!!! explode!")
+			Events.shaking_4.emit()

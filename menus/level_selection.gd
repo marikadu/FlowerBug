@@ -42,4 +42,4 @@ func _on_dawn_pressed() -> void:
 func _on_infinite_pressed() -> void:
 	Transition.transition()
 	await Transition.on_transition_finished
-	get_tree().change_scene_to_file("res://levels/level_4.tscn")
+	get_tree().change_scene_to_file("res://levels/main.tscn")

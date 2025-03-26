@@ -50,12 +50,12 @@ text = "Resume"
 custom_minimum_size = Vector2(0, 35.39)
 layout_mode = 2
 
-[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Main Menu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_81jlj")
-theme_override_colors/font_color = Color(0.709804, 0.427451, 0.176471, 1)
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
 theme_override_font_sizes/font_size = 70
 text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

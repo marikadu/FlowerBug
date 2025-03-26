@@ -43,6 +43,8 @@ func _ready() -> void:
 	
 	Global.current_scene_name = 3
 	
+	Global.score = 0 # resetting the score
+	
 	bird_already_present = false
 	can_spawn_bird = true
 	

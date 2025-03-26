@@ -4,7 +4,8 @@ var player_instance
 var is_game_over: bool
 var is_game_won: bool
 
-var score = 0
+var score: int = 0
+var day_4_score = 0
 var personal_best = 0
 var current_scene_name: int
 
@@ -24,7 +25,7 @@ func update_personal_best():
 
 
 func add_score(pollen: int):
-	var final_pollen = pollen * current_multiplier
+	var final_pollen: int = pollen * current_multiplier
 	score += final_pollen
 	score = max(score, 0) # doesn't go bellow 0
 	#print("added score: ", final_pollen, ". new score: ", score)

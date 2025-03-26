@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgkmrxwwdhc20"]
+[gd_scene load_steps=14 format=3 uid="uid://dgkmrxwwdhc20"]
 
 [ext_resource type="Script" uid="uid://jtc3gyxgweyx" path="res://background/background.gd" id="1_eva80"]
 [ext_resource type="Texture2D" uid="uid://t7cbgmih44pe" path="res://background/bg_day.png" id="1_p8qmt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c1urhlj77x4bq" path="res://background/clouds_evening.png" id="5_2duwg"]
 [ext_resource type="Texture2D" uid="uid://bg37cgbu03qe4" path="res://background/bg_sky_noon.png" id="5_omdhl"]
 [ext_resource type="Texture2D" uid="uid://dpfviddigmvk8" path="res://background/flowers.png" id="6_3phoi"]
+[ext_resource type="Texture2D" uid="uid://ciqt0puweya7t" path="res://background/clouds_infinite.png" id="6_gxljl"]
 [ext_resource type="Texture2D" uid="uid://byy686th63d0" path="res://background/bg_sky_evening.png" id="7_lc8rw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3phoi"]
@@ -94,6 +95,24 @@ offset_bottom = 319.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_2duwg")
+
+[node name="Clouds_infinite" type="TextureRect" parent="."]
+visible = false
+z_index = 5
+z_as_relative = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_3phoi")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -361.0
+offset_right = 600.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_gxljl")
 
 [node name="BgSky" type="AnimatedSprite2D" parent="."]
 z_index = 4

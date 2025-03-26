@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0njmip8b4wu5"]
+[gd_scene load_steps=12 format=3 uid="uid://c0njmip8b4wu5"]
 
 [ext_resource type="Script" uid="uid://sm2hqhdr8gp1" path="res://levels/level_4.gd" id="1_0fd8o"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_sc6c1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="5_dmnu2"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://background/spawnArea/spawn_area.tscn" id="6_qhnv2"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_vru0x"]
+[ext_resource type="PackedScene" uid="uid://tfm0m3vctpte" path="res://player/pollen.tscn" id="9_sc6c1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
@@ -32,6 +33,7 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("5_dmnu2")]
+visible = false
 
 [node name="Score" parent="CanvasLayer" instance=ExtResource("2_sc6c1")]
 
@@ -69,6 +71,13 @@ shape = SubResource("RectangleShape2D_lquwl")
 disabled = true
 
 [node name="background2" parent="." instance=ExtResource("7_vru0x")]
+
+[node name="Pollen" parent="." instance=ExtResource("9_sc6c1")]
+z_index = 8
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
 
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]

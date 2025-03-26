@@ -51,7 +51,7 @@ layout_mode = 2
 theme = ExtResource("1_dvbnx")
 theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
 theme_override_font_sizes/font_size = 70
-text = "Noon"
+text = "Evening"
 
 [node name="Dawn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -92,5 +92,4 @@ text = "Infinite Day"
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Evening" to="." method="_on_evening_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Dawn" to="." method="_on_evening_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Dawn" to="." method="_on_dawn_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Infinite" to="." method="_on_morning_pressed"]
 [connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Infinite" to="." method="_on_infinite_pressed"]
