@@ -82,8 +82,8 @@ func _physics_process(delta: float) -> void:
 				slide += 1
 				#########################
 				
-			23: # end of the cutscene
+			13: # end of the cutscene
 				print("paused animation, slide: ", slide)
 				Transition.transition()
 				await Transition.on_transition_finished
-				get_tree().change_scene_to_file("res://levels/end_menu.tscn")
+				get_tree().change_scene_to_file("res://menus/WinMenu.tscn")

@@ -31,6 +31,8 @@ func pause():
 
 
 func _on_main_menu_pressed() -> void:
+	if Engine.time_scale < 1.0:
+		Engine.time_scale = 1.0
 	resume()
 	print("to the main menu")
 	Transition.transition()

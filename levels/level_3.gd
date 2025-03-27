@@ -40,6 +40,8 @@ func _ready() -> void:
 	Events.can_continue.connect(_on_can_continue)
 	Events.has_collected_all_pollen.connect(_on_has_filled_pollen_bar)
 	Events.bird_chases_the_beetle.connect(_on_bird_chases_the_beetle)
+	Events.show_flashback_3.connect(_on_show_flashback_3)
+	Events.flashback_3_finished.connect(_on_flashback_3_finished)
 	
 	Global.current_scene_name = 3
 	
@@ -254,3 +256,14 @@ func _on_bird_chases_the_beetle():
 	#spawn_enemy()
 	call_deferred("spawn_enemy")
 	#set_deferred("can_spawn_bird", true)
+
+
+# time slows down when the flashback appears
+func _on_show_flashback_3():
+	$Flower_Spawn_Timer.wait_time = randi_range(14,18) 
+
+
+func _on_flashback_3_finished():
+	await get_tree().create_timer(0.6, false).timeout
+	print("start spawning")
+	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 

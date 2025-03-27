@@ -37,6 +37,8 @@ func _ready() -> void:
 	
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
+	Events.show_flashback_1.connect(_on_show_flashback_1)
+	Events.flashback_2_finished.connect(_on_flashback_2_finished)
 	
 	Global.current_scene_name = 2
 	
@@ -65,7 +67,7 @@ func _ready() -> void:
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 	
 	# randomizing the enemy spawn timer
-	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
+	$Enemy_Spawn_Timer.wait_time = randi_range(20,26) 
 	
 	# from the start, setting the amount of hearts based on the max health
 	hearts_container.setMaxHearts(player_instance.max_health)
@@ -235,3 +237,15 @@ func _on_enemy_left():
 
 func _on_can_continue():
 	continue_collision.disabled = false
+	
+# time slows down when the flashback appears
+func _on_show_flashback_1():
+	#$Flower_Spawn_Timer.paused = true
+	$Flower_Spawn_Timer.wait_time = randi_range(15,25) 
+	#$PowerUp_Spawn_Timer.paused = true
+	
+func _on_flashback_2_finished():
+	await get_tree().create_timer(0.6, false).timeout
+	print("start spawning")
+	#$Flower_Spawn_Timer.start()
+	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 

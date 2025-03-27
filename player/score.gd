@@ -1,20 +1,28 @@
 extends Control
 
 @onready var progress_bar: TextureProgressBar = $TextureProgressBar
+@onready var arrow: Sprite2D = $Arrow
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 var shaking = false
 var shake_intensity = 1.0
 var original_position: Vector2 # saving the original position, so the score does not fly off screen
 var infinite_mode: bool = false
+var arrow_appeared: bool = false
 
 
 func _ready() -> void:
+	
+	Events.can_continue.connect(_on_can_continue)
 	
 	Events.shaking_1.connect(_on_shake_1)
 	Events.shaking_2.connect(_on_shake_2)
 	Events.shaking_3.connect(_on_shake_3)
 	
 	$Label.visible = false
+	arrow.visible = false
+	arrow_appeared = false
 	
 	# wait a frame before loading
 	await get_tree().process_frame
@@ -43,31 +51,8 @@ func _on_texture_progress_bar_value_changed(value: float) -> void:
 		if Global.score >= progress_bar.max_value:
 			Events.has_collected_all_pollen.emit()
 			print("score: progress bar complete!")
-	
-	
-	
-	# if the current level is not level 4 "dawn"
-	#if not Global.current_scene_name == 4:
-		## finished filling the bar signal
-		#if Global.score >= progress_bar.max_value:
-			#Events.has_collected_all_pollen.emit()
-			#print("score: progress bar complete!")
-			
-	#else: # if the current level is 4
-		#
-		#if Global.score >= day_4_score_1:
-			#print("score: start slightly shaking")
-			#
-		#if Global.score >= day_4_score_2:
-			#print("score: start shaking more")
-			#
-		#if Global.score >= day_4_score_3:
-			#print("score: start shaking even more")
-			#
-		#if Global.score >= day_4_score_4:
-			#print("score: explode!")
-			
-			
+
+
 func start_shaking():
 	original_position = global_position
 	shaking = true
@@ -102,3 +87,14 @@ func _on_shake_3():
 	if not shaking:
 		start_shaking()
 	shake_intensity = 6.0
+	
+
+func _on_can_continue():
+	if not Global.current_scene_name == 4:
+		if not arrow_appeared:
+			arrow_appeared = true
+			print("can continue!")
+			arrow.visible = true
+			animation_player.play("arrow_appear")
+			await get_tree().create_timer(0.5, false).timeout
+			animation_player.play("arrow_loop")

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var collision: CollisionShape2D = $Area2D/CollisionShape2D
 
 @export var max_speed = 480.0
+@export var slow_down_speed = 100.0
 @export var min_speed = 50.0
 @export var lerp_factor = 0.6
 @export var cursor_threshold = 5.0
@@ -25,8 +26,7 @@ signal caught_bug
 func _ready() -> void:
 	
 	Events.caught_by_a_bird.connect(_on_caught_by_a_bird)
-	#Events.bird_chases_the_beetle.connect(_on_bird_chases_the_beetle)
-	
+
 	# for the variety, either have the sprite be flipped horizontally or not
 	if randf() < 0.5:
 		bird_sprite.flip_h = true
@@ -207,3 +207,4 @@ func leaving_scene():
 	#can_move = false
 	#is_chasing_cutscene = true
 	#print("chase starts")
+	

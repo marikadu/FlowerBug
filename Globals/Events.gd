@@ -23,7 +23,9 @@ signal bird_chases_the_beetle
 
 signal show_flashback_1
 signal show_flashback_2
+signal flashback_2_finished
 signal show_flashback_3
+signal flashback_3_finished
 
 
 # score progress bar shaking

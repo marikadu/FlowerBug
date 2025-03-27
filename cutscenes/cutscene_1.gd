@@ -6,6 +6,9 @@ var slide: int = 0
 
 # what if I add the feature of manually turning the pages/pannels
 func _ready() -> void:
+	if Engine.time_scale < 1.0:
+		Engine.time_scale = 1.0
+	
 	animation_player.play("start_2")
 	await get_tree().create_timer(2.4801).timeout
 	animation_player.pause()

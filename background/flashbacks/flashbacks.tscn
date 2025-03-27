@@ -124,7 +124,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_upubj"]
 resource_name = "flashback_1"
-length = 26.2405
+length = 7.9765
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -132,7 +132,7 @@ tracks/0/path = NodePath("1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2, 8.68267, 9.43292),
+"times": PackedFloat32Array(0, 0.733333, 3.14934, 3.89959),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -144,7 +144,7 @@ tracks/1/path = NodePath("2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(7.83333, 8.6, 16.6, 18.4864),
+"times": PackedFloat32Array(2.46667, 2.76667, 5.53333, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -156,7 +156,7 @@ tracks/2/path = NodePath("3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(15.6351, 16.4017, 23.5667, 25.0281),
+"times": PackedFloat32Array(5, 5.3, 7.73333, 7.96667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -164,7 +164,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_kow71"]
 resource_name = "flashback_2"
-length = 22.2535
+length = 8.392
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,7 +172,7 @@ tracks/0/path = NodePath("4:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.13333, 8.6, 9.43333),
+"times": PackedFloat32Array(0, 0.533333, 3.43333, 3.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -184,7 +184,7 @@ tracks/1/path = NodePath("5:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(7.83333, 8.63333, 15.5, 16.1333),
+"times": PackedFloat32Array(2.4, 2.73333, 5.13333, 5.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -196,7 +196,7 @@ tracks/2/path = NodePath("6:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(13.8333, 14.6409, 21.2667, 22),
+"times": PackedFloat32Array(4.6, 4.96667, 7.93333, 8.33333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
