@@ -75,5 +75,10 @@ disabled = true
 
 [node name="background" parent="." instance=ExtResource("7_gwceb")]
 
+[node name="BirdCantLandArea2D" type="Area2D" parent="." groups=["prevent_land"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BirdCantLandArea2D"]
+polygon = PackedVector2Array(-9, 105, 124, 101, 328, 101, 663, 108, 961, 111, 1182, 103, 1287, 98, 1284, -7, -6, -4)
+
 [connection signal="timeout" from="Flower_Spawn_Timer" to="." method="_on_flower_spawn_timer_timeout"]
 [connection signal="timeout" from="PowerUp_Spawn_Timer" to="." method="_on_power_up_spawn_timer_timeout"]

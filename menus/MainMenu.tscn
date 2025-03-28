@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://w2pbprcxv723"]
+[gd_scene load_steps=20 format=3 uid="uid://w2pbprcxv723"]
 
 [ext_resource type="Script" uid="uid://dnpyuye8hw0vc" path="res://menus/main_menu.gd" id="1_ct8su"]
 [ext_resource type="Texture2D" uid="uid://c3d0bs7j2t6le" path="res://menus/LevelSelectionMenu.png" id="2_k15nl"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://d4fyh27j3giv0" path="res://menus/MainMenu_beetle2.png" id="4_e2awe"]
 [ext_resource type="Texture2D" uid="uid://2fthihnwm5lx" path="res://menus/MainMenu_bird.png" id="4_lb38e"]
 [ext_resource type="Texture2D" uid="uid://b5fgjvutso8te" path="res://menus/MainMenu_beetle.png" id="4_vp83o"]
-[ext_resource type="PackedScene" uid="uid://65dnn6bptiqa" path="res://menus/LevelSelection.tscn" id="8_7fxis"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lb38e"]
 animations = [{
@@ -262,15 +261,125 @@ libraries = {
 &"": SubResource("AnimationLibrary_7fxis")
 }
 
-[node name="LevelSelection" parent="." instance=ExtResource("8_7fxis")]
-layout_mode = 1
-offset_top = 720.0
-offset_bottom = 720.0
-
 [node name="AnimationPlayerCamera" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_4yyw3")
 }
 
+[node name="LevelSele" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 720.0
+offset_right = 40.0
+offset_bottom = 760.0
+
+[node name="Back" type="Button" parent="LevelSele"]
+offset_left = 876.0
+offset_top = 97.0
+offset_right = 1086.0
+offset_bottom = 208.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Back"
+
+[node name="Morning" type="Button" parent="LevelSele"]
+offset_left = 90.0
+offset_top = 122.0
+offset_right = 379.0
+offset_bottom = 233.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Morning"
+
+[node name="Noon" type="Button" parent="LevelSele"]
+offset_left = 456.0
+offset_top = 118.0
+offset_right = 732.0
+offset_bottom = 229.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Noon"
+
+[node name="Evening" type="Button" parent="LevelSele"]
+offset_left = 103.0
+offset_top = 473.0
+offset_right = 379.0
+offset_bottom = 584.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Evening"
+
+[node name="Dawn" type="Button" parent="LevelSele"]
+offset_left = 500.0
+offset_top = 444.0
+offset_right = 710.0
+offset_bottom = 555.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Dawn"
+
+[node name="Infinite" type="Button" parent="LevelSele"]
+offset_left = 791.0
+offset_top = 487.0
+offset_right = 1174.0
+offset_bottom = 598.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 70
+text = "Infinite Day"
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelSele"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -228.0
+offset_right = -180.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSele/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSele/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="LevelSele"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 193.0
+offset_top = -228.0
+offset_right = 482.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSele/MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSele/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="LevelSele"]
+position = Vector2(640, 360)
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="LevelSele/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="LevelSele/Morning" to="." method="_on_morning_pressed"]
+[connection signal="pressed" from="LevelSele/Noon" to="." method="_on_noon_pressed"]
+[connection signal="pressed" from="LevelSele/Evening" to="." method="_on_evening_pressed"]
+[connection signal="pressed" from="LevelSele/Dawn" to="." method="_on_dawn_pressed"]
+[connection signal="pressed" from="LevelSele/Infinite" to="." method="_on_infinite_pressed"]

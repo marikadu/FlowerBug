@@ -43,3 +43,7 @@ func _on_infinite_pressed() -> void:
 	Transition.transition()
 	await Transition.on_transition_finished
 	get_tree().change_scene_to_file("res://levels/main.tscn")
+
+
+func _on_back_pressed() -> void:
+	pass # Replace with function body.

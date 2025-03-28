@@ -36,3 +36,44 @@ func _on_exit_pressed() -> void:
 	Transition.transition()
 	await Transition.on_transition_finished
 	get_tree().quit()
+
+
+# level selection part
+
+func _on_back_pressed() -> void:
+	$AnimationPlayerCamera.play_backwards("camera")
+
+
+# level 1
+func _on_morning_pressed() -> void:
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/level_1.tscn")
+
+
+# level 2
+func _on_noon_pressed() -> void:
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/level_2.tscn")
+
+
+# level 3
+func _on_evening_pressed() -> void:
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/level_3.tscn")
+
+
+# level 4
+func _on_dawn_pressed() -> void:
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/level_4.tscn")
+
+
+# level "main", infinite mode
+func _on_infinite_pressed() -> void:
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/main.tscn")
