@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://382hr5ehgsbt"]
+[gd_scene load_steps=20 format=3 uid="uid://382hr5ehgsbt"]
 
 [ext_resource type="Script" uid="uid://cvjguna8lfh0g" path="res://levels/level_1.gd" id="1_n46q3"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_5hph3"]
+[ext_resource type="Texture2D" uid="uid://wsd4f071ysnr" path="res://assets/HUD/tutorial_mouse2.png" id="2_5ot28"]
+[ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="2_08mmt"]
 [ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="3_j7kpp"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_bjebc"]
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_gwceb"]
@@ -9,6 +11,111 @@
 [ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="5_l53as"]
 [ext_resource type="PackedScene" uid="uid://brshe3wuy30m0" path="res://menus/GameOver.tscn" id="6_3sk1a"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_gwceb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ot28"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5ot28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_08mmt")
+}],
+"loop": true,
+"name": &"click",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_08mmt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_aerfg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nmsli"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5ot28"]
+resource_name = "tutorial"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333, 1.3, 2.03333, 2.58889),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-47, 15), Vector2(0, 0), Vector2(-47, 15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_betor"]
+resource_name = "move_to_flower"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-281, -22)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aerfg"]
+_data = {
+&"RESET": SubResource("Animation_aerfg"),
+&"appear": SubResource("Animation_nmsli"),
+&"move": SubResource("Animation_5ot28"),
+&"move_to_flower": SubResource("Animation_betor")
+}
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
 
@@ -23,13 +130,33 @@ script = ExtResource("1_n46q3")
 color = Color(0.999223, 0.987293, 0.94773, 1)
 
 [node name="Flower_Spawn_Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="PowerUp_Spawn_Timer" type="Timer" parent="."]
 wait_time = 8.0
 autostart = true
+
+[node name="tutorial" type="Control" parent="."]
+z_index = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1026.0
+offset_top = 307.0
+offset_right = 1066.0
+offset_bottom = 347.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="tutorial"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_5ot28")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="tutorial"]
+libraries = {
+&"": SubResource("AnimationLibrary_aerfg")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -45,6 +172,7 @@ metadata/_edit_use_anchors_ = true
 [node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_gwceb")]
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("5_l53as")]
+visible = false
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("6_3sk1a")]
 visible = false

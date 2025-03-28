@@ -2,6 +2,7 @@ extends Node
 
 signal game_over
 signal resume_game
+signal ate_tutorial_flower
 
 signal can_continue
 

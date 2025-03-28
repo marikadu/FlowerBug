@@ -1,6 +1,6 @@
 extends Node2D
 
-# level 1
+# level 1, tutorial
 
 @onready var spawn_area: Control = $SpawnArea
 @onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
@@ -39,12 +39,15 @@ func _ready() -> void:
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
 	Events.game_over.connect(_on_game_over)
+	Events.ate_tutorial_flower.connect(_on_ate_tutorial_flower)
 	
 	Global.current_scene_name = 1
 	Global.is_game_over = false
 	Global.score = 0 # resetting the score
 	
 	bird_already_present = false
+	
+	$CanvasLayer/Score.visible = false # hide the UI for the tutorial
 	
 	continue_collision.disabled = true # can't continue
 	
@@ -64,12 +67,14 @@ func _ready() -> void:
 	screen_size = get_viewport().get_visible_rect().size
 	
 	# randomizing the timer of spawning the flowers
-	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
+	$Flower_Spawn_Timer.wait_time = randi_range(5,8) 
 	
 	# from the start, setting the amount of hearts based on the max health
 	hearts_container.setMaxHearts(player_instance.max_health)
 	hearts_container.updateHearts(player_instance.current_health)
 	Events.healthChanged.connect(hearts_container.updateHearts)
+	
+	start_tutorial()
 
 
 func spawn_flower():
@@ -225,3 +230,45 @@ func _on_can_continue():
 func _on_game_over():
 	game_over_screen.show()
 	Global.is_game_over = true
+
+
+func start_tutorial():
+	print("tutorial part!")
+	# pausing the timers
+	$Flower_Spawn_Timer.paused = true
+	$PowerUp_Spawn_Timer.paused = true
+	
+	await get_tree().create_timer(1.4).timeout
+	
+	$tutorial/AnimationPlayer.play("appear")
+	await get_tree().create_timer(0.5).timeout
+	
+	$tutorial/AnimationPlayer.play("move")
+	await get_tree().create_timer(4.2).timeout
+	
+	# spawn tutorial flower
+	var tutorial_flower = preload("res://flowers/n_flower_1_tutorial.tscn")
+	var tutorial_flower_instance = tutorial_flower.instantiate()
+	tutorial_flower_instance.position = get_viewport_rect().size / 2.0
+	tutorial_flower_instance.add_to_group("flower")
+	add_child(tutorial_flower_instance)
+	
+	await get_tree().create_timer(5.0).timeout
+	print("move to flower")
+	$tutorial/AnimationPlayer.play("move_to_flower")
+	
+	await get_tree().create_timer(2.0).timeout
+	print("show eat")
+	
+	$tutorial/AnimatedSprite2D.play("click")
+
+
+func _on_ate_tutorial_flower():
+	$tutorial/AnimatedSprite2D.play("default")
+	$tutorial/AnimationPlayer.play_backwards("appear")
+	$CanvasLayer/Score.visible = true
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	$Flower_Spawn_Timer.wait_time = randi_range(4,6)
+	$Flower_Spawn_Timer.paused = false

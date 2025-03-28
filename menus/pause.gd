@@ -23,7 +23,8 @@ func _process(_delta: float) -> void:
 func resume():
 	pause_menu.hide()
 	#Events.resume_game.emit()
-	get_tree().paused = false
+	if not Events.flashback_playing:
+		get_tree().paused = false
 	
 func pause():
 	pause_menu.show()

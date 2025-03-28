@@ -219,8 +219,12 @@ func _physics_process(_delta: float) -> void:
 			
 
 func _process(_delta: float) -> void:
+	if !flowers_near.is_empty(): # if there are no flowers, continue searching for nearby flowers
+		choose_closest_flower()
+	
 	if is_eating:
 		if Input.is_action_just_pressed("eat"):
+			AudioManager.collect_pollen()
 			current_bite_counter += 1 
 			eating_bar.value = (current_bite_counter / float(bites_required)) * 100
 			#print("eating progress: ", eating_bar.value)
@@ -316,7 +320,7 @@ func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("flower"):
 		#near_flower = false
 		flowers_near.erase(body) # remove the nearby flower from the list
-		choose_closest_flower()
+		#choose_closest_flower()
 		flower_to_eat = null # clearing stored flower
 		#print("area: ", near_flower)
 		
@@ -436,6 +440,7 @@ func identifyFlower(flower_type: String):
 						Events.can_continue.emit()
 						
 			elif Global.current_scene_name == 3:
+				Global.add_score(25)
 				print("emit flashback 3!")
 				Events.show_flashback_3.emit()
 				if Global.score >= can_continue_score:
@@ -447,6 +452,10 @@ func identifyFlower(flower_type: String):
 			# the insect loses the polen when hit
 			Global.score -= random_pollen_amount
 			#take_damage()
+			
+		"n_flower_1_tutorial":
+			Global.add_score(16)
+			Events.ate_tutorial_flower.emit()
 			
 		"_":
 			print("insect: unknown flower type")
