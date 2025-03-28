@@ -31,13 +31,13 @@ func _on_disappear_timer_timeout() -> void:
 		
 func start_eating():
 	#$DisappearTimer.stop()
-	$DisappearTimer.paused = true
+	#$DisappearTimer.paused = true
 	is_being_eaten = true
 	is_eaten_status_1.emit(true)
 	
 func stop_eating():
 	#$DisappearTimer.start()
-	$DisappearTimer.paused = false
+	#$DisappearTimer.paused = false
 	is_being_eaten = false
 	is_eaten_status_1.emit(false)
 
@@ -48,7 +48,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	AudioManager.flower_bloomed()
 	animated_sprite.play("bloomed")
 	can_be_eaten = true
-	$DisappearTimer.start()
+	#$DisappearTimer.start() # this flower does not disappear!
 
 
 # every frame change, the bouncing animation is played
