@@ -134,6 +134,7 @@ func _landing():
 	emit_signal("has_landed")
 	Events.can_detect_bird.emit()
 	bird_sprite.frame = 1
+	AudioManager.play_bird_landed()
 	#collision.disabled = false
 	await get_tree().create_timer(0.2).timeout
 	can_detect_player = true
@@ -197,6 +198,8 @@ func leaving_scene():
 			#print("time to leave")
 			#print("leaving")
 			bird.play("fly_away")
+			AudioManager.play_bird_flying_away()
+			AudioManager.play_bird_wings()
 			Events.cannot_detect_bird.emit()
 			Events.is_player_caught = false # back to false
 			#await get_tree().create_timer(1).timeout

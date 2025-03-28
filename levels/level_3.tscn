@@ -23,6 +23,10 @@ script = ExtResource("1_8l0e1")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.974551, 0.899927, 0.866032, 1)
 
+[node name="RainGPUParticles2D" parent="." instance=ExtResource("8_ofchu")]
+z_index = 6
+position = Vector2(641, 354)
+
 [node name="Flower_Spawn_Timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -80,9 +84,6 @@ shape = SubResource("RectangleShape2D_lquwl")
 disabled = true
 
 [node name="background2" parent="." instance=ExtResource("7_lfnxh")]
-
-[node name="RainGPUParticles2D" parent="." instance=ExtResource("8_ofchu")]
-position = Vector2(641, 354)
 
 [node name="BirdCantLandArea2D" type="Area2D" parent="." groups=["prevent_land"]]
 

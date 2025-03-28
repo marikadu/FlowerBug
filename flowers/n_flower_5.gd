@@ -21,6 +21,7 @@ func _ready() -> void:
 		animated_sprite.flip_h = true
 	# bouncing animations for better visuals
 	animated_sprite.play("blooming")
+	AudioManager.flower_bloomed()
 	animation_player.play("bounce")
 	player = Global.player_instance
 	can_be_eaten = false

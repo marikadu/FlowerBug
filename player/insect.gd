@@ -24,6 +24,7 @@ extends CharacterBody2D
 @export var lerp_factor = 0.2
 @export var cursor_threshold = 5.0
 @export var bites_required: int = 4
+@export var max_distance_for_the_flower = 100
 @export var border_margin: int = 50
 @export var can_continue_score: int = 20 # for debugging it's 20, but it should be 100
 
@@ -189,6 +190,7 @@ func _physics_process(_delta: float) -> void:
 					if flower_to_eat.is_in_group("carnivorous") and flower_to_eat.can_be_eaten:
 						var bounce_animation_count = 0 # resetting
 						# changing the sprite to being trapped
+						AudioManager.play_got_trapped()
 						flower_to_eat.animation_player.play("bounce")
 						flower_to_eat.animated_sprite.play("trapped")
 						# creating an illusion of sprite changing
@@ -219,8 +221,13 @@ func _physics_process(_delta: float) -> void:
 			
 
 func _process(_delta: float) -> void:
-	if !flowers_near.is_empty(): # if there are no flowers, continue searching for nearby flowers
-		choose_closest_flower()
+	#if !flowers_near.is_empty(): # if there are no flowers, continue searching for nearby flowers
+		#choose_closest_flower()
+		
+	# removing invalid flowers and the ones that are too far away
+	flowers_near = flowers_near.filter(func(flower): 
+		return is_instance_valid(flower) and global_position.distance_to(flower.global_position) <= max_distance_for_the_flower
+	)
 	
 	if is_eating:
 		if Input.is_action_just_pressed("eat"):
@@ -338,6 +345,7 @@ func ate_the_flower():
 		var flower_type = flower_to_eat.flower_type
 		
 		get_parent().remove_flower(flower_to_eat) # removing the flower
+		AudioManager.collected_pollen()
 		#print("ate!")
 		if has_collected_all_pollen:
 			animated_sprite.play("flying_full")
@@ -397,7 +405,7 @@ func _on_trapped_timer_timeout() -> void:
 	take_damage()
 
 func choose_closest_flower():
-	# removing invalid flowers
+	
 	flowers_near = flowers_near.filter(func(flower): return is_instance_valid(flower))
 	# if no nearby flowers, clear the list
 	if flowers_near.is_empty():
@@ -467,6 +475,7 @@ func take_damage():
 		if current_health > 0:
 			var random_pollen_amount = rng.randi_range(2, 7)
 			AudioManager.play_hit()
+			AudioManager.play_bird_attacking()
 			hit_flash.play("hit_flash")
 			current_health -= 1
 			Events.healthChanged.emit(current_health)
@@ -537,9 +546,13 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			get_tree().change_scene_to_file("res://cutscenes/cutscene_2.tscn")
 			
 		elif Global.current_scene_name == 3:
-			# transition to the new scene
+			# bird chases after the beetle
 			Events.bird_chases_the_beetle.emit()
-			await get_tree().create_timer(0.8).timeout
+			await get_tree().create_timer(0.5).timeout
+			# transition to the new scene
+			Transition.transition()
+			await Transition.on_transition_finished
+			get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
 			
 			#Transition.transition()
 			#await Transition.on_transition_finished

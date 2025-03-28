@@ -268,7 +268,7 @@ func _on_ate_tutorial_flower():
 	$tutorial/AnimationPlayer.play_backwards("appear")
 	$CanvasLayer/Score.visible = true
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(0.3).timeout
 	
 	$Flower_Spawn_Timer.wait_time = randi_range(4,6)
 	$Flower_Spawn_Timer.paused = false

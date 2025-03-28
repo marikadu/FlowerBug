@@ -12,6 +12,13 @@ func _ready() -> void:
 	slide += 1
 	print("paused animation, slide: ", slide)
 	
+	AudioManager.rain_sound.volume_db = -30.0
+	AudioManager.rain_play()
+	await get_tree().create_timer(0.4).timeout
+	AudioManager.rain_sound.volume_db = -25.0
+	await get_tree().create_timer(0.4).timeout
+	AudioManager.rain_sound.volume_db = -23.0
+	
 	#await get_tree().create_timer(3.4).timeout
 	#$Camera2D.apply_shake()
 
@@ -25,9 +32,9 @@ func _physics_process(delta: float) -> void:
 			1:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "start", "bird")
-				# apply camera shake for better visuals
-				
 				slide += 1
+				await get_tree().create_timer(0.8).timeout
+				AudioManager.angry_bird_play()
 			
 			2:
 				print("paused animation, slide: ", slide)
@@ -35,7 +42,6 @@ func _physics_process(delta: float) -> void:
 				#await get_tree().create_timer(0.8).timeout
 				#$Camera2D.apply_shake()
 				slide += 1
-				#
 			3:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "bird_drop", "bird_fly")
@@ -62,10 +68,22 @@ func _physics_process(delta: float) -> void:
 				animation_player.play_section_with_markers("cutscene3", "drop1", "drop2")
 				slide += 1
 				
+				
 			8:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop2", "drop3")
 				slide += 1
+				
+				AudioManager.water_drop_play()
+				
+				# fading out the sound
+				AudioManager.rain_sound.volume_db = -24.0
+				await get_tree().create_timer(0.4).timeout
+				AudioManager.rain_sound.volume_db = -30.0
+				await get_tree().create_timer(0.4).timeout
+				AudioManager.empty_play()
+				AudioManager.rain_sound.volume_db = -40.0
+				
 				
 			9:
 				print("paused animation, slide: ", slide)
@@ -98,6 +116,14 @@ func _physics_process(delta: float) -> void:
 				slide += 1
 				await get_tree().create_timer(1.3).timeout
 				$Camera2D.apply_shake()
+				
+				AudioManager.rain_sound.volume_db = -30.0
+				#AudioManager.rain_play()
+				await get_tree().create_timer(0.4).timeout
+				AudioManager.rain_sound.volume_db = -25.0
+				await get_tree().create_timer(0.4).timeout
+				AudioManager.rain_sound.volume_db = -23.0
+				
 				
 			15:
 				print("paused animation, slide: ", slide)

@@ -36,6 +36,7 @@ func trap_the_player():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	is_blooming = false
 	animation_player.play("bounce")
+	AudioManager.flower_bloomed()
 	animated_sprite.play("bloomed")
 	can_be_eaten = true
 	$DisappearTimer.start()

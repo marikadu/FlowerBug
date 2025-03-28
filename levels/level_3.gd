@@ -257,6 +257,14 @@ func _on_has_filled_pollen_bar():
 	bird_already_present = false
 	$Enemy_Spawn_Timer.stop() # stopping the bird spawn timer
 	$RainGPUParticles2D.emitting = true # rain starts
+	AudioManager.rain_sound.volume_db = -30.0
+	AudioManager.rain_play()
+	await get_tree().create_timer(0.4).timeout
+	AudioManager.rain_sound.volume_db = -25.0
+	await get_tree().create_timer(0.4).timeout
+	AudioManager.rain_sound.volume_db = -20.0
+
+	
 	
 func _on_bird_chases_the_beetle():
 	can_spawn_bird = true

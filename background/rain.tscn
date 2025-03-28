@@ -1,16 +1,16 @@
 [gd_scene load_steps=10 format=3 uid="uid://bettt2fi2mk8n"]
 
 [sub_resource type="Curve" id="Curve_20ow5"]
-_limits = [0.0, 0.3, 0.0, 1.0]
-_data = [Vector2(0, 0.273034), 0.0, 0.138843, 0, 0, Vector2(0.671429, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0.3), 0.0, 0.0, 0, 0]
-point_count = 3
+_limits = [0.0, 0.8, 0.0, 1.0]
+_data = [Vector2(0, 0.575281), 0.0, 0.0, 0, 0, Vector2(1, 0.8), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_h17oq"]
 curve = SubResource("Curve_20ow5")
 
 [sub_resource type="Gradient" id="Gradient_umsjo"]
 offsets = PackedFloat32Array(0, 0.0294118)
-colors = PackedColorArray(1, 1, 1, 0.47451, 0.322313, 0.797535, 0.861038, 1)
+colors = PackedColorArray(1, 1, 1, 0.47451, 0.474003, 0.882763, 0.936446, 0.847059)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ast51"]
 gradient = SubResource("Gradient_umsjo")
@@ -22,7 +22,7 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_ast51"]
 _limits = [0.0, 30.0, 0.0, 800.0]
-_data = [Vector2(0, 15.3535), 0.0, 0.0, 0, 0, Vector2(337.143, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 29.6629), 0.0, 0.0, 0, 0, Vector2(337.143, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3nscs"]
@@ -40,7 +40,7 @@ particle_flag_disable_z = true
 emission_shape_offset = Vector3(0, -400, 0)
 emission_shape = 3
 emission_box_extents = Vector3(640, 1, 1)
-gravity = Vector3(0, 700, 0)
+gravity = Vector3(0, 900, 0)
 scale_min = 3.0
 scale_max = 8.0
 scale_over_velocity_curve = SubResource("CurveXYZTexture_20ow5")
@@ -48,7 +48,7 @@ color_initial_ramp = SubResource("GradientTexture1D_ast51")
 alpha_curve = SubResource("CurveTexture_h17oq")
 
 [node name="RainGPUParticles2D" type="GPUParticles2D"]
-amount = 11
+amount = 14
 lifetime = 1.55
 preprocess = 0.5
 visibility_rect = Rect2(-640, -360, 1280, 720)
