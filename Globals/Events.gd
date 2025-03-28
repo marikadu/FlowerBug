@@ -1,6 +1,6 @@
 extends Node
 
-#signal game_over
+signal game_over
 signal resume_game
 
 signal can_continue
@@ -22,10 +22,14 @@ signal no_longer_in_the_bird_area
 signal bird_chases_the_beetle
 
 signal show_flashback_1
-signal show_flashback_2
-signal flashback_2_finished
+var flashback_playing: bool = false
+
+#signal show_flashback_2
+#signal flashback_2_finished
 signal show_flashback_3
 signal flashback_3_finished
+
+signal pansy_flower_1
 
 
 # score progress bar shaking

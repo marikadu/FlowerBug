@@ -1,14 +1,20 @@
 extends Control
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animation_player_2: AnimationPlayer = $AnimationPlayer2
-
+@onready var player_logo: AnimationPlayer = $AnimationPlayerLogo
+@onready var player_beetle: AnimationPlayer = $AnimationPlayerBeetle
+@onready var player_bird: AnimationPlayer = $AnimationPlayerBird
 
 # main menu
 
 func _ready() -> void:
-	animation_player.play("Logo")
-	animation_player_2.play("beetle")
+	player_logo.play("Logo")
+	player_beetle.play("beetle")
+	player_bird.play("bird")
+	
+	if Global.paint_was_washed_off: # if the paint is washed off due to the story
+		$Beetle.play("no_paint")
+	else:
+		$Beetle.play("with_paint")
 
 
 func _on_play_pressed() -> void:
@@ -19,10 +25,11 @@ func _on_play_pressed() -> void:
 		get_tree().change_scene_to_file("res://levels/level_1.tscn")
 
 	else:
-		print("has started the game: to the level selection screen")
-		Transition.transition()
-		await Transition.on_transition_finished
-		get_tree().change_scene_to_file("res://menus/LevelSelection.tscn")
+		#print("has started the game: to the level selection screen")
+		#Transition.transition()
+		#await Transition.on_transition_finished
+		#get_tree().change_scene_to_file("res://menus/LevelSelection.tscn")
+		$AnimationPlayerCamera.play("camera")
 
 
 func _on_exit_pressed() -> void:

@@ -369,7 +369,8 @@ _data = {
 }
 
 [node name="insect" type="CharacterBody2D" groups=["player"]]
-z_index = 5
+z_index = 6
+y_sort_enabled = true
 collision_layer = 21
 collision_mask = 6
 script = ExtResource("1_ev3hp")

@@ -25,6 +25,7 @@ extends CharacterBody2D
 @export var cursor_threshold = 5.0
 @export var bites_required: int = 4
 @export var border_margin: int = 50
+@export var can_continue_score: int = 20 # for debugging it's 20, but it should be 100
 
 var flower_to_eat: Node2D = null
 var powerup_to_get: Node2D = null
@@ -419,12 +420,27 @@ func identifyFlower(flower_type: String):
 	match flower_type:
 		"n_flower_1", "n_flower_2", "n_flower_3", "n_flower_4":
 			# the insect earns pollen
-			#Global.score += random_pollen_amount
 			Global.add_score(random_pollen_amount)
-			if Global.score >= 10:
-				level_4_system()
+			if Global.score >= can_continue_score:
+				level_4_system() # level 4 system is called but only executed if the level is 4
 				#print("win!")
-				Events.can_continue.emit()
+				if not Events.flashback_playing:
+					Events.can_continue.emit()
+				
+		"n_flower_5":
+			Global.add_score(20)
+			if Global.current_scene_name == 2:
+				Events.show_flashback_1.emit()
+				if Global.score >= can_continue_score:
+					if not Events.flashback_playing:
+						Events.can_continue.emit()
+						
+			elif Global.current_scene_name == 3:
+				print("emit flashback 3!")
+				Events.show_flashback_3.emit()
+				if Global.score >= can_continue_score:
+					if not Events.flashback_playing:
+						Events.can_continue.emit()
 			
 		"c_flower_1", "c_flower_2", "c_flower_3":
 			#print("damaged! flower")
@@ -457,6 +473,7 @@ func take_damage():
 				insect_can_eat = false
 				can_detect_bird = false
 				voulnerable = false
+				Events.game_over.emit()
 				await get_tree().create_timer(0.2).timeout
 				
 				if has_collected_all_pollen:

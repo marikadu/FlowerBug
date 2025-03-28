@@ -7,6 +7,7 @@
 size = Vector2(80, 80)
 
 [node name="Speed" type="CharacterBody2D" groups=["powerup"]]
+y_sort_enabled = true
 script = ExtResource("1_foswv")
 
 [node name="PowerUpSprite" type="Sprite2D" parent="."]

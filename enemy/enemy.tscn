@@ -52,10 +52,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ffra"]
-size = Vector2(289.265, 172.305)
+size = Vector2(273.905, 127.295)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
-size = Vector2(296.015, 172.175)
+size = Vector2(261.495, 123.975)
 
 [sub_resource type="Animation" id="Animation_ppra6"]
 length = 0.001
@@ -195,6 +195,7 @@ _data = {
 }
 
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+y_sort_enabled = true
 collision_layer = 5
 collision_mask = 0
 script = ExtResource("1_ofsxj")
@@ -208,20 +209,23 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_p200p")
 
 [node name="Bird_Sprite" type="AnimatedSprite2D" parent="."]
-z_index = 3
+z_index = 6
+y_sort_enabled = true
 texture_filter = 1
 position = Vector2(1, -937)
 scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_6yflr")
-animation = &"caught"
-offset = Vector2(0, -71.0227)
+animation = &"normal"
+offset = Vector2(0, -80.008)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16.875)
 shape = SubResource("RectangleShape2D_5ffra")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 12.61)
 shape = SubResource("RectangleShape2D_ofsxj")
 
 [node name="BirdAppearTimer" type="Timer" parent="."]

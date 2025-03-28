@@ -5,7 +5,6 @@ var is_game_over: bool
 var is_game_won: bool
 
 var score: int = 0
-var day_4_score = 0
 var personal_best = 0
 var current_scene_name: int
 

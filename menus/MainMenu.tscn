@@ -1,10 +1,33 @@
-[gd_scene load_steps=10 format=3 uid="uid://w2pbprcxv723"]
+[gd_scene load_steps=21 format=3 uid="uid://w2pbprcxv723"]
 
 [ext_resource type="Script" uid="uid://dnpyuye8hw0vc" path="res://menus/main_menu.gd" id="1_ct8su"]
+[ext_resource type="Texture2D" uid="uid://c3d0bs7j2t6le" path="res://menus/LevelSelectionMenu.png" id="2_k15nl"]
 [ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="2_ot3ob"]
 [ext_resource type="Texture2D" uid="uid://bgbdmcwl40qft" path="res://menus/MainMenu.png" id="2_rmsp1"]
 [ext_resource type="Texture2D" uid="uid://vo4hr1kjg8yf" path="res://menus/logo.png" id="3_218cn"]
+[ext_resource type="Texture2D" uid="uid://d4fyh27j3giv0" path="res://menus/MainMenu_beetle2.png" id="4_e2awe"]
+[ext_resource type="Texture2D" uid="uid://2fthihnwm5lx" path="res://menus/MainMenu_bird.png" id="4_lb38e"]
 [ext_resource type="Texture2D" uid="uid://b5fgjvutso8te" path="res://menus/MainMenu_beetle.png" id="4_vp83o"]
+[ext_resource type="PackedScene" uid="uid://65dnn6bptiqa" path="res://menus/LevelSelection.tscn" id="8_7fxis"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lb38e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_e2awe")
+}],
+"loop": true,
+"name": &"no_paint",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_vp83o")
+}],
+"loop": false,
+"name": &"with_paint",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_218cn"]
 resource_name = "Logo"
@@ -20,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-0.139626, 0.139626, -0.139626]
+"values": [-0.0349066, 0.0349066, -0.0349066]
 }
 
 [sub_resource type="Animation" id="Animation_vp83o"]
@@ -74,6 +97,81 @@ _data = {
 &"beetle": SubResource("Animation_e2awe")
 }
 
+[sub_resource type="Animation" id="Animation_lb38e"]
+resource_name = "bird"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bird:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.55, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0698132, 0.0698132, -0.0698132]
+}
+
+[sub_resource type="Animation" id="Animation_7fxis"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bird:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0698132]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7fxis"]
+_data = {
+&"RESET": SubResource("Animation_7fxis"),
+&"bird": SubResource("Animation_lb38e")
+}
+
+[sub_resource type="Animation" id="Animation_k15nl"]
+resource_name = "camera"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 362), Vector2(640, 1080)]
+}
+
+[sub_resource type="Animation" id="Animation_4yyw3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 362)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4yyw3"]
+_data = {
+&"RESET": SubResource("Animation_4yyw3"),
+&"camera": SubResource("Animation_k15nl")
+}
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -82,6 +180,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ct8su")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 362)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 1440.0
+texture = ExtResource("2_k15nl")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -94,10 +201,16 @@ position = Vector2(383, 130)
 rotation = -0.139626
 texture = ExtResource("3_218cn")
 
-[node name="Beetle" type="Sprite2D" parent="."]
+[node name="Bird" type="Sprite2D" parent="."]
+position = Vector2(870, 74)
+rotation = -0.0698132
+texture = ExtResource("4_lb38e")
+
+[node name="Beetle" type="AnimatedSprite2D" parent="."]
 position = Vector2(414, 525)
 rotation = 0.122173
-texture = ExtResource("4_vp83o")
+sprite_frames = SubResource("SpriteFrames_lb38e")
+animation = &"with_paint"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -134,14 +247,29 @@ theme_override_colors/font_color = Color(0.709804, 0.427451, 0.176471, 1)
 theme_override_font_sizes/font_size = 70
 text = "Exit"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerLogo" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vp83o")
 }
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerBeetle" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vp83o")
+}
+
+[node name="AnimationPlayerBird" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7fxis")
+}
+
+[node name="LevelSelection" parent="." instance=ExtResource("8_7fxis")]
+layout_mode = 1
+offset_top = 720.0
+offset_bottom = 720.0
+
+[node name="AnimationPlayerCamera" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4yyw3")
 }
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]

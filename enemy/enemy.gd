@@ -39,6 +39,7 @@ func _ready() -> void:
 	#player = get_tree().get_first_node_in_group("player")
 	$BirdAppearTimer.start()
 	#collision.disabled = true
+	#bird.play("landing")
 	
 	
 func _physics_process(_delta: float) -> void:

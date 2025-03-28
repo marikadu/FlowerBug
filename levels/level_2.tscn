@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://boxnctoinmb72"]
+[gd_scene load_steps=12 format=3 uid="uid://boxnctoinmb72"]
 
 [ext_resource type="Script" uid="uid://rx7acqblkljr" path="res://levels/level_2.gd" id="1_ilhis"]
+[ext_resource type="PackedScene" uid="uid://brshe3wuy30m0" path="res://menus/GameOver.tscn" id="2_at1ld"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_ep78u"]
 [ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="3_dfjjl"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_at1ld"]
@@ -15,6 +16,7 @@
 size = Vector2(154, 747)
 
 [node name="main" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ilhis")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -29,7 +31,6 @@ wait_time = 24.156
 autostart = true
 
 [node name="Enemy_Spawn_Timer" type="Timer" parent="."]
-wait_time = 11.0
 one_shot = true
 autostart = true
 
@@ -47,6 +48,9 @@ metadata/_edit_use_anchors_ = true
 [node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_ep78u")]
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource("5_dfjjl")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("2_at1ld")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)

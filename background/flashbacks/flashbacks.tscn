@@ -124,7 +124,28 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_upubj"]
 resource_name = "flashback_1"
-length = 7.9765
+length = 1.7065
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"start",
+"time": 0.0
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide2",
+"time": 0.766667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide3",
+"time": 1.10114
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"flashback_1_end",
+"time": 1.66667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide1",
+"time": 0.4
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -132,7 +153,7 @@ tracks/0/path = NodePath("1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.733333, 3.14934, 3.89959),
+"times": PackedFloat32Array(0, 0.366667, 0.666667, 0.766667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -144,7 +165,7 @@ tracks/1/path = NodePath("2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.46667, 2.76667, 5.53333, 6),
+"times": PackedFloat32Array(0.433333, 0.766667, 1, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -156,7 +177,7 @@ tracks/2/path = NodePath("3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(5, 5.3, 7.73333, 7.96667),
+"times": PackedFloat32Array(0.8, 1.1, 1.4, 1.63333),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -164,7 +185,28 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_kow71"]
 resource_name = "flashback_2"
-length = 8.392
+length = 2.036
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"slide4",
+"time": 0.36677
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide5",
+"time": 0.768179
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide6",
+"time": 1.06771
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"flashback_2_end",
+"time": 1.59341
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"start_flashback_2",
+"time": 0.0448274
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,7 +214,7 @@ tracks/0/path = NodePath("4:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.533333, 3.43333, 3.8),
+"times": PackedFloat32Array(0, 0.366667, 0.666667, 0.766667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -184,7 +226,7 @@ tracks/1/path = NodePath("5:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.4, 2.73333, 5.13333, 5.6),
+"times": PackedFloat32Array(0.433333, 0.766667, 1, 1.06667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -196,7 +238,7 @@ tracks/2/path = NodePath("6:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(4.6, 4.96667, 7.93333, 8.33333),
+"times": PackedFloat32Array(0.766667, 1.06667, 1.4, 1.56667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -204,7 +246,24 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_isv1x"]
 resource_name = "flashback_3"
-length = 22.0
+length = 3.4725
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"slide7",
+"time": 0.367534
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide9",
+"time": 1.09452
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"flashback_3_end",
+"time": 1.61149
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"slide8",
+"time": 0.766667
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -212,7 +271,7 @@ tracks/0/path = NodePath("7:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.633333, 7.33333, 7.96667),
+"times": PackedFloat32Array(0, 0.366667, 0.666667, 0.766667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -224,7 +283,7 @@ tracks/1/path = NodePath("8:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(6.76667, 7.31118, 13.956, 14.3),
+"times": PackedFloat32Array(0.433333, 0.766667, 1, 1.06667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -236,7 +295,7 @@ tracks/2/path = NodePath("9:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(13.7082, 13.9599, 21.3635, 21.6853),
+"times": PackedFloat32Array(0.8, 1.06667, 1.4, 1.56667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -251,6 +310,8 @@ _data = {
 }
 
 [node name="Flashbacks" type="Control"]
+process_mode = 3
+z_index = 3
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -298,8 +359,7 @@ modulate = Color(1, 1, 1, 0)
 texture = ExtResource("10_ijbdq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_pl6rw")
 }
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

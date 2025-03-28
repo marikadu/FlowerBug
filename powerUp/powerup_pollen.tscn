@@ -7,6 +7,7 @@
 size = Vector2(80, 80)
 
 [node name="Pollen" type="CharacterBody2D" groups=["powerup"]]
+y_sort_enabled = true
 script = ExtResource("1_w6l2e")
 
 [node name="PowerUpSprite" type="Sprite2D" parent="."]

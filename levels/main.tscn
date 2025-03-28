@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jbvaordywvhn"]
+[gd_scene load_steps=11 format=3 uid="uid://jbvaordywvhn"]
 
 [ext_resource type="Script" uid="uid://brhdtucnypnpa" path="res://levels/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="3_1bvp3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_272bh"]
 [ext_resource type="PackedScene" uid="uid://lqhng5v8lbao" path="res://player/hearts_container.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://brshe3wuy30m0" path="res://menus/GameOver.tscn" id="5_6et1j"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_272bh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1bvp3"]
@@ -14,6 +15,7 @@
 size = Vector2(154, 747)
 
 [node name="main" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ig7tw")
 
 [node name="Flower_Spawn_Timer" type="Timer" parent="."]
@@ -43,6 +45,9 @@ offset_bottom = 90.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_272bh")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("5_6et1j")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)

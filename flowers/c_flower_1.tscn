@@ -78,6 +78,8 @@ _data = {
 }
 
 [node name="flower" type="CharacterBody2D" groups=["carnivorous"]]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_c5w3i")
 
 [node name="FlowerTest" type="Sprite2D" parent="."]

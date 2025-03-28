@@ -6,22 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://2ujevnah2ry8" path="res://assets/HUD/progress.png" id="4_y4x8w"]
 [ext_resource type="Texture2D" uid="uid://dt4f3ikpnsh5t" path="res://assets/HUD/arrow.png" id="5_6kaxw"]
 
-[sub_resource type="Animation" id="Animation_6kaxw"]
-resource_name = "arrow_appear"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Arrow:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333),
-"transitions": PackedFloat32Array(1.8025, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_y4x8w"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,6 +31,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6kaxw"]
+resource_name = "arrow_appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arrow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_uw1qn"]

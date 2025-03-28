@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c0njmip8b4wu5"]
+[gd_scene load_steps=13 format=3 uid="uid://c0njmip8b4wu5"]
 
 [ext_resource type="Script" uid="uid://sm2hqhdr8gp1" path="res://levels/level_4.gd" id="1_0fd8o"]
 [ext_resource type="PackedScene" uid="uid://c7trk7jtixhkf" path="res://player/Score.tscn" id="2_sc6c1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cgf027ras06i7" path="res://powerUp/HUD_PowerUp2.tscn" id="4_04hp8"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="5_8hlpj"]
 [ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="5_dmnu2"]
+[ext_resource type="PackedScene" uid="uid://brshe3wuy30m0" path="res://menus/GameOver.tscn" id="6_ng40l"]
 [ext_resource type="PackedScene" uid="uid://pajvfvquyng0" path="res://background/spawnArea/spawn_area.tscn" id="6_qhnv2"]
 [ext_resource type="PackedScene" uid="uid://dgkmrxwwdhc20" path="res://background/background.tscn" id="7_vru0x"]
 [ext_resource type="PackedScene" uid="uid://tfm0m3vctpte" path="res://player/pollen.tscn" id="9_sc6c1"]
@@ -16,6 +17,7 @@
 size = Vector2(154, 747)
 
 [node name="main" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_0fd8o")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -45,6 +47,9 @@ offset_bottom = 90.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HUD_PowerUp" parent="CanvasLayer" instance=ExtResource("4_04hp8")]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("6_ng40l")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)

@@ -3,6 +3,7 @@ extends Node2D
 @onready var spawn_area: Control = $SpawnArea
 @onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
 @onready var continue_collision: CollisionShape2D = $ContinueArea2D/CollisionShape2D
+@onready var game_over_screen: ColorRect = $CanvasLayer/GameOver
 
 @export var min_flower_distance = 160.0 # adding a distance for the flowers to not overlap
 
@@ -40,7 +41,7 @@ func _ready() -> void:
 	Events.can_continue.connect(_on_can_continue)
 	
 	Global.current_scene_name = 5
-	
+	Global.is_game_over = false
 	Global.score = 0 # resetting the score
 	
 	bird_already_present = false
@@ -237,3 +238,9 @@ func _on_can_continue():
 func _on_increase_spawn_rate_timeout() -> void:
 	$Enemy_Spawn_Timer.wait_time = max($Enemy_Spawn_Timer.wait_time - decrease_amount, min_spawn_time)
 	print("spawn rate decreased: ", $Enemy_Spawn_Timer.wait_time)
+
+
+func _on_game_over():
+	game_over_screen.show()
+	Global.is_game_over = true
+	

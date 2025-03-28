@@ -16,6 +16,7 @@ script = ExtResource("1_fejgm")
 
 [node name="SpeedTime" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 offset_left = 1048.0
 offset_top = 556.0
@@ -26,6 +27,7 @@ text = "12"
 horizontal_alignment = 2
 
 [node name="SpeedSprite" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(1229, 592.438)
 scale = Vector2(0.695, 0.695)
@@ -33,6 +35,7 @@ texture = ExtResource("2_iw8q2")
 
 [node name="ScoreTime" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 1048.0
 offset_top = 468.0
@@ -44,6 +47,7 @@ text = "12"
 horizontal_alignment = 2
 
 [node name="ScoreSprite" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(1229, 504.438)
 scale = Vector2(0.695, 0.695)

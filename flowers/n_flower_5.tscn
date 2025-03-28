@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3divma70xk3y"]
+[gd_scene load_steps=10 format=3 uid="uid://8g1kjimlo3k"]
 
-[ext_resource type="Script" uid="uid://dirrndhpd48hc" path="res://flowers/n_flower_4.gd" id="1_jqulm"]
-[ext_resource type="Texture2D" uid="uid://dty7fl08uypmk" path="res://assets/sprites/flower_7_3.png" id="2_jqulm"]
-[ext_resource type="Texture2D" uid="uid://b1i1w2328ih6r" path="res://assets/sprites/flower_1_1.png" id="4_wt4eg"]
-[ext_resource type="Texture2D" uid="uid://bh17f6s10rqak" path="res://assets/sprites/flower_1_2.png" id="5_dwmtl"]
+[ext_resource type="Script" uid="uid://mm3ylpkttmmr" path="res://flowers/n_flower_5.gd" id="1_1q7ma"]
+[ext_resource type="Texture2D" uid="uid://c7jkg1qgnk3rf" path="res://assets/sprites/flower_8_3.png" id="2_1q7ma"]
+[ext_resource type="Texture2D" uid="uid://b1i1w2328ih6r" path="res://assets/sprites/flower_1_1.png" id="3_is0xs"]
+[ext_resource type="Texture2D" uid="uid://bh17f6s10rqak" path="res://assets/sprites/flower_1_2.png" id="4_yw13q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j607j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jqulm")
+"texture": ExtResource("2_1q7ma")
 }],
 "loop": true,
 "name": &"bloomed",
@@ -17,10 +17,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_wt4eg")
+"texture": ExtResource("3_is0xs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_dwmtl")
+"texture": ExtResource("4_yw13q")
 }],
 "loop": false,
 "name": &"blooming",
@@ -28,7 +28,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc4up"]
-radius = 55.85
+radius = 55.4934
 
 [sub_resource type="Animation" id="Animation_6je8k"]
 length = 0.001
@@ -70,7 +70,7 @@ _data = {
 [node name="flower" type="CharacterBody2D" groups=["flower"]]
 z_index = 1
 y_sort_enabled = true
-script = ExtResource("1_jqulm")
+script = ExtResource("1_1q7ma")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 36)
@@ -83,10 +83,11 @@ offset = Vector2(0, -147.465)
 position = Vector2(0, -18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlowerArea2D"]
-position = Vector2(0, -5)
+position = Vector2(0, 1.13)
 shape = SubResource("CircleShape2D_qc4up")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 36.125)
 shape = SubResource("CircleShape2D_qc4up")
 
 [node name="DisappearTimer" type="Timer" parent="."]

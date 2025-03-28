@@ -68,6 +68,8 @@ _data = {
 }
 
 [node name="flower" type="CharacterBody2D" groups=["flower"]]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("1_w1n7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

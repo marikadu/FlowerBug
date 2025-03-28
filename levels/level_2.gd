@@ -5,6 +5,8 @@ extends Node2D
 @onready var spawn_area: Control = $SpawnArea
 @onready var hearts_container: HBoxContainer = $CanvasLayer/HeartsContainer
 @onready var continue_collision: CollisionShape2D = $ContinueArea2D/CollisionShape2D
+@onready var game_over_screen: ColorRect = $CanvasLayer/GameOver
+
 
 @export var min_flower_distance = 160.0 # adding a distance for the flowers to not overlap
 
@@ -32,16 +34,18 @@ var powerup_instances = [] # making an array empty from the start of the game
 var screen_size
 var bird_already_present: bool
 var bird_spawned_count: int = 0
+var pansy_spawn_count: int = 0
 
 func _ready() -> void:
 	
 	Events.cannot_detect_bird.connect(_on_enemy_left)
 	Events.can_continue.connect(_on_can_continue)
-	Events.show_flashback_1.connect(_on_show_flashback_1)
-	Events.flashback_2_finished.connect(_on_flashback_2_finished)
+	Events.game_over.connect(_on_game_over)
+	#Events.show_flashback_1.connect(_on_show_flashback_1)
+	#Events.flashback_2_finished.connect(_on_flashback_2_finished)
 	
 	Global.current_scene_name = 2
-	
+	Global.is_game_over = false
 	Global.score = 0 # resetting the score
 	
 	bird_already_present = false
@@ -67,7 +71,8 @@ func _ready() -> void:
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 	
 	# randomizing the enemy spawn timer
-	$Enemy_Spawn_Timer.wait_time = randi_range(20,26) 
+	#$Enemy_Spawn_Timer.wait_time = randi_range(20,26) 
+	$Enemy_Spawn_Timer.wait_time = randi_range(2,3) 
 	
 	# from the start, setting the amount of hearts based on the max health
 	hearts_container.setMaxHearts(player_instance.max_health)
@@ -204,25 +209,28 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	
 
 func spawn_enemy():
-	if bird_spawned_count < 1:
-		print("show flashback")
-		Events.show_flashback_1.emit()
+	if not Global.is_game_over: # do not spawn a bird when game over
+		if bird_spawned_count < 1:
+			await get_tree().create_timer(5, false).timeout
+			print("spawn pansy!")
+			#Events.show_flashback_1.emit()
+			spawn_pansy()
+			
+		else:
+			print ("don't spawn pansy")
 		
-	else:
-		print ("don't show the flashback")
-	
-	if not bird_already_present:
-		bird_spawned_count += 1
-		Events.spawned_bird.emit()
-		AudioManager.play_bird_spawned()
-		bird_already_present = true
-		var enemy = preload("res://enemy/enemy.tscn")
-		var enemy_instance = enemy.instantiate()
-		enemy_instance.position = get_viewport_rect().size
-		enemy_instance.add_to_group("enemy")
-		add_child(enemy_instance)
-	else:
-		print("don't spawn bird, already present")
+		if not bird_already_present:
+			bird_spawned_count += 1
+			Events.spawned_bird.emit()
+			AudioManager.play_bird_spawned()
+			bird_already_present = true
+			var enemy = preload("res://enemy/enemy.tscn")
+			var enemy_instance = enemy.instantiate()
+			enemy_instance.position = get_viewport_rect().size
+			enemy_instance.add_to_group("enemy")
+			add_child(enemy_instance)
+		else:
+			print("don't spawn bird, already present")
 
 
 func _on_timer_enemy_spawn_timer_timeout() -> void:
@@ -239,13 +247,30 @@ func _on_can_continue():
 	continue_collision.disabled = false
 	
 # time slows down when the flashback appears
-func _on_show_flashback_1():
+#func _on_show_flashback_1():
 	#$Flower_Spawn_Timer.paused = true
-	$Flower_Spawn_Timer.wait_time = randi_range(15,25) 
+	#$Flower_Spawn_Timer.wait_time = randi_range(15,25) 
+	#print("old: flashback 1")
 	#$PowerUp_Spawn_Timer.paused = true
 	
-func _on_flashback_2_finished():
-	await get_tree().create_timer(0.6, false).timeout
-	print("start spawning")
+#func _on_flashback_2_finished():
+	#await get_tree().create_timer(0.6, false).timeout
+	
+	#print("old: start spawning")
 	#$Flower_Spawn_Timer.start()
-	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
+	#$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
+	
+
+func spawn_pansy():
+	if pansy_spawn_count < 1:
+		pansy_spawn_count += 1
+		print("pansy spawned")
+		var pansy = preload("res://flowers/n_flower_5.tscn")
+		var pansy_instance = pansy.instantiate()
+		pansy_instance.position = Vector2(191, 578)
+		pansy_instance.add_to_group("flower")
+		add_child(pansy_instance)
+
+func _on_game_over():
+	game_over_screen.show()
+	Global.is_game_over = true
