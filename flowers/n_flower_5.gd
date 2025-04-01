@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var skew_effect: AnimationPlayer = $SkewEffect
 
 
 @export var flower_type: String = "n_flower_5"
@@ -21,11 +22,11 @@ func _ready() -> void:
 		animated_sprite.flip_h = true
 	# bouncing animations for better visuals
 	animated_sprite.play("blooming")
-	AudioManager.flower_bloomed()
 	animation_player.play("bounce")
 	player = Global.player_instance
 	can_be_eaten = false
 	is_blooming = true
+	skew_effect.play("skew")
 	
 	$DisappearTimer.paused = true # this flower does not disappear
 
@@ -40,19 +41,23 @@ func start_eating():
 	$DisappearTimer.paused = true
 	is_being_eaten = true
 	is_eaten_status_1.emit(true)
-	
+	skew_effect.stop()
+
+
 func stop_eating():
 	#$DisappearTimer.start()
 	#$DisappearTimer.paused = false
 	$DisappearTimer.paused = true
 	is_being_eaten = false
 	is_eaten_status_1.emit(false)
+	skew_effect.play("skew")
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	is_blooming = false
 	animation_player.play("bounce")
 	animated_sprite.play("bloomed")
+	AudioManager.flower_bloomed()
 	can_be_eaten = true
 	#$DisappearTimer.start()
 

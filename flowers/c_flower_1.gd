@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var skew_effect: AnimationPlayer = $SkewEffect
 
 @export var flower_type: String = "c_flower_1"
 var player: CharacterBody2D
@@ -21,6 +22,7 @@ func _ready() -> void:
 	player = Global.player_instance
 	can_be_eaten = false
 	is_blooming = true
+	skew_effect.play("skew")
 
 func _on_disappear_timer_timeout() -> void:
 	if not is_being_eaten:
@@ -31,6 +33,7 @@ func trap_the_player():
 	$DisappearTimer.stop()
 	is_being_eaten = true
 	is_eaten_status_3.emit(true)
+	skew_effect.stop()
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

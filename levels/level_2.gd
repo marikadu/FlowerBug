@@ -124,8 +124,8 @@ func spawn_flower():
 		return
 	
 	# randomly choosing a normal or carnivorous flower
-	# 70% normal flower, 30% carnivorous
-	if randf() < 0.7:
+	# 72% normal flower, 28% carnivorous
+	if randf() < 0.72:
 		# choosing a random normal flower from the list
 		var random_flower = flower_list[randi() % flower_list.size()]
 		var flower_instance = random_flower.instantiate()

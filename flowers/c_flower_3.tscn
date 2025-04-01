@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://01u6fnn2my0m"]
+[gd_scene load_steps=13 format=3 uid="uid://01u6fnn2my0m"]
 
 [ext_resource type="Script" uid="uid://fsh6h66bregw" path="res://flowers/c_flower_3.gd" id="1_ie7l3"]
 [ext_resource type="Texture2D" uid="uid://cebwxgtit3vfh" path="res://assets/sprites/flower_6_3.png" id="2_ie7l3"]
@@ -76,6 +76,28 @@ _data = {
 &"bounce": SubResource("Animation_el8xo")
 }
 
+[sub_resource type="Animation" id="Animation_c5w3i"]
+resource_name = "skew"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0314159, 0.0314159, -0.0314159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f0pxt"]
+_data = {
+&"skew": SubResource("Animation_c5w3i")
+}
+
 [node name="flower" type="CharacterBody2D" groups=["carnivorous"]]
 z_index = 1
 y_sort_enabled = true
@@ -84,6 +106,7 @@ script = ExtResource("1_ie7l3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 36)
 scale = Vector2(0.325, 0.325)
+skew = -0.0314159
 sprite_frames = SubResource("SpriteFrames_o4snn")
 animation = &"blooming"
 offset = Vector2(0, -147.465)
@@ -105,6 +128,11 @@ one_shot = true
 root_node = NodePath("../AnimatedSprite2D")
 libraries = {
 &"": SubResource("AnimationLibrary_kybxr")
+}
+
+[node name="SkewEffect" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f0pxt")
 }
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
