@@ -13,6 +13,7 @@ config_version=5
 config/name="FlowerBug"
 run/main_scene="uid://w2pbprcxv723"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/image="uid://b4uicm7q4xhd4"
 config/icon="res://icon.svg"
 
 [autoload]

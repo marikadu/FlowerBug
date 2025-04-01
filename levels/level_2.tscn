@@ -31,6 +31,7 @@ wait_time = 24.156
 autostart = true
 
 [node name="Enemy_Spawn_Timer" type="Timer" parent="."]
+wait_time = 11.0
 one_shot = true
 autostart = true
 

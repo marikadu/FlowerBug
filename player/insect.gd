@@ -6,11 +6,11 @@ extends CharacterBody2D
 
 @onready var insect_area_2d: Area2D = $InsectArea2D
 @onready var eating_timer: Timer = $EatingTimer
-@onready var eating_bar: ProgressBar = $EatingBar
+@onready var eating_bar: TextureProgressBar = $EatingBar
 @onready var speed_power_up_timer: Timer = $SpeedPowerUpTimer
 @onready var score_power_up_timer: Timer = $ScorePowerUpTimer
 @onready var trapped_timer: Timer = $TrappedTimer
-@onready var trapped_bar: ProgressBar = $TrappedBar
+@onready var trapped_bar: TextureProgressBar = $TrappedBar
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D2
 @onready var clean_sprite: AnimatedSprite2D = $CleanSprite2D
 #@onready var clean_sprite: AnimatedSprite2D = $CleanSprite2D
@@ -26,7 +26,7 @@ extends CharacterBody2D
 @export var bites_required: int = 4
 @export var max_distance_for_the_flower = 100
 @export var border_margin: int = 50
-@export var can_continue_score: int = 20 # for debugging it's 20, but it should be 100
+@export var can_continue_score: int = 100 # for debugging it's 20, but it should be 100
 
 var flower_to_eat: Node2D = null
 var powerup_to_get: Node2D = null
@@ -260,7 +260,7 @@ func _process(_delta: float) -> void:
 					take_damage()
 					
 	# the insect starts to shake when the bird spawns
-	if is_alive and is_shaking:
+	if is_alive and is_shaking and not is_trapped:
 		var shake_offset = Vector2(randf_range(-shake_strength, shake_strength), randf_range(-shake_strength, shake_strength))
 		global_position += shake_offset * 3
 

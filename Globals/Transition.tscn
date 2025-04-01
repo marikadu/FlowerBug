@@ -2,22 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ck3bvu10iifk5" path="res://Globals/transition.gd" id="1_hc5fk"]
 
-[sub_resource type="Animation" id="Animation_yem1c"]
-resource_name = "fade_to_black"
-length = 0.45
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.0235294, 0.0705882, 0.101961, 0), Color(0.0235294, 0.0705882, 0.101961, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_hc5fk"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,6 +31,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.0235294, 0.0705882, 0.101961, 1), Color(0.0235294, 0.0705882, 0.101961, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yem1c"]
+resource_name = "fade_to_black"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0235294, 0.0705882, 0.101961, 0), Color(0.0235294, 0.0705882, 0.101961, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hc5fk"]

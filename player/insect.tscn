@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://b4msv7itrsdr8"]
+[gd_scene load_steps=62 format=3 uid="uid://b4msv7itrsdr8"]
 
 [ext_resource type="Script" uid="uid://bd0tug1ap5pnm" path="res://player/insect.gd" id="1_ev3hp"]
 [ext_resource type="Shader" uid="uid://bn1wcvasnb43t" path="res://shaders/hit_flash2.tres" id="2_2xdxb"]
@@ -46,6 +46,12 @@
 [ext_resource type="Texture2D" uid="uid://diojrttf51rtr" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0004.png" id="40_yj308"]
 [ext_resource type="Texture2D" uid="uid://db6ai3fiq3dap" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0005.png" id="41_41l50"]
 [ext_resource type="Texture2D" uid="uid://c07jv4xnjgwat" path="res://assets/sprites/beetle/clean/full/bug_game_over_full_0006.png" id="42_wfckw"]
+[ext_resource type="Texture2D" uid="uid://dp2red0dfuk1" path="res://assets/HUD/TrappedProgressBar1.png" id="43_1qq0e"]
+[ext_resource type="Texture2D" uid="uid://bep1xfoal1f45" path="res://assets/HUD/PollenProgressBar1.png" id="43_wfckw"]
+[ext_resource type="Texture2D" uid="uid://cujmrcl0mk74p" path="res://assets/HUD/PollenProgressBar2.png" id="44_a3b0y"]
+[ext_resource type="Texture2D" uid="uid://dnop7v2u4dw45" path="res://assets/HUD/TrappedProgressBar2.png" id="44_yj308"]
+[ext_resource type="Texture2D" uid="uid://7c03gaag0w6t" path="res://assets/HUD/TrappedProgressBar3.png" id="45_41l50"]
+[ext_resource type="Texture2D" uid="uid://kav6afqbwobb" path="res://assets/HUD/PollenProgressBar3.png" id="45_oce6s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_opt1d"]
 resource_local_to_scene = true
@@ -295,18 +301,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kt6d"]
 radius = 39.5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1dqc"]
-bg_color = Color(0.172549, 0.164706, 0.168627, 0.564706)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xut38"]
-bg_color = Color(0.372757, 0.686339, 0.363004, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mydgl"]
-bg_color = Color(0.252028, 0.252028, 0.252028, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojlxu"]
-bg_color = Color(0.916187, 0.440951, 0.282098, 1)
-
 [sub_resource type="Animation" id="Animation_opt1d"]
 length = 0.001
 tracks/0/type = "value"
@@ -420,24 +414,26 @@ wait_time = 10.0
 [node name="VoulnerableTimer" type="Timer" parent="."]
 wait_time = 1.1
 
-[node name="EatingBar" type="ProgressBar" parent="."]
+[node name="EatingBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
 offset_left = -53.0
 offset_top = -67.0
 offset_right = 54.0
 offset_bottom = -44.0
-theme_override_styles/background = SubResource("StyleBoxFlat_c1dqc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xut38")
-value = 9.31
-show_percentage = false
+value = 9.0
+texture_under = ExtResource("43_wfckw")
+texture_over = ExtResource("44_a3b0y")
+texture_progress = ExtResource("45_oce6s")
 
-[node name="TrappedBar" type="ProgressBar" parent="."]
-offset_left = -53.0
+[node name="TrappedBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -60.0
 offset_top = -67.0
-offset_right = 54.0
-offset_bottom = -44.0
-theme_override_styles/background = SubResource("StyleBoxFlat_mydgl")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ojlxu")
-show_percentage = false
+offset_right = 60.0
+offset_bottom = -41.0
+texture_under = ExtResource("43_1qq0e")
+texture_over = ExtResource("44_yj308")
+texture_progress = ExtResource("45_41l50")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_c1dqc")
