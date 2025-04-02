@@ -1,13 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://w2pbprcxv723"]
+[gd_scene load_steps=30 format=3 uid="uid://w2pbprcxv723"]
 
 [ext_resource type="Script" uid="uid://dnpyuye8hw0vc" path="res://menus/main_menu.gd" id="1_ct8su"]
 [ext_resource type="Texture2D" uid="uid://c3d0bs7j2t6le" path="res://menus/LevelSelectionMenu.png" id="2_k15nl"]
 [ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="2_ot3ob"]
-[ext_resource type="Texture2D" uid="uid://bgbdmcwl40qft" path="res://menus/MainMenu.png" id="2_rmsp1"]
 [ext_resource type="Texture2D" uid="uid://vo4hr1kjg8yf" path="res://menus/logo.png" id="3_218cn"]
 [ext_resource type="Texture2D" uid="uid://d4fyh27j3giv0" path="res://menus/MainMenu_beetle2.png" id="4_e2awe"]
 [ext_resource type="Texture2D" uid="uid://2fthihnwm5lx" path="res://menus/MainMenu_bird.png" id="4_lb38e"]
 [ext_resource type="Texture2D" uid="uid://b5fgjvutso8te" path="res://menus/MainMenu_beetle.png" id="4_vp83o"]
+[ext_resource type="Texture2D" uid="uid://11cwaq12ydqu" path="res://assets/HUD/buttons_disabled.png" id="9_4yyw3"]
+[ext_resource type="Texture2D" uid="uid://cigg6sqk6kqps" path="res://assets/HUD/buttons_enabled.png" id="10_ahxlq"]
+[ext_resource type="Texture2D" uid="uid://dmfpt5jr8nfcu" path="res://assets/HUD/buttons_enabled_hover.png" id="11_ahxlq"]
+[ext_resource type="Texture2D" uid="uid://npkyqmkpwadk" path="res://assets/HUD/buttons_enabled_pressed.png" id="12_bslpt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lb38e"]
 animations = [{
@@ -171,6 +174,55 @@ _data = {
 &"camera": SubResource("Animation_k15nl")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bslpt"]
+texture = ExtResource("9_4yyw3")
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnv6w"]
+texture = ExtResource("11_ahxlq")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h14mx"]
+texture = ExtResource("12_bslpt")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8c1o"]
+texture = ExtResource("10_ahxlq")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53qvp"]
+texture = ExtResource("11_ahxlq")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_je8l7"]
+texture = ExtResource("12_bslpt")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ih3s6"]
+texture = ExtResource("10_ahxlq")
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -183,17 +235,11 @@ script = ExtResource("1_ct8su")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 362)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 1440.0
 texture = ExtResource("2_k15nl")
-
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("2_rmsp1")
 
 [node name="LogoSprite" type="Sprite2D" parent="."]
 position = Vector2(383, 130)
@@ -266,126 +312,147 @@ libraries = {
 &"": SubResource("AnimationLibrary_4yyw3")
 }
 
-[node name="LevelSele" type="Control" parent="."]
+[node name="LevelSelection" type="Control" parent="."]
 anchors_preset = 0
 offset_top = 720.0
 offset_right = 40.0
 offset_bottom = 760.0
 
-[node name="Back" type="Button" parent="LevelSele"]
+[node name="LevelSelectionList" type="Control" parent="LevelSelection"]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="1" type="Button" parent="LevelSelection/LevelSelectionList"]
+custom_minimum_size = Vector2(360, 240)
+offset_left = 87.0
+offset_top = 111.0
+offset_right = 302.0
+offset_bottom = 196.0
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bslpt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wnv6w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h14mx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_m8c1o")
+text = "Morning"
+
+[node name="2" type="Button" parent="LevelSelection/LevelSelectionList"]
+custom_minimum_size = Vector2(360, 240)
+layout_mode = 2
+offset_left = 502.0
+offset_top = 123.0
+offset_right = 862.0
+offset_bottom = 363.0
+rotation = -0.0495012
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bslpt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_53qvp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_je8l7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ih3s6")
+text = "Noon"
+
+[node name="3" type="Button" parent="LevelSelection/LevelSelectionList"]
+custom_minimum_size = Vector2(360, 240)
+offset_left = 52.0
+offset_top = 417.0
+offset_right = 412.0
+offset_bottom = 657.0
+rotation = 0.0334111
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bslpt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_53qvp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_je8l7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ih3s6")
+text = "Evening
+"
+
+[node name="4" type="Button" parent="LevelSelection/LevelSelectionList"]
+custom_minimum_size = Vector2(360, 240)
+offset_left = 436.0
+offset_top = 416.0
+offset_right = 796.0
+offset_bottom = 656.0
+rotation = -0.0464649
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bslpt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_53qvp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_je8l7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ih3s6")
+text = "Dawn"
+
+[node name="5" type="Button" parent="LevelSelection/LevelSelectionList"]
+custom_minimum_size = Vector2(360, 240)
+offset_left = 832.0
+offset_top = 375.0
+offset_right = 1192.0
+offset_bottom = 615.0
+rotation = -0.015447
+theme = ExtResource("2_ot3ob")
+theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bslpt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_53qvp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_je8l7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ih3s6")
+text = "Infinite
+Day"
+
+[node name="Back" type="Button" parent="LevelSelection"]
 layout_mode = 0
-offset_left = 876.0
-offset_top = 97.0
-offset_right = 1086.0
-offset_bottom = 208.0
+offset_left = 917.0
+offset_top = 90.0
+offset_right = 1127.0
+offset_bottom = 201.0
 theme = ExtResource("2_ot3ob")
 theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
 theme_override_font_sizes/font_size = 70
 text = "Back"
 
-[node name="Morning" type="Button" parent="LevelSele"]
+[node name="PersonalBest" type="Control" parent="LevelSelection"]
+anchors_preset = 0
+offset_left = 973.0
+offset_top = 669.0
+offset_right = 1013.0
+offset_bottom = 709.0
+
+[node name="PBLabel" type="Label" parent="LevelSelection/PersonalBest"]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 122.0
-offset_right = 379.0
-offset_bottom = 233.0
-theme = ExtResource("2_ot3ob")
-theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
-theme_override_font_sizes/font_size = 70
-text = "Morning"
+offset_left = -188.0
+offset_top = -28.0
+offset_right = 66.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.326206, 0.502879, 0.248053, 1)
+theme_override_font_sizes/font_size = 40
+text = "Personal Best:"
 
-[node name="Noon" type="Button" parent="LevelSele"]
+[node name="PBScore" type="Label" parent="LevelSelection/PersonalBest"]
 layout_mode = 0
-offset_left = 456.0
-offset_top = 118.0
-offset_right = 732.0
-offset_bottom = 229.0
-theme = ExtResource("2_ot3ob")
-theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
-theme_override_font_sizes/font_size = 70
-text = "Noon"
+offset_left = 72.0
+offset_top = -28.0
+offset_right = 326.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.326206, 0.502879, 0.248053, 1)
+theme_override_font_sizes/font_size = 40
+text = "0000"
 
-[node name="Evening" type="Button" parent="LevelSele"]
-layout_mode = 0
-offset_left = 103.0
-offset_top = 473.0
-offset_right = 379.0
-offset_bottom = 584.0
-theme = ExtResource("2_ot3ob")
-theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
-theme_override_font_sizes/font_size = 70
-text = "Evening"
-
-[node name="Dawn" type="Button" parent="LevelSele"]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 444.0
-offset_right = 710.0
-offset_bottom = 555.0
-theme = ExtResource("2_ot3ob")
-theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
-theme_override_font_sizes/font_size = 70
-text = "Dawn"
-
-[node name="Infinite" type="Button" parent="LevelSele"]
-layout_mode = 0
-offset_left = 791.0
-offset_top = 487.0
-offset_right = 1174.0
-offset_bottom = 598.0
-theme = ExtResource("2_ot3ob")
-theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
-theme_override_font_sizes/font_size = 70
-text = "Infinite Day"
-
-[node name="MarginContainer" type="MarginContainer" parent="LevelSele"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -469.0
-offset_top = -228.0
-offset_right = -180.0
-offset_bottom = 228.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LevelSele/MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelSele/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="LevelSele"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 193.0
-offset_top = -228.0
-offset_right = 482.0
-offset_bottom = 228.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LevelSele/MarginContainer2"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelSele/MarginContainer2/HBoxContainer"]
-layout_mode = 2
-
-[node name="Camera2D" type="Camera2D" parent="LevelSele"]
+[node name="Camera2D" type="Camera2D" parent="LevelSelection"]
 position = Vector2(640, 360)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="LevelSele/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="LevelSele/Morning" to="." method="_on_morning_pressed"]
-[connection signal="pressed" from="LevelSele/Noon" to="." method="_on_noon_pressed"]
-[connection signal="pressed" from="LevelSele/Evening" to="." method="_on_evening_pressed"]
-[connection signal="pressed" from="LevelSele/Dawn" to="." method="_on_dawn_pressed"]
-[connection signal="pressed" from="LevelSele/Infinite" to="." method="_on_infinite_pressed"]
+[connection signal="pressed" from="LevelSelection/LevelSelectionList/1" to="." method="_on_morning_pressed"]
+[connection signal="pressed" from="LevelSelection/LevelSelectionList/2" to="." method="_on_noon_pressed"]
+[connection signal="pressed" from="LevelSelection/LevelSelectionList/3" to="." method="_on_evening_pressed"]
+[connection signal="pressed" from="LevelSelection/LevelSelectionList/4" to="." method="_on_dawn_pressed"]
+[connection signal="pressed" from="LevelSelection/LevelSelectionList/5" to="." method="_on_infinite_pressed"]
+[connection signal="pressed" from="LevelSelection/Back" to="." method="_on_back_pressed"]

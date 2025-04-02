@@ -11,7 +11,12 @@ func _ready() -> void:
 	animation_player.pause()
 	slide += 1
 	print("paused animation, slide: ", slide)
-
+	
+	if Global.unlocked_levels < 5 : # unlocking level 5, infinite mode
+		Global.unlocked_levels = 5
+		print("unlocked level 5!")
+	else:
+		print("you already have level 5 unlocked")
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("eat"):

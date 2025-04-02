@@ -12,6 +12,13 @@ func _ready() -> void:
 	slide += 1
 	print("paused animation, slide: ", slide)
 	
+	if Global.unlocked_levels < 4 : # unlocking level 4
+		Global.unlocked_levels = 4
+		print("unlocked level 4!")
+	else:
+		print("you already have level 4 unlocked")
+	
+	
 	AudioManager.rain_sound.volume_db = -30.0
 	AudioManager.rain_play()
 	await get_tree().create_timer(0.4).timeout

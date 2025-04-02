@@ -3,8 +3,12 @@ extends Control
 @onready var player_logo: AnimationPlayer = $AnimationPlayerLogo
 @onready var player_beetle: AnimationPlayer = $AnimationPlayerBeetle
 @onready var player_bird: AnimationPlayer = $AnimationPlayerBird
+#@onready var level_selection: MarginContainer = $LevelSelection/Levels
+@onready var level_selection: Control = $LevelSelection/LevelSelectionList
+@onready var pb_score: Label = $LevelSelection/PersonalBest/PBScore
 
-# main menu
+
+# main menu + level selection
 
 func _ready() -> void:
 	player_logo.play("Logo")
@@ -15,21 +19,43 @@ func _ready() -> void:
 		$Beetle.play("no_paint")
 	else:
 		$Beetle.play("with_paint")
-
+		
+	for level in level_selection.get_children():
+		 #connecting the levels to the button hover sound
+		if not level.mouse_entered.is_connected(_on_level_hover): # preventing multiple connections
+			level.mouse_entered.connect(_on_level_hover.bind(level))
+			
+		# enable or disable based on the number of unlocked levels
+		var is_unlocked = str_to_var(level.name) in range(Global.unlocked_levels + 1)
+		level.disabled = not is_unlocked
+		
+		if level.disabled:
+			level.text = "" # do not show level name if the level is disabled
+			
+	# show personal best score if the infinite day is unlocked
+	if Global.unlocked_levels == 5:
+		$LevelSelection/PersonalBest.visible = true
+	else:
+		$LevelSelection/PersonalBest.visible = false
+			
+func _process(delta: float) -> void:
+	pb_score.text = str(Global.personal_best)
+	
+	if Input.is_action_just_pressed("2_debugging"):
+		Global.unlocked_levels = 5
+	
+	
 
 func _on_play_pressed() -> void:
-	if not Global.has_started_the_game:
-		Global.has_started_the_game = true
-		Transition.transition()
-		await Transition.on_transition_finished
-		get_tree().change_scene_to_file("res://levels/level_1.tscn")
-
-	else:
-		#print("has started the game: to the level selection screen")
+	## when the player first starts the game, the game starts straight to the first level
+	#if not Global.has_started_the_game:
+		#Global.has_started_the_game = true
 		#Transition.transition()
 		#await Transition.on_transition_finished
-		#get_tree().change_scene_to_file("res://menus/LevelSelection.tscn")
-		$AnimationPlayerCamera.play("camera")
+		#get_tree().change_scene_to_file("res://levels/level_1.tscn")
+
+	#else:
+	$AnimationPlayerCamera.play("camera")
 
 
 func _on_exit_pressed() -> void:
@@ -38,7 +64,7 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 
-# level selection part
+# --- level selection part ---
 
 func _on_back_pressed() -> void:
 	$AnimationPlayerCamera.play_backwards("camera")
@@ -77,3 +103,9 @@ func _on_infinite_pressed() -> void:
 	Transition.transition()
 	await Transition.on_transition_finished
 	get_tree().change_scene_to_file("res://levels/main.tscn")
+	
+
+func _on_level_hover(level: Button) -> void:
+	if not level.disabled:  # playing the sound only when the button is enabled
+		#AudioManager.play_button_hover()
+		pass

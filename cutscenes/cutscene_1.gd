@@ -15,6 +15,12 @@ func _ready() -> void:
 	slide += 1
 	print("paused animation, slide: ", slide)
 	
+	if Global.unlocked_levels < 2 : # unlocking level 2
+		Global.unlocked_levels = 2
+		print("unlocked level 2!")
+	else:
+		print("you already have level 2 unlocked")
+	
 	#await get_tree().create_timer(3.4).timeout
 	#$Camera2D.apply_shake()
 

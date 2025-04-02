@@ -563,8 +563,9 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_has_filled_pollen_bar():
-	print("insect: has filled the bar!")
-	has_collected_all_pollen = true
+	if not Global.current_scene_name == 5: # if not the infinite mode
+		print("insect: has filled the bar!")
+		has_collected_all_pollen = true
 	
 	
 func level_4_system():

@@ -90,7 +90,8 @@ func _on_shake_3():
 	
 
 func _on_can_continue():
-	if not Global.current_scene_name == 4:
+	# arrow only appears on levels 1, 2, 3
+	if not Global.current_scene_name == 4 and not Global.current_scene_name == 5:
 		if not arrow_appeared:
 			arrow_appeared = true
 			print("can continue!")

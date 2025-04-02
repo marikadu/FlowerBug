@@ -8,6 +8,9 @@ var score: int = 0
 var personal_best = 0
 var current_scene_name: int
 
+var levels = []
+var unlocked_levels = 1
+
 var is_score_multiplied: bool = false
 var current_multiplier = 1.0 # default multiplier
 

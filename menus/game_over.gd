@@ -5,18 +5,8 @@ func _ready() -> void:
 	pass
 
 
-func _on_try_again_mouse_entered() -> void:
-	#AudioManager.play_button_hover()
-	pass
-
-
-func _on_main_menu_button_mouse_entered() -> void:
-	#AudioManager.play_button_hover()
-	pass
-	
-
-
 func _on_main_menu_pressed() -> void:
+	#AudioManager.play_button_hover()
 	Global.is_game_over = false
 	get_tree().change_scene_to_file("res://menus/MainMenu.tscn")
 

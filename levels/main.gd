@@ -38,11 +38,14 @@ var min_spawn_time = 1.0
 func _ready() -> void:
 	
 	Events.cannot_detect_bird.connect(_on_enemy_left)
-	Events.can_continue.connect(_on_can_continue)
+	#Events.can_continue.connect(_on_can_continue)
+	Events.game_over.connect(_on_game_over)
 	
 	Global.current_scene_name = 5
 	Global.is_game_over = false
 	Global.score = 0 # resetting the score
+	
+	game_over_screen.visible = false
 	
 	bird_already_present = false
 	
@@ -241,6 +244,8 @@ func _on_increase_spawn_rate_timeout() -> void:
 
 
 func _on_game_over():
+	game_over_screen.visible = true
 	game_over_screen.show()
 	Global.is_game_over = true
+	Global.update_personal_best() # updating the personal best
 	
