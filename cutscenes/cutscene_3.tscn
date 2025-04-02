@@ -1,10 +1,88 @@
-[gd_scene load_steps=10 format=3 uid="uid://r5ikhfr54srj"]
+[gd_scene load_steps=17 format=3 uid="uid://r5ikhfr54srj"]
 
 [ext_resource type="Script" uid="uid://qkmwn5m5xf5l" path="res://cutscenes/cutscene_3.gd" id="1_014h0"]
 [ext_resource type="Texture2D" uid="uid://di4dd17x6kubv" path="res://cutscenes/cutscene_3.png" id="2_014h0"]
 [ext_resource type="Texture2D" uid="uid://cr5tjfs0a82f1" path="res://cutscenes/cutscene_3_2.png" id="2_234fn"]
 [ext_resource type="Texture2D" uid="uid://bxavxmuk75u83" path="res://cutscenes/cutscene_3_3.png" id="2_jgpfn"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="3_jgpfn"]
+[ext_resource type="Texture2D" uid="uid://wsd4f071ysnr" path="res://assets/HUD/tutorial_mouse2.png" id="6_08c6u"]
+[ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="7_5po7t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_08c6u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_08c6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5po7t")
+}],
+"loop": true,
+"name": &"click",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5po7t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_toxe6"]
+resource_name = "can_continue"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x1fsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lx76b"]
+resource_name = "hide"
+length = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lx76b"]
+_data = {
+&"RESET": SubResource("Animation_x1fsy"),
+&"can_continue": SubResource("Animation_toxe6"),
+&"hide": SubResource("Animation_lx76b")
+}
 
 [sub_resource type="Animation" id="Animation_q1ytw"]
 length = 0.001
@@ -284,6 +362,25 @@ texture = ExtResource("2_014h0")
 position = Vector2(594, 301)
 zoom = Vector2(2.005, 2.005)
 script = ExtResource("3_jgpfn")
+
+[node name="CanContinue" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 518.0
+offset_top = 216.0
+offset_right = 558.0
+offset_bottom = 256.0
+
+[node name="ContinueSprite" type="AnimatedSprite2D" parent="Camera2D/CanContinue"]
+z_index = 2
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_08c6u")
+animation = &"click"
+
+[node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanContinue"]
+libraries = {
+&"": SubResource("AnimationLibrary_lx76b")
+}
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {

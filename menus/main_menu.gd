@@ -38,7 +38,7 @@ func _ready() -> void:
 	else:
 		$LevelSelection/PersonalBest.visible = false
 			
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pb_score.text = str(Global.personal_best)
 	
 	if Input.is_action_just_pressed("2_debugging"):

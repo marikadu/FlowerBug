@@ -1,6 +1,10 @@
 extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var continue_sprite: AnimatedSprite2D = $Camera2D/CanContinue/ContinueSprite
+@onready var continue_animation_player: AnimationPlayer = $Camera2D/CanContinue/ContinueAnimationPlayer
+
+
 var slide: int = 0
 
 # what if I add the feature of manually turning the pages/pannels
@@ -10,6 +14,7 @@ func _ready() -> void:
 	#await get_tree().process_frame
 	animation_player.pause()
 	slide += 1
+	_can_continue()
 	print("paused animation, slide: ", slide)
 	
 	if Global.unlocked_levels < 5 : # unlocking level 5, infinite mode
@@ -18,7 +23,7 @@ func _ready() -> void:
 	else:
 		print("you already have level 5 unlocked")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("eat"):
 		match slide:
 			1:
@@ -92,3 +97,13 @@ func _physics_process(delta: float) -> void:
 				Transition.transition()
 				await Transition.on_transition_finished
 				get_tree().change_scene_to_file("res://menus/WinMenu.tscn")
+
+
+func _can_continue():
+	await get_tree().create_timer(0.2).timeout
+	continue_animation_player.play("can_continue") # show the mouse
+	await get_tree().create_timer(0.2).timeout
+	continue_sprite.play("click")
+	
+func _hide_mouse_indicator():
+	continue_animation_player.play("hide")
