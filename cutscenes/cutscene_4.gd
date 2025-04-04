@@ -27,70 +27,100 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("eat"):
 		match slide:
 			1:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "morning1", "morning2")
-				# apply camera shake for better visuals
-				
 				slide += 1
+				await get_tree().create_timer(1.9).timeout
+				_can_continue()
 			
 			2:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "morning2", "door1")
-				#await get_tree().create_timer(0.8).timeout
-				#$Camera2D.apply_shake()
 				slide += 1
-				#
+				await get_tree().create_timer(2.5).timeout
+				_can_continue()
 			3:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "door1", "door2")
 				slide += 1
+				await get_tree().create_timer(2.4).timeout
+				_can_continue()
 				
 			4:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "door2", "sleepy1")
 				slide += 1
+				await get_tree().create_timer(1.8).timeout
+				_can_continue()
 				
 				
 			5:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "sleepy1", "sleepy2")
 				slide += 1
+				await get_tree().create_timer(1.3).timeout
+				_can_continue()
 				
 			6:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "sleepy2", "sleepy3")
 				slide += 1
+				await get_tree().create_timer(1.3).timeout
+				_can_continue()
 				
 			7:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "sleepy3", "office")
 				slide += 1
+				await get_tree().create_timer(1.9).timeout
+				_can_continue()
 				
 			8:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "office", "hug1")
 				slide += 1
+				await get_tree().create_timer(2.3).timeout
+				_can_continue()
 				
 			9:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "hug1", "hug2")
 				slide += 1
+				await get_tree().create_timer(1.7).timeout
+				_can_continue()
 				
 			10:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "hug2", "end1")
 				slide += 1
+				await get_tree().create_timer(2.2).timeout
+				_can_continue()
 				
 			11:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "end1", "end2")
 				slide += 1
+				await get_tree().create_timer(2.9).timeout
+				_can_continue()
 				
 			12:
+				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "end2", "end3")
 				slide += 1
-				#########################
+				await get_tree().create_timer(2.5).timeout
+				_can_continue()
 				
 			13: # end of the cutscene
 				print("paused animation, slide: ", slide)

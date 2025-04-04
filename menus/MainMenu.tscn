@@ -327,6 +327,7 @@ mouse_filter = 1
 
 [node name="1" type="Button" parent="LevelSelection/LevelSelectionList"]
 custom_minimum_size = Vector2(360, 240)
+layout_mode = 0
 offset_left = 87.0
 offset_top = 111.0
 offset_right = 302.0
@@ -359,6 +360,7 @@ text = "Noon"
 
 [node name="3" type="Button" parent="LevelSelection/LevelSelectionList"]
 custom_minimum_size = Vector2(360, 240)
+layout_mode = 0
 offset_left = 52.0
 offset_top = 417.0
 offset_right = 412.0
@@ -376,6 +378,7 @@ text = "Evening
 
 [node name="4" type="Button" parent="LevelSelection/LevelSelectionList"]
 custom_minimum_size = Vector2(360, 240)
+layout_mode = 0
 offset_left = 436.0
 offset_top = 416.0
 offset_right = 796.0
@@ -392,6 +395,7 @@ text = "Dawn"
 
 [node name="5" type="Button" parent="LevelSelection/LevelSelectionList"]
 custom_minimum_size = Vector2(360, 240)
+layout_mode = 0
 offset_left = 832.0
 offset_top = 375.0
 offset_right = 1192.0

@@ -6,120 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="5_2hiev"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="5_lwf5c"]
 
-[sub_resource type="Animation" id="Animation_7nwfv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.93, 2.93)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(350, 146)]
-}
-
-[sub_resource type="Animation" id="Animation_gdkjo"]
-resource_name = "cutscene4"
-length = 40.0
-markers = [{
-"color": Color(1, 1, 1, 1),
-"name": &"morning1",
-"time": 0.466667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"morning2",
-"time": 3.06667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"door1",
-"time": 5.93333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"door2",
-"time": 9.33333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"sleepy1",
-"time": 11.4333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"sleepy2",
-"time": 13.0339
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"sleepy3",
-"time": 14.5539
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"office",
-"time": 16.7239
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"hug1",
-"time": 18.2783
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"hug2",
-"time": 20.9333
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"end1",
-"time": 22.4667
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"end2",
-"time": 25.5
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"end3",
-"time": 27.9
-}]
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 3.06667, 5.93333, 9.33333, 11.3667, 13.0333, 14.5333, 16.7, 18.2667, 20.9333, 22.4667, 25.5, 27.9),
-"transitions": PackedFloat32Array(0.435275, 0.366021, 0.392292, 0.329877, 0.277392, 0.25, 0.329877, 0.392292, 0.435275, 0.466516, 0.378929, 0.258816, 0.707107, 0.5),
-"update": 0,
-"values": [Vector2(350, 157), Vector2(350, 146), Vector2(778, 146), Vector2(744, 339.655), Vector2(365, 375), Vector2(239.04, 601.47), Vector2(527, 629), Vector2(865, 623), Vector2(875, 815), Vector2(635, 829.64), Vector2(360, 827), Vector2(214, 1098), Vector2(423.615, 1108), Vector2(781, 1143)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.06625, 5.93333, 9.34, 11.3667, 14.5439, 16.7, 18.2667, 20.9333, 22.4667, 25.5, 27.9),
-"transitions": PackedFloat32Array(1, 0.499999, 0.406126, 0.406126, 0.353554, 0.353554, 0.34151, 0.392292, 0.366021, 0.392292, 0.378929, 0.482968),
-"update": 0,
-"values": [Vector2(2.93, 2.93), Vector2(2.93, 2.93), Vector2(1.64, 1.64), Vector2(1.64, 1.64), Vector2(3.55, 3.55), Vector2(3.55, 3.55), Vector2(2.415, 2.415), Vector2(4.055, 4.055), Vector2(2.86, 2.86), Vector2(2.345, 2.345), Vector2(2.06, 2.06), Vector2(1.655, 1.655)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7nwfv"]
-_data = {
-&"RESET": SubResource("Animation_7nwfv"),
-&"cutscene4": SubResource("Animation_gdkjo")
-}
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_4svfq"]
 animations = [{
 "frames": [{
@@ -148,7 +34,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../GridContainer/Container/MarginContainer/ContinueSprite:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -163,7 +49,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../GridContainer/Container/MarginContainer/ContinueSprite:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +65,7 @@ length = 0.04
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../GridContainer/Container/MarginContainer/ContinueSprite:modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -196,6 +82,144 @@ _data = {
 &"hide": SubResource("Animation_lx76b")
 }
 
+[sub_resource type="Animation" id="Animation_7nwfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.93, 2.93)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(350, 146)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D/CanContinue:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(168, 70)]
+}
+
+[sub_resource type="Animation" id="Animation_gdkjo"]
+resource_name = "cutscene4"
+length = 40.0
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"morning1",
+"time": 0.466667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"morning2",
+"time": 3.06667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"door1",
+"time": 5.93333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"door2",
+"time": 9.33333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"sleepy2",
+"time": 13.0339
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hug2",
+"time": 20.9333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end1",
+"time": 22.4667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end2",
+"time": 25.5
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"end3",
+"time": 27.9
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"sleepy1",
+"time": 11.3667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"sleepy3",
+"time": 14.5333
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"office",
+"time": 16.7
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"hug1",
+"time": 18.2667
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 3.06667, 5.93333, 9.33333, 11.3667, 13.0333, 14.5333, 16.7, 18.2667, 20.9333, 22.4667, 25.5, 27.9),
+"transitions": PackedFloat32Array(0.435275, 0.366021, 0.392292, 0.329877, 0.277392, 0.25, 0.329877, 0.392292, 0.435275, 0.466516, 0.378929, 0.258816, 0.707107, 0.5),
+"update": 0,
+"values": [Vector2(350, 157), Vector2(350, 146), Vector2(778, 146), Vector2(744, 339.655), Vector2(365, 375), Vector2(239.04, 601.47), Vector2(527, 629), Vector2(865, 623), Vector2(875, 815), Vector2(635, 829.64), Vector2(360, 827), Vector2(214, 1098), Vector2(423.615, 1108), Vector2(781, 1143)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.06625, 5.93333, 9.34, 11.3667, 14.5333, 16.7, 18.2667, 20.9333, 22.4667, 25.5, 27.9),
+"transitions": PackedFloat32Array(1, 0.499999, 0.406126, 0.406126, 0.353554, 0.353554, 0.34151, 0.392292, 0.366021, 0.392292, 0.378929, 0.482968),
+"update": 0,
+"values": [Vector2(2.93, 2.93), Vector2(2.93, 2.93), Vector2(1.64, 1.64), Vector2(1.64, 1.64), Vector2(3.55, 3.55), Vector2(3.55, 3.55), Vector2(2.415, 2.415), Vector2(4.055, 4.055), Vector2(2.86, 2.86), Vector2(2.345, 2.345), Vector2(2.06, 2.06), Vector2(1.655, 1.655)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D/CanContinue:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.07613, 5.1, 5.93333, 9, 9.33429, 11.298, 14.5331, 16.6988, 18.0333, 18.2694, 20.931, 22.4698, 25.4989, 27.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(168, 70), Vector2(325.947, 175.977), Vector2(325.947, 175.977), Vector2(323.694, 171.029), Vector2(323.694, 171.029), Vector2(130.959, 63.5311), Vector2(130.959, 63.5311), Vector2(202, 108), Vector2(130.959, 63.5311), Vector2(130.959, 63.5311), Vector2(173, 80), Vector2(223.181, 111.961), Vector2(255.385, 135), Vector2(328, 168)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7nwfv"]
+_data = {
+&"RESET": SubResource("Animation_7nwfv"),
+&"cutscene4": SubResource("Animation_gdkjo")
+}
+
 [node name="Cutscene4" type="Node2D"]
 script = ExtResource("1_gdkjo")
 
@@ -209,26 +233,27 @@ position = Vector2(350, 146)
 zoom = Vector2(2.93, 2.93)
 script = ExtResource("5_lwf5c")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_7nwfv")
-}
-
-[node name="CanContinue" type="Control" parent="."]
+[node name="CanContinue" type="Control" parent="Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 518.0
-offset_top = 216.0
-offset_right = 558.0
-offset_bottom = 256.0
+offset_left = 168.0
+offset_top = 70.0
+offset_right = 208.0
+offset_bottom = 110.0
+scale = Vector2(0.44, 0.44)
 
-[node name="ContinueSprite" type="AnimatedSprite2D" parent="CanContinue"]
+[node name="ContinueSprite" type="AnimatedSprite2D" parent="Camera2D/CanContinue"]
 z_index = 2
 scale = Vector2(0.625, 0.625)
 sprite_frames = SubResource("SpriteFrames_4svfq")
 animation = &"click"
 
-[node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="CanContinue"]
+[node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="Camera2D/CanContinue"]
 libraries = {
 &"": SubResource("AnimationLibrary_lx76b")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7nwfv")
 }

@@ -4,10 +4,22 @@ extends Node2D
 @onready var continue_sprite: AnimatedSprite2D = $Camera2D/CanContinue/ContinueSprite
 @onready var continue_animation_player: AnimationPlayer = $Camera2D/CanContinue/ContinueAnimationPlayer
 
-
 var slide: int = 0
 
-# what if I add the feature of manually turning the pages/pannels
+var cutscene_steps = [
+	{ "start": "hit_tree", "end": "hit_tree_end", "duration": 0.7, "shake": true },
+	{ "start": "hit_tree_end", "end": "angry", "duration": 3.2 },
+	{ "start": "angry", "end": "discovered_tree", "duration": 2.6 },
+	{ "start": "discovered_tree", "end": "entering_tree", "duration": 1.3 },
+	{ "start": "entering_tree", "end": "family_1", "duration": 2.0 },
+	{ "start": "family_1", "end": "see_family_2", "duration": 2.1 },
+	{ "start": "see_family_2", "end": "family_2", "duration": 3.1 },
+	{ "start": "family_2", "end": "distracted", "duration": 1.6 },
+	{ "start": "distracted", "end": "shake", "duration": 1.9 },
+	{ "start": "shake", "end": "leave", "duration": 1.9 }
+]
+
+
 func _ready() -> void:
 	if Engine.time_scale < 1.0:
 		Engine.time_scale = 1.0
