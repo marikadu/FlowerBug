@@ -67,7 +67,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "is_sorry", "notices")
 				slide += 1
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.5).timeout
 				_can_continue()
 				
 			6:
@@ -77,7 +77,7 @@ func _physics_process(_delta: float) -> void:
 				await get_tree().create_timer(0.5).timeout
 				$Camera2D.apply_shake()
 				slide += 1
-				await get_tree().create_timer(0.6).timeout
+				await get_tree().create_timer(0.7).timeout
 				_can_continue()
 				
 			7:
@@ -85,7 +85,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "angry_bee", "hat1")
 				slide += 1
-				await get_tree().create_timer(2.5).timeout
+				await get_tree().create_timer(2.8).timeout
 				_can_continue()
 				
 			8:
@@ -93,7 +93,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "hat1", "hat2")
 				slide += 1
-				await get_tree().create_timer(2.7).timeout
+				await get_tree().create_timer(2.9).timeout
 				_can_continue()
 				
 			9:
@@ -101,7 +101,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "hat2", "grandma_bee")
 				slide += 1
-				await get_tree().create_timer(2.2).timeout
+				await get_tree().create_timer(2.5).timeout
 				_can_continue()
 				
 			10:
@@ -109,7 +109,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "grandma_bee", "honey1")
 				slide += 1
-				await get_tree().create_timer(1.4).timeout
+				await get_tree().create_timer(1.7).timeout
 				_can_continue()
 				
 			11:
@@ -117,7 +117,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "honey1", "honey2")
 				slide += 1
-				await get_tree().create_timer(1.4).timeout
+				await get_tree().create_timer(2.3).timeout
 				_can_continue()
 				
 			12:
@@ -125,7 +125,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "honey2", "honey3")
 				slide += 1
-				await get_tree().create_timer(2.4).timeout
+				await get_tree().create_timer(2.8).timeout
 				_can_continue()
 				
 			13:
@@ -133,7 +133,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "honey3", "end")
 				slide += 1
-				await get_tree().create_timer(2.9).timeout
+				await get_tree().create_timer(3.6).timeout
 				_can_continue()
 				
 			14: # end of the cutscene

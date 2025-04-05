@@ -40,7 +40,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_toxe6"]
@@ -201,7 +201,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.666667, 1.4, 1.43333, 1.56667, 2.36667, 3.06667, 3.96667, 4.63333, 6.93333, 10.0333, 12.5667, 14.4333, 16.7667, 19.2333, 23.5667),
-"transitions": PackedFloat32Array(0.615572, 0.517632, 0.707107, 1, 1, 0.392292, 0.615572, 0.366021, 0.63728, 0.63728, 0.420448, 0.482968, 0.392292, 0.420448, 0.466516, 0.287175, 1),
+"transitions": PackedFloat32Array(0.615572, 0.517632, 0.707107, 1, 1, 0.392292, 0.615572, 0.366021, 0.63728, 0.450625, 0.420448, 0.482968, 0.392292, 0.420448, 0.466516, 0.287175, 1),
 "update": 0,
 "values": [Vector2(594, 301), Vector2(585.227, 304.753), Vector2(414, 378), Vector2(73, 334), Vector2(80, 329), Vector2(73, 334), Vector2(30, 655), Vector2(170.58, 641), Vector2(521, 643), Vector2(527, 986), Vector2(55, 984), Vector2(-24, 1467), Vector2(299, 1463), Vector2(609, 1412), Vector2(596, 1665), Vector2(320, 1984), Vector2(116, 2365)]
 }
@@ -212,7 +212,7 @@ tracks/1/path = NodePath("Camera2D:zoom")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 6.9317, 6.93333, 7.36667, 10.0333, 16.7667, 19.2333, 23.5667),
+"times": PackedFloat32Array(0, 6.9317, 6.93333, 8.2, 10.0333, 16.7667, 19.2333, 23.5667),
 "transitions": PackedFloat32Array(1, 0.435275, 1, 1, 1, 0.482968, 0.287175, 1),
 "update": 0,
 "values": [Vector2(1.625, 1.625), Vector2(1.625, 1.625), Vector2(1.625, 1.625), Vector2(3.1, 3.1), Vector2(3.1, 3.1), Vector2(2.375, 2.375), Vector2(0.905, 0.905), Vector2(1.51, 1.51)]
@@ -251,6 +251,13 @@ _data = {
 [node name="Cutscene2" type="Node2D"]
 script = ExtResource("1_5mse6")
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -1135.0
+offset_top = -521.0
+offset_right = 2079.0
+offset_bottom = 3288.0
+color = Color(0.882353, 0.556863, 0.352941, 1)
+
 [node name="Cutscene2" type="Sprite2D" parent="."]
 position = Vector2(-247, 1945)
 texture = ExtResource("2_q1ytw")
@@ -266,10 +273,15 @@ zoom = Vector2(2.005, 2.005)
 script = ExtResource("3_4kkgw")
 
 [node name="CanContinue" type="Control" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -52.6242
+offset_top = -27.9387
+offset_right = -52.6242
+offset_bottom = -27.9387
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.57, 0.57)

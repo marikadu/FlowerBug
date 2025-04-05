@@ -30,6 +30,7 @@ var target_zoom := Vector2(1, 1) # target zoom
 
 var player: CharacterBody2D
 var default_position: Vector2
+var is_gameplay: bool
 
 
 func _ready() -> void:
@@ -43,9 +44,17 @@ func _ready() -> void:
 	zoom = target_zoom # the starting zoom is deafult
 	default_position = global_position # saving the default camera position
 	player = Global.player_instance # getting the player instance
+	
+	# enable camera zoom in and zoom out functionality only during gameplay levels
+	if Global.current_scene_name == 1 or Global.current_scene_name == 2 or Global.current_scene_name == 3 or Global.current_scene_name == 4 or Global.current_scene_name == 5:
+		print("camera: normal level!")
+		is_gameplay = true
+		
+	else:
+		print("camera: cutscene")
+		is_gameplay = false
 
 
-# camera follows the cursor
 func _process(delta: float) -> void:
 	#cameraUpdate()
 	
@@ -55,20 +64,23 @@ func _process(delta: float) -> void:
 	
 	
 	# smooth zooming in and out
-	zoom = zoom.lerp(target_zoom, zoom_speed * delta)
+	if is_gameplay:
+		zoom = zoom.lerp(target_zoom, zoom_speed * delta)
 	
-	# if the player is eating, the camera slightly moves towards the player's direction
-	if player.is_eating:
-		var direction_to_player = player.position - global_position
-		var move_distance = direction_to_player.normalized() * 0.1
-		global_position += move_distance
-		await get_tree().create_timer(0.3, false).timeout
+	if is_gameplay:
+		# if the player is eating, the camera slightly moves towards the player's direction
+		if player: # if player exists
+			if player.is_eating:
+				var direction_to_player = player.position - global_position
+				var move_distance = direction_to_player.normalized() * 0.1
+				global_position += move_distance
+				await get_tree().create_timer(0.3, false).timeout
 
-	# resetting the camera position
-	if not player.is_eating:
-		var direction_to_default = default_position - global_position
-		var move_distance = direction_to_default.normalized() * 0.1
-		global_position += move_distance
+			# resetting the camera position
+			if not player.is_eating:
+				var direction_to_default = default_position - global_position
+				var move_distance = direction_to_default.normalized() * 0.1
+				global_position += move_distance
 
 
 ## camera moves towards the cursor
@@ -102,14 +114,16 @@ func get_random_offset() -> Vector2:
 
 # --- camera zooming in ---
 func zoom_camera_in():
-	target_zoom += zoom_increment
-	# restricting the zoom from going beyond the maximum
-	target_zoom.x = clamp(target_zoom.x, min_zoom.x, max_zoom.x)
-	target_zoom.y = clamp(target_zoom.y, min_zoom.y, max_zoom.y)
-	print("target zoom: ", target_zoom)
+	if is_gameplay:
+		target_zoom += zoom_increment
+		# restricting the zoom from going beyond the maximum
+		target_zoom.x = clamp(target_zoom.x, min_zoom.x, max_zoom.x)
+		target_zoom.y = clamp(target_zoom.y, min_zoom.y, max_zoom.y)
+		print("target zoom: ", target_zoom)
 	
 	
 func reset_zoom():
-	target_zoom = default_zoom
-	global_position = default_position
-	print("zoom reset!")
+	if is_gameplay:
+		target_zoom = default_zoom
+		global_position = default_position
+		print("zoom reset!")

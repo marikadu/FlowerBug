@@ -95,7 +95,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "hug1", "hug2")
 				slide += 1
-				await get_tree().create_timer(1.7).timeout
+				await get_tree().create_timer(2.3).timeout
 				_can_continue()
 				
 			10:

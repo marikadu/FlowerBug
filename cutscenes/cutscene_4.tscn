@@ -28,6 +28,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_x1fsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_toxe6"]
 resource_name = "can_continue"
 length = 0.1
@@ -42,21 +57,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_x1fsy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_lx76b"]
@@ -208,10 +208,10 @@ tracks/2/path = NodePath("Camera2D/CanContinue:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.07613, 5.1, 5.93333, 9, 9.33429, 11.298, 14.5331, 16.6988, 18.0333, 18.2694, 20.931, 22.4698, 25.4989, 27.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(3.07613, 5.1, 5.93333, 9, 9.33429, 11.298, 14.5331, 16.1333, 16.7, 17.8, 18.2694, 20.931, 22.1628, 22.4698, 25.0363, 25.4989, 27.2825, 27.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(168, 70), Vector2(325.947, 175.977), Vector2(325.947, 175.977), Vector2(323.694, 171.029), Vector2(323.694, 171.029), Vector2(130.959, 63.5311), Vector2(130.959, 63.5311), Vector2(202, 108), Vector2(130.959, 63.5311), Vector2(130.959, 63.5311), Vector2(173, 80), Vector2(223.181, 111.961), Vector2(255.385, 135), Vector2(328, 168)]
+"values": [Vector2(168, 70), Vector2(325.947, 175.977), Vector2(325.947, 175.977), Vector2(323.694, 171.029), Vector2(323.694, 171.029), Vector2(130.959, 63.5311), Vector2(130.959, 63.5311), Vector2(202, 108), Vector2(202, 108), Vector2(130.959, 63.5311), Vector2(130.959, 63.5311), Vector2(173, 80), Vector2(223.181, 111.961), Vector2(223.181, 111.961), Vector2(255.385, 135), Vector2(255.385, 135), Vector2(328, 168), Vector2(328, 168)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7nwfv"]
@@ -222,6 +222,13 @@ _data = {
 
 [node name="Cutscene4" type="Node2D"]
 script = ExtResource("1_gdkjo")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -58.0
+offset_top = -64.0
+offset_right = 1304.0
+offset_bottom = 1517.0
+color = Color(0.882353, 0.556863, 0.352941, 1)
 
 [node name="Cutscene" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -234,6 +241,7 @@ zoom = Vector2(2.93, 2.93)
 script = ExtResource("5_lwf5c")
 
 [node name="CanContinue" type="Control" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 168.0

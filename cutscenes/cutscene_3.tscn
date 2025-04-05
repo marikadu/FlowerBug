@@ -42,7 +42,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_toxe6"]
@@ -200,20 +200,8 @@ markers = [{
 "time": 26.8982
 }, {
 "color": Color(1, 1, 1, 1),
-"name": &"leaf1",
-"time": 28.1112
-}, {
-"color": Color(1, 1, 1, 1),
 "name": &"leaf2",
 "time": 29.3679
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"leaf3",
-"time": 30.3105
-}, {
-"color": Color(1, 1, 1, 1),
-"name": &"leaf4",
-"time": 31.37
 }, {
 "color": Color(1, 1, 1, 1),
 "name": &"leaf5",
@@ -234,6 +222,18 @@ markers = [{
 "color": Color(1, 1, 1, 1),
 "name": &"morning4",
 "time": 44.4667
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf1",
+"time": 28.1
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf3",
+"time": 30.3
+}, {
+"color": Color(1, 1, 1, 1),
+"name": &"leaf4",
+"time": 31.3667
 }]
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -242,7 +242,7 @@ tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 1.06667, 2.06667, 2.5, 2.9, 3.36667, 3.83333, 4.46667, 5.26667, 6, 6.63333, 7.2, 7.83333, 8.66667, 10.4, 10.6333, 11.6333, 13.1, 14.8, 18, 19.6, 21.3667, 22.4667, 24.2667, 25.6, 26.9, 28.1, 29.3333, 30.3, 31.3667, 33.4667, 36.0667, 38.5667, 40.5667, 44.4667),
+"times": PackedFloat32Array(0, 0.4, 1.06667, 2.06667, 2.5, 2.9, 3.36667, 3.83333, 4.46667, 5.26667, 6, 6.63333, 7.2, 7.83333, 8.66667, 10.4, 10.6333, 11.6333, 13.1, 14.8, 18, 19.6, 21.3667, 22.4667, 24.2667, 25.6, 26.9, 28.1, 29.3667, 30.3, 31.3667, 33.4667, 36.0667, 38.5667, 40.5667, 44.4667),
 "transitions": PackedFloat32Array(0.353554, 0.366021, 0.329877, 1, 1, 1, 1, 0.353553, 0.466516, 0.406126, 0.435275, 0.466517, 0.5, 0.31864, 0.378929, 1, 0.574349, 0.5, 0.435275, 0.482968, 0.406126, 0.406126, 0.366021, 0.450625, 0.466517, 0.466517, 0.406126, 0.482968, 0.34151, 0.34151, 0.34151, 0.34151, 0.353553, 0.420448, 0.482968, 0.378929),
 "update": 0,
 "values": [Vector2(-1139, -59), Vector2(-1121, -59), Vector2(-679, -64), Vector2(-595, 214), Vector2(-787, 253), Vector2(-823, 262), Vector2(-823, 279), Vector2(-796, 283), Vector2(-985, 216), Vector2(-1062, 261), Vector2(-1106, 385), Vector2(-1010, 462), Vector2(-890, 513), Vector2(-746, 568), Vector2(-600, 939), Vector2(-1030, 946), Vector2(-1030, 971.3), Vector2(-1206, 1481), Vector2(-1193, 1735), Vector2(-1172, 2041), Vector2(-774, 1493), Vector2(-565, 1770), Vector2(-736, 2042), Vector2(-926, 2458.94), Vector2(-1229, 3083), Vector2(-818, 3080), Vector2(-539, 3094), Vector2(-525, 3311), Vector2(-676, 3330), Vector2(-831, 3343), Vector2(-987, 3351), Vector2(-1158, 3359), Vector2(-1183, 3672), Vector2(-931, 3615), Vector2(-578, 3623), Vector2(-890, 4021)]
@@ -266,10 +266,10 @@ tracks/2/path = NodePath("Camera2D/CanContinue:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 7.83541, 10.2333, 11.5997, 14.8003, 17.8814, 21.3807, 22.3667, 24.0265, 40.5579, 44.3133),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.9, 7.83333, 8.66888, 10.0667, 10.4006, 11.4333, 14.8003, 17.8814, 21.3807, 22.2333, 22.4669, 24.0265, 40.5579, 43.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0), Vector2(363.596, 168.462), Vector2(2.52173, 4.38498), Vector2(2.52173, 4.38498), Vector2(66.4333, 35.4033), Vector2(66.4333, 35.4033), Vector2(235.411, 119.093), Vector2(0.530457, -3.85391), Vector2(0.530457, -3.85391), Vector2(156.615, 88.4906)]
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(103.026, 52.9208), Vector2(103.026, 52.9208), Vector2(145.444, 63.9765), Vector2(363.596, 168.462), Vector2(363.596, 168.462), Vector2(2.52173, 4.38498), Vector2(2.52173, 4.38498), Vector2(66.4333, 35.4033), Vector2(66.4333, 35.4033), Vector2(235.411, 119.093), Vector2(235.411, 119.093), Vector2(0.530457, -3.85391), Vector2(0.530457, -3.85391), Vector2(156.615, 88.4906)]
 }
 
 [sub_resource type="Animation" id="Animation_5mse6"]
@@ -367,6 +367,13 @@ _data = {
 [node name="Cutscene3" type="Node2D"]
 script = ExtResource("1_014h0")
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -1815.0
+offset_top = -528.0
+offset_right = 121.0
+offset_bottom = 4754.0
+color = Color(0.882353, 0.556863, 0.352941, 1)
+
 [node name="Cutscene3" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-902, 3600)
@@ -388,13 +395,14 @@ zoom = Vector2(2.005, 2.005)
 script = ExtResource("3_jgpfn")
 
 [node name="CanContinue" type="Control" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
 layout_direction = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 156.615
-offset_top = 88.4906
-offset_right = 196.615
-offset_bottom = 128.491
+offset_left = 0.530457
+offset_top = -3.85391
+offset_right = 40.5305
+offset_bottom = 36.1465
 
 [node name="ContinueSprite" type="AnimatedSprite2D" parent="Camera2D/CanContinue"]
 z_index = 2
