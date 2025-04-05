@@ -8,7 +8,7 @@ extends Node2D
 @onready var game_over_screen: ColorRect = $CanvasLayer/GameOver
 
 
-@export var min_flower_distance = 160.0 # adding a distance for the flowers to not overlap
+@export var min_flower_distance = 170.0 # adding a distance for the flowers to not overlap
 
 # preloading a list of possible flowers to spawn
 var flower_list = [
@@ -234,7 +234,8 @@ func spawn_enemy():
 
 
 func _on_timer_enemy_spawn_timer_timeout() -> void:
-	spawn_enemy()
+	#spawn_enemy()
+	pass
 	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
 	$Enemy_Spawn_Timer.start()
 	#$Enemy_Spawn_Timer.stop()

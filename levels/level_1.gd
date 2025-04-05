@@ -8,7 +8,7 @@ extends Node2D
 @onready var game_over_screen: ColorRect = $CanvasLayer/GameOver
 
 
-@export var min_flower_distance = 160.0 # adding a distance for the flowers to not overlap
+@export var min_flower_distance = 170.0 # adding a distance for the flowers to not overlap
 
 # preloading a list of possible flowers to spawn
 var flower_list = [
