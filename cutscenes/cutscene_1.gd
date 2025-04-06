@@ -39,6 +39,7 @@ func _physics_process(_delta: float) -> void:
 				await get_tree().create_timer(0.7).timeout
 				$Camera2D.apply_shake()
 				slide += 1
+				AudioManager.play_hit()
 				await get_tree().create_timer(0.6).timeout
 				_can_continue()
 				
@@ -55,8 +56,10 @@ func _physics_process(_delta: float) -> void:
 				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("start_2", "angry", "discovered_tree")
+				await get_tree().create_timer(0.6).timeout
+				AudioManager.play_notices()
 				slide += 1
-				await get_tree().create_timer(2.6).timeout
+				await get_tree().create_timer(1.6).timeout
 				_can_continue()
 				
 			4:

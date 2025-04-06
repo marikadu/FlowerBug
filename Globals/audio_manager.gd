@@ -8,6 +8,23 @@ extends Node2D
 func play_hit():
 	$hit.play()
 
+# created in Bfxr
+func play_pick_up():
+	$pick_up.play()
+	
+# mix of the following:
+# created in Bfxr
+# https://freesound.org/people/Sadiquecat/sounds/742955/
+# https://freesound.org/people/Nightflame/sounds/422495/
+func play_speed_power_up():
+	$speed_power_up.play()
+	
+# mix of the following:
+# created in Bfxr
+# https://freesound.org/people/Sadiquecat/sounds/742955/
+func play_pollen_power_up():
+	$pollen_power_up.play()
+	
 # https://freesound.org/people/straget/sounds/418102/
 func play_bird_spawned():
 	$bird_spawned.play()
@@ -50,7 +67,11 @@ func rain_play():
 	$rain.play()
 
 
-## cutscene related
+## --- cutscene related ---
+
+# created in Bfxr
+func play_notices():
+	$notices.play()
 
 # https://freesound.org/people/naturenotesuk/sounds/510996/
 func angry_bird_play():

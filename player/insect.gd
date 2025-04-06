@@ -289,8 +289,10 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	# --- power-ups ---
 	if body.is_in_group("powerup"):
 		powerup_to_get = body # detecting this specific power-up
+		AudioManager.play_pick_up() # play sound
 		# if the player picks up the speed power-up
 		if powerup_to_get.powerup_type == "speed":
+			AudioManager.play_speed_power_up()
 			get_parent().remove_powerup(powerup_to_get)
 			Events.got_speed_powerup.emit()
 			# if the player gets the speed power-up again
@@ -304,6 +306,7 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 			
 		# same for the pollen multiplier power-up
 		elif powerup_to_get.powerup_type == "pollen":
+			AudioManager.play_pollen_power_up()
 			get_parent().remove_powerup(powerup_to_get)
 			Events.got_pollen_powerup.emit()
 			if score_power_up_timer.time_left > 0:
