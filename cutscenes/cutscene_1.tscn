@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_toxe6"]
@@ -425,6 +425,7 @@ position = Vector2(640, 360)
 script = ExtResource("2_7kd3d")
 
 [node name="CanContinue" type="Control" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 518.0

@@ -26,7 +26,7 @@ extends CharacterBody2D
 @export var bites_required: int = 0 # how many times the player would need to click in order to collect the flower pollen
 #@export var max_distance_for_the_flower = 100
 @export var border_margin: int = 50 # for the player to not be able to move the beetle outside of the viewport
-@export var can_continue_score: int = 100 # for debugging it's 20, but it should be 100
+@export var can_continue_score: int = 10 # for debugging it's 20, but it should be 100
 
 #var flower_to_eat: Node2D = null # variable for the detected flower
 var normal_flower_to_eat: Node2D = null # variable for the detected flower

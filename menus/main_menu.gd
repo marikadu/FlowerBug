@@ -37,6 +37,10 @@ func _ready() -> void:
 		$LevelSelection/PersonalBest.visible = true
 	else:
 		$LevelSelection/PersonalBest.visible = false
+		
+	
+	AudioManager.play_game_theme()
+	AudioManager.on_main_menu()
 			
 func _process(_delta: float) -> void:
 	pb_score.text = str(Global.personal_best)

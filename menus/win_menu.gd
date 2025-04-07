@@ -1,5 +1,9 @@
 extends Control
 
+func _ready() -> void:
+	AudioManager.play_game_theme()
+	AudioManager._on_game_won()
+
 
 func _on_main_menu_pressed() -> void:
 	Transition.transition()

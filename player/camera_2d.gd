@@ -43,16 +43,23 @@ func _ready() -> void:
 	
 	zoom = target_zoom # the starting zoom is deafult
 	default_position = global_position # saving the default camera position
-	player = Global.player_instance # getting the player instance
 	
 	# enable camera zoom in and zoom out functionality only during gameplay levels
 	if Global.current_scene_name == 1 or Global.current_scene_name == 2 or Global.current_scene_name == 3 or Global.current_scene_name == 4 or Global.current_scene_name == 5:
 		print("camera: normal level!")
 		is_gameplay = true
+		player = Global.player_instance # getting the player instance
 		
 	else:
 		print("camera: cutscene")
 		is_gameplay = false
+		player = null
+		
+	#if is_gameplay:
+		#player = Global.player_instance # getting the player instance
+		#
+	#else:
+		#player = null
 
 
 func _process(delta: float) -> void:

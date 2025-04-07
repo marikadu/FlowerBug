@@ -84,6 +84,9 @@ func _ready() -> void:
 	Events.healthChanged.connect(hearts_container.updateHearts)
 
 
+	AudioManager.play_game_theme() # start playing music
+	AudioManager.on_start_playing_the_game()
+
 func spawn_flower():
 	var random_position: Vector2
 	var valid_position = false

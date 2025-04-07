@@ -9,6 +9,8 @@ var slide: int = 0
 
 # what if I add the feature of manually turning the pages/pannels
 func _ready() -> void:
+	Global.current_scene_name = 0 # level = cutscene
+	
 	animation_player.play("cutscene3")
 	await get_tree().create_timer(0.3998).timeout
 	#await get_tree().process_frame
@@ -22,17 +24,16 @@ func _ready() -> void:
 		print("unlocked level 4!")
 	else:
 		print("you already have level 4 unlocked")
+		
+	AudioManager.cutscene_start()
 	
-	
+	# start rain
 	AudioManager.rain_sound.volume_db = -30.0
 	AudioManager.rain_play()
 	await get_tree().create_timer(0.4).timeout
 	AudioManager.rain_sound.volume_db = -25.0
 	await get_tree().create_timer(0.4).timeout
 	AudioManager.rain_sound.volume_db = -23.0
-	
-	#await get_tree().create_timer(3.4).timeout
-	#$Camera2D.apply_shake()
 
 
 func _physics_process(_delta: float) -> void:

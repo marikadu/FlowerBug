@@ -3,6 +3,10 @@ extends Node2D
 # the source of the sound is written nearby the function of this sound
 @onready var rain_sound: AudioStreamPlayer = $rain
 
+func _ready() -> void:
+	Events.game_over.connect(_on_game_over)
+	Events.game_won.connect(_on_game_won)
+
 
 # created in Bfxr
 func play_hit():
@@ -70,17 +74,49 @@ func rain_play():
 func play_game_theme():
 	$GameTheme.play()
 	
+	
 func silence_music():
 	$GameTheme.volume_db = -10.0
 	
+	
 func music_volume_normal():
 	$GameTheme.volume_db = -3.0
+	
+	
+func on_start_playing_the_game():
+	$GameTheme["parameters/switch_to_clip"] = "Loop"
+	
+	
+func on_main_menu():
+	$GameTheme["parameters/switch_to_clip"] = "MainMenu"
+	
+	
+func _on_game_won():
+	$GameTheme["parameters/switch_to_clip"] = "GameWon"
+	
+	
+func _on_game_over():
+	#if not Global.is_game_over:
+	$GameTheme["parameters/switch_to_clip"] = "GameOver"
+	
+
+func cutscene_start():
+	$GameTheme["parameters/switch_to_clip"] = "Silence"
+
 
 ## --- cutscene related ---
 
 # created in Bfxr
 func play_notices():
 	$notices.play()
+	
+# https://freesound.org/people/konstati/sounds/646849/
+func play_eating():
+	$eating.play()
+
+# created in Bfxr
+func angry_bee():
+	$angry_bee.play()
 
 # https://freesound.org/people/naturenotesuk/sounds/510996/
 func angry_bird_play():
@@ -92,4 +128,8 @@ func water_drop_play():
 
 # generated noice in Audacity and slowed it down
 func empty_play():
-	$empty.play
+	$empty.play()
+	
+# https://freesound.org/people/PostProdDog/sounds/578491/
+func door_opening():
+	$door_opening.play()

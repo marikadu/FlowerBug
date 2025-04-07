@@ -1,12 +1,16 @@
-[gd_scene load_steps=37 format=3 uid="uid://hkylsnpjgmk4"]
+[gd_scene load_steps=46 format=3 uid="uid://hkylsnpjgmk4"]
 
 [ext_resource type="Script" uid="uid://bl7hw7adry28d" path="res://Globals/audio_manager.gd" id="1_d16gy"]
 [ext_resource type="AudioStream" uid="uid://bfp8vhmkyfhr3" path="res://assets/SFX/main.ogg" id="2_d0chm"]
 [ext_resource type="AudioStream" uid="uid://bt1b4s6h2tnng" path="res://assets/SFX/hit.wav" id="2_er85w"]
 [ext_resource type="AudioStream" uid="uid://rrlholrld6bi" path="res://assets/SFX/great_tit_1.ogg" id="3_4t86c"]
+[ext_resource type="AudioStream" uid="uid://dq6oe5xc2p68k" path="res://assets/SFX/MainMenu.ogg" id="3_kndt1"]
+[ext_resource type="AudioStream" uid="uid://rpyj8xxeo4s5" path="res://assets/SFX/GameWon.ogg" id="4_hwta7"]
 [ext_resource type="AudioStream" uid="uid://0ct6h4hwmy8n" path="res://assets/SFX/great_tit_2.ogg" id="4_ixva1"]
+[ext_resource type="AudioStream" uid="uid://bgl121pfbs6j5" path="res://assets/SFX/GameOver.ogg" id="5_dn336"]
 [ext_resource type="AudioStream" uid="uid://d2k0djc20xa7b" path="res://assets/SFX/flower_bloomed.ogg" id="5_ixva1"]
 [ext_resource type="AudioStream" uid="uid://dnoihb518rk7c" path="res://assets/SFX/collect_pollen2.ogg" id="6_21uwq"]
+[ext_resource type="AudioStream" uid="uid://ct8hfmq8t64di" path="res://assets/SFX/Silence.ogg" id="6_yob0w"]
 [ext_resource type="AudioStream" uid="uid://djxyu6kde2cm4" path="res://assets/SFX/collected_pollen.ogg" id="7_d5p0i"]
 [ext_resource type="AudioStream" uid="uid://c46lox0intme5" path="res://assets/SFX/rain.ogg" id="8_lpjqt"]
 [ext_resource type="AudioStream" uid="uid://ced5ks48wd7fp" path="res://assets/SFX/angry_bird.ogg" id="9_l8f8j"]
@@ -21,12 +25,71 @@
 [ext_resource type="AudioStream" uid="uid://wphunnf7q2w5" path="res://assets/SFX/power_up_speed.ogg" id="18_dvcqq"]
 [ext_resource type="AudioStream" uid="uid://vyfoq0m1vxd2" path="res://assets/SFX/power_up_pollen.ogg" id="19_ig0xw"]
 [ext_resource type="AudioStream" uid="uid://c6ywfkaut1ff8" path="res://assets/SFX/notices.ogg" id="20_ig0xw"]
+[ext_resource type="AudioStream" uid="uid://bn1uihfdhoxly" path="res://assets/SFX/angry_bee.ogg" id="26_moflj"]
+[ext_resource type="AudioStream" uid="uid://digbo8oq5efv8" path="res://assets/SFX/eating.ogg" id="27_brxj7"]
+[ext_resource type="AudioStream" uid="uid://d1tbxq6xjid7r" path="res://assets/SFX/door_opening.ogg" id="28_xpk7b"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kndt1"]
-clip_count = 1
+clip_count = 5
 clip_0/name = &"Loop"
 clip_0/stream = ExtResource("2_d0chm")
 clip_0/auto_advance = 0
+clip_1/name = &"MainMenu"
+clip_1/stream = ExtResource("3_kndt1")
+clip_1/auto_advance = 0
+clip_2/name = &"GameWon"
+clip_2/stream = ExtResource("4_hwta7")
+clip_2/auto_advance = 0
+clip_3/name = &"GameOver"
+clip_3/stream = ExtResource("5_dn336")
+clip_3/auto_advance = 0
+clip_4/name = &"Silence"
+clip_4/stream = ExtResource("6_yob0w")
+clip_4/auto_advance = 0
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 4): {
+"fade_beats": 3.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sxe6l"]
 random_pitch = 1.14
@@ -99,13 +162,22 @@ random_pitch = 1.27
 streams_count = 1
 stream_0/stream = ExtResource("20_ig0xw")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_brxj7"]
+random_pitch = 1.09
+streams_count = 1
+stream_0/stream = ExtResource("26_moflj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xpk7b"]
+streams_count = 1
+stream_0/stream = ExtResource("27_brxj7")
+
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_d16gy")
 
 [node name="GameTheme" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = SubResource("AudioStreamInteractive_kndt1")
-volume_db = -3.0
+volume_db = -5.491
 
 [node name="hit" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_sxe6l")
@@ -176,3 +248,15 @@ volume_db = -10.035
 [node name="notices" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hwta7")
 pitch_scale = 1.35
+
+[node name="angry_bee" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_brxj7")
+volume_db = -3.113
+pitch_scale = 0.97
+
+[node name="eating" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_xpk7b")
+volume_db = -3.737
+
+[node name="door_opening" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_xpk7b")

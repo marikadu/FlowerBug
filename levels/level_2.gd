@@ -80,6 +80,7 @@ func _ready() -> void:
 	Events.healthChanged.connect(hearts_container.updateHearts)
 	
 	AudioManager.play_game_theme() # start playing music
+	AudioManager.on_start_playing_the_game()
 
 
 func spawn_flower():
@@ -248,21 +249,7 @@ func _on_enemy_left():
 
 func _on_can_continue():
 	continue_collision.disabled = false
-	
-# time slows down when the flashback appears
-#func _on_show_flashback_1():
-	#$Flower_Spawn_Timer.paused = true
-	#$Flower_Spawn_Timer.wait_time = randi_range(15,25) 
-	#print("old: flashback 1")
-	#$PowerUp_Spawn_Timer.paused = true
-	
-#func _on_flashback_2_finished():
-	#await get_tree().create_timer(0.6, false).timeout
-	
-	#print("old: start spawning")
-	#$Flower_Spawn_Timer.start()
-	#$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
-	
+
 
 func spawn_pansy():
 	if pansy_spawn_count < 1:

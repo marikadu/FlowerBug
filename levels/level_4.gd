@@ -71,6 +71,9 @@ func _ready() -> void:
 	hearts_container.setMaxHearts(player_instance.max_health)
 	hearts_container.updateHearts(player_instance.current_health)
 	Events.healthChanged.connect(hearts_container.updateHearts)
+	
+	AudioManager.play_game_theme() # start playing music
+	AudioManager.on_start_playing_the_game()
 
 
 func spawn_flower():

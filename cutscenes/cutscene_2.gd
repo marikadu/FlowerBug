@@ -9,6 +9,8 @@ var slide: int = 0
 
 # what if I add the feature of manually turning the pages/pannels
 func _ready() -> void:
+	Global.current_scene_name = 0 # level = cutscene
+	
 	animation_player.play("cutscene_2")
 	await get_tree().create_timer(0.1333).timeout
 	animation_player.pause()
@@ -22,8 +24,8 @@ func _ready() -> void:
 	else:
 		print("you already have level 3 unlocked")
 	
-	#await get_tree().create_timer(3.4).timeout
-	#$Camera2D.apply_shake()
+	
+	AudioManager.cutscene_start()
 
 
 func _physics_process(_delta: float) -> void:
@@ -43,6 +45,7 @@ func _physics_process(_delta: float) -> void:
 				animation_player.play_section_with_markers("cutscene_2", "start2", "into_bee")
 				await get_tree().create_timer(0.8).timeout
 				$Camera2D.apply_shake()
+				AudioManager.play_hit()
 				slide += 1
 				await get_tree().create_timer(0.4).timeout
 				_can_continue()
@@ -66,8 +69,10 @@ func _physics_process(_delta: float) -> void:
 				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "is_sorry", "notices")
+				await get_tree().create_timer(0.3).timeout
+				AudioManager.play_notices()
 				slide += 1
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.3).timeout
 				_can_continue()
 				
 			6:
@@ -76,6 +81,7 @@ func _physics_process(_delta: float) -> void:
 				animation_player.play_section_with_markers("cutscene_2", "notices", "angry_bee")
 				await get_tree().create_timer(0.5).timeout
 				$Camera2D.apply_shake()
+				AudioManager.angry_bee()
 				slide += 1
 				await get_tree().create_timer(0.7).timeout
 				_can_continue()
@@ -125,7 +131,9 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene_2", "honey2", "honey3")
 				slide += 1
-				await get_tree().create_timer(2.8).timeout
+				await get_tree().create_timer(2.0).timeout
+				AudioManager.play_notices()
+				await get_tree().create_timer(0.8).timeout
 				_can_continue()
 				
 			13:
