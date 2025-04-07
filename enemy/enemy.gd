@@ -116,7 +116,7 @@ func _on_bird_appear_timer_timeout() -> void:
 	
 func _delay_timer():
 	print("delaying the timer")
-	$BirdAppearTimer.set_wait_time(3) # waiting for 3 more seconds
+	$BirdAppearTimer.set_wait_time(3, false) # waiting for 3 more seconds
 	# maybe add some sort of sound here
 
 
@@ -124,25 +124,25 @@ func _landing():
 	print("landing")
 	$BirdAppearTimer.paused = true
 	can_move = false
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.2, false).timeout
 	shadow.play("coming")
 	bird.play("landing")
 	
 	# has landed
 	#print("landed")
-	await get_tree().create_timer(0.9).timeout
+	await get_tree().create_timer(0.9, false).timeout
 	emit_signal("has_landed")
 	Events.can_detect_bird.emit()
 	bird_sprite.frame = 1
 	AudioManager.play_bird_landed()
 	#collision.disabled = false
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2, false).timeout
 	can_detect_player = true
 	
 	# when doesn't catch the player
 	if not caught_bug_bool:
 		bird_sprite.play("not_caught")
-		await get_tree().create_timer(1.7).timeout
+		await get_tree().create_timer(1.7, false).timeout
 		leaving_scene()
 		# if the bug wasn't detected after landing
 		if not caught_bug_bool:
@@ -160,7 +160,7 @@ func _on_leaving() -> void:
 	shadow.play("fly_away")
 	#collision.disabled = true
 	can_detect_player = false
-	await get_tree().create_timer(1.1).timeout
+	await get_tree().create_timer(1.1, false).timeout
 	queue_free()
 
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://hkylsnpjgmk4"]
+[gd_scene load_steps=37 format=3 uid="uid://hkylsnpjgmk4"]
 
 [ext_resource type="Script" uid="uid://bl7hw7adry28d" path="res://Globals/audio_manager.gd" id="1_d16gy"]
+[ext_resource type="AudioStream" uid="uid://bfp8vhmkyfhr3" path="res://assets/SFX/main.ogg" id="2_d0chm"]
 [ext_resource type="AudioStream" uid="uid://bt1b4s6h2tnng" path="res://assets/SFX/hit.wav" id="2_er85w"]
 [ext_resource type="AudioStream" uid="uid://rrlholrld6bi" path="res://assets/SFX/great_tit_1.ogg" id="3_4t86c"]
 [ext_resource type="AudioStream" uid="uid://0ct6h4hwmy8n" path="res://assets/SFX/great_tit_2.ogg" id="4_ixva1"]
@@ -20,6 +21,12 @@
 [ext_resource type="AudioStream" uid="uid://wphunnf7q2w5" path="res://assets/SFX/power_up_speed.ogg" id="18_dvcqq"]
 [ext_resource type="AudioStream" uid="uid://vyfoq0m1vxd2" path="res://assets/SFX/power_up_pollen.ogg" id="19_ig0xw"]
 [ext_resource type="AudioStream" uid="uid://c6ywfkaut1ff8" path="res://assets/SFX/notices.ogg" id="20_ig0xw"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kndt1"]
+clip_count = 1
+clip_0/name = &"Loop"
+clip_0/stream = ExtResource("2_d0chm")
+clip_0/auto_advance = 0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sxe6l"]
 random_pitch = 1.14
@@ -95,6 +102,11 @@ stream_0/stream = ExtResource("20_ig0xw")
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_d16gy")
 
+[node name="GameTheme" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamInteractive_kndt1")
+volume_db = -3.0
+
 [node name="hit" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_sxe6l")
 volume_db = -5.426
@@ -155,9 +167,11 @@ volume_db = -2.737
 
 [node name="speed_power_up" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_d0chm")
+volume_db = -7.298
 
 [node name="pollen_power_up" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_kndt1")
+volume_db = -10.035
 
 [node name="notices" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hwta7")

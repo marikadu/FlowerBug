@@ -66,6 +66,15 @@ func play_got_trapped():
 func rain_play():
 	$rain.play()
 
+## --- music ---
+func play_game_theme():
+	$GameTheme.play()
+	
+func silence_music():
+	$GameTheme.volume_db = -10.0
+	
+func music_volume_normal():
+	$GameTheme.volume_db = -3.0
 
 ## --- cutscene related ---
 

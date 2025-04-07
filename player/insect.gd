@@ -439,6 +439,7 @@ func identifyFlower(flower_type: String):
 			Global.add_score(20)
 			if Global.current_scene_name == 2:
 				Events.show_flashback_1.emit()
+				AudioManager.silence_music()
 				if Global.score >= can_continue_score:
 					if not Events.flashback_playing:
 						Events.can_continue.emit()

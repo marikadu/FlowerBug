@@ -78,6 +78,8 @@ func _ready() -> void:
 	hearts_container.setMaxHearts(player_instance.max_health)
 	hearts_container.updateHearts(player_instance.current_health)
 	Events.healthChanged.connect(hearts_container.updateHearts)
+	
+	AudioManager.play_game_theme() # start playing music
 
 
 func spawn_flower():
@@ -234,7 +236,7 @@ func spawn_enemy():
 
 
 func _on_timer_enemy_spawn_timer_timeout() -> void:
-	#spawn_enemy()
+	spawn_enemy()
 	pass
 	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
 	$Enemy_Spawn_Timer.start()
