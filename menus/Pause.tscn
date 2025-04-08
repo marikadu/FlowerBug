@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bs3rv4chfmgan"]
+[gd_scene load_steps=4 format=3 uid="uid://bs3rv4chfmgan"]
 
 [ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="1_81jlj"]
 [ext_resource type="Script" uid="uid://bjpb2ecl8c36d" path="res://menus/pause.gd" id="1_wsj4i"]
+[ext_resource type="PackedScene" uid="uid://c17k7xngk3lmf" path="res://menus/MuteButton.tscn" id="2_2877l"]
 
 [node name="Pause" type="Control"]
 process_mode = 3
@@ -21,6 +22,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.111294, 0.0610305, 0.0066862, 0.196078)
+
+[node name="MuteButton" parent="." instance=ExtResource("2_2877l")]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 11.0
+offset_bottom = 11.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

@@ -20,6 +20,15 @@ var has_started_the_game: bool = false
 var paint_was_washed_off: bool = false
 var has_completed_the_game: bool = false
 
+var is_music_mute: bool = false
+var is_sound_mute: bool = false
+
+#func _process(delta: float) -> void:
+	#if is_music_mute:
+		#print("music mute")
+	#else:
+		#print("not mute")
+
 
 # update personal best score
 func update_personal_best():

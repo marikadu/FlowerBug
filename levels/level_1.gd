@@ -206,21 +206,6 @@ func spawn_powerup():
 func _on_power_up_spawn_timer_timeout() -> void:
 	spawn_powerup()
 	
-# no bird!
-#func spawn_enemy():
-	#if not bird_already_present:
-		#Events.spawned_bird.emit()
-		#AudioManager.play_bird_spawned()
-		#bird_already_present = true
-		#var enemy = preload("res://enemy/enemy.tscn")
-		#var enemy_instance = enemy.instantiate()
-		#enemy_instance.position = get_viewport_rect().size
-		#enemy_instance.add_to_group("enemy")
-		#add_child(enemy_instance)
-	#else:
-		#print("don't spawn bird, already present")
-
-
 
 func _on_enemy_left():
 	bird_already_present = false
@@ -240,13 +225,13 @@ func start_tutorial():
 	$Flower_Spawn_Timer.paused = true
 	$PowerUp_Spawn_Timer.paused = true
 	
-	await get_tree().create_timer(1.4).timeout
+	await get_tree().create_timer(1.4, false).timeout
 	
 	$tutorial/AnimationPlayer.play("appear")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	
 	$tutorial/AnimationPlayer.play("move")
-	await get_tree().create_timer(4.2).timeout
+	await get_tree().create_timer(4.2, false).timeout
 	
 	# spawn tutorial flower
 	var tutorial_flower = preload("res://flowers/n_flower_1_tutorial.tscn")
@@ -255,11 +240,11 @@ func start_tutorial():
 	tutorial_flower_instance.add_to_group("flower")
 	add_child(tutorial_flower_instance)
 	
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(5.0, false).timeout
 	print("move to flower")
 	$tutorial/AnimationPlayer.play("move_to_flower")
 	
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(2.0, false).timeout
 	print("show eat")
 	
 	$tutorial/AnimatedSprite2D.play("click")
@@ -270,7 +255,7 @@ func _on_ate_tutorial_flower():
 	$tutorial/AnimationPlayer.play_backwards("appear")
 	$CanvasLayer/Score.visible = true
 	
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 	
 	$Flower_Spawn_Timer.wait_time = randi_range(4,6)
 	$Flower_Spawn_Timer.paused = false

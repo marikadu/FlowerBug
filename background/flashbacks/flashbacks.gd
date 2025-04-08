@@ -123,6 +123,7 @@ func _physics_process(_delta: float) -> void:
 					get_tree().paused = false
 					animation_3_playing = false
 					Events.flashback_playing = false
+					AudioManager.music_volume_normal()
 
 
 

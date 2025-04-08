@@ -217,15 +217,15 @@ func _process(_delta: float) -> void:
 			
 			# different ranges of bites required to collect pollen for each level
 			if Global.current_scene_name == 1:
-				bites_required = rng_clicks.randi_range(3, 6)
+				bites_required = rng_clicks.randi_range(3, 5)
 				print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 2:
-				bites_required = rng_clicks.randi_range(2, 15)
+				bites_required = rng_clicks.randi_range(2, 6)
 				print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 3:
-				bites_required = rng_clicks.randi_range(3, 9)
+				bites_required = rng_clicks.randi_range(3, 8)
 				print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 4:
@@ -446,6 +446,7 @@ func identifyFlower(flower_type: String):
 						
 			elif Global.current_scene_name == 3:
 				Global.add_score(25)
+				AudioManager.silence_music()
 				print("emit flashback 3!")
 				Events.show_flashback_3.emit()
 				if Global.score >= can_continue_score:

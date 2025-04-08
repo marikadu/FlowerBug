@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://w2pbprcxv723"]
+[gd_scene load_steps=31 format=3 uid="uid://w2pbprcxv723"]
 
 [ext_resource type="Script" uid="uid://dnpyuye8hw0vc" path="res://menus/main_menu.gd" id="1_ct8su"]
 [ext_resource type="Texture2D" uid="uid://c3d0bs7j2t6le" path="res://menus/LevelSelectionMenu.png" id="2_k15nl"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cigg6sqk6kqps" path="res://assets/HUD/buttons_enabled.png" id="10_ahxlq"]
 [ext_resource type="Texture2D" uid="uid://dmfpt5jr8nfcu" path="res://assets/HUD/buttons_enabled_hover.png" id="11_ahxlq"]
 [ext_resource type="Texture2D" uid="uid://npkyqmkpwadk" path="res://assets/HUD/buttons_enabled_pressed.png" id="12_bslpt"]
+[ext_resource type="PackedScene" uid="uid://c17k7xngk3lmf" path="res://menus/MuteButton.tscn" id="12_ih3s6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lb38e"]
 animations = [{
@@ -242,9 +243,16 @@ offset_bottom = 1440.0
 texture = ExtResource("2_k15nl")
 
 [node name="LogoSprite" type="Sprite2D" parent="."]
-position = Vector2(383, 130)
+position = Vector2(316, 154)
 rotation = -0.139626
 texture = ExtResource("3_218cn")
+
+[node name="MuteButton" parent="." instance=ExtResource("12_ih3s6")]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 11.0
+offset_bottom = 11.0
 
 [node name="Bird" type="Sprite2D" parent="."]
 position = Vector2(870, 74)

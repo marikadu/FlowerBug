@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://c17k7xngk3lmf"]
+
+[ext_resource type="Script" uid="uid://c3mlwb0denqj3" path="res://menus/mute_button.gd" id="1_3c6dh"]
+[ext_resource type="Texture2D" uid="uid://cf5ps27xu4u35" path="res://assets/HUD/sound_normal.png" id="2_huh3m"]
+[ext_resource type="Texture2D" uid="uid://ckpfoxpobrgu0" path="res://assets/HUD/music_mute.png" id="2_kklyq"]
+[ext_resource type="Texture2D" uid="uid://di72ypt81aavt" path="res://assets/HUD/sound_mute.png" id="3_6plmw"]
+[ext_resource type="Texture2D" uid="uid://f8xbcecohcip" path="res://assets/HUD/music_normal.png" id="3_thd8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6plmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_huh3m"]
+
+[node name="MuteButton" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.59, 0.59)
+script = ExtResource("1_3c6dh")
+
+[node name="MusicCheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_right = 24.0
+offset_bottom = 24.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6plmw")
+theme_override_icons/checked = ExtResource("2_kklyq")
+theme_override_icons/unchecked = ExtResource("3_thd8r")
+
+[node name="SoundCheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_right = 235.0
+offset_bottom = 108.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_huh3m")
+theme_override_icons/checked = ExtResource("3_6plmw")
+theme_override_icons/unchecked = ExtResource("2_huh3m")
+
+[connection signal="toggled" from="MusicCheckBox" to="." method="_on_music_check_box_toggled"]
+[connection signal="toggled" from="MusicCheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="SoundCheckBox" to="." method="_on_sound_check_box_toggled"]
