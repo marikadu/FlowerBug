@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2xnlnak5l4g1"]
+[gd_scene load_steps=24 format=3 uid="uid://d2xnlnak5l4g1"]
 
 [ext_resource type="Script" uid="uid://dbvv4laerfx1m" path="res://background/flashbacks/flashbacks.gd" id="1_upubj"]
 [ext_resource type="Texture2D" uid="uid://brhktyeyn07kg" path="res://background/flashbacks/flashbacks_1.png" id="2_dha2y"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dl1qa6d8fpe7b" path="res://background/flashbacks/flashbacks_7.png" id="8_kow71"]
 [ext_resource type="Texture2D" uid="uid://wcair1a3pvgu" path="res://background/flashbacks/flashbacks_8.png" id="9_isv1x"]
 [ext_resource type="Texture2D" uid="uid://g1gl7wcrd262" path="res://background/flashbacks/flashbacks_9.png" id="10_ijbdq"]
+[ext_resource type="Texture2D" uid="uid://cvv0tie5yl8ex" path="res://assets/HUD/continueButton1.png" id="11_ha344"]
+[ext_resource type="Texture2D" uid="uid://btq5vrufoh78" path="res://assets/HUD/continueButton2.png" id="12_v82by"]
+[ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="13_s1xpn"]
 
 [sub_resource type="Animation" id="Animation_dha2y"]
 length = 0.001
@@ -309,6 +312,82 @@ _data = {
 &"flashback_3": SubResource("Animation_isv1x")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_03hwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ha344")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_v82by")
+}],
+"loop": true,
+"name": &"click",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_s1xpn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_x1fsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_toxe6"]
+resource_name = "can_continue"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lx76b"]
+resource_name = "hide"
+length = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lx76b"]
+_data = {
+&"RESET": SubResource("Animation_x1fsy"),
+&"can_continue": SubResource("Animation_toxe6"),
+&"hide": SubResource("Animation_lx76b")
+}
+
 [node name="Flashbacks" type="Control"]
 process_mode = 3
 z_index = 3
@@ -362,4 +441,26 @@ texture = ExtResource("10_ijbdq")
 process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_pl6rw")
+}
+
+[node name="CanContinue" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.57, 0.57)
+
+[node name="ContinueSprite" type="AnimatedSprite2D" parent="CanContinue"]
+z_index = 2
+position = Vector2(617.681, 311.575)
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_03hwr")
+animation = &"click"
+
+[node name="ContinueAnimationPlayer" type="AnimationPlayer" parent="CanContinue"]
+libraries = {
+&"": SubResource("AnimationLibrary_lx76b")
 }

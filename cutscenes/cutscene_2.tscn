@@ -1,19 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgyttoldoqsdr"]
+[gd_scene load_steps=15 format=3 uid="uid://cgyttoldoqsdr"]
 
 [ext_resource type="Script" uid="uid://dp2sn2io6dbts" path="res://cutscenes/cutscene_2.gd" id="1_5mse6"]
 [ext_resource type="Texture2D" uid="uid://dtq0d1rtehouu" path="res://cutscenes/cutscene_2_2.png" id="2_q1ytw"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="3_4kkgw"]
-[ext_resource type="Texture2D" uid="uid://wsd4f071ysnr" path="res://assets/HUD/tutorial_mouse2.png" id="4_4kkgw"]
+[ext_resource type="Texture2D" uid="uid://cvv0tie5yl8ex" path="res://assets/HUD/continueButton1.png" id="4_eng6q"]
+[ext_resource type="Texture2D" uid="uid://btq5vrufoh78" path="res://assets/HUD/continueButton2.png" id="5_clus7"]
 [ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="5_eng6q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_clus7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_4kkgw")
+"texture": ExtResource("4_eng6q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_eng6q")
+"texture": ExtResource("5_clus7")
 }],
 "loop": true,
 "name": &"click",
@@ -278,10 +279,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -52.6242
-offset_top = -27.9387
-offset_right = -52.6242
-offset_bottom = -27.9387
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.57, 0.57)

@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	# don't trigger pause when game over or win
+	# do not trigger pause when game over or win
 	if not (Global.is_game_over or Global.is_game_won):
 		# if not in the paused state and pressed esc
 		if Input.is_action_just_pressed("pause") and get_tree().paused == false:

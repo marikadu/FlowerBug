@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="FlowerBug"
-run/main_scene="uid://w2pbprcxv723"
+run/main_scene="uid://bsynhbaqola2u"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="uid://b4uicm7q4xhd4"
-config/icon="res://icon.svg"
+config/icon="uid://b183leht2bhjo"
 
 [autoload]
 

@@ -26,7 +26,7 @@ extends CharacterBody2D
 @export var bites_required: int = 0 # how many times the player would need to click in order to collect the flower pollen
 #@export var max_distance_for_the_flower = 100
 @export var border_margin: int = 50 # for the player to not be able to move the beetle outside of the viewport
-@export var can_continue_score: int = 10 # for debugging it's 20, but it should be 100
+@export var can_continue_score: int = 100 # for debugging it's 20, but it should be 100
 
 #var flower_to_eat: Node2D = null # variable for the detected flower
 var normal_flower_to_eat: Node2D = null # variable for the detected flower
@@ -521,9 +521,7 @@ func _on_voulnerable_timer_timeout() -> void:
 	voulnerable = true
 
 func _on_spawned_bird():
-	#print("aa birdv")
 	is_shaking = true
-	
 
 
 func _on_insect_area_2d_area_entered(area: Area2D) -> void:
@@ -553,10 +551,6 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			await Transition.on_transition_finished
 			get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
 			
-			#Transition.transition()
-			#await Transition.on_transition_finished
-			#get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
-			
 		else:
 			print("playing inside the 'main'!")
 
@@ -571,18 +565,18 @@ func level_4_system():
 	if Global.current_scene_name == 4: # only in the level 4
 		print("insect: level 4 system!")
 		
-		if Global.score > 120 and Global.score < 140:
-			print("!!! shake!")
+		# score bar starts shaking slightly
+		if Global.score > 110 and Global.score < 140:
 			Events.shaking_1.emit()
 			
+		# score bar shakes more
 		elif Global.score > 140 and Global.score < 160:
-			print("!!! shake! more")
 			Events.shaking_2.emit()
 		
-		elif Global.score > 160 and Global.score < 185:
-			print("!!! shake! MORE")
+		# score bar shakes even more
+		elif Global.score > 160 and Global.score < 186:
 			Events.shaking_3.emit()
-			
-		elif Global.score > 185:
-			print("!!!!! explode!")
+		
+		# score bas explodes
+		elif Global.score > 186:
 			Events.shaking_4.emit()

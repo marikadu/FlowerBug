@@ -1,6 +1,7 @@
 extends Node2D
 
-# the source of the sound is written nearby the function of this sound
+## the source of the sound is written above the function of the sound
+
 @onready var rain_sound: AudioStreamPlayer = $rain
 
 func _ready() -> void:
@@ -37,13 +38,15 @@ func play_bird_spawned():
 func play_bird_landed():
 	$bird_landed.play()
 	
-func play_bird_attacking():
-	$bird_attacking_beak.play()
-
-# same source as the previous sound
+# same source as the previous sound:
+# https://freesound.org/people/shatterstars/sounds/651319/
 func play_bird_flying_away():
 	$bird_flying_away.play()
 	
+# https://freesound.org/people/launemax/sounds/250026/
+func play_bird_attacking():
+	$bird_attacking_beak.play()
+
 # https://freesound.org/people/ChuckleNutsDev/sounds/718668/
 func play_bird_wings():
 	$bird_wings.play()

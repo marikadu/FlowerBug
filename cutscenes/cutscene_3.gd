@@ -165,9 +165,9 @@ func _physics_process(_delta: float) -> void:
 				
 				await get_tree().create_timer(1.3).timeout
 				$Camera2D.apply_shake()
+				AudioManager.play_hit()
 				
 				AudioManager.rain_sound.volume_db = -30.0
-				#AudioManager.rain_play()
 				await get_tree().create_timer(0.4).timeout
 				AudioManager.rain_sound.volume_db = -25.0
 				await get_tree().create_timer(0.4).timeout

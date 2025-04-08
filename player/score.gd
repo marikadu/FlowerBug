@@ -75,18 +75,18 @@ func shake():
 
 # progress bar shaking
 func _on_shake_1():
-	shake_intensity = 1.0
+	shake_intensity = 2.0
 	start_shaking()
 	
 func _on_shake_2():
 	if not shaking:
 		start_shaking()
-	shake_intensity = 3.0
+	shake_intensity = 4.0
 	
 func _on_shake_3():
 	if not shaking:
 		start_shaking()
-	shake_intensity = 6.0
+	shake_intensity = 7.0
 	
 
 func _on_can_continue():

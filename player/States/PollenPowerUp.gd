@@ -1,7 +1,7 @@
 extends State
 class_name PollenPowerUp
 
-@export var pollen_multiplier: float = 2
+@export var pollen_multiplier: float = 3
 
 var player: CharacterBody2D
 

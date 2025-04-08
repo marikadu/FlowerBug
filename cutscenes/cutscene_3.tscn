@@ -1,21 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://r5ikhfr54srj"]
+[gd_scene load_steps=18 format=3 uid="uid://r5ikhfr54srj"]
 
 [ext_resource type="Script" uid="uid://qkmwn5m5xf5l" path="res://cutscenes/cutscene_3.gd" id="1_014h0"]
 [ext_resource type="Texture2D" uid="uid://di4dd17x6kubv" path="res://cutscenes/cutscene_3.png" id="2_014h0"]
 [ext_resource type="Texture2D" uid="uid://cr5tjfs0a82f1" path="res://cutscenes/cutscene_3_2.png" id="2_234fn"]
 [ext_resource type="Texture2D" uid="uid://bxavxmuk75u83" path="res://cutscenes/cutscene_3_3.png" id="2_jgpfn"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="3_jgpfn"]
-[ext_resource type="Texture2D" uid="uid://wsd4f071ysnr" path="res://assets/HUD/tutorial_mouse2.png" id="6_08c6u"]
+[ext_resource type="Texture2D" uid="uid://cvv0tie5yl8ex" path="res://assets/HUD/continueButton1.png" id="6_5po7t"]
 [ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="7_5po7t"]
+[ext_resource type="Texture2D" uid="uid://btq5vrufoh78" path="res://assets/HUD/continueButton2.png" id="7_qpcxl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_08c6u"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_08c6u")
+"texture": ExtResource("6_5po7t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_5po7t")
+"texture": ExtResource("7_qpcxl")
 }],
 "loop": true,
 "name": &"click",

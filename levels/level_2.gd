@@ -59,20 +59,18 @@ func _ready() -> void:
 	add_child(player_instance)
 	
 	# positioning the spawn area to the centre of the screen
-	#$SpawnArea.position = get_viewport_rect().size/2
 	$Camera2D.position = get_viewport_rect().size/2
+	
+	screen_size = get_viewport().get_visible_rect().size
 	
 	# storing the player instance in Global
 	Global.player_instance = player_instance
-	
-	screen_size = get_viewport().get_visible_rect().size
 	
 	# randomizing the timer of spawning the flowers
 	$Flower_Spawn_Timer.wait_time = randi_range(1,2) 
 	
 	# randomizing the enemy spawn timer
-	#$Enemy_Spawn_Timer.wait_time = randi_range(20,26) 
-	$Enemy_Spawn_Timer.wait_time = randi_range(2,3) 
+	$Enemy_Spawn_Timer.wait_time = randi_range(7,15) 
 	
 	# from the start, setting the amount of hearts based on the max health
 	hearts_container.setMaxHearts(player_instance.max_health)
@@ -138,7 +136,6 @@ func spawn_flower():
 		flower_instance.add_to_group("flower") # add to the flower group
 	
 		add_child(flower_instance)
-		#print("spawned flower")
 	
 	else:
 		# choosing a random carnivorous flower from the list
@@ -150,7 +147,6 @@ func spawn_flower():
 		carn_flower_instance.add_to_group("carnivorous")
 		
 		add_child(carn_flower_instance)
-		#print("spawned carnivorous flower")
 
 
 func _on_flower_spawn_timer_timeout() -> void:
@@ -161,13 +157,10 @@ func _on_flower_spawn_timer_timeout() -> void:
 		spawn_flower()
 	else:
 		print("too many flowers, don't spawn")
-		#$Flower_Spawn_Timer.stop()
-		# ideally, stop the timer unless there are less than 10 flowers
-		
+
 
 # removing a flower when eaten
 func remove_flower(flower: Node2D) -> void:
-	#if flower:
 	if flower and is_instance_valid(flower):
 		if flower.is_in_group("flower"):
 			flower_instances.erase(flower)
@@ -175,9 +168,9 @@ func remove_flower(flower: Node2D) -> void:
 			carn_flower_instances.erase(flower)
 		
 		flower.queue_free()
-		#print("removed flower: ", flower)
 
 
+# removing a power-up when picked-up
 func remove_powerup(powerup: Node2D) -> void:
 	if powerup:
 		powerup_instances.erase(powerup)
@@ -204,12 +197,11 @@ func spawn_powerup():
 	powerup_instance.add_to_group("powerup") # add to the powerup group
 	
 	add_child(powerup_instance)
-	#print("powerup: spawned")
 	
 
 func _on_power_up_spawn_timer_timeout() -> void:
 	spawn_powerup()
-	
+
 
 func spawn_enemy():
 	if not Global.is_game_over: # do not spawn a bird when game over
@@ -238,10 +230,8 @@ func spawn_enemy():
 
 func _on_timer_enemy_spawn_timer_timeout() -> void:
 	spawn_enemy()
-	pass
 	$Enemy_Spawn_Timer.wait_time = randi_range(11,17) 
 	$Enemy_Spawn_Timer.start()
-	#$Enemy_Spawn_Timer.stop()
 
 func _on_enemy_left():
 	bird_already_present = false
