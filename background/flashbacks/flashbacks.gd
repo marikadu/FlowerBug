@@ -128,6 +128,7 @@ func _physics_process(_delta: float) -> void:
 					animation_3_playing = false
 					Events.flashback_playing = false
 					AudioManager.music_volume_normal()
+					_hide_mouse_indicator()
 
 
 

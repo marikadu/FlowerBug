@@ -379,7 +379,7 @@ visible = false
 material = SubResource("ShaderMaterial_2xdxb")
 scale = Vector2(0.195, 0.195)
 sprite_frames = SubResource("SpriteFrames_eo6yw")
-animation = &"eating"
+animation = &"eating_full"
 
 [node name="CleanSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_opt1d")

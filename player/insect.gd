@@ -24,19 +24,14 @@ extends CharacterBody2D
 @export var cursor_threshold = 5.0
 
 @export var bites_required: int = 0 # how many times the player would need to click in order to collect the flower pollen
-#@export var max_distance_for_the_flower = 100
 @export var border_margin: int = 50 # for the player to not be able to move the beetle outside of the viewport
 @export var can_continue_score: int = 100 # for debugging it's 20, but it should be 100
 
-#var flower_to_eat: Node2D = null # variable for the detected flower
 var normal_flower_to_eat: Node2D = null # variable for the detected flower
 var carnivorous_flower_to_eat: Node2D = null # variable for the detected flower
 
-
 var powerup_to_get: Node2D = null # variable for the detected power-up
 
-#var near_flower: bool
-#var near_carnivorous_flower: bool
 var is_eating: bool =  false
 var is_trapped: bool = false
 var insect_can_eat: bool
@@ -54,8 +49,6 @@ var rng: RandomNumberGenerator
 var rng_clicks: RandomNumberGenerator
 
 var identify_flower: String = ""
-# storing the flowers nearby to prevent mistakes in getting to the wrong flower
-#var flowers_near: Array = [] 
 var hearts_list: Array[TextureRect]
 var max_health = 3
 var current_health: int
@@ -85,9 +78,6 @@ func _ready() -> void:
 	
 	current_health = max_health # setting current health to be maximum from start
 	current_health = clamp(current_health, 0, max_health) # health can't go less than 0 and more than 3
-	
-	#$Bird.global_position.x = clamp($Bird.global_position.x, bounds_bw, bounds_fw)
-	#self.global_position.x = clamp
 
 	
 	await get_tree().process_frame # wait a frame before loading
@@ -105,9 +95,6 @@ func _ready() -> void:
 		animated_sprite.play("flying")
 		animated_sprite = $AnimatedSprite2D2
 	
-	#animated_sprite.play("flying")
-	#animated_sprite.visible = true
-	#$CleanSprite2D.visible = false
 	
 func _physics_process(_delta: float) -> void:
 	if is_alive: # moving only when alive
@@ -454,10 +441,8 @@ func identifyFlower(flower_type: String):
 						Events.can_continue.emit()
 			
 		"c_flower_1", "c_flower_2", "c_flower_3":
-			#print("damaged! flower")
 			# the insect loses the polen when hit
 			Global.score -= random_pollen_amount
-			#take_damage()
 			
 		"n_flower_1_tutorial":
 			Global.add_score(16)
@@ -566,15 +551,15 @@ func level_4_system():
 		print("insect: level 4 system!")
 		
 		# score bar starts shaking slightly
-		if Global.score > 110 and Global.score < 140:
+		if Global.score > 110 and Global.score < 130:
 			Events.shaking_1.emit()
 			
 		# score bar shakes more
-		elif Global.score > 140 and Global.score < 160:
+		elif Global.score > 130 and Global.score < 155:
 			Events.shaking_2.emit()
 		
 		# score bar shakes even more
-		elif Global.score > 160 and Global.score < 186:
+		elif Global.score > 155 and Global.score < 186:
 			Events.shaking_3.emit()
 		
 		# score bas explodes

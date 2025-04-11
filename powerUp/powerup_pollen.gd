@@ -14,3 +14,8 @@ func _ready() -> void:
 	# either have the sprite be flipped horizontally or not
 	if randf() < 0.5:
 		$PowerUpSprite.flip_h = true
+
+
+func _on_disappear_timer_timeout() -> void:
+	if self:
+		get_parent().remove_flower(self)
