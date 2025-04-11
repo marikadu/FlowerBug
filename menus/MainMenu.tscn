@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://w2pbprcxv723"]
 
 [ext_resource type="Script" uid="uid://dnpyuye8hw0vc" path="res://menus/main_menu.gd" id="1_ct8su"]
-[ext_resource type="Texture2D" uid="uid://c3d0bs7j2t6le" path="res://menus/LevelSelectionMenu.png" id="2_k15nl"]
+[ext_resource type="Texture2D" uid="uid://c3d0bs7j2t6le" path="res://menus/LevelSelectionMenu.png" id="2_bslpt"]
 [ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="2_ot3ob"]
 [ext_resource type="Texture2D" uid="uid://vo4hr1kjg8yf" path="res://menus/logo.png" id="3_218cn"]
 [ext_resource type="Texture2D" uid="uid://d4fyh27j3giv0" path="res://menus/MainMenu_beetle2.png" id="4_e2awe"]
@@ -240,7 +240,7 @@ position = Vector2(640, 362)
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 1440.0
-texture = ExtResource("2_k15nl")
+texture = ExtResource("2_bslpt")
 
 [node name="LogoSprite" type="Sprite2D" parent="."]
 position = Vector2(316, 154)

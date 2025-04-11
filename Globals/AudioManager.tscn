@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://bfp8vhmkyfhr3" path="res://assets/SFX/main.ogg" id="2_d0chm"]
 [ext_resource type="AudioStream" uid="uid://bt1b4s6h2tnng" path="res://assets/SFX/hit.wav" id="2_er85w"]
 [ext_resource type="AudioStream" uid="uid://rrlholrld6bi" path="res://assets/SFX/great_tit_1.ogg" id="3_4t86c"]
-[ext_resource type="AudioStream" uid="uid://dq6oe5xc2p68k" path="res://assets/SFX/MainMenu.ogg" id="3_kndt1"]
+[ext_resource type="AudioStream" uid="uid://353te4f1sh2d" path="res://assets/SFX/MainMenuNew.ogg" id="3_xpk7b"]
 [ext_resource type="AudioStream" uid="uid://rpyj8xxeo4s5" path="res://assets/SFX/GameWon.ogg" id="4_hwta7"]
 [ext_resource type="AudioStream" uid="uid://0ct6h4hwmy8n" path="res://assets/SFX/great_tit_2.ogg" id="4_ixva1"]
 [ext_resource type="AudioStream" uid="uid://bgl121pfbs6j5" path="res://assets/SFX/GameOver.ogg" id="5_dn336"]
@@ -35,7 +35,7 @@ clip_0/name = &"Loop"
 clip_0/stream = ExtResource("2_d0chm")
 clip_0/auto_advance = 0
 clip_1/name = &"MainMenu"
-clip_1/stream = ExtResource("3_kndt1")
+clip_1/stream = ExtResource("3_xpk7b")
 clip_1/auto_advance = 0
 clip_2/name = &"GameWon"
 clip_2/stream = ExtResource("4_hwta7")
@@ -177,7 +177,7 @@ script = ExtResource("1_d16gy")
 [node name="GameTheme" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = SubResource("AudioStreamInteractive_kndt1")
-volume_db = -5.491
+volume_db = -2.081
 bus = &"Music"
 
 [node name="hit" type="AudioStreamPlayer" parent="."]
