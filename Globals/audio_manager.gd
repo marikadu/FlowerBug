@@ -1,6 +1,6 @@
 extends Node2D
 
-## the source of the sound is written above the function of the sound
+## The source of the sound is written above the function of the sound
 
 @onready var rain_sound: AudioStreamPlayer = $rain
 
@@ -9,23 +9,23 @@ func _ready() -> void:
 	Events.game_won.connect(_on_game_won)
 
 
-# created in Bfxr
+# Created in Bfxr
 func play_hit():
 	$hit.play()
 
-# created in Bfxr
+# Created in Bfxr
 func play_pick_up():
 	$pick_up.play()
 	
-# mix of the following:
-# created in Bfxr
+# Mix of the following:
+# Created in Bfxr
 # https://freesound.org/people/Sadiquecat/sounds/742955/
 # https://freesound.org/people/Nightflame/sounds/422495/
 func play_speed_power_up():
 	$speed_power_up.play()
 	
-# mix of the following:
-# created in Bfxr
+# Mix of the following:
+# Created in Bfxr
 # https://freesound.org/people/Sadiquecat/sounds/742955/
 func play_pollen_power_up():
 	$pollen_power_up.play()
@@ -73,7 +73,7 @@ func play_got_trapped():
 func rain_play():
 	$rain.play()
 
-## --- music ---
+## --- Music ---
 func play_game_theme():
 	$GameTheme.play()
 	
@@ -107,9 +107,9 @@ func cutscene_start():
 	$GameTheme["parameters/switch_to_clip"] = "Silence"
 
 
-## --- cutscene related ---
+## --- Cutscene related ---
 
-# created in Bfxr
+# Created in Bfxr
 func play_notices():
 	$notices.play()
 	
@@ -117,7 +117,7 @@ func play_notices():
 func play_eating():
 	$eating.play()
 
-# created in Bfxr
+# Created in Bfxr
 func angry_bee():
 	$angry_bee.play()
 
