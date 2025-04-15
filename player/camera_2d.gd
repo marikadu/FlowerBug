@@ -124,11 +124,11 @@ func zoom_camera_in():
 		# Restricting the zoom from going beyond the maximum
 		target_zoom.x = clamp(target_zoom.x, min_zoom.x, max_zoom.x)
 		target_zoom.y = clamp(target_zoom.y, min_zoom.y, max_zoom.y)
-		print("target zoom: ", target_zoom)
+		#print("target zoom: ", target_zoom) # For debugging
 	
 	
 func reset_zoom():
 	if is_gameplay:
 		target_zoom = default_zoom
 		global_position = default_position
-		print("zoom reset!")
+		#print("zoom reset!") # For debugging
