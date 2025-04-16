@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://jk858qkutyie"]
+[gd_scene load_steps=17 format=3 uid="uid://jk858qkutyie"]
 
 [ext_resource type="Script" uid="uid://7x7epv5qywc5" path="res://cutscenes/cutscene_4.gd" id="1_gdkjo"]
+[ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="2_7jual"]
 [ext_resource type="Texture2D" uid="uid://dic4u7q1rwluf" path="res://cutscenes/cutscene_4.png" id="2_gdkjo"]
+[ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="3_lwf5c"]
 [ext_resource type="Texture2D" uid="uid://cvv0tie5yl8ex" path="res://assets/HUD/continueButton1.png" id="4_2hiev"]
 [ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="5_2hiev"]
 [ext_resource type="Texture2D" uid="uid://btq5vrufoh78" path="res://assets/HUD/continueButton2.png" id="5_4svfq"]
@@ -224,6 +226,20 @@ _data = {
 [node name="Cutscene4" type="Node2D"]
 script = ExtResource("1_gdkjo")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("2_7jual")]
+
+[node name="SkipCutscene" type="Button" parent="CanvasLayer/Pause"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 591.0
+offset_right = 424.0
+offset_bottom = 676.0
+theme = ExtResource("3_lwf5c")
+theme_override_font_sizes/font_size = 50
+text = "Skip Cutscene"
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 offset_left = -58.0
 offset_top = -64.0
@@ -266,3 +282,5 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_7nwfv")
 }
+
+[connection signal="pressed" from="CanvasLayer/Pause/SkipCutscene" to="." method="_on_skip_cutscene_pressed"]

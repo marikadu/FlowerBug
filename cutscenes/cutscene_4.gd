@@ -4,22 +4,24 @@ extends Node2D
 @onready var continue_sprite: AnimatedSprite2D = $Camera2D/CanContinue/ContinueSprite
 @onready var continue_animation_player: AnimationPlayer = $Camera2D/CanContinue/ContinueAnimationPlayer
 
-
 var slide: int = 0
+# Restricting the player from 
+# skipping to the next side
+# unless the animation is over
+var can_next_slide: bool = false
 
-# what if I add the feature of manually turning the pages/pannels
+
 func _ready() -> void:
-	Global.current_scene_name = 0 # level = cutscene
+	Global.current_scene_name = 0 # Level = cutscene
 	
 	animation_player.play("cutscene4")
-	await get_tree().create_timer(0.4651).timeout
-	#await get_tree().process_frame
+	await get_tree().create_timer(0.4651, false).timeout
 	animation_player.pause()
 	slide += 1
 	_can_continue()
 	print("paused animation, slide: ", slide)
 	
-	if Global.unlocked_levels < 5 : # unlocking level 5, infinite mode
+	if Global.unlocked_levels < 5 : # Unlocking level 5, infinite mode
 		Global.unlocked_levels = 5
 		print("unlocked level 5!")
 	else:
@@ -28,16 +30,16 @@ func _ready() -> void:
 	AudioManager.cutscene_start()
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("eat"):
+	if can_next_slide and Input.is_action_just_pressed("eat"):
 		match slide:
 			1:
 				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "morning1", "morning2")
 				slide += 1
-				await get_tree().create_timer(1.5).timeout
+				await get_tree().create_timer(1.5, false).timeout
 				AudioManager.door_opening()
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				_can_continue()
 			
 			2:
@@ -45,14 +47,14 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "morning2", "door1")
 				slide += 1
-				await get_tree().create_timer(2.5).timeout
+				await get_tree().create_timer(2.5, false).timeout
 				_can_continue()
 			3:
 				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "door1", "door2")
 				slide += 1
-				await get_tree().create_timer(2.4).timeout
+				await get_tree().create_timer(2.4, false).timeout
 				_can_continue()
 				
 			4:
@@ -60,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "door2", "sleepy1")
 				slide += 1
-				await get_tree().create_timer(1.8).timeout
+				await get_tree().create_timer(1.8, false).timeout
 				_can_continue()
 				
 				
@@ -69,7 +71,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "sleepy1", "sleepy2")
 				slide += 1
-				await get_tree().create_timer(1.3).timeout
+				await get_tree().create_timer(1.3, false).timeout
 				_can_continue()
 				
 			6:
@@ -77,9 +79,9 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "sleepy2", "sleepy3")
 				slide += 1
-				await get_tree().create_timer(0.7).timeout
+				await get_tree().create_timer(0.7, false).timeout
 				AudioManager.play_notices()
-				await get_tree().create_timer(0.7).timeout
+				await get_tree().create_timer(0.7, false).timeout
 				_can_continue()
 				
 			7:
@@ -87,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "sleepy3", "office")
 				slide += 1
-				await get_tree().create_timer(1.9).timeout
+				await get_tree().create_timer(1.9, false).timeout
 				_can_continue()
 				
 			8:
@@ -95,9 +97,9 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "office", "hug1")
 				slide += 1
-				await get_tree().create_timer(1.6).timeout
-				AudioManager.collect_pollen() # hug sound
-				await get_tree().create_timer(1.8).timeout
+				await get_tree().create_timer(1.6, false).timeout
+				AudioManager.collect_pollen() # Hug sound
+				await get_tree().create_timer(1.8, false).timeout
 				_can_continue()
 				
 			9:
@@ -105,7 +107,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "hug1", "hug2")
 				slide += 1
-				await get_tree().create_timer(2.3).timeout
+				await get_tree().create_timer(2.3, false).timeout
 				_can_continue()
 				
 			10:
@@ -113,7 +115,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "hug2", "end1")
 				slide += 1
-				await get_tree().create_timer(2.2).timeout
+				await get_tree().create_timer(2.2, false).timeout
 				_can_continue()
 				
 			11:
@@ -121,7 +123,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "end1", "end2")
 				slide += 1
-				await get_tree().create_timer(2.9).timeout
+				await get_tree().create_timer(2.9, false).timeout
 				_can_continue()
 				
 			12:
@@ -129,7 +131,7 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene4", "end2", "end3")
 				slide += 1
-				await get_tree().create_timer(2.5).timeout
+				await get_tree().create_timer(2.5, false).timeout
 				_can_continue()
 				
 			13: # end of the cutscene
@@ -140,10 +142,23 @@ func _physics_process(_delta: float) -> void:
 
 
 func _can_continue():
-	await get_tree().create_timer(0.2).timeout
-	continue_animation_player.play("can_continue") # show the mouse
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2, false).timeout
+	continue_animation_player.play("can_continue") # Show the indicator
+	await get_tree().create_timer(0.2, false).timeout
 	continue_sprite.play("click")
+	can_next_slide = true
 	
 func _hide_mouse_indicator():
 	continue_animation_player.play("hide")
+	can_next_slide = false
+
+
+func _on_skip_cutscene_pressed() -> void:
+	$CanvasLayer/Pause.hide()
+	get_tree().paused = false
+	
+	await get_tree().process_frame # Wait a frame
+	
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/level_2.tscn")

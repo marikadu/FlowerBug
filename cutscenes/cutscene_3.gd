@@ -4,22 +4,24 @@ extends Node2D
 @onready var continue_sprite: AnimatedSprite2D = $Camera2D/CanContinue/ContinueSprite
 @onready var continue_animation_player: AnimationPlayer = $Camera2D/CanContinue/ContinueAnimationPlayer
 
-
 var slide: int = 0
+# Restricting the player from 
+# skipping to the next side
+# unless the animation is over
+var can_next_slide: bool = false
 
-# what if I add the feature of manually turning the pages/pannels
+
 func _ready() -> void:
-	Global.current_scene_name = 0 # level = cutscene
+	Global.current_scene_name = 0 # Level = cutscene
 	
 	animation_player.play("cutscene3")
-	await get_tree().create_timer(0.3998).timeout
-	#await get_tree().process_frame
+	await get_tree().create_timer(0.3998, false).timeout
 	animation_player.pause()
 	slide += 1
 	_can_continue()
 	print("paused animation, slide: ", slide)
 	
-	if Global.unlocked_levels < 4 : # unlocking level 4
+	if Global.unlocked_levels < 4 : # Unlocking level 4
 		Global.unlocked_levels = 4
 		print("unlocked level 4!")
 	else:
@@ -30,23 +32,23 @@ func _ready() -> void:
 	# start rain
 	AudioManager.rain_sound.volume_db = -30.0
 	AudioManager.rain_play()
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.4, false).timeout
 	AudioManager.rain_sound.volume_db = -25.0
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.4, false).timeout
 	AudioManager.rain_sound.volume_db = -23.0
 
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("eat"):
+	if can_next_slide and Input.is_action_just_pressed("eat"):
 		match slide:
 			1:
 				_hide_mouse_indicator()
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "start", "bird")
 				slide += 1
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 				AudioManager.angry_bird_play()
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				_can_continue()
 			
 			2:
@@ -54,14 +56,14 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "bird", "bird_drop")
-				await get_tree().create_timer(0.8).timeout
+				await get_tree().create_timer(0.8, false).timeout
 				_can_continue()
 			3:
 				_hide_mouse_indicator()
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "bird_drop", "bird_fly")
-				await get_tree().create_timer(1.8).timeout
+				await get_tree().create_timer(1.8, false).timeout
 				_can_continue()
 				
 			4:
@@ -69,7 +71,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "bird_fly", "beetle")
-				await get_tree().create_timer(1.0).timeout
+				await get_tree().create_timer(1.0, false).timeout
 				_can_continue()
 				
 				
@@ -78,7 +80,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "beetle", "beetle_flies")
-				await get_tree().create_timer(2.4).timeout
+				await get_tree().create_timer(2.4, false).timeout
 				_can_continue()
 				
 			6:
@@ -86,7 +88,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "beetle_flies", "drop1")
-				await get_tree().create_timer(0.7).timeout
+				await get_tree().create_timer(0.7, false).timeout
 				_can_continue()
 				
 			7:
@@ -94,7 +96,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop1", "drop2")
-				await get_tree().create_timer(1.6).timeout
+				await get_tree().create_timer(1.6, false).timeout
 				_can_continue()
 				
 				
@@ -107,13 +109,13 @@ func _physics_process(_delta: float) -> void:
 				
 				# fading out the sound
 				AudioManager.rain_sound.volume_db = -24.0
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				AudioManager.rain_sound.volume_db = -30.0
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				AudioManager.empty_play()
 				AudioManager.rain_sound.volume_db = -40.0
 				
-				await get_tree().create_timer(0.5).timeout
+				await get_tree().create_timer(0.5, false).timeout
 				_can_continue()
 				
 				
@@ -122,7 +124,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop3", "drop4")
-				await get_tree().create_timer(1.6).timeout
+				await get_tree().create_timer(1.6, false).timeout
 				_can_continue()
 				
 			10:
@@ -130,7 +132,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop4", "drop5")
-				await get_tree().create_timer(1.9).timeout
+				await get_tree().create_timer(1.9, false).timeout
 				_can_continue()
 				
 			11:
@@ -138,7 +140,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop5", "drop6")
-				await get_tree().create_timer(2.3).timeout
+				await get_tree().create_timer(2.3, false).timeout
 				_can_continue()
 				
 			12:
@@ -146,7 +148,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop6", "drop7")
-				await get_tree().create_timer(1.6).timeout
+				await get_tree().create_timer(1.6, false).timeout
 				_can_continue()
 				
 			13:
@@ -154,7 +156,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop7", "drop8")
-				await get_tree().create_timer(1.4).timeout
+				await get_tree().create_timer(1.4, false).timeout
 				_can_continue()
 				
 			14:
@@ -163,14 +165,14 @@ func _physics_process(_delta: float) -> void:
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop8", "drop9")
 				
-				await get_tree().create_timer(1.3).timeout
+				await get_tree().create_timer(1.3, false).timeout
 				$Camera2D.apply_shake()
 				AudioManager.play_hit()
 				
 				AudioManager.rain_sound.volume_db = -30.0
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				AudioManager.rain_sound.volume_db = -25.0
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.4, false).timeout
 				AudioManager.rain_sound.volume_db = -23.0
 				
 				await get_tree().create_timer(0.2).timeout
@@ -182,7 +184,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "drop9", "fell")
-				await get_tree().create_timer(1.7).timeout
+				await get_tree().create_timer(1.7, false).timeout
 				_can_continue()
 				
 			16:
@@ -190,7 +192,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "fell", "hide")
-				await get_tree().create_timer(0.9).timeout
+				await get_tree().create_timer(0.9, false).timeout
 				_can_continue()
 				
 			17:
@@ -198,7 +200,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "hide", "hide2")
-				await get_tree().create_timer(0.9).timeout
+				await get_tree().create_timer(0.9, false).timeout
 				_can_continue()
 				
 			18:
@@ -206,7 +208,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "hide2", "leaf1")
-				await get_tree().create_timer(0.9).timeout
+				await get_tree().create_timer(0.9, false).timeout
 				_can_continue()
 				
 			19:
@@ -214,7 +216,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "leaf1", "leaf2")
-				await get_tree().create_timer(0.9).timeout
+				await get_tree().create_timer(0.9, false).timeout
 				_can_continue()
 				
 			20:
@@ -222,7 +224,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "leaf2", "leaf3")
-				await get_tree().create_timer(0.9).timeout
+				await get_tree().create_timer(0.9, false).timeout
 				_can_continue()
 				
 			21:
@@ -230,7 +232,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "leaf3", "leaf4")
-				await get_tree().create_timer(1.0).timeout
+				await get_tree().create_timer(1.0, false).timeout
 				_can_continue()
 				
 			22:
@@ -238,7 +240,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "leaf4", "leaf5")
-				await get_tree().create_timer(1.9).timeout
+				await get_tree().create_timer(1.9, false).timeout
 				_can_continue()
 				
 			23:
@@ -246,7 +248,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "leaf5", "morning1")
-				await get_tree().create_timer(1.8).timeout
+				await get_tree().create_timer(1.8, false).timeout
 				_can_continue()
 				
 			24:
@@ -254,7 +256,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "morning1", "morning2")
-				await get_tree().create_timer(1.8).timeout
+				await get_tree().create_timer(1.8, false).timeout
 				_can_continue()
 				
 			25:
@@ -262,7 +264,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "morning2", "morning3")
-				await get_tree().create_timer(1.8).timeout
+				await get_tree().create_timer(1.8, false).timeout
 				_can_continue()
 				
 			26:
@@ -270,7 +272,7 @@ func _physics_process(_delta: float) -> void:
 				slide += 1
 				print("paused animation, slide: ", slide)
 				animation_player.play_section_with_markers("cutscene3", "morning3", "morning4")
-				await get_tree().create_timer(3.5).timeout
+				await get_tree().create_timer(3.5, false).timeout
 				_can_continue()
 				
 			27: # end of the cutscene
@@ -283,10 +285,23 @@ func _physics_process(_delta: float) -> void:
 				
 				
 func _can_continue():
-	await get_tree().create_timer(0.2).timeout
-	continue_animation_player.play("can_continue") # show the mouse
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2, false).timeout
+	continue_animation_player.play("can_continue") # Show the indicator
+	await get_tree().create_timer(0.2, false).timeout
 	continue_sprite.play("click")
+	can_next_slide = true
 	
 func _hide_mouse_indicator():
 	continue_animation_player.play("hide")
+	can_next_slide = false
+
+
+func _on_skip_cutscene_pressed() -> void:
+	$CanvasLayer/Pause.hide()
+	get_tree().paused = false
+	
+	await get_tree().process_frame # Wait a frame
+	
+	Transition.transition()
+	await Transition.on_transition_finished
+	get_tree().change_scene_to_file("res://levels/level_2.tscn")

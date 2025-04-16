@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://r5ikhfr54srj"]
+[gd_scene load_steps=20 format=3 uid="uid://r5ikhfr54srj"]
 
 [ext_resource type="Script" uid="uid://qkmwn5m5xf5l" path="res://cutscenes/cutscene_3.gd" id="1_014h0"]
 [ext_resource type="Texture2D" uid="uid://di4dd17x6kubv" path="res://cutscenes/cutscene_3.png" id="2_014h0"]
 [ext_resource type="Texture2D" uid="uid://cr5tjfs0a82f1" path="res://cutscenes/cutscene_3_2.png" id="2_234fn"]
+[ext_resource type="PackedScene" uid="uid://bs3rv4chfmgan" path="res://menus/Pause.tscn" id="2_efsii"]
 [ext_resource type="Texture2D" uid="uid://bxavxmuk75u83" path="res://cutscenes/cutscene_3_3.png" id="2_jgpfn"]
 [ext_resource type="Script" uid="uid://ddeuw8p2j5l45" path="res://player/camera_2d.gd" id="3_jgpfn"]
+[ext_resource type="Theme" uid="uid://bdf28dglggtir" path="res://assets/HUD/theme.tres" id="3_n1ctw"]
 [ext_resource type="Texture2D" uid="uid://cvv0tie5yl8ex" path="res://assets/HUD/continueButton1.png" id="6_5po7t"]
 [ext_resource type="Texture2D" uid="uid://da8e5elipqkhk" path="res://assets/HUD/tutorial_mouse.png" id="7_5po7t"]
 [ext_resource type="Texture2D" uid="uid://btq5vrufoh78" path="res://assets/HUD/continueButton2.png" id="7_qpcxl"]
@@ -368,6 +370,20 @@ _data = {
 [node name="Cutscene3" type="Node2D"]
 script = ExtResource("1_014h0")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("2_efsii")]
+
+[node name="SkipCutscene" type="Button" parent="CanvasLayer/Pause"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 591.0
+offset_right = 424.0
+offset_bottom = 676.0
+theme = ExtResource("3_n1ctw")
+theme_override_font_sizes/font_size = 50
+text = "Skip Cutscene"
+
 [node name="ColorRect2" type="ColorRect" parent="."]
 offset_left = -1815.0
 offset_top = -528.0
@@ -400,10 +416,10 @@ modulate = Color(1, 1, 1, 0)
 layout_direction = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 0.530457
-offset_top = -3.85391
-offset_right = 40.5305
-offset_bottom = 36.1465
+offset_left = 110.061
+offset_top = 59.8525
+offset_right = 150.061
+offset_bottom = 99.8529
 
 [node name="ContinueSprite" type="AnimatedSprite2D" parent="Camera2D/CanContinue"]
 z_index = 2
@@ -421,3 +437,5 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_4kkgw")
 }
+
+[connection signal="pressed" from="CanvasLayer/Pause/SkipCutscene" to="." method="_on_skip_cutscene_pressed"]

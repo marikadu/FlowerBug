@@ -14,10 +14,10 @@ func _ready() -> void:
 	clouds_evening.visible = false
 	clouds_infinite.visible = false
 	
-	# wait a frame before loading
+	# Wait a frame before loading
 	await get_tree().process_frame
 	
-	# different background depending on the current level
+	# Different background depending on the current level
 	if Global.current_scene_name == 1:
 		$BgSky.frame = 0
 		clouds_morning.visible = true
