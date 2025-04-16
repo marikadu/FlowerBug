@@ -38,7 +38,7 @@ func play_bird_spawned():
 func play_bird_landed():
 	$bird_landed.play()
 	
-# same source as the previous sound:
+# Same source as the previous sound:
 # https://freesound.org/people/shatterstars/sounds/651319/
 func play_bird_flying_away():
 	$bird_flying_away.play()

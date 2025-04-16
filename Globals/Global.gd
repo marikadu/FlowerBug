@@ -12,7 +12,7 @@ var levels = []
 var unlocked_levels = 1
 
 var is_score_multiplied: bool = false
-var current_multiplier = 1.0 # default multiplier
+var current_multiplier = 1.0 # Default multiplier
 
 var speed_power_up_active: bool  = false
 
@@ -23,14 +23,7 @@ var has_completed_the_game: bool = false
 var is_music_mute: bool = false
 var is_sound_mute: bool = false
 
-#func _process(delta: float) -> void:
-	#if is_music_mute:
-		#print("music mute")
-	#else:
-		#print("not mute")
-
-
-# update personal best score
+# Update personal best score
 func update_personal_best():
 	if score > personal_best:
 		personal_best = score
@@ -39,5 +32,4 @@ func update_personal_best():
 func add_score(pollen: int):
 	var final_pollen: int = pollen * current_multiplier
 	score += final_pollen
-	score = max(score, 0) # doesn't go bellow 0
-	#print("added score: ", final_pollen, ". new score: ", score)
+	score = max(score, 0) # The score does not go bellow 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsynhbaqola2u"]
 
 [ext_resource type="Script" uid="uid://3lkgt4fqaf0" path="res://menus/made_with_godot.gd" id="1_whned"]
-[ext_resource type="VideoStream" path="res://assets/HUD/custom made in godot3.ogv" id="2_whned"]
+[ext_resource type="VideoStream" uid="uid://blv3sc26j3k3q" path="res://assets/HUD/custom made in godot3.ogv" id="2_whned"]
 
 [sub_resource type="Animation" id="Animation_w0nm2"]
 length = 0.001

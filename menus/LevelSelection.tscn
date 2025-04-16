@@ -130,11 +130,11 @@ layout_mode = 2
 position = Vector2(640, 360)
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Back" to="." method="_on_dawn_pressed"]
 [connection signal="pressed" from="Back" to="." method="_on_evening_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_dawn_pressed"]
 [connection signal="pressed" from="Morning" to="." method="_on_morning_pressed"]
 [connection signal="pressed" from="Noon" to="." method="_on_noon_pressed"]
 [connection signal="pressed" from="Evening" to="." method="_on_evening_pressed"]
-[connection signal="pressed" from="Dawn" to="." method="_on_dawn_pressed"]
 [connection signal="pressed" from="Dawn" to="." method="_on_evening_pressed"]
+[connection signal="pressed" from="Dawn" to="." method="_on_dawn_pressed"]
 [connection signal="pressed" from="Infinite" to="." method="_on_infinite_pressed"]
