@@ -121,7 +121,7 @@ func spawn_flower():
 		
 		
 	if not valid_position:
-		print("can't find a position for the flower")
+		#print("can't find a position for the flower")
 		return
 	
 	# randomly choosing a normal or carnivorous flower
@@ -155,8 +155,8 @@ func _on_flower_spawn_timer_timeout() -> void:
 	# limit of flowers on screen
 	if flower_instances.size() + carn_flower_instances.size() < 10:
 		spawn_flower()
-	else:
-		print("too many flowers, don't spawn")
+	#else:
+		#print("too many flowers, don't spawn")
 
 
 # removing a flower when eaten
@@ -175,7 +175,7 @@ func remove_powerup(powerup: Node2D) -> void:
 	if powerup:
 		powerup_instances.erase(powerup)
 		powerup.queue_free()
-		print("got powerup: ", powerup)
+		#print("got powerup: ", powerup)
 		
 
 func spawn_powerup():
@@ -212,7 +212,8 @@ func spawn_enemy():
 			spawn_pansy()
 			
 		else:
-			print ("don't spawn pansy")
+			#print ("don't spawn pansy")
+			pass
 		
 		if not bird_already_present:
 			bird_spawned_count += 1
@@ -225,7 +226,8 @@ func spawn_enemy():
 			enemy_instance.add_to_group("enemy")
 			add_child(enemy_instance)
 		else:
-			print("don't spawn bird, already present")
+			pass
+			#print("don't spawn bird, already present")
 
 
 func _on_timer_enemy_spawn_timer_timeout() -> void:
@@ -244,7 +246,7 @@ func _on_can_continue():
 func spawn_pansy():
 	if pansy_spawn_count < 1:
 		pansy_spawn_count += 1
-		print("pansy spawned")
+		#print("pansy spawned")
 		var pansy = preload("res://flowers/n_flower_5.tscn")
 		var pansy_instance = pansy.instantiate()
 		pansy_instance.position = Vector2(191, 578)

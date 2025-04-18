@@ -204,23 +204,23 @@ func _process(_delta: float) -> void:
 			# Different ranges of bites required to collect pollen for each level
 			if Global.current_scene_name == 1:
 				bites_required = rng_clicks.randi_range(3, 5)
-				print("bites_required: ", bites_required)
+				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 2:
 				bites_required = rng_clicks.randi_range(2, 6)
-				print("bites_required: ", bites_required)
+				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 3:
 				bites_required = rng_clicks.randi_range(3, 8)
-				print("bites_required: ", bites_required)
+				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 4:
 				bites_required = rng_clicks.randi_range(3, 11)
-				print("bites_required: ", bites_required)
+				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 5:
 				bites_required = rng_clicks.randi_range(2, 13)
-				print("bites_required: ", bites_required)
+				#print("bites_required: ", bites_required)
 		
 		if Input.is_action_just_pressed("eat"):
 			AudioManager.collect_pollen()
@@ -265,11 +265,11 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	# --- Flowers ---
 	if body.is_in_group("flower"):
 		normal_flower_to_eat = body # Detecting this specific normal flower
-		print("noticed body: ", normal_flower_to_eat)
+		#print("noticed body: ", normal_flower_to_eat)
 		
 	if body.is_in_group("carnivorous"):
 		carnivorous_flower_to_eat = body # Detecting this specific carnivorous flower
-		print("noticed carnivorous body: ", carnivorous_flower_to_eat)
+		#print("noticed carnivorous body: ", carnivorous_flower_to_eat)
 		
 	# --- Power-ups ---
 	if body.is_in_group("powerup"):
@@ -325,11 +325,11 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 # When the beetle exits the body collission of the flowers
 func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("flower"):
-		print("left body: ", normal_flower_to_eat)
+		#print("left body: ", normal_flower_to_eat)
 		normal_flower_to_eat = null # clearing stored flower
 		
 	if body.is_in_group("carnivorous"):
-		print("left carnivorous body: ", carnivorous_flower_to_eat)
+		#print("left carnivorous body: ", carnivorous_flower_to_eat)
 		carnivorous_flower_to_eat = null # clearing stored flower
 		
 		# There is a problem present that when the player overlaps with the new
@@ -350,7 +350,7 @@ func ate_the_flower():
 		get_parent().remove_flower(normal_flower_to_eat) # Removing the flower
 		AudioManager.collected_pollen() # Playing the sound
 		identifyFlower(flower_type) # Identifying the flower type
-		print("ate!")
+		#print("ate!")
 		camera_control.reset_zoom()
 		# Changing the sprite depending whether the player has collected all the pollen
 		if has_collected_all_pollen:
@@ -402,7 +402,7 @@ func _on_trapped_timer_timeout() -> void:
 	#can_detect_bird = true 
 
 	animated_sprite.show() # Showing the sprite again
-	print("no longer trapped!")
+	#print("no longer trapped!")
 	take_damage()
 
 
@@ -446,7 +446,8 @@ func identifyFlower(flower_type: String):
 			Events.ate_tutorial_flower.emit()
 			
 		"_":
-			print("insect: unknown flower type")
+			#print("insect: unknown flower type")
+			pass
 
 
 func take_damage():
@@ -459,7 +460,7 @@ func take_damage():
 			hit_flash.play("hit_flash")
 			current_health -= 1
 			Events.healthChanged.emit(current_health)
-			print("current health: ", current_health)
+			#print("current health: ", current_health)
 			voulnerable = false
 			$VoulnerableTimer.start()
 			# The insect loses some of the pollen, and can't go bellow 0
@@ -482,7 +483,7 @@ func take_damage():
 					await get_tree().create_timer(1.2).timeout
 					animated_sprite.play("game_over_loop")
 				
-				print("game over!")
+				#print("game over!")
 			
 			
 func _on_can_detect_bird():
@@ -507,7 +508,7 @@ func _on_spawned_bird():
 func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("continue"):
 		continue_scene = true
-		print("win win!")
+		#print("win win!")
 		
 		# Loading different cutscenes depending on the current level
 		if Global.current_scene_name == 1:
@@ -532,18 +533,19 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
 			
 		else:
-			print("playing inside the 'main'!")
+			#print("playing inside the 'main'!")
+			pass
 
 
 func _on_has_filled_pollen_bar():
 	if not Global.current_scene_name == 5: # If not the infinite mode
-		print("insect: has filled the bar!")
+		#print("insect: has filled the bar!")
 		has_collected_all_pollen = true
 	
 	
 func level_4_system():
 	if Global.current_scene_name == 4: # Only in the level 4
-		print("insect: level 4 system!")
+		#print("insect: level 4 system!")
 		
 		# Score bar starts shaking slightly
 		if Global.score > 110 and Global.score < 130:

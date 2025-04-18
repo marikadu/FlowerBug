@@ -116,7 +116,7 @@ func _on_bird_appear_timer_timeout() -> void:
 	
 func _delay_timer():
 	print("delaying the timer")
-	$BirdAppearTimer.set_wait_time(3, false) # waiting for 3 more seconds
+	$BirdAppearTimer.set_wait_time(3) # waiting for 3 more seconds
 	# maybe add some sort of sound here
 
 
