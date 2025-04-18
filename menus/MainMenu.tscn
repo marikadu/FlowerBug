@@ -289,17 +289,6 @@ theme_override_colors/font_color = Color(0.711081, 0.42688, 0.177786, 1)
 theme_override_font_sizes/font_size = 70
 text = "Play"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 35.39)
-layout_mode = 2
-
-[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_ot3ob")
-theme_override_colors/font_color = Color(0.709804, 0.427451, 0.176471, 1)
-theme_override_font_sizes/font_size = 70
-text = "Exit"
-
 [node name="AnimationPlayerLogo" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vp83o")
@@ -461,7 +450,6 @@ text = "0000"
 position = Vector2(640, 360)
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="LevelSelection/LevelSelectionList/1" to="." method="_on_morning_pressed"]
 [connection signal="pressed" from="LevelSelection/LevelSelectionList/2" to="." method="_on_noon_pressed"]
 [connection signal="pressed" from="LevelSelection/LevelSelectionList/3" to="." method="_on_evening_pressed"]
