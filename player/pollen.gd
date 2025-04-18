@@ -8,6 +8,6 @@ func _ready() -> void:
 	
 func _on_shaking_4():
 	pollen_animation_player.play("filled_with_pollen")
-	# wait a frame before loading
+	# Wait a frame before loading
 	await get_tree().process_frame
 	self.visible = true

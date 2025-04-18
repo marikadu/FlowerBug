@@ -13,10 +13,10 @@ var is_blooming: bool
 signal is_eaten_status_3(is_eaten: bool)
 
 func _ready() -> void:
-	# for the variety, either have the sprite be flipped horizontally or not
+	# For the variety, either have the sprite be flipped horizontally or not
 	if randf() < 0.5:
 		animated_sprite.flip_h = true
-	# bouncing animations for better visuals
+	# Bouncing animations for better visuals
 	animated_sprite.play("blooming")
 	animation_player.play("bounce")
 	player = Global.player_instance
@@ -26,7 +26,6 @@ func _ready() -> void:
 
 func _on_disappear_timer_timeout() -> void:
 	if not is_being_eaten:
-		#self.queue_free()
 		get_parent().remove_flower(self)
 		
 func trap_the_player():
@@ -45,8 +44,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	$DisappearTimer.start()
 
 
-# every frame change, the bouncing animation is played
-# therefore for every flower "state", it has an animation of the bounce
+# Every frame change, the bouncing animation is played
+# Therefore for every flower "state", it has an animation of the bounce
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if is_blooming:
 		animation_player.play("bounce")

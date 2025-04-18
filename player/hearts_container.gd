@@ -7,7 +7,7 @@ func setMaxHearts(max: int):
 		var heart = HeartGuiClass.instantiate()
 		add_child(heart)
 
-# updating the GUI of the hearts
+# Updating the GUI of the hearts
 func updateHearts(currentHealth: int):
 	var hearts = get_children()
 	

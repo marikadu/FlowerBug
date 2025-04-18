@@ -7,7 +7,7 @@ extends Control
 
 var shaking = false
 var shake_intensity = 1.0
-var original_position: Vector2 # saving the original position, so the score does not fly off screen
+var original_position: Vector2 # Saving the original position, so the score does not fly off screen
 var infinite_mode: bool = false
 var arrow_appeared: bool = false
 
@@ -24,7 +24,7 @@ func _ready() -> void:
 	arrow.visible = false
 	arrow_appeared = false
 	
-	# wait a frame before loading
+	# Wait a frame before loading
 	await get_tree().process_frame
 	
 	if Global.current_scene_name == 5:
@@ -34,20 +34,20 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	
-	if not infinite_mode: # if the story mode
-		# setting the value of the progress bar to be the score
+	if not infinite_mode: # If playing the story mode
+		# Setting the value of the progress bar to be the score
 		progress_bar.value = Global.score
 	
-	else: # if the infinite mode
+	else: # If playing the infinite mode
 		$Label.text = str(Global.score)
 
 
 func _on_texture_progress_bar_value_changed(value: float) -> void:
-	# setting the label as the score
+	# Setting the label as the score
 	$Label.text = str(Global.score)
 	
 	if not infinite_mode:
-		# finished filling the bar signal
+		# Finished filling the bar signal
 		if Global.score >= progress_bar.max_value:
 			Events.has_collected_all_pollen.emit()
 			print("score: progress bar complete!")
@@ -64,16 +64,16 @@ func stop_shaking():
 	global_position = original_position
 
 
+# Tween with the shaking for the story purposes on Level 4
 func shake():
 	if shaking:
 		var offset = Vector2(randf_range(-shake_intensity, shake_intensity), randf_range(-shake_intensity, shake_intensity))
 		var tween = create_tween()
-		#tween.tween_property(self, "position", global_position + offset, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_property(self, "position", original_position + offset, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 		tween.tween_callback(shake)
 
 
-# progress bar shaking
+# Progress bar shaking
 func _on_shake_1():
 	shake_intensity = 2.0
 	start_shaking()
@@ -90,7 +90,7 @@ func _on_shake_3():
 	
 
 func _on_can_continue():
-	# arrow only appears on levels 1, 2, 3
+	# Arrow only appears on levels 1, 2, 3
 	if not Global.current_scene_name == 4 and not Global.current_scene_name == 5:
 		if not arrow_appeared:
 			arrow_appeared = true

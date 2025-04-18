@@ -99,7 +99,6 @@ func _on_game_won():
 	
 	
 func _on_game_over():
-	#if not Global.is_game_over:
 	$GameTheme["parameters/switch_to_clip"] = "GameOver"
 	
 
@@ -129,7 +128,7 @@ func angry_bird_play():
 func water_drop_play():
 	$water_dtop.play()
 
-# generated noice in Audacity and slowed it down
+# Generated noice in Audacity and slowed it down
 func empty_play():
 	$empty.play()
 	

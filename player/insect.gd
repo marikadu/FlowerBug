@@ -83,13 +83,13 @@ func _ready() -> void:
 	await get_tree().process_frame # Wait a frame before loading
 	
 	if Global.paint_was_washed_off: # If in story the paint is washed off
-		#print("paint has been washed off")
+		# Show the sprite of the Beetle without the paint on its back
 		$CleanSprite2D.visible = true
 		animated_sprite.visible = false
 		$CleanSprite2D.play("flying")
 		animated_sprite = $CleanSprite2D
 	else:
-		#print("paint is on")
+		# The Beetle has the paint
 		$CleanSprite2D.visible = false
 		animated_sprite.visible = true
 		animated_sprite.play("flying")
@@ -145,7 +145,7 @@ func _physics_process(_delta: float) -> void:
 				move_and_slide() # Making CharacterBody2D to respond to the movement
 				animated_sprite.look_at(target_position) # The sprite rotates towards the player's mouse cursor
 		
-		# Eating a flower
+		# Eating a flower / Collecting the pollen
 		if Input.is_action_just_pressed("eat") and insect_can_eat:
 			if normal_flower_to_eat: # If the flower is normal
 				if normal_flower_to_eat.is_in_group("flower") and normal_flower_to_eat.can_be_eaten:
@@ -160,14 +160,12 @@ func _physics_process(_delta: float) -> void:
 					normal_flower_to_eat.start_eating()
 					eating_bar.value = 0 # Resetting the EatingBar value
 					eating_bar.show()
-					#print("is eating: ", normal_flower_to_eat)
-					#print("eating...")
 					
 					
 			# If the flower is carnivorous
 			if carnivorous_flower_to_eat:
 				if carnivorous_flower_to_eat.is_in_group("carnivorous") and carnivorous_flower_to_eat.can_be_eaten:
-					var bounce_animation_count = 0 # resetting the bounce count
+					var bounce_animation_count = 0 # Resetting the bounce count
 					AudioManager.play_got_trapped()
 					carnivorous_flower_to_eat.animation_player.play("bounce")
 					carnivorous_flower_to_eat.animated_sprite.play("trapped")
@@ -192,7 +190,7 @@ func _physics_process(_delta: float) -> void:
 						bounce_animation_count += 1
 						await get_tree().create_timer(0.4, false).timeout
 			#else:
-				#print("can't eat")
+				#print("Cannot interact with the flower") # For debugging
 
 
 func _process(_delta: float) -> void:
@@ -204,23 +202,19 @@ func _process(_delta: float) -> void:
 			# Different ranges of bites required to collect pollen for each level
 			if Global.current_scene_name == 1:
 				bites_required = rng_clicks.randi_range(3, 5)
-				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 2:
 				bites_required = rng_clicks.randi_range(2, 6)
-				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 3:
 				bites_required = rng_clicks.randi_range(3, 8)
-				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 4:
 				bites_required = rng_clicks.randi_range(3, 11)
-				#print("bites_required: ", bites_required)
 				
 			if Global.current_scene_name == 5:
 				bites_required = rng_clicks.randi_range(2, 13)
-				#print("bites_required: ", bites_required)
+		
 		
 		if Input.is_action_just_pressed("eat"):
 			AudioManager.collect_pollen()
@@ -233,10 +227,8 @@ func _process(_delta: float) -> void:
 				ate_the_flower()
 				current_bite_counter = 0 # Resetting the counter
 				bites_required = 0 # Resetting the number of clicks required
-				
-		if Input.is_action_just_pressed("stop_eating"):
-			stop_eating_the_flower()
-		
+
+
 	if is_trapped:
 		# The TrapperBar is a timer and the player has to wait if they get trapped
 		var percentage = (trapped_timer.time_left / trapped_timer.wait_time) * 100
@@ -249,7 +241,6 @@ func _process(_delta: float) -> void:
 		for body in $InsectArea2D.get_overlapping_bodies():
 			if body.is_in_group("enemy"):
 				if can_detect_bird:
-					#print("insect: detected bird!")
 					Events.caught_by_a_bird.emit()
 					Events.is_player_caught = true
 					take_damage()
@@ -265,11 +256,9 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 	# --- Flowers ---
 	if body.is_in_group("flower"):
 		normal_flower_to_eat = body # Detecting this specific normal flower
-		#print("noticed body: ", normal_flower_to_eat)
 		
 	if body.is_in_group("carnivorous"):
 		carnivorous_flower_to_eat = body # Detecting this specific carnivorous flower
-		#print("noticed carnivorous body: ", carnivorous_flower_to_eat)
 		
 	# --- Power-ups ---
 	if body.is_in_group("powerup"):
@@ -300,39 +289,17 @@ func _on_insect_area_2d_body_entered(body: Node2D) -> void:
 				Events.got_pollen_powerup.emit()
 				# Entering the state of pollen/score multiplier
 				$StateMachine.enter_state($StateMachine.states["PollenPowerUp"])
-		
-	#if body.is_in_group("enemy"):
-		#if body.can_detect_player:
-		#if body not in enemy_near:
-			#enemy_near.append(body)
-		#if can_detect_bird and body.can_detect_player:
-			#print("on body entered insect: detected bird!")
-			#Events.caught_by_a_bird.emit()
-			#take_damage()
-			
-	#for body_b in $InsectArea2D.get_overlapping_bodies():
-		##if body_b.is_in_group("enemy"):
-			##if body_b not in enemy_near:
-				##enemy_near.append(body_b)
-				##print("seeing a bird:", body_b)
-				#
-		#if body_b and body_b.can_detect_player:
-			#print("insect: detected bird!")
-			#Events.caught_by_a_bird.emit()
-			#take_damage()
 
 
 # When the beetle exits the body collission of the flowers
 func _on_insect_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("flower"):
-		#print("left body: ", normal_flower_to_eat)
-		normal_flower_to_eat = null # clearing stored flower
+		normal_flower_to_eat = null # Clearing stored flower
 		
 	if body.is_in_group("carnivorous"):
-		#print("left carnivorous body: ", carnivorous_flower_to_eat)
-		carnivorous_flower_to_eat = null # clearing stored flower
+		carnivorous_flower_to_eat = null # Clearing stored flower
 		
-		# There is a problem present that when the player overlaps with the new
+		# There was a problem present that when the player overlaps with the new
 		# flower and exits the previous flower, the beetle clears the
 		# stored flower and thus it cannot see the collision of the
 		# next flower
@@ -346,11 +313,9 @@ func _on_eating_timer_timeout() -> void:
 func ate_the_flower():
 	if is_instance_valid(normal_flower_to_eat):
 		var flower_type = normal_flower_to_eat.flower_type
-		#
 		get_parent().remove_flower(normal_flower_to_eat) # Removing the flower
 		AudioManager.collected_pollen() # Playing the sound
 		identifyFlower(flower_type) # Identifying the flower type
-		#print("ate!")
 		camera_control.reset_zoom()
 		# Changing the sprite depending whether the player has collected all the pollen
 		if has_collected_all_pollen:
@@ -358,32 +323,9 @@ func ate_the_flower():
 		else:
 			animated_sprite.play("flying")
 
-		#print("score: ", Global.score)
 	eating_bar.hide() # Hiding the progress bar
-	#near_flower = false
 	is_eating = false
 	follow_cursor = true
-	
-
-func stop_eating_the_flower():
-	pass
-	#if is_instance_valid(flower_to_eat):
-		##var flower_type = flower_to_eat.flower_type
-		#
-		##get_parent().remove_flower(flower_to_eat) # removing the flower
-		##print("stopped eating!")
-		#if has_collected_all_pollen:
-			#animated_sprite.play("flying_full")
-		#else:
-			#animated_sprite.play("flying")
-		#
-		#
-	#eating_bar.hide() # hiding the progress bar
-	#near_flower = false
-	#is_eating = false
-	#follow_cursor = true
-	#current_bite_counter = 0 # resetting the counter
-	#flower_to_eat.stop_eating()
 
 
 func _on_trapped_timer_timeout() -> void:
@@ -398,11 +340,9 @@ func _on_trapped_timer_timeout() -> void:
 	
 	## If the player is trapped
 	## and the bird is near,
-	## also take damage from the bird
-	#can_detect_bird = true 
+	## take damage from the bird
 
 	animated_sprite.show() # Showing the sprite again
-	#print("no longer trapped!")
 	take_damage()
 
 
@@ -446,7 +386,6 @@ func identifyFlower(flower_type: String):
 			Events.ate_tutorial_flower.emit()
 			
 		"_":
-			#print("insect: unknown flower type")
 			pass
 
 
@@ -460,7 +399,6 @@ func take_damage():
 			hit_flash.play("hit_flash")
 			current_health -= 1
 			Events.healthChanged.emit(current_health)
-			#print("current health: ", current_health)
 			voulnerable = false
 			$VoulnerableTimer.start()
 			# The insect loses some of the pollen, and can't go bellow 0
@@ -476,25 +414,22 @@ func take_damage():
 				# Playing different sprites whether the player has or has not collected the pollen
 				if has_collected_all_pollen:
 					animated_sprite.play("game_over_full")
-					await get_tree().create_timer(1.2).timeout
+					await get_tree().create_timer(1.2, false).timeout
 					animated_sprite.play("game_over_full_loop")
 				else:
 					animated_sprite.play("game_over")
-					await get_tree().create_timer(1.2).timeout
+					await get_tree().create_timer(1.2, false).timeout
 					animated_sprite.play("game_over_loop")
-				
-				#print("game over!")
 			
 			
 func _on_can_detect_bird():
 	can_detect_bird = true
-	#print("can detect: ", can_detect_bird)
-	
+
+
 func _on_stop_detect_bird():
 	can_detect_bird = false
-	#print("can detect: ", can_detect_bird)
 	is_shaking = false
-	# Slowly reduce the shake to 0.0 with the weight of 0.01
+	# Slowly reducing the shake to 0.0 with the weight of 0.01
 	shake_strength = lerp(shake_strength, 0.0, 0.01)
 
 
@@ -508,7 +443,6 @@ func _on_spawned_bird():
 func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("continue"):
 		continue_scene = true
-		#print("win win!")
 		
 		# Loading different cutscenes depending on the current level
 		if Global.current_scene_name == 1:
@@ -533,19 +467,17 @@ func _on_insect_area_2d_area_entered(area: Area2D) -> void:
 			get_tree().change_scene_to_file("res://cutscenes/cutscene_3.tscn")
 			
 		else:
-			#print("playing inside the 'main'!")
+			# Playing inside the main / infinite mode
 			pass
 
 
 func _on_has_filled_pollen_bar():
 	if not Global.current_scene_name == 5: # If not the infinite mode
-		#print("insect: has filled the bar!")
 		has_collected_all_pollen = true
 	
 	
 func level_4_system():
 	if Global.current_scene_name == 4: # Only in the level 4
-		#print("insect: level 4 system!")
 		
 		# Score bar starts shaking slightly
 		if Global.score > 110 and Global.score < 130:

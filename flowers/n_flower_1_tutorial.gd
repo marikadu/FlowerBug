@@ -14,10 +14,10 @@ var is_blooming: bool
 signal is_eaten_status_1(is_eaten: bool)
 
 func _ready() -> void:
-	# for the variety, either have the sprite be flipped horizontally or not
+	# For the variety, either have the sprite be flipped horizontally or not
 	if randf() < 0.5:
 		animated_sprite.flip_h = true
-	# bouncing animations for better visuals
+	# Bouncing animations for better visuals
 	animated_sprite.play("blooming")
 	animation_player.play("bounce")
 	player = Global.player_instance
@@ -28,20 +28,15 @@ func _ready() -> void:
 
 func _on_disappear_timer_timeout() -> void:
 	if not is_being_eaten:
-		#self.queue_free()
 		get_parent().remove_flower(self)
 		
 func start_eating():
-	#$DisappearTimer.stop()
-	#$DisappearTimer.paused = true
 	animation_player.play("bounce")
 	is_being_eaten = true
 	is_eaten_status_1.emit(true)
 	skew_effect.stop()
 	
 func stop_eating():
-	#$DisappearTimer.start()
-	#$DisappearTimer.paused = false
 	is_being_eaten = false
 	is_eaten_status_1.emit(false)
 	skew_effect.play("skew")
@@ -53,11 +48,11 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	AudioManager.flower_bloomed()
 	animated_sprite.play("bloomed")
 	can_be_eaten = true
-	#$DisappearTimer.start() # this flower does not disappear!
+	## This flower does not disappear for tutorial purposes
 
 
-# every frame change, the bouncing animation is played
-# therefore for every flower "state", it has an animation of the bounce
+# Every frame change, the bouncing animation is played
+# Therefore for every flower "state", it has an animation of the bounce
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if is_blooming:
 		animation_player.play("bounce")

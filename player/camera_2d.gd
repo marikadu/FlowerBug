@@ -3,7 +3,6 @@ extends Camera2D
 # Camera shake tutorial used: 
 # https://www.youtube.com/watch?v=RVtcnkuNUIk
 
-#@export var camera_lerp_speed: float = 0.1 # for the camera following cursor feature
 @export var random_shake_strength: float = 30.0
 @export var shake_decay_rate: float = 5.0
 @export var noise_shake_speed: float = 30.0
@@ -54,16 +53,9 @@ func _ready() -> void:
 		print("camera: cutscene")
 		is_gameplay = false
 		player = null
-		
-	#if is_gameplay:
-		#player = Global.player_instance # getting the player instance
-		#
-	#else:
-		#player = null
 
 
 func _process(delta: float) -> void:
-	#cameraUpdate()
 	
 	# Camera shake
 	shake_strength = lerp(shake_strength, 0.0, shake_decay_rate * delta)
@@ -89,20 +81,13 @@ func _process(delta: float) -> void:
 				global_position += move_distance
 
 
-## Camera moves towards the cursor
-## Right now it does not work properly, making the controls extremely hard
-#func cameraUpdate():
-	#var target_cam_position = get_viewport().get_mouse_position()/10
-	#global_position = global_position.lerp(target_cam_position, camera_lerp_speed)
-
-
-# --- camera shake ---
+# --- Camera shake ---
 func apply_shake() -> void:
 	shake_strength = noise_shake_strength
 
 
 func get_noise_offset(delta: float) -> Vector2:
-	noise_initial_location += delta * noise_shake_speed # saving the data of where the camera is for smoother shake
+	noise_initial_location += delta * noise_shake_speed # Saving the data of where the camera is for smoother shake
 	
 	return Vector2(
 		noise.get_noise_2d(1, noise_initial_location) * shake_strength,
@@ -124,11 +109,9 @@ func zoom_camera_in():
 		# Restricting the zoom from going beyond the maximum
 		target_zoom.x = clamp(target_zoom.x, min_zoom.x, max_zoom.x)
 		target_zoom.y = clamp(target_zoom.y, min_zoom.y, max_zoom.y)
-		#print("target zoom: ", target_zoom) # For debugging
 	
 	
 func reset_zoom():
 	if is_gameplay:
 		target_zoom = default_zoom
 		global_position = default_position
-		#print("zoom reset!") # For debugging

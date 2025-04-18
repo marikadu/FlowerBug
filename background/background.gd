@@ -8,7 +8,6 @@ extends Control
 
 
 func _ready() -> void:
-	
 	clouds_morning.visible = false
 	clouds_noon.visible = false
 	clouds_evening.visible = false

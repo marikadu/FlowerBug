@@ -7,7 +7,7 @@ extends Control
 @onready var pb_score: Label = $LevelSelection/PersonalBest/PBScore
 
 
-# Main menu + Level selection
+#  Title screen + Level selection
 
 func _ready() -> void:
 	player_logo.play("Logo")
@@ -20,9 +20,9 @@ func _ready() -> void:
 		$Beetle.play("with_paint")
 		
 	for level in level_selection.get_children():
-		 # Connecting the levels to the button hover sound
-		if not level.mouse_entered.is_connected(_on_level_hover): # preventing multiple connections
-			level.mouse_entered.connect(_on_level_hover.bind(level))
+		 # Connecting the levels to the button pressed sound
+		if not level.pressed.is_connected(_on_level_pressed): # Preventing multiple connections
+			level.pressed.connect(_on_level_pressed.bind(level))
 			
 		# Enable or disable based on the number of unlocked levels
 		var is_unlocked = str_to_var(level.name) in range(Global.unlocked_levels + 1)
@@ -50,14 +50,6 @@ func _process(_delta: float) -> void:
 	
 
 func _on_play_pressed() -> void:
-	## When the player first starts the game, the game starts straight to the first level
-	#if not Global.has_started_the_game:
-		#Global.has_started_the_game = true
-		#Transition.transition()
-		#await Transition.on_transition_finished
-		#get_tree().change_scene_to_file("res://levels/level_1.tscn")
-
-	#else:
 	$AnimationPlayerCamera.play("camera")
 
 
@@ -67,7 +59,9 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 
+
 # --- Level selection part ---
+
 
 func _on_back_pressed() -> void:
 	$AnimationPlayerCamera.play_backwards("camera")
@@ -106,9 +100,8 @@ func _on_infinite_pressed() -> void:
 	Transition.transition()
 	await Transition.on_transition_finished
 	get_tree().change_scene_to_file("res://levels/main.tscn")
-	
 
-func _on_level_hover(level: Button) -> void:
-	if not level.disabled:  # Playing the sound only when the button is enabled
-		#AudioManager.play_button_hover()
-		pass
+
+# Button pressed sound
+func _on_level_pressed(_level: Button) -> void:
+	AudioManager.collect_pollen()
