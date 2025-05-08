@@ -44,8 +44,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pb_score.text = str(Global.personal_best)
 	
-	if Input.is_action_just_pressed("2_debugging"):
-		Global.unlocked_levels = 5
+	#if Input.is_action_just_pressed("2_debugging"):
+		#Global.unlocked_levels = 5 # Debugging
 	
 	
 
@@ -53,10 +53,11 @@ func _on_play_pressed() -> void:
 	$AnimationPlayerCamera.play("camera")
 
 
-func _on_exit_pressed() -> void:
-	Transition.transition()
-	await Transition.on_transition_finished
-	get_tree().quit()
+# No exit button for the web version!
+#func _on_exit_pressed() -> void:
+	#Transition.transition()
+	#await Transition.on_transition_finished
+	#get_tree().quit()
 
 
 
