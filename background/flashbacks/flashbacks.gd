@@ -65,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 					animation_player.play_section_with_markers("flashback_1", "slide3", "flashback_1_end")
 					slide += 1
 					await get_tree().create_timer(0.7, false).timeout
-					_can_continue()
+					#_can_continue()
 					_on_show_flashback_2()
 
 		if animation_2_playing:
@@ -109,26 +109,34 @@ func _physics_process(_delta: float) -> void:
 		if animation_3_playing:
 			match slide:
 				1:
+					_hide_mouse_indicator()
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_3", "slide7", "slide8")
 					slide += 1
+					await get_tree().create_timer(0.7, false).timeout
+					_can_continue()
 					
 				2:
+					_hide_mouse_indicator()
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_3", "slide8", "slide9")
 					slide += 1
+					await get_tree().create_timer(0.7, false).timeout
+					_can_continue()
 				
 				3:
+					_hide_mouse_indicator()
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_3", "slide9", "flashback_3_end")
 					slide += 1
 					
-					await get_tree().create_timer(0.2, false).timeout
 					get_tree().paused = false
 					animation_3_playing = false
 					Events.flashback_playing = false
 					AudioManager.music_volume_normal()
-					_hide_mouse_indicator()
+					await get_tree().create_timer(0.2, false).timeout
+					animation_3_playing = false
+					#_hide_mouse_indicator()
 
 
 
@@ -185,10 +193,12 @@ func _on_show_flashback_3():
 
 
 func _can_continue():
+	continue_sprite.play("click")
 	await get_tree().create_timer(0.2, false).timeout
 	continue_animation_player.play("can_continue") # Show the mouse
 	await get_tree().create_timer(0.2, false).timeout
-	continue_sprite.play("click")
 	
 func _hide_mouse_indicator():
+	#continue_sprite.play("click")
+	await get_tree().create_timer(0.2, false).timeout
 	continue_animation_player.play("hide")

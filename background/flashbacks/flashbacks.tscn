@@ -390,7 +390,7 @@ _data = {
 
 [node name="Flashbacks" type="Control"]
 process_mode = 3
-z_index = 3
+z_index = 4
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -445,6 +445,8 @@ libraries = {
 
 [node name="CanContinue" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = 5
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -454,7 +456,8 @@ grow_vertical = 2
 scale = Vector2(0.57, 0.57)
 
 [node name="ContinueSprite" type="AnimatedSprite2D" parent="CanContinue"]
-z_index = 2
+z_index = 5
+z_as_relative = false
 position = Vector2(617.681, 311.575)
 scale = Vector2(0.625, 0.625)
 sprite_frames = SubResource("SpriteFrames_03hwr")
