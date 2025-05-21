@@ -48,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_1", "slide1", "slide2")
 					slide += 1
-					await get_tree().create_timer(0.7, false).timeout
+					await get_tree().create_timer(0.7,).timeout
 					_can_continue()
 					
 				2:
@@ -56,7 +56,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_1", "slide2", "slide3")
 					slide += 1
-					await get_tree().create_timer(0.7, false).timeout
+					await get_tree().create_timer(0.7,).timeout
 					_can_continue()
 				
 				3:
@@ -64,7 +64,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_1", "slide3", "flashback_1_end")
 					slide += 1
-					await get_tree().create_timer(0.7, false).timeout
+					await get_tree().create_timer(0.7,).timeout
 					_can_continue()
 					_on_show_flashback_2()
 
@@ -75,7 +75,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_2", "start_flashback_2", "slide4")
 					slide += 1
-					await get_tree().create_timer(1.5, false).timeout
+					await get_tree().create_timer(1.5,).timeout
 					_can_continue()
 					
 				5:
@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_2", "slide4", "slide5")
 					slide += 1
-					await get_tree().create_timer(0.7, false).timeout
+					await get_tree().create_timer(0.7,).timeout
 					_can_continue()
 					
 				6:
@@ -91,7 +91,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_2", "slide5", "slide6")
 					slide += 1
-					await get_tree().create_timer(0.7, false).timeout
+					await get_tree().create_timer(0.7,).timeout
 					_can_continue()
 				
 				7:
@@ -99,7 +99,7 @@ func _physics_process(_delta: float) -> void:
 					print("paused animation, slide: ", slide)
 					animation_player.play_section_with_markers("flashback_2", "slide6", "flashback_2_end")
 					slide += 1
-					await get_tree().create_timer(0.2, false).timeout
+					await get_tree().create_timer(0.2,).timeout
 					get_tree().paused = false
 					animation_2_playing = false
 					Events.flashback_playing = false
@@ -123,7 +123,7 @@ func _physics_process(_delta: float) -> void:
 					animation_player.play_section_with_markers("flashback_3", "slide9", "flashback_3_end")
 					slide += 1
 					
-					await get_tree().create_timer(0.2, false).timeout
+					await get_tree().create_timer(0.2,).timeout
 					get_tree().paused = false
 					animation_3_playing = false
 					Events.flashback_playing = false
@@ -186,9 +186,12 @@ func _on_show_flashback_3():
 
 func _can_continue():
 	await get_tree().create_timer(0.2, false).timeout
-	continue_animation_player.play("can_continue") # Show the mouse
+	#continue_animation_player.play("can_continue") # Show the mouse
 	await get_tree().create_timer(0.2, false).timeout
 	continue_sprite.play("click")
 	
 func _hide_mouse_indicator():
-	continue_animation_player.play("hide")
+	#continue_animation_player.stop("can_continue")
+	#continue_animation_player.play("hide")
+	continue_animation_player.play_backwards("can_continue")
+	pass
